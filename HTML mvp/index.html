@@ -1,0 +1,145 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="js\vendor\main.js"></script>
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+
+    <!-- First button -->
+       <button class="accordion" id="btn1" value="Første oppstarts dag"></button>
+        <div class="panel">
+            <ol>
+                <li>
+                        Møte med Rådgiver:
+                        <input type="checkbox" name="task1" value="IT utstyr funker" onclick="update()"><br />
+                </li>
+                <li>
+                        Sørge for at IT utstyr funker:
+                    <input type="checkbox" name="task1" value="IT utstyr funker" checked onclick="update()"><br />
+                </li>
+                <li>
+                    Møte med Rådgiver:
+                    <input type="checkbox" name="task1" value="IT utstyr funker" onclick="update()"><br />
+
+                </li>
+            </ol>
+         </div>
+
+        <!-- Second button -->
+        <button class="accordion" id="btn2" value="Andre oppstarts dag"></button>
+        <div class="panel">
+            <ol>
+                <li>
+                    <form action="">
+                        Møte med HR:
+                        <input type="checkbox" name="task2" value="Møte med HR" onclick="update1()"><br />
+                    </form>
+                </li>
+                <li>
+                    <form action="">
+                        Lunsj med fadder:
+                        <input type="checkbox" name="task2" value="Lunsj med fadder" onclick="update1()"><br />
+                    </form>
+                </li>
+            </ol>
+        </div>
+
+
+
+        <!-- Should be moved to js file -->
+        <script>
+            //Makes the button hide / show the list / dropdown
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight){
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            }
+
+            //loads the functions when starting the page
+            window.onload = update();
+            window.onload = update1();
+
+
+            //Only applies to the first button
+            //Function for counting checkboxes, checked checkboxes and calculate the percentage
+            function update() {
+                var inputElems = document.getElementsByName("task1"),
+                    count = 0;
+
+
+                for(var i=0; i<inputElems.length; i++){
+                    count++;
+                }
+
+                count1 = 0;
+                for(var i=0; i<inputElems.length; i++){
+                    if (inputElems[i].type == "checkbox" && inputElems[i].checked == true){
+                        count1++;
+                    }
+
+                }
+                var perc = Math.round(count1 / count *100)
+                document.getElementById("btn1").innerHTML = document.getElementById("btn1").value + " | " + count1 + " / " + count + " | " + perc + "%";
+            }
+
+
+            //Only applies to the second button
+            //Function for counting checkboxes, checked checkboxes and calculate the percentage
+            function update1() {
+                var inputElems = document.getElementsByName("task2"),
+                    count2 = 0;
+
+
+                for(var i=0; i<inputElems.length; i++){
+                    count2++;
+                }
+
+                count3 = 0;
+                for(var i=0; i<inputElems.length; i++){
+                    if (inputElems[i].type == "checkbox" && inputElems[i].checked == true){
+                        count3++;
+                    }
+
+                }
+                var perc = Math.round(count3 / count2 *100)
+                document.getElementById("btn2").innerHTML = document.getElementById("btn2").value + " | " + count3 + " / " + count2 + " | " + perc + "%";
+            }
+
+
+        </script>
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    </body>
+</html>

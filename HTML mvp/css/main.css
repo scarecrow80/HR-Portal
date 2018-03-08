@@ -21,7 +21,7 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
-
+    background: lightslategrey;
     vertical-align: baseline;
 }
 
@@ -35,16 +35,59 @@ button {
     justify-content: center;
 
 }
-.panel {
-    display: flex;
-    justify-content: center;
+.task {
+    list-style-type: none;
+    text-align: center;
+    padding: 14px 16px;
+
+
 }
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+
+}
+
+li a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+    text-decoration: none;
+
+}
+
+.panel{
+    text-align: center;
+    display: block;
+    justify-content: center;
+
+}
+
+.container{
+    display: block;
+    width: 40em;
+
+}
+
 .accordion {
-
-
-
     background-color: #eee;
     color: #444;
+
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -57,15 +100,28 @@ button {
 
 }
 
+.ola{
+    width: 20px;
+    height: 20px;
+
+}
+
 .active, .accordion:hover {
     background-color: #ccc;
 }
 
 .panel {
-    padding: 0 18px;
+    padding: 0 8px;
     background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+.name{
+    background-color: #eee;
+    display: block;
+    padding: 10px;
+    font-size: 15px;
+    text-align: center;
 
+}

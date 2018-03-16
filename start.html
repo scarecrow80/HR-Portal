@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="HTML mvp/js\vendor\main.js"></script>
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="HTML mvp/icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="HTML mvp/css/normalize.css">
+    <link rel="stylesheet" href="HTML mvp/css/main.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="#Hjem" >Hjem</a></li>
+        <li><a href="#Mine oppgaver" >Mine oppgaver</a></li>
+        <li><a href="#Hjelp" >Hjelp</a></li>
+        <li></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <button class="accordion" onclick="loadXMLDoc()"> Ola Nordmann <img class="ola" align="right" src="http://icons.iconarchive.com/icons/icons8/ios7/512/Users-User-Male-icon.png"> </button>
+</div>
+
+<div class="container">
+    <!-- First button -->
+    <button class="accordion" onclick="loadXMLDoc()" id="btn1" value="Sjekkliste"></button>
+    <div class="panel">
+
+        <table id="test" border="1">
+            <tr><th>Description</th><th>Responsible</th><th>Checked</th></tr>
+        </table>
+    </div>
+</div>
+
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight){
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            }
+
+            function loadXMLDoc() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        myFunction(this);
+                    }
+                };
+                xmlhttp.open("GET", "XML/checklist-NO.xml", true);
+                xmlhttp.send();
+            }
+            function myFunction(xml) {
+                var i;
+                var xmlDoc = xml.responseXML;
+                var table="<tr><th>Description</th><th>Responsible</th><th>Checked</th></tr>";
+                var x = xmlDoc.getElementsByTagName("checkpoint");
+                for (i = 0; i < x.length; i++) {
+                    table += "<tr><td>" +
+                        x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue + "</td><td>"
+                        + x[i].getElementsByTagName("responsible")[0].childNodes[0].nodeValue + "</td><td>"
+                        + x[i].getElementsByTagName("checked")[0].childNodes[0].nodeValue + "</td>";
+                }
+                document.getElementById("test").innerHTML = table;
+            }
+        </script>
+
+
+</body>
+</html>

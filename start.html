@@ -27,12 +27,12 @@
 </nav>
 
 <div class="container">
-    <button class="accordion" onclick="loadXMLDoc()"> Ola Nordmann <img class="ola" align="right" src="http://icons.iconarchive.com/icons/icons8/ios7/512/Users-User-Male-icon.png"> </button>
+    <button class="accordion"> Ola Nordmann <img class="ola" align="right" src="http://icons.iconarchive.com/icons/icons8/ios7/512/Users-User-Male-icon.png"> </button>
 </div>
 
 <div class="container">
     <!-- First button -->
-    <button class="accordion" onclick="loadXMLDoc()" id="btn1" value="Sjekkliste"></button>
+    <button class="accordion" id="btn1" value="Sjekkliste"></button>
     <div class="panel">
 
         <table id="test" border="1">
@@ -41,47 +41,52 @@
     </div>
 </div>
 
-        <script>
-            var acc = document.getElementsByClassName("accordion");
-            var i;
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
 
-            for (i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var panel = this.nextElementSibling;
-                    if (panel.style.maxHeight){
-                        panel.style.maxHeight = null;
-                    } else {
-                        panel.style.maxHeight = panel.scrollHeight + "px";
-                    }
-                });
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight){
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
             }
+        });
+    }
 
-            function loadXMLDoc() {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        myFunction(this);
-                    }
-                };
-                xmlhttp.open("GET", "XML/checklist-NO.xml", true);
-                xmlhttp.send();
+    window.onload = loadXMLDoc();
+
+    function loadXMLDoc() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction(this);
             }
-            function myFunction(xml) {
-                var i;
-                var xmlDoc = xml.responseXML;
-                var table="<tr><th>Description</th><th>Responsible</th><th>Checked</th></tr>";
-                var x = xmlDoc.getElementsByTagName("checkpoint");
-                for (i = 0; i < x.length; i++) {
-                    table += "<tr><td>" +
-                        x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue + "</td><td>"
-                        + x[i].getElementsByTagName("responsible")[0].childNodes[0].nodeValue + "</td><td>"
-                        + x[i].getElementsByTagName("checked")[0].childNodes[0].nodeValue + "</td>";
-                }
-                document.getElementById("test").innerHTML = table;
-            }
-        </script>
+        };
+        xmlhttp.open("GET", "XML/checklist-NO.xml", true);
+        xmlhttp.send();
+    }
+    function myFunction(xml) {
+        var i;
+        var xmlDoc = xml.responseXML;
+
+        var table="<tr><th>Description</th><th>Responsible</th><th>Checked</th></tr>";
+        var x = xmlDoc.getElementsByTagName("checkpoint");
+        for (i = 0; i < x.length; i++) {
+            table += "<tr><td>" +
+                x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue + "</td><td>"
+                + x[i].getElementsByTagName("responsible")[0].childNodes[0].nodeValue + "</td><td>"
+                + "<input type='checkbox' id="+ i +"> </td></tr>";
+        }
+        document.getElementById("test").innerHTML = table;
+    }
+</script>
 
 
 </body>
 </html>
+
+

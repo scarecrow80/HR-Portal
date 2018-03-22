@@ -5,145 +5,145 @@
         <checkpoint>
             <description>Customized list and role distribution.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>SDI gives a confirmation that the contract of the new instated has been accepted.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>All necessary documents are delivered to his or her personnel file.</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Registration of a new user in BAS (useradministrative system).</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Fix office space and everything that is accompanied by that.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Ordering of necessary IT equipment.</description>
             <responsible>IKT(Leader)</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Inform the colleagues.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Information about attendance on the first day at the office.</description>
             <responsible>Mentor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Greetings and delivery of relevant classified information.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Greetings with your fellow co-workers.</description>
             <responsible>Mentor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Introduction to the email system used at the work place.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Making sure that all IT equipment is working and in place.</description>
             <responsible>Mentor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>A basic introduction to fire emergencies protocols.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>A guided tour over the local office.</description>
             <responsible>Mentor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Social contact from a familiar face.</description>
             <responsible>Mentor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>An orientation of your personal working space environment.</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Training and introduction into the health and safety regulations at the faculty (HSE or HMS in Norwegian).</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>An introduction into the local intranet.</description>
             <responsible>Mentor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Give the new co-worker information on recommended courses for the newly employee and sign up to an introductory day for the newly employed.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Share social and cultural events and offerings for the faculty.</description>
             <responsible>Mentor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Ordering and reviewing of working space environment.</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>A follow-up conversation about work situation and other necessary information.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Guided tour of all the campuses.</description>
             <responsible>Mentor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>If necessary at a later state another follow-up conversation.</description>
             <responsible>Leader</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
     </checklist>
 
@@ -151,43 +151,43 @@
         <checkpoint>
             <description>Mentor is given and informed to the new leader at the same time as the registration on BAS</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>The newly recruited leader is included in planning of his own starting period.</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Introductory folder and earlier access into vital information of the working space.</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Prepare the IT equipment with the necessary applications and access rights for the system in the faculty.</description>
             <responsible>IKT</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Go through the stakeholder management for the university and the department and the schedules of meeting and events.</description>
             <responsible>Supervisor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Startup meeting with plan for development of skills by for example taking courses on leadership.</description>
             <responsible>Supervisor</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Introduced to introductory modules in field of administrative work</description>
             <responsible>FA (Faculty administration)</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
     </checklist>
 
@@ -195,31 +195,31 @@
         <checkpoint>
             <description>Welcome documents and information sent in English</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Nationality is included in the registration form for recruiting, workcontract and in SAP.</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Offering to assist in a work-related visa.</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Offering to assist in acquiring an apartment. HR department will use their treaty with Oslo chamber of commerce as a building block.</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
 
         <checkpoint>
             <description>Information of BAS password change. If the new recruited does not have a Norwegian cellphone and Norwegian D-number BIT must be contacted.</description>
             <responsible>HR department</responsible>
-            <checked></checked>
+            <checked>""</checked>
         </checkpoint>
     </checklist>
 </wholelist>

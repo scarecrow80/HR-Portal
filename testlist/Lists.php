@@ -1,3 +1,18 @@
+<?php include('dbconnection.php');
+if (!isLoggedIN()){
+    $_SESSION['msg'] = "you must be logged in to enter";
+    header( 'location: ../testlist/homepage.php');
+}
+if (fadder()){
+    $_SESSION['msg'] = "No access";
+    session_destroy();
+    unset($_SESSION['user']);
+    header('location: ../testlist/homepage.php');
+
+}
+?>
+
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -6,7 +21,7 @@ and open the template in the editor.
 -->
 <html>
 <head>
-    <title>Du er logget inn</title>
+    <title>You are logged in</title>
     <style>
         .dropbtn {
             background-color: #3498DB;
@@ -50,48 +65,67 @@ and open the template in the editor.
 </head>
 
 <body>
-<?php
-/*$db = mysqli_connect("localhost", "root", "", "personer");
-    if(!$db) {
-        die("feil i koblingen:".$db->connect_error);
-        }
-    $query = "select Fornavn from dine_nyansatte";
-    $result = $db->query($query);
-    if(!$result){
-        echo "viweing failed";
-    }
-    else{
-        while  ($row = $result->fetch_object()){
-            echo "<li>".$row->Fornavn."</li>";
 
-        }
-    }*/
-?>
 <div class="dropdown">
-    <button onclick="dropFunc()" class="dropbtn">Personer</button>
-    <div id ="dropLink" class="dropdown-content">
-        <a href="http://localhost:63342/testlist/Karl.php">Karls list</a>
-        <a href="http://localhost:63342/testlist/Lena.php">Lenas list</a>
-        <a href="http://localhost:63342/testlist/Keiths.php">Keiths list</a>
+    <button onclick="dropfunc()" class="dropbtn">Persons</button>
+    <div id="recruits" class="dropdown-content">
+        <a href="http://localhost:63342/HR-Portal/testlist/Karl.php">Karls list</a>
+        <a href="http://localhost:63342/HR-Portal/testlist/Lena.php">Lenas list</a>
+        <a href="http://localhost:63342/HR-Portal/testlist/Keith.php">Keiths list</a>
     </div>
+</div><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="content">
+    <!-- notification message -->
+    <?php if (isset($_SESSION['success'])) : ?>
+        <div class="error success" >
+            <h3>
+                <?php
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?>
+            </h3>
+        </div>
+    <?php endif ?>
+    <!-- logged in user information -->
+
+    <?php  if (isset($_SESSION['user'])) : ?>
+        <strong><?php echo $_SESSION['user']['username']; ?></strong>
+
+        <small>
+            <i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i>
+            <br>
+            <a href="logout.php" id="logout" style="color: red;">logout</a>
+        </small>
+
+    <?php endif ?>
 </div>
-<script>
-    function dropFunc() {
-        document.getElementById("dropLink").classList.toggle("show");
-    }
-      /*  window.onclick = function (event){
-            if (!event.target.matches('.dropbtn')){
-                var down = document.getElementsByClassName("dropdown-content");
-            for (var i = 0; i < down.length; i++){
-                var opendrop = down[i];
-                if (opendrop.classList.contains('show')){
-                    down.classList.remove('show');
-                }
-            }
-
-            }
-        }*/
-
-</script>
 
 </body>
+<script>
+    function dropfunc() {
+        document.getElementById("recruits").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>

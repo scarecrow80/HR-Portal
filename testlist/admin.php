@@ -1,5 +1,5 @@
 <?php
-include('../testlist/dbconnection.php');
+include('../DBconnections/dbconnection.php');
 if (!admin()){
     $_SESSION['msg'] = "You have to log in as admin";
     session_destroy();
@@ -37,10 +37,13 @@ if (!admin()){
             </h3>
         </div>
     <?php endif ?>
+    <a href="register.php">Register people</a><br>
     <a href="HR.php">HR</a><br>
     <a href="Lists.php">normal page</a><br>
     <!-- logged in user information -->
     <br>
+    <a href="Edituser.php">Edit a user</a><br>
+    <a href="delete.php">Delete a user</a><br>
     <?php  if (isset($_SESSION['user'])) : ?>
         <strong><?php echo $_SESSION['user']['username']; ?></strong>
 

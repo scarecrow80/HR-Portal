@@ -1,5 +1,5 @@
 <?php
-include('../testlist/dbconnection.php');
+include('../DBconnections/dbconnection.php');
 if (logO()){
     $_SESSION['msg'] = "Logged out";
     session_destroy();

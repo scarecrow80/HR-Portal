@@ -1,5 +1,5 @@
 <?php
-include('../testlist/dbconnection.php');
+include('../DBconnections/dbconnection.php');
 if (!HR()){
      $_SESSION['msg'] = "wrong logintype";
     session_destroy();

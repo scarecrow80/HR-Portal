@@ -1,9 +1,18 @@
 
-<?php include('dbconnection.php') ?>
+<?php
+include('../DBconnections/dbconnection.php');
+if (!admin()){
+    $_SESSION['msg'] = "You have to log in as admin";
+    session_destroy();
+    unset($_SESSION['user']);
+    header('location: ../testlist/homepage.php');
+}
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Registration system PHP and MySQL</title>
+    <title>Registration of users </title>
 </head>
 <script type="text/javascript">
 
@@ -24,6 +33,10 @@
     <div class="input-group">
         <label>Username</label>
         <input type="text" name="username" value="<?php echo $username; ?>">
+    </div>
+    <div class="input-group">
+        <label>Name</label>
+        <input type="text" name="name" >
     </div>
     <select name="user_type"
     <label>User type</label>

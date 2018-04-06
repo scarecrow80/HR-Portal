@@ -1,4 +1,12 @@
-
+<?php
+include('../HR-Portal/DBconnections/dbconnection.php');
+/*if (!leader()){
+    $_SESSION['msg'] = "You have to log in as admin";
+    session_destroy();
+    unset($_SESSION['user']);
+    header('location: ../HR-Portal/testlist/homepage.php');
+}*/
+?>
 <!DOCTYPE html>
 
 
@@ -181,6 +189,21 @@
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">oktober 2016</h3>
                                             <div class="toggler-content">
                                                 <p>TODOTODOTODOTODOTODO</p>
+                                                <?php $db = mysqli_connect("localhost", "root", "", "db_hr_portal");
+                                                if(!$db){
+                                                    die("Feil i databasetilkobling:".$db->connect_error);
+                                                }
+                                                $query = "select * from checklist ";
+                                                $result = $db->query($query);
+                                                if(!$result){
+                                                    echo "viewing failed";
+                                                }
+                                                else{
+                                                    while ($row = $result->fetch_object()){
+                                                        echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
+                                                    }
+                                                }?>
+
                                             </div>
                                         </article>
                                     </section>
@@ -225,10 +248,19 @@
 
 
 
+
                                 </div>
 
                                 <div id="assignMentor" class="page tilsatt" style="display:none">
                                     <p>TODOTODOTODOTODOTODO assign mentor</p>
+
+                                    <label for>Firstname</label>
+                                    <input type="text" name="firstname" value="<?php echo $username; ?>"><br>
+                                    <label for>ID-number</label>
+                                    <input type="number" name="idChecklist" id="idChecklist" value="">
+                                    <input type="submit" class="btn" name="Assign" id="Assign">Assign mentor</input>
+
+                                    </form>
                                 </div>
 
                                 <script>

@@ -8,7 +8,7 @@
     <meta property="og:image" content="img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>HiOA - title</title>
+    <title>OsloMet - Leder</title>
 
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
@@ -189,6 +189,40 @@
 
                                 <div id="createList" class="page tilsatt" style="display:none">
                                     <p>TODOTODOTODOTODOTODO create list</p>
+                                    <form action="" method="post">
+                                        <table>
+                                            <tr>
+                                                <td>Fornavn: </td>
+                                                <td><input type="text" name="Fornavn" class="field comment-alerts" /> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Etternavn: </td>
+                                                <td><input type="text" name="Etternavn" class="field comment-alerts" /> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Stilling: </td>
+                                                <td><select name="Stilling" class="field comment-alerts" required />
+                                                <option value="Leder">Leder</option>
+                                                <option value="Ansatt">Ansatt</option>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Internasjonal: </td>
+                                                <td><select name="Internasjonal" class="field comment-alerts" required>
+                                                <option value="Ja">Ja</option>
+                                                <option value="Nei">Nei</option>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ansatt dato: </td>
+                                                <td><input type="date" name="Ansatt dato:" class="field comment-alerts" required /> </td>
+                                            </tr>
+
+                                        </table>
+                                    </form>
+                                    <button class="btn btn-cancel" type="button">Avbryt</button>
+                                    <input class="btn btn-primary" type="button" value="Opprett">
+
 
 
                                 </div>

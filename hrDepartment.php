@@ -8,7 +8,7 @@
     <meta property="og:image" content="img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>HiOA - title</title>
+    <title>OsloMet - HR-avdeling</title>
 
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">

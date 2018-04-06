@@ -1,4 +1,12 @@
-
+<?php
+include('../HR-Portal/DBconnections/dbconnection.php');
+/*if (!admin()){
+    $_SESSION['msg'] = "You have to log in as admin";
+    session_destroy();
+    unset($_SESSION['user']);
+    header('location: ../HR-Portal/testlist/homepage.php');
+}*/
+?>
 <!DOCTYPE html>
 
 
@@ -177,6 +185,21 @@
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">september 2016</h3>
                                             <div class="toggler-content">
                                                 <p>TODOTODOTODOTODOTODO</p>
+                                               <?php $db = mysqli_connect("localhost", "root", "", "db_hr_portal");
+                                                if(!$db){
+                                                die("Feil i databasetilkobling:".$db->connect_error);
+                                                }
+                                                $query = "select * from checklist ";
+                                                $result = $db->query($query);
+                                                if(!$result){
+                                                echo "viewing failed";
+                                                }
+                                                else{
+                                                while ($row = $result->fetch_object()){
+                                                echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
+                                                }
+                                                }?>
+
                                             </div>
                                         </article>
 
@@ -198,10 +221,48 @@
 
                             <div id="delete" class="page tilsatt" style="display:none">
                                             <p>TODOTODOTODOTODOTODO delete user</p>
+                                <form action="" method="post">
+
+                                    <label for>Nummer</label>
+                                    <input type="number" name="idChecklist" value=""><br>
+
+                                    <input type="submit" class="btn" name="Check" id="Check">Delete Checklist</input>
+
+                                </form>
                             </div>
 
                             <div id="create" class="page tilsatt" style="display:none">
                                             <p>TODOTODOTODOTODOTODO create user</p>
+                                <form method="post" action="">
+
+                                    <div class="input-group">
+                                        <label>Firstname</label>
+                                        <input type="text" name="firstname" value="">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Lastname</label>
+                                        <input type="text" name="lastname" >
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Workposition</label>
+                                        <input type="text" name="workposition" >
+                                    </div>
+                                    <select name="international"
+                                    <label>International</label>
+                                    <option value=""></option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                    </select>
+                                    <div class="input-group">
+                                        <label>Startdate</label>
+                                        <input type="date" name="date">
+                                    </div>
+                                    <div class="input-group">
+                                        <button type="submit" class="btn" name="register">Register</button>
+                                    </div>
+
+
+                                </form>
                             </div>
 
                             <script>

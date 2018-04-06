@@ -5,37 +5,25 @@
 session_start();
 $username ="";
 $errors = array();
-$db = mysqli_connect('localhost', 'root', '', 'personer');
+$db = mysqli_connect('localhost', 'root', '', 'db_hr_portal');
 //check if inputs are correct!
 if (isset($_POST['register'])){
-    $username = e($_POST['username']);
-    $name = e($_POST['name']);
-    $user_type = e($_POST['user_type']);
-    $password_first = e($_POST['password_first']);
+    $firstname = e($_POST['firstname']);
+    $lastname = e($_POST['lastname']);
+    $workposition = e($_POST['workposition']);
+    $international= e($_POST['international']);
+    $startdate = e($_POST['startdate']);
     $confirm_password = e($_POST['confirm_password']);
-    if (empty($username)) {array_push($errors, "You need a username");}
-    if (empty($name)) {array_push($errors, "write your name");}
-    if (empty($user_type)) {array_push($errors, "You have to have a role");}
-    if ($password_first != $confirm_password){
-        array_push($errors, "the password needs to match");
-    }
-    //check if your user isnt already made
-    $user_check = "SELECT * FROM users WHERE username='$username' LIMIT 1";
-    $result = $db->query($user_check);
-    $user = mysqli_fetch_assoc($result);
-    if($user){
-        if($user['username'] === $username){
-            array_push($errors, "That username allready exits");
-            echo "exiting username";
-        }
-    }
-
-
+    if (empty($firstname)) {array_push($errors, "You need a firstname");}
+    if (empty($lastname)) {array_push($errors, "write your lastname");}
+    if (emptyt($workname)) {array_push($errors, "write the workposition");}
     //add user and cryptate the password in md5 cryption
     if (count($errors) ==0){
-        $password = md5($password_first);
-        $query = "INSERT INTO users (username, name, user_type, password) 
-  			  VALUES('$username', '$name', '$user_type', '$password')";
+        //$salt = random_bytes(10).$password_first;
+        //$password= hash('sha512', $password_first);
+
+        $query = "INSERT INTO newemployee (firstname, lastname, workposition , international, startdate) 
+  			  VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
         $result = $db->query($query);
         if(!$result){
             echo "Wrong in the script";
@@ -45,7 +33,7 @@ if (isset($_POST['register'])){
             echo "The script worked, but the user wasn't added";
         }
         else{
-            echo "user added";
+            echo "newemployee was added";
         }
     }
 }
@@ -103,30 +91,31 @@ function login() {
     }
 
 }
-if (isset($_POST["Usern"])){
-    deleteuser();
+if (isset($_POST["check"])){
+    deletechecklist();
 }
 //delete user
-function deleteuser()
+function deletechecklist()
 {
     global $db, $username, $errors;
     //get values
-    $username = e($_POST['username']);
+    $idChecklist = e($_POST['idChecklist']);
 
 
     // make sure form is filled properly
-    if (empty($username)) {
-        array_push($errors, "Username is required");
+    if (empty($idChecklist)) {
+        array_push($errors, "Checklist number is required");
     }
-    $user_check = "SELECT username FROM users WHERE username='$username'";
+    $user_check = "SELECT idChecklist FROM checklist WHERE idChecklist='$idChecklist'";
     $result = $db->query($user_check);
-    $user = mysqli_fetch_assoc($result);
-    if (!$user) {
-        array_push($errors, "Not a user");
+    $id = mysqli_fetch_assoc($result);
+    if (!$id) {
+        array_push($errors, "Not a list");
+        echo "not a excisting checklist";
     } else {
         if (count($errors) == 0) {
 
-            $query = "DELETE FROM users WHERE username='$username'";
+            $query = "DELETE FROM checklist WHERE idChecklist='$idChecklist'";
             $result = $db->query($query);
 
             if (!$result) {
@@ -157,7 +146,18 @@ function isLoggedIN()
 //making sure only admin enter admin
 function admin()
 {
-    if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] == 'admin'){
+    if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'admin'){
+        return true;
+    }else{
+        return false;
+    }
+}
+//leader check on login
+function leader()
+{
+    if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'admin'){
+        return true;}
+    elseif (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'leader'){
         return true;
     }else{
         return false;
@@ -165,7 +165,7 @@ function admin()
 }
 //fadder cant login to some place
 function fadder(){
-      if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] == 'fadder'){
+      if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'fadder'){
         return true;
     }else{
         return false;
@@ -173,9 +173,9 @@ function fadder(){
 }
 //HR and admin can get to hr
 function HR(){
-    if (isset($_SESSION['user']) && $_SESSION['user']['user_type'] == 'admin'){
+    if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'admin'){
         return true;
-    }elseif (isset($_SESSION['user']) && $_SESSION['user']['user_type'] == 'HR')
+    }elseif (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'HR')
     {
      return true;
     } else{
@@ -201,6 +201,9 @@ if(isset($_POST["type_edit"])){
 if (isset($_GET['search'])){
     searchuser();
 }
+if(isset($_POST['Assign'])){
+    addmentor();
+}
 //edit a usertype
 function edittype()
 {
@@ -216,7 +219,7 @@ function edittype()
     } else {
 
             if (count($errors) == 0){
-                $query = "UPDATE users SET user_type = '$user_type' WHERE username='$username'";
+                $query = "UPDATE users SET usertype = '$user_type' WHERE username='$username'";
                 $result = $db->query($query);
                 if(!$result){
                     echo "wrong in the script";
@@ -228,7 +231,28 @@ function edittype()
     }
 
     }
-
+function addmentor(){
+    global $db, $username, $errors;
+    $firstname = e($_POST['firstname']);
+    $idChecklist = e($_POST['idChecklist']);
+    $user_check = "SELECT firstname FROM users WHERE firstname= '$firstname'";
+    $result = $db->query($user_check);
+    $user = mysqli_fetch_assoc($result);
+    if (!$user) {
+        echo "not a user";
+        array_push($errors, "Not a user");
+    } else {
+        if (count($errors) == 0){
+            $query = "UPDATE checklist SET responsible = '$firstname' WHERE idChecklist='$idChecklist'";
+            $result = $db->$query($query);
+            if(!$result){
+                echo "wrong in the script";
+            }else{
+                echo "mentor assigned";
+            }
+        }
+    }
+}
 
 //edit the password of a user
 function editpass()
@@ -272,26 +296,21 @@ function editpass()
 //search for a user
 function searchuser()
 {
-    global $db, $username, $errors;
-    $username = e($_GET['username']);
-    $user_check = "SELECT username FROM users WHERE username= '$username'";
-    $result = $db->query($user_check);
-    $user = mysqli_fetch_assoc($result);
-    if (!$user) {
-        array_push($errors, "Not a user");
-    } else {
-        if (count($errors) == 0) {
-            $query = "SELECT *, NULL AS password FROM users WHERE username= '$username'";
+    global $db,
+    $idChecklist;
+    $idChecklist = e($_GET['Checklist_idChecklist']);
+
+
+            $query = "SELECT * FROM newemployee_has_checklist WHERE Checklist_idChecklist= '$idChecklist'";
             $result = $db->query($query);
             if (!$result) {
                 echo "viewing failed";
             } else {
                 while ($row = $result->fetch_object()) {
-                    echo "<li>"."ID number ". $row->ID . " user " . $row->username . " is named " . $row->name . " has the role " . $row->user_type . ". " . $row->password . "</li>";
+                    echo "<li>"."ID number ". $row->Newemployee_idNewemployee . " " . $row->Checklist_idChecklist . " " . $row->checked . "</li>";
                 }
             }
-        }
-    }
+
 }
 //get userid
     function getUserByID($id)

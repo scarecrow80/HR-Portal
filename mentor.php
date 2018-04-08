@@ -1,7 +1,7 @@
-<?php include('../DBconnections/dbconnection.php');
+<?php include('../HR-Portal/DBconnections/dbconnection.php');
 /*if (!isLoggedIN()){
     $_SESSION['msg'] = "you must be logged in to enter";
-    header( 'location: ../testlist/homepage.php');
+    header( 'location: ../index.php');
 } */
 ?>
 <!DOCTYPE html>

@@ -4,7 +4,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
     $_SESSION['msg'] = "You have to log in as admin";
     session_destroy();
     unset($_SESSION['user']);
-    header('location: ../HR-Portal/testlist/homepage.php');
+    header('location: ../HR-Portal/index.php');
 }*/
 ?>
 <!DOCTYPE html>

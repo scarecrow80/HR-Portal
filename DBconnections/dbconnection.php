@@ -65,22 +65,22 @@ function login() {
         if($db->affected_rows == 1) {
 
             $logged_in_user = mysqli_fetch_assoc(($result));
-            if ($logged_in_user['user_type'] == 'admin') {
+            if ($logged_in_user['usertype'] == 'admin') {
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "Logged in";
-                header('location: ../testlist/admin.php');
-            } else if ($logged_in_user['user_type'] == 'leder') {
+                header('location: ../HR-Portal/admin.php');
+            } else if ($logged_in_user['usertype'] == 'leader') {
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "Logged in getting you to list";
-                header('location: ../testlist/lists.php');
-            } else if  ($logged_in_user['user_type'] == 'fadder'){
+                header('location: ../Hr-Portal/leader.php');
+            } else if  ($logged_in_user['usertype'] == 'mentor'){
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "Logged in getting you to list";
-                header('location: ../testlist/Karl.php');
+                header('location: ../HR-Portal/mentor.php');
             } else{
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "Logged in getting you to list";
-                header('location: ../testlist/HR.php');
+                header('location: ../HR-Portal/hrDepartment.php');
             }
 
         }else {

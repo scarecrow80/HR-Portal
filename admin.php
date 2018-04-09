@@ -264,7 +264,12 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
                                 </form>
                             </div>
-                                <a href="logout.php" id="logout" style="color: red;">logout</a>
+                                <div class="tilsatt">
+                                    <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'" ">
+                                    Logout
+
+                                    </button>
+                                </div>
                             <script>
 
                                 function openPage(pageName){

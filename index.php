@@ -15,19 +15,18 @@ and open the template in the editor.
 
     <form method="post" action="">
         <?php echo display_error(); ?>
-        <div class="input-group">
+        <div class="tilsatt">
             <label>Username</label>
             <input type="text" name="username">
         </div>
-        <div class="input-group">
+        <div class="tilsatt">
             <label>Password</label>
             <input type="password" name="password">
         </div>
-        <div class="input-group">
-            <button type="submit" class="btn" name="login">Login</button>
+        <div class="tilsat">
+            <button type="submit" class="btn btn-primary" name="login">Login</button>
         </div>
     </form>
 </center>
 </body>
-
 

@@ -185,7 +185,11 @@
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
                         </div> <!-- END: section -->
 
-                        <a href="../DBconnections/logout.php" id="logout" style="color: red;">logout</a>
+                        <div class="tilsatt">
+                            <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'" ">
+                                Logout
+                            </button>
+                        </div>
 
                         <!-- Main area content: END -->
                     </div>

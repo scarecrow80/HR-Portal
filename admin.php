@@ -226,7 +226,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                     <label for>Nummer</label>
                                     <input type="number" name="idChecklist" value=""><br>
 
-                                    <input type="submit" class="btn" name="Check" id="Check">Delete Checklist</input>
+                                    <input type="submit" class="btn btn-primary" name="Check" id="Check">Delete Checklist</input>
 
                                 </form>
                             </div>
@@ -258,7 +258,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                         <input type="date" name="date">
                                     </div>
                                     <div class="input-group">
-                                        <button type="submit" class="btn" name="register">Register</button>
+                                        <button type="submit" class="btn btn-primary" name="register">Register</button>
                                     </div>
 
 

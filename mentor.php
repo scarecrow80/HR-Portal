@@ -185,7 +185,7 @@
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
                         </div> <!-- END: section -->
 
-
+                        <a href="../DBconnections/logout.php" id="logout" style="color: red;">logout</a>
 
                         <!-- Main area content: END -->
                     </div>

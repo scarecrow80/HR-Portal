@@ -2,7 +2,7 @@
 /*if (!isLoggedIN()){
     $_SESSION['msg'] = "you must be logged in to enter";
     header( 'location: ../index.php');
-} */
+}*/
 ?>
 <!DOCTYPE html>
 

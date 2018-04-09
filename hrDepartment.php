@@ -211,8 +211,8 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                 <div id="search" class="page tilsatt" style="display:none">
                                     <p>TODOTODOTODOTODOTODO search for user</p>
                                     <form action="" method="get">
-                                        <label for>checklistnumber</label>
-                                        <input type="text" name="idChecklist"value=""</input><br>
+                                        <label for>Name</label>
+                                        <input type="text" name="lastname"value=""</input><br>
 
                                         <input type="submit" class="btn" name="search" id="search">search for a User</input>
                                     </form>

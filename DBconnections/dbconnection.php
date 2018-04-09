@@ -297,17 +297,17 @@ function editpass()
 function searchuser()
 {
     global $db,
-    $idChecklist;
-    $idChecklist = e($_GET['Checklist_idChecklist']);
+    $lastname;
+    $lastname = e($_GET['lastname']);
 
 
-            $query = "SELECT * FROM newemployee_has_checklist WHERE Checklist_idChecklist= '$idChecklist'";
+            $query = "SELECT * FROM newemployee WHERE lastname= '$lastname'";
             $result = $db->query($query);
             if (!$result) {
                 echo "viewing failed";
             } else {
                 while ($row = $result->fetch_object()) {
-                    echo "<li>"."ID number ". $row->Newemployee_idNewemployee . " " . $row->Checklist_idChecklist . " " . $row->checked . "</li>";
+                    echo "<li>"."ID number ". $row->firstname . "  " . $row->lastname . " gonna get the title of " . $row->workposition . "has an international background "  . $row->international . " start wokring on " . $row->startdate. " " .$row->checked . "</li>";
                 }
             }
 

@@ -16,7 +16,7 @@ if (isset($_POST['register'])){
     $confirm_password = e($_POST['confirm_password']);
     if (empty($firstname)) {array_push($errors, "You need a firstname");}
     if (empty($lastname)) {array_push($errors, "write your lastname");}
-    if (emptyt($workname)) {array_push($errors, "write the workposition");}
+    if (empty($workposition)) {array_push($errors, "write the workposition");}
     //add user and cryptate the password in md5 cryption
     if (count($errors) ==0){
         //$salt = random_bytes(10).$password_first;

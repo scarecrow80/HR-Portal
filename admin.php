@@ -233,35 +233,43 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
                             <div id="create" class="page tilsatt" style="display:none">
                                             <p>TODOTODOTODOTODOTODO create user</p>
-                                <form method="post" action="">
 
-                                    <div class="input-group">
-                                        <label>Firstname</label>
-                                        <input type="text" name="firstname" value="">
-                                    </div>
-                                    <div class="input-group">
-                                        <label>Lastname</label>
-                                        <input type="text" name="lastname" >
-                                    </div>
-                                    <div class="input-group">
-                                        <label>Workposition</label>
-                                        <input type="text" name="workposition" >
-                                    </div>
-                                    <select name="international"
-                                    <label>International</label>
-                                    <option value=""></option>
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
-                                    </select>
-                                    <div class="input-group">
-                                        <label>Startdate</label>
-                                        <input type="date" name="date">
-                                    </div>
-                                    <div class="input-group">
-                                        <button type="submit" class="btn btn-primary" name="register">Register</button>
-                                    </div>
+                                <form action="" method="post">
+                                    <table>
+                                        <tr class="input-group">
+                                            <td>Fornavn: </td>
+                                            <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
+                                        </tr>
+                                        <tr class="input-group">
+                                            <td>Etternavn: </td>
+                                            <td><input type="text" name="lastname"  class="field comment-alerts" required/> </td>
+                                        </tr>
+                                        <tr class="input-group">
+                                            <td>Stilling: </td>
+                                            <td><select name="workposition" class="field comment-alerts" required>
+                                                    <option value=""></option>
+                                                    <option value="Leder">Leder</option>
+                                                    <option value="Ansatt">Ansatt</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr class="input-group">
+                                            <td>Internasjonal: </td>
+                                            <td><select name="international" class="field comment-alerts" required>
+                                                    <option value=""></option>
+                                                    <option value="Ja">Ja</option>
+                                                    <option value="Nei">Nei</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr class="input-group">
+                                            <td>Ansatt dato: </td>
+                                            <td><input type="date" name="startdate" class="field comment-alerts" required /> </td>
+                                        </tr>
 
-
+                                    </table>
+                                    <button class="btn btn-cancel" type="button">Avbryt</button>
+                                    <button type="submit" class="btn btn-primary" name="register">Register</button>
                                 </form>
                             </div>
                                 <a href="logout.php" id="logout" style="color: red;">logout</a>

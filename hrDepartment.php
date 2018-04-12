@@ -211,14 +211,19 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                 <div id="search" class="page tilsatt" style="display:none">
                                     <p>TODOTODOTODOTODOTODO search for user</p>
                                     <form action="" method="get">
-                                        <label for>checklistnumber</label>
-                                        <input type="text" name="idChecklist"value=""</input><br>
+                                        <label for>Name</label>
+                                        <input type="text" name="lastname"value=""</input><br>
 
                                         <input type="submit" class="btn btn-primary" name="search" id="search">search for a User</input>
                                     </form>
 
                                 </div>
-                                <a href="../DBconnections/logout.php" id="logout" style="color: red;">logout</a>
+                                <div class="tilsatt">
+                                    <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'" ">
+                                    Logout
+
+                                    </button>
+                                </div>
                                 <script>
 
                                     function openPage(pageName){

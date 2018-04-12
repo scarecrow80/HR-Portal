@@ -13,7 +13,7 @@ if (isset($_POST['register'])){
     $workposition = e($_POST['workposition']);
     $international= e($_POST['international']);
     $startdate = e($_POST['startdate']);
-    $confirm_password = e($_POST['confirm_password']);
+    //$confirm_password = e($_POST['confirm_password']);
     if (empty($firstname)) {array_push($errors, "You need a firstname");}
     if (empty($lastname)) {array_push($errors, "write your lastname");}
     if (empty($workposition)) {array_push($errors, "write the workposition");}

@@ -214,7 +214,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                         <label for>Name</label>
                                         <input type="text" name="lastname"value=""</input><br>
 
-                                        <input type="submit" class="btn" name="search" id="search">search for a User</input>
+                                        <input type="submit" class="btn btn-primary" name="search" id="search">search for a User</input>
                                     </form>
 
                                 </div>

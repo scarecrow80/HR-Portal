@@ -214,15 +214,15 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                     <p>TODOTODOTODOTODOTODO create list</p>
                                     <form action="" method="post">
                                         <table>
-                                            <tr>
+                                            <tr class="input-group">
                                                 <td>Fornavn: </td>
                                                 <td><input type="text" name='firstname' class="field comment-alerts" required/> </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="input-group">
                                                 <td>Etternavn: </td>
                                                 <td><input type="text" name="lastname" class="field comment-alerts" required/> </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="input-group">
                                                 <td>Stilling: </td>
                                                 <td><select name="workposition" class="field comment-alerts" required />
                                                 <option value=""></option>
@@ -230,7 +230,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                                 <option value="Ansatt">Ansatt</option>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="input-group">
                                                 <td>Internasjonal: </td>
                                                 <td><select name="international" class="field comment-alerts" required>
                                                 <option value=""></option>
@@ -238,14 +238,14 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                                 <option value="Nei">Nei</option>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="input-group">
                                                 <td>Ansatt dato: </td>
                                                 <td><input type='date' name="startdate" class="field comment-alerts" required /> </td>
                                             </tr>
 
                                         </table>
                                         <button class="btn btn-cancel" type="button">Avbryt</button>
-                                        <input type="submit" name='createCheckList' class="btn btn-primary" type="button" value="Opprett">
+                                        <button type="submit" class="btn btn-primary" name="register">Register</button>>
                                     </form>
 
 

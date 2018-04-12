@@ -216,37 +216,37 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                         <table>
                                             <tr>
                                                 <td>Fornavn: </td>
-                                                <td><input type="text" name="Fornavn" class="field comment-alerts" /> </td>
+                                                <td><input type="text" name='firstname' class="field comment-alerts" required/> </td>
                                             </tr>
                                             <tr>
                                                 <td>Etternavn: </td>
-                                                <td><input type="text" name="Etternavn" class="field comment-alerts" /> </td>
+                                                <td><input type="text" name="lastname" class="field comment-alerts" required/> </td>
                                             </tr>
                                             <tr>
                                                 <td>Stilling: </td>
-                                                <td><select name="Stilling" class="field comment-alerts" required />
+                                                <td><select name="workposition" class="field comment-alerts" required />
+                                                <option value=""></option>
                                                 <option value="Leder">Leder</option>
                                                 <option value="Ansatt">Ansatt</option>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Internasjonal: </td>
-                                                <td><select name="Internasjonal" class="field comment-alerts" required>
+                                                <td><select name="international" class="field comment-alerts" required>
+                                                <option value=""></option>
                                                 <option value="Ja">Ja</option>
                                                 <option value="Nei">Nei</option>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Ansatt dato: </td>
-                                                <td><input type="date" name="Ansatt dato:" class="field comment-alerts" required /> </td>
+                                                <td><input type='date' name="startdate" class="field comment-alerts" required /> </td>
                                             </tr>
 
                                         </table>
+                                        <button class="btn btn-cancel" type="button">Avbryt</button>
+                                        <input type="submit" name='createCheckList' class="btn btn-primary" type="button" value="Opprett">
                                     </form>
-                                    <button class="btn btn-cancel" type="button">Avbryt</button>
-                                    <input class="btn btn-primary" type="button" value="Opprett">
-
-
 
 
                                 </div>

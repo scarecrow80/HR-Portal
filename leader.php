@@ -253,13 +253,19 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
                                 <div id="assignMentor" class="page tilsatt" style="display:none">
                                     <p>TODOTODOTODOTODOTODO assign mentor</p>
+                                    <form action="" method="post">
+                                        <table>
+                                            <tr class="input-group">
+                                    <td>Firstname</td>
+                                                <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
+                                            </tr>
+                                            <tr class="input-group">
 
-                                    <label for>Firstname</label>
-                                    <input type="text" name="firstname" value="<?php echo $username; ?>"><br>
-                                    <label for>ID-number</label>
-                                    <input type="number" name="idChecklist" id="idChecklist" value="">
-                                    <input type="submit" class="btn" name="Assign" id="Assign">Assign mentor</input>
-
+                                    <td>ID-number</td>
+                                            <td> <input type="number" name="Checklistnumber" id="Checklistnumber" value=""/></td>
+                                            </tr>
+                                        </table>
+                                    <button type="submit" class="btn btn-primary" name="Assign" id="Assign">Assign mentor</button>
                                     </form>
                                 </div>
                                 <div class="tilsatt">

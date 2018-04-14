@@ -1,8 +1,9 @@
 <?php include('../HR-Portal/DBconnections/dbconnection.php');
-/*if (!isLoggedIN()){
+if (!isLoggedIN()){
     $_SESSION['msg'] = "you must be logged in to enter";
-    header( 'location: ../index.php');
-}*/
+    header( 'location: ../HR-Portal/index.php');
+}
+
 ?>
 <!DOCTYPE html>
 
@@ -166,16 +167,32 @@
                                                 if(!$db){
                                                     die("Feil i databasetilkobling:".$db->connect_error);
                                                 }
-                                                $query = "select * from checklist ";
-                                                $result = $db->query($query);
-                                                if(!$result){
-                                                    echo "viewing failed";
-                                                }
-                                                else{
-                                                    while ($row = $result->fetch_object()){
-                                                        echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
+                                                $username = $_SESSION['user'];
+
+                                                $first = "SELECT firstname FROM users WHERE username= '$username'";
+                                                $res = $db->query($first);
+                                                if(!$res){
+                                                    echo "view failed";
+                                                }else if ($res->num_rows>0) {
+                                                    while ($row = $res->fetch_object()) {
+
+                                                        $query = "SELECT * FROM checklist WHERE responsible = '$row->firstname'";
+                                                        $result = $db->query($query);
+                                                        if(!$result){
+                                                            echo $query;
+                                                            echo "viewing failed";
+                                                        }
+                                                        else{
+                                                            while ($row = $result->fetch_object()){
+                                                                echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
+                                                            }
+
+                                                        }
                                                     }
-                                                }?>
+                                                }else{
+                                                    echo"other error type";
+                                               }
+                                                  ?>
 
                                             </div>
                                         </article>

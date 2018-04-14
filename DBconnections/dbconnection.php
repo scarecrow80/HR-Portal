@@ -74,7 +74,7 @@ function login() {
                 $_SESSION['success'] = "Logged in getting you to list";
                 header('location: ../Hr-Portal/leader.php');
             } else if  ($logged_in_user['usertype'] == 'mentor'){
-                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['user'] = $logged_in_user['username'];
                 $_SESSION['success'] = "Logged in getting you to list";
                 header('location: ../HR-Portal/mentor.php');
             } else{
@@ -85,6 +85,7 @@ function login() {
 
         }else {
             array_push($errors, "Wrong credentials");
+            header('location: ../HR-Portal/index.php');
         }
 
 

@@ -273,10 +273,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                 </form>
                             </div>
                                 <div class="tilsatt">
-                                    <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'" ">
-                                    Logout
-
-                                    </button>
+                                    <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'">Logout</button>
                                 </div>
                             <script>
 

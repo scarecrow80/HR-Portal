@@ -57,6 +57,7 @@ if (isset($_POST['createCheckList'])){
         $query = "INSERT INTO newemployee (firstname, lastname, workposition , international, startdate) 
   			  VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
         $result = $db->query($query);
+        $result2 = "SELECT * FROM checklist";
 
        if(!$result){
             echo "Wrong in the script";
@@ -65,49 +66,90 @@ if (isset($_POST['createCheckList'])){
         elseif($db->affected_rows == 0){
             echo "The script worked, but the user wasn't added";
         }
-        elseif (mysqli_num_rows($result) > 0){
-            while($row = mysqli_fetch_assoc($result)){
+        elseif($db->affected_rows > 0){
+            while($row = $result2->fetch_assoc()){
 
                 $language = "SELECT language FROM checklist";
                 $leader = "SELECT leader FROM checklist";
 
-                $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
-                VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Norsk AND leader = Nei), NULL)";
-
-                $query3 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
-                VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Norsk), NULL)";
-
-                $query4 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
-                VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Engelsk AND leader = Nei), NULL)";
-
-                $query5 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
-                VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Engelsk AND), NULL)";
-
-
                 if ($language = "Norsk" && $leader = "Nei"){
 
+                    $query = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                    VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Norsk AND leader = Nei), 0)";
+                    $res = $db->query($query);
+
+                    if(!$res){
+                        echo "Wrong in the script";
+                    }
+                    //elseif(mysqli_affected_rows($db) == 0){
+                    elseif($db->affected_rows == 0){
+                        echo "The script worked, but the list wasn't added";
+                    }
+                    else {
+                        echo "This worked";
+                    }
+
                 }
 
-                elseif ($language = "Norsk" && $leader = "Ja"){
+                elseif ($row->language = "Norsk" && $row->leader = "Ja"){
 
+                    $query = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                    VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Norsk), NULL)";
+                    $res = $db->query($query);
+
+                    if(!$res){
+                        echo "Wrong in the script";
+                    }
+                    //elseif(mysqli_affected_rows($db) == 0){
+                    elseif($db->affected_rows == 0){
+                        echo "The script worked, but the list wasn't added";
+                    }
+
+                    else {
+                        echo "This worked";
+                    }
                 }
 
-                elseif ($language = "Engelsk" && $leader = "Nei"){
+                elseif ($row->language = "Engelsk" && $row->leader = "Nei"){
 
+                    $query = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                    VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Engelsk AND leader = Nei), NULL)";
+                    $res = $db->query($query);
+
+                    if(!$res){
+                        echo "Wrong in the script";
+                    }
+                    //elseif(mysqli_affected_rows($db) == 0){
+                    elseif($db->affected_rows == 0){
+                        echo "The script worked, but the list wasn't added";
+                    }
+
+                    else {
+                        echo "This worked";
+                    }
                 }
 
-                elseif ($language = "Engelsk" && $leader = "Ja"){
+                elseif ($row->language = "Engelsk" && $row->leader = "Ja"){
 
-                }
-                else {
-                    echo "Wrong";
-                }
+                    $query = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                    VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Engelsk AND), NULL)";
+                    $res = $db->query($query);
 
+                    if(!$res){
+                        echo "Wrong in the script";
+                    }
+                    //elseif(mysqli_affected_rows($db) == 0){
+                    elseif($db->affected_rows == 0){
+                        echo "The script worked, but the list wasn't added";
+                    }
+
+                    else {
+                        echo "This worked";
+                    }
+                }
             }
         }
-        else{
-            echo "newemployee was added";
-        }
+
     }
 }
 //login

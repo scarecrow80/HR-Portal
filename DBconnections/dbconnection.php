@@ -54,14 +54,9 @@ if (isset($_POST['createCheckList'])){
         //$salt = random_bytes(10).$password_first;
         //$password= hash('sha512', $password_first);
 
-        $employeeId = $_POST["createCheckList"];
-
         $query = "INSERT INTO newemployee (firstname, lastname, workposition , international, startdate) 
   			  VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
         $result = $db->query($query);
-
-        $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
-              VALUES ('', '', NULL) WHERE Newemployee_idNewemployee ='".$employeeId."'";
 
        if(!$result){
             echo "Wrong in the script";
@@ -72,6 +67,41 @@ if (isset($_POST['createCheckList'])){
         }
         elseif (mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
+
+                $language = "SELECT language FROM checklist";
+                $leader = "SELECT leader FROM checklist";
+
+                $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Norsk AND leader = Nei), NULL)";
+
+                $query3 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Norsk), NULL)";
+
+                $query4 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Engelsk AND leader = Nei), NULL)";
+
+                $query5 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Engelsk AND), NULL)";
+
+
+                if ($language = "Norsk" && $leader = "Nei"){
+
+                }
+
+                elseif ($language = "Norsk" && $leader = "Ja"){
+
+                }
+
+                elseif ($language = "Engelsk" && $leader = "Nei"){
+
+                }
+
+                elseif ($language = "Engelsk" && $leader = "Ja"){
+
+                }
+                else {
+                    echo "Wrong";
+                }
 
             }
         }

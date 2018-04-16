@@ -7,6 +7,7 @@ $username ="";
 $errors = array();
 $db = mysqli_connect('localhost', 'root', '', 'db_hr_portal');
 //check if inputs are correct!
+
 if (isset($_POST['register'])){
     $firstname = e($_POST['firstname']);
     $lastname = e($_POST['lastname']);
@@ -31,6 +32,48 @@ if (isset($_POST['register'])){
         //elseif(mysqli_affected_rows($db) == 0){
         elseif($db->affected_rows == 0){
             echo "The script worked, but the user wasn't added";
+        }
+        else{
+            echo "newemployee was added";
+        }
+    }
+}
+
+if (isset($_POST['createCheckList'])){
+    $firstname = e($_POST['firstname']);
+    $lastname = e($_POST['lastname']);
+    $workposition = e($_POST['workposition']);
+    $international= e($_POST['international']);
+    $startdate = e($_POST['startdate']);
+    //$confirm_password = e($_POST['confirm_password']);
+    if (empty($firstname)) {array_push($errors, "You need a firstname");}
+    if (empty($lastname)) {array_push($errors, "write your lastname");}
+    if (empty($workposition)) {array_push($errors, "write the workposition");}
+    //add user and cryptate the password in md5 cryption
+    if (count($errors) ==0){
+        //$salt = random_bytes(10).$password_first;
+        //$password= hash('sha512', $password_first);
+
+        $employeeId = $_POST["createCheckList"];
+
+        $query = "INSERT INTO newemployee (firstname, lastname, workposition , international, startdate) 
+  			  VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
+        $result = $db->query($query);
+
+        $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+              VALUES ('', '', NULL) WHERE Newemployee_idNewemployee ='".$employeeId."'";
+
+       if(!$result){
+            echo "Wrong in the script";
+        }
+        //elseif(mysqli_affected_rows($db) == 0){
+        elseif($db->affected_rows == 0){
+            echo "The script worked, but the user wasn't added";
+        }
+        elseif (mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_assoc($result)){
+
+            }
         }
         else{
             echo "newemployee was added";

@@ -117,7 +117,7 @@ function login() {
                 $_SESSION['success'] = "Logged in getting you to list";
                 header('location: ../Hr-Portal/leader.php');
             } else if  ($logged_in_user['usertype'] == 'mentor'){
-                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['user'] = $logged_in_user['username'];
                 $_SESSION['success'] = "Logged in getting you to list";
                 header('location: ../HR-Portal/mentor.php');
             } else{
@@ -128,6 +128,7 @@ function login() {
 
         }else {
             array_push($errors, "Wrong credentials");
+            header('location: ../HR-Portal/index.php');
         }
 
 
@@ -277,7 +278,7 @@ function edittype()
 function addmentor(){
     global $db, $username, $errors;
     $firstname = e($_POST['firstname']);
-    $idChecklist = e($_POST['idChecklist']);
+    $Checklistnumber = e($_POST['Checklistnumber']);
     $user_check = "SELECT firstname FROM users WHERE firstname= '$firstname'";
     $result = $db->query($user_check);
     $user = mysqli_fetch_assoc($result);
@@ -285,16 +286,16 @@ function addmentor(){
         echo "not a user";
         array_push($errors, "Not a user");
     } else {
-        if (count($errors) == 0){
-            $query = "UPDATE checklist SET responsible = '$firstname' WHERE idChecklist='$idChecklist'";
-            $result = $db->$query($query);
-            if(!$result){
-                echo "wrong in the script";
-            }else{
-                echo "mentor assigned";
-            }
+
+        $query = "UPDATE checklist SET responsible = '$firstname' WHERE idChecklist= $Checklistnumber";
+
+        if (mysqli_query($db, $query)) {
+            echo "mentor assigned";
+        } else {
+            echo "wrong in the script";
         }
     }
+
 }
 
 //edit the password of a user

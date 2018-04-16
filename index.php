@@ -23,7 +23,7 @@ and open the template in the editor.
             <label>Password</label>
             <input type="password" name="password">
         </div>
-        <div class="tilsat">
+        <div class="tilsatt">
             <button type="submit" class="btn btn-primary" name="login">Login</button>
         </div>
     </form>

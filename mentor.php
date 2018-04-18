@@ -169,28 +169,58 @@ if (!isLoggedIN()){
                                                 }
                                                 $username = $_SESSION['user'];
 
-                                                $first = "SELECT firstname FROM users WHERE username= '$username'";
+                                                $first = "SELECT idUsers FROM users WHERE username= '$username'";
                                                 $res = $db->query($first);
                                                 if(!$res){
                                                     echo "view failed";
                                                 }else if ($res->num_rows>0) {
                                                     while ($row = $res->fetch_object()) {
 
-                                                        $query = "SELECT * FROM checklist WHERE responsible = '$row->firstname'";
+                                                        $query = "SELECT Newemployee_idNewemployee FROM users_has_newemployee WHERE Users_idUsers = '$row->idUsers'";
                                                         $result = $db->query($query);
+
                                                         if(!$result){
                                                             echo $query;
                                                             echo "viewing failed";
                                                         }
-                                                        else{
+                                                        else if ($result->num_rows>0){
                                                             while ($row = $result->fetch_object()){
-                                                                echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
+                                                                $second = "SELECT Checklist_idChecklist FROM newemployee_has_checklist WHERE Newemployee_idNewemployee = '$row->Newemployee_idNewemployee'";
+                                                               $resa = $db->query($second);
+
+                                                                if(!$resa){
+                                                                    echo $second;
+                                                                    echo  "failed";
+                                                                }else if ($resa->num_rows>0){
+                                                                while ($row= $resa->fetch_object()) {
+                                                                     $queryfin = "SELECT * FROM checklist WHERE idChecklist = '$row->Checklist_idChecklist'";
+                                                                    $final = $db->query($queryfin);
+                                                                    if(!$final){
+                                                                        echo  $queryfin;
+                                                                        echo "game over";
+                                                                    }elseif ($final->num_rows>0){
+                                                                        while ($row= $final-> fetch_object()) {
+                                                                            echo "<li>" . $row->idChecklist . " " . $row->checkpoints . " responsible is " . $row->responsible . " in " . $row->language . " is a leader " . $row->leader . "</li>";
+                                                                        }
+                                                                        }else{
+                                                                        echo "The checklist is troubeled";
+                                                                    }
+
+                                                                    }
+                                                                }else{
+                                                                    echo "New employee dosen't have a checklist yet.";
+
+
+
+                                                                }
                                                             }
+                                                    } else {
+                                                        echo  "Not having any newemployees";
 
                                                         }
                                                     }
                                                 }else{
-                                                    echo"other error type";
+                                                    echo"You aren't registered correctly";
                                                }
                                                   ?>
 

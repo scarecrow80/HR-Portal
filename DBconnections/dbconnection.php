@@ -67,19 +67,28 @@ if (isset($_POST['createCheckList'])){
             echo "The script worked, but the user wasn't added";
         }
         elseif($db->affected_rows > 0){
-            while($row = $result2->fetch_assoc()){
 
-                $language = "SELECT language FROM checklist";
-                $leader = "SELECT leader FROM checklist";
+                //$language = "SELECT language FROM checklist";
+                //$leader = "SELECT leader FROM checklist";
 
                 if ($language = "Norsk" && $leader = "Nei"){
+                    $idNewemployee = $db->insert_id;
+                    //$newEmployeeHasId = "SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee = $idNewemployee)";
+                    $idChecklist = "SELECT idChecklist FROM checklist WHERE language = 'Norsk' AND leader = 'Nei'";
 
-                    $query = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
-                    VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Norsk AND leader = Nei), 0)";
-                    $res = $db->query($query);
+                    $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                    VALUES ($idNewemployee, 2, 0)";
+                    //$res = $db->query($query2);
+                    $res = mysqli_query($db,$query2);
 
-                    if(!$res){
-                        echo "Wrong in the script";
+                    while($row = mysqli_fetch_assoc($res)){
+
+                        echo $row['language'];
+                        echo $row['leader'];
+
+                    /*if(!$res){
+                        echo $query2;
+                        echo "Wrong in the script1";
                     }
                     //elseif(mysqli_affected_rows($db) == 0){
                     elseif($db->affected_rows == 0){
@@ -87,18 +96,19 @@ if (isset($_POST['createCheckList'])){
                     }
                     else {
                         echo "This worked";
+                    }*/
                     }
 
                 }
 
                 elseif ($row->language = "Norsk" && $row->leader = "Ja"){
 
-                    $query = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                    $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
                     VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Norsk), NULL)";
-                    $res = $db->query($query);
+                    $res = $db->query($query2);
 
                     if(!$res){
-                        echo "Wrong in the script";
+                        echo "Wrong in the script2";
                     }
                     //elseif(mysqli_affected_rows($db) == 0){
                     elseif($db->affected_rows == 0){
@@ -112,12 +122,12 @@ if (isset($_POST['createCheckList'])){
 
                 elseif ($row->language = "Engelsk" && $row->leader = "Nei"){
 
-                    $query = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                    $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
                     VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Engelsk AND leader = Nei), NULL)";
-                    $res = $db->query($query);
+                    $res = $db->query($query2);
 
                     if(!$res){
-                        echo "Wrong in the script";
+                        echo "Wrong in the script3";
                     }
                     //elseif(mysqli_affected_rows($db) == 0){
                     elseif($db->affected_rows == 0){
@@ -131,12 +141,12 @@ if (isset($_POST['createCheckList'])){
 
                 elseif ($row->language = "Engelsk" && $row->leader = "Ja"){
 
-                    $query = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
+                    $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked)
                     VALUES (SELECT(idNewemployee FROM newemployee WHERE Newemployee_idNewemployee ='".$row->idNewemployee."'), SELECT(idChecklist FROM checklist WHERE language = Engelsk AND), NULL)";
-                    $res = $db->query($query);
+                    $res = $db->query($query2);
 
                     if(!$res){
-                        echo "Wrong in the script";
+                        echo "Wrong in the script4";
                     }
                     //elseif(mysqli_affected_rows($db) == 0){
                     elseif($db->affected_rows == 0){
@@ -148,7 +158,7 @@ if (isset($_POST['createCheckList'])){
                     }
                 }
             }
-        }
+        //}
 
     }
 }

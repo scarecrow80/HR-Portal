@@ -185,7 +185,7 @@ if (!isLoggedIN()){
                                                         }
                                                         else if ($result->num_rows>0){
                                                             while ($row = $result->fetch_object()){
-                                                                $second = "SELECT Checklist_idChecklist FROM newemployee_has_checklist WHERE Newemployee_idNewemployee = '$row->Newemployee_idNewemployee'";
+                                                                $second = "SELECT Checklist_idChecklist, Newemployee_idNewemployee FROM newemployee_has_checklist WHERE Newemployee_idNewemployee = '$row->Newemployee_idNewemployee'";
                                                                $resa = $db->query($second);
 
                                                                 if(!$resa){
@@ -193,17 +193,46 @@ if (!isLoggedIN()){
                                                                     echo  "failed";
                                                                 }else if ($resa->num_rows>0){
                                                                 while ($row= $resa->fetch_object()) {
+                                                                    $querya = "SELECT international FROM newemployee WHERE idNewemployee = '$row->Newemployee_idNewemployee'";
                                                                      $queryfin = "SELECT * FROM checklist WHERE idChecklist = '$row->Checklist_idChecklist'";
                                                                     $final = $db->query($queryfin);
-                                                                    if(!$final){
-                                                                        echo  $queryfin;
-                                                                        echo "game over";
-                                                                    }elseif ($final->num_rows>0){
-                                                                        while ($row= $final-> fetch_object()) {
-                                                                            echo "<li>" . $row->idChecklist . " " . $row->checkpoints . " responsible is " . $row->responsible . " in " . $row->language . " is a leader " . $row->leader . "</li>";
+                                                                    $finale = $db->query($querya);
+                                                                    if(!$finale){
+                                                                        echo $querya;
+                                                                        echo "you loose punk";
+                                                                    }
+                                                                    elseif ($finale->num_rows>0){
+                                                                        while ($row= $finale->fetch_object()){
+                                                                            if($row->international == "Ja"){
+                                                                                if(!$final){
+                                                                                    echo  $queryfin;
+                                                                                    echo "game over";
+                                                                                }elseif ($final->num_rows>0){
+
+                                                                                    while ($row= $final-> fetch_object()) {
+
+                                                                                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsNO . " responsible is " . $row->responsible . " is " . $row->nationality. " is a leader " . $row->leader . "</li>";
+                                                                                        }
+                                                                                    }
+                                                                                else{
+                                                                                    echo "The checklist is troubeled";
+                                                                                }
+                                                                            }else{
+                                                                                if(!$final){
+                                                                                    echo  $queryfin;
+                                                                                    echo "game over";
+                                                                                }elseif ($final->num_rows>0){
+
+                                                                                    while ($row= $final-> fetch_object()) {
+
+                                                                                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsEN . " responsible is " . $row->responsible . " From " . $row->nationality. " is a leader " . $row->leader . "</li>";
+
+                                                                                    }
+                                                                                }else{
+                                                                                    echo "The checklist is troubeled";
+                                                                                }
+                                                                            }
                                                                         }
-                                                                        }else{
-                                                                        echo "The checklist is troubeled";
                                                                     }
 
                                                                     }

@@ -185,18 +185,18 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">september 2016</h3>
                                             <div class="toggler-content">
                                                 <p>TODOTODOTODOTODOTODO</p>
-                                               <?php $db = mysqli_connect("localhost", "root", "", "db_hr_portal");
+                                               <?php $db = mysqli_connect("student.cs.hioa.no", "s236619", "", "s236619");
                                                 if(!$db){
                                                 die("Feil i databasetilkobling:".$db->connect_error);
                                                 }
-                                                $query = "select * from checklist ";
+                                                $query = "select * from Checklist";
                                                 $result = $db->query($query);
                                                 if(!$result){
                                                 echo "viewing failed";
                                                 }
                                                 else{
                                                 while ($row = $result->fetch_object()){
-                                                echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
+                                                echo "<li>".$row->idChecklist. " ".$row->checkpointsNO." responsible is ".$row->responsible."</li>";
                                                 }
                                                 }?>
 
@@ -275,17 +275,17 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                 <div class="tilsatt">
                                     <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'">Logout</button>
                                 </div>
-                            <script>
+                                <script>
 
-                                function openPage(pageName){
-                                    var i;
-                                    var x = document.getElementsByClassName("page");
-                                    for (i = 0; i < x.length; i++){
-                                        x[i].style.display = "none";
+                                    function openPage(pageName){
+                                        var i;
+                                        var x = document.getElementsByClassName("page");
+                                        for (i = 0; i < x.length; i++){
+                                            x[i].style.display = "none";
+                                        }
+                                        document.getElementById(pageName).style.display = "block";
                                     }
-                                    document.getElementById(pageName).style.display = "block";
-                                }
-                            </script>
+                                </script>
 
                         </div><!-- </div> --> <!-- END: innholdskolonne -->
                     </div> <!-- END: section -->

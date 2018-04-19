@@ -1,6 +1,5 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
-
 /*if (!admin()){
     $_SESSION['msg'] = "You have to log in as admin";
     session_destroy();

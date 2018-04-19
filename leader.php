@@ -189,18 +189,18 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">oktober 2016</h3>
                                             <div class="toggler-content">
                                                 <p>TODOTODOTODOTODOTODO</p>
-                                                <?php $db = mysqli_connect("localhost", "root", "", "db_hr_portal");
+                                                <?php
                                                 if(!$db){
                                                     die("Feil i databasetilkobling:".$db->connect_error);
                                                 }
-                                                $query = "select * from checklist ";
+                                                $query = "select * from Checklist ";
                                                 $result = $db->query($query);
                                                 if(!$result){
                                                     echo "viewing failed";
                                                 }
                                                 else{
                                                     while ($row = $result->fetch_object()){
-                                                        echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
+                                                        echo "<li>".$row->idChecklist. " ".$row->checkpointsNO." responsible is ".$row->responsible."</li>";
                                                     }
                                                 }?>
 

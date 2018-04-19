@@ -5,7 +5,7 @@
 session_start();
 $username ="";
 $errors = array();
-$db = mysqli_connect('localhost', 'root', '', 'db_hr_portal');
+$db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
 //check if inputs are correct!
 
 if (isset($_POST['register'])){

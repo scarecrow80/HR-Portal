@@ -413,7 +413,128 @@ if (isset($_POST['createCheckList'])) {
             }
         }
     }
+    function oversikt(){
+        global $db;
+        $querya = "SELECT international FROM newemployee";
+        $finale = $db->query($querya);
+        if(!$finale){
+            echo $querya;
+            echo "you loose punk";
+        }
+        elseif ($finale->num_rows>0){
+            while ($row= $finale->fetch_object()){
+                $query = "SELECT * FROM checklist ";
+                 $result = $db->query($query);
+                if($row->international == "Ja"){
+                    while (($row =$result->fetch_object())){
 
+                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsEN . " responsible is " . $row->responsible . " is " . $row->nationality. " is a leader " . $row->leader . "</li>";
+                        }
+                    }
+                    else if ($row->international == "Nei"){
+                      while ($row= $result-> fetch_object()) {
+
+                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsNO . " responsible is " . $row->responsible . " From " . $row->nationality. " is a leader " . $row->leader . "</li>";
+
+                        }
+                    }
+                else{
+
+                        echo "The checklist is troubeled";
+                    }
+                }
+
+        }
+
+    }
+   function oversikt_mentor(){
+       global $db,  $errors;
+$username = $_SESSION['user'];
+
+$first = "SELECT idUsers FROM users WHERE username= '$username'";
+$res = $db->query($first);
+if(!$res){
+    echo "view failed";
+}else if ($res->num_rows>0) {
+    while ($row = $res->fetch_object()) {
+
+        $query = "SELECT Newemployee_idNewemployee FROM users_has_newemployee WHERE Users_idUsers = '$row->idUsers'";
+        $result = $db->query($query);
+
+        if(!$result){
+            echo $query;
+            echo "viewing failed";
+        }
+        else if ($result->num_rows>0){
+            while ($row = $result->fetch_object()){
+                $second = "SELECT Checklist_idChecklist, Newemployee_idNewemployee FROM newemployee_has_checklist WHERE Newemployee_idNewemployee = '$row->Newemployee_idNewemployee'";
+                $resa = $db->query($second);
+
+                if(!$resa){
+                    echo $second;
+                    echo  "failed";
+                }else if ($resa->num_rows>0){
+                    while ($row= $resa->fetch_object()) {
+                        $querya = "SELECT international FROM newemployee WHERE idNewemployee = '$row->Newemployee_idNewemployee'";
+                        $queryfin = "SELECT * FROM checklist WHERE idChecklist = '$row->Checklist_idChecklist'";
+                        $final = $db->query($queryfin);
+                        $finale = $db->query($querya);
+                        if(!$finale){
+                            echo $querya;
+                            echo "you loose punk";
+                        }
+                        elseif ($finale->num_rows>0){
+                            while ($row= $finale->fetch_object()){
+                                if($row->international == "Ja"){
+                                    if(!$final){
+                                        echo  $queryfin;
+                                        echo "game over";
+                                    }elseif ($final->num_rows>0){
+
+                                        while ($row= $final-> fetch_object()) {
+
+                                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsEN . " responsible is " . $row->responsible . " is " . $row->nationality. " is a leader " . $row->leader . "</li>";
+                                        }
+                                    }
+                                    else{
+                                        echo "The checklist is troubeled";
+                                    }
+                                }else{
+                                    if(!$final){
+                                        echo  $queryfin;
+                                        echo "game over";
+                                    }elseif ($final->num_rows>0){
+
+                                        while ($row= $final-> fetch_object()) {
+
+                                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsNO . " responsible is " . $row->responsible . " From " . $row->nationality. " is a leader " . $row->leader . "</li>";
+
+                                        }
+                                    }else{
+                                        echo "The checklist is troubeled";
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }else{
+                    echo "New employee dosen't have a checklist yet.";
+
+
+
+                }
+            }
+        } else {
+            echo  "Not having any newemployees";
+
+        }
+    }
+}else{
+    echo"You aren't registered correctly";
+}
+
+}
 //edit the password of a user
     function editpass()
     {

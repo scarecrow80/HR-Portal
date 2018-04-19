@@ -189,20 +189,7 @@ if (!leader()){
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">oktober 2016</h3>
                                             <div class="toggler-content">
                                                 <p>TODOTODOTODOTODOTODO</p>
-                                                <?php $db = mysqli_connect("localhost", "root", "", "db_hr_portal");
-                                                if(!$db){
-                                                    die("Feil i databasetilkobling:".$db->connect_error);
-                                                }
-                                                $query = "select * from checklist ";
-                                                $result = $db->query($query);
-                                                if(!$result){
-                                                    echo "viewing failed";
-                                                }
-                                                else{
-                                                    while ($row = $result->fetch_object()){
-                                                        echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
-                                                    }
-                                                }?>
+                                                <?php oversikt();?>
 
                                             </div>
                                         </article>
@@ -256,12 +243,12 @@ if (!leader()){
                                     <form action="" method="post">
                                         <table>
                                             <tr class="input-group">
-                                    <td>Employeename</td>
+                                    <td>Ansattnavn</td>
                                                 <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
                                             </tr>
                                             <tr class="input-group">
 
-                                    <td>Mentorname</td>
+                                    <td>Faddernavn</td>
                                             <td> <input type="text" name="Mentorname" id="" value=""/></td>
                                             </tr>
                                         </table>

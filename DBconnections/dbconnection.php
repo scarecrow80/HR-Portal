@@ -231,36 +231,51 @@ if (isset($_POST['createCheckList'])) {
     {
         global $db, $username, $errors;
         //get values
-        $idChecklist = e($_POST['idChecklist']);
+        $fnavn = e($_POST['fnavn']);
 
 
         // make sure form is filled properly
-        if (empty($idChecklist)) {
-            array_push($errors, "Checklist number is required");
+        if (empty($fnavn)) {
+            array_push($errors, "You need the employees name");
         }
-        $user_check = "SELECT idChecklist FROM checklist WHERE idChecklist='$idChecklist'";
+        $user_check = "SELECT firstname FROM newemployee WHERE firstname= '$fnavn'";
         $result = $db->query($user_check);
-        $id = mysqli_fetch_assoc($result);
-        if (!$id) {
+        $user = mysqli_fetch_assoc($result);
+        if (!$user) {
             array_push($errors, "Not a list");
-            echo "not a excisting checklist";
+            echo "not an excisting checklist";
         } else {
             if (count($errors) == 0) {
-
-                $query = "DELETE FROM checklist WHERE idChecklist='$idChecklist'";
-                $result = $db->query($query);
-
-                if (!$result) {
-                    echo "couldnt delete user";
-
-
+                $id = "SELECT idNewemployee FROM newemployee WHERE firstname = '$fnavn'";
+                $idresult = $db->query($id);
+                $check = mysqli_fetch_assoc($idresult);
+                if (!$check) {
+                    array_push($errors, "id wrong");
+                    echo "not having id number";
                 } else {
-                    echo "user deleted";
+                    while ($row = $check) {
+                        $chekedid = $row['Newemployee_idNewemploye'];
+                        $query = "DELETE FROM newemployee_has_checklist WHERE Newemployee_idNewemployee='$chekedid'";
+                        $result = $db->query($query);
+
+                        if (!$result) {
+                            echo "couldn't delete list";
+
+
+                        } else {
+                            $dquery = "DELETE FROM newemployee WHERE firstname = '$fnavn'";
+                            $del = $db->query($dquery);
+                            if (!$del){
+                                echo "list was deleted but couldn't delete employee";
+                            }
+                            echo "checklist and employee deleted";
+                        }
+
+
+                    }
+
                 }
-
-
             }
-
         }
     }
 

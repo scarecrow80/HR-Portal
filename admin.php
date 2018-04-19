@@ -210,8 +210,8 @@ if (!admin()){
                                             <p>TODOTODOTODOTODOTODO delete user</p>
                                 <form action="" method="post">
 
-                                    <label for>Nummer</label>
-                                    <input type="number" name="idChecklist" value=""><br>
+                                    <label for>Navn</label>
+                                    <input type="text" name="fnavn" value=""><br>
 
                                     <input type="submit" class="btn btn-primary" name="Check" id="Check">Delete Checklist</input>
 

@@ -163,20 +163,20 @@ if (!isLoggedIN()){
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">oktober 2016</h3>
                                             <div class="toggler-content">
                                                 <p>TODOTODOTODOTODOTODO</p>
-                                                <?php $db = mysqli_connect("localhost", "root", "", "db_hr_portal");
+                                                <?php
                                                 if(!$db){
                                                     die("Feil i databasetilkobling:".$db->connect_error);
                                                 }
                                                 $username = $_SESSION['user'];
 
-                                                $first = "SELECT idUsers FROM users WHERE username= '$username'";
+                                                $first = "SELECT idUsers FROM Users WHERE username= '$username'";
                                                 $res = $db->query($first);
                                                 if(!$res){
                                                     echo "view failed";
                                                 }else if ($res->num_rows>0) {
                                                     while ($row = $res->fetch_object()) {
 
-                                                        $query = "SELECT Newemployee_idNewemployee FROM users_has_newemployee WHERE Users_idUsers = '$row->idUsers'";
+                                                        $query = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Users_idUsers = '$row->idUsers'";
                                                         $result = $db->query($query);
 
                                                         if(!$result){
@@ -185,7 +185,7 @@ if (!isLoggedIN()){
                                                         }
                                                         else if ($result->num_rows>0){
                                                             while ($row = $result->fetch_object()){
-                                                                $second = "SELECT Checklist_idChecklist, Newemployee_idNewemployee FROM newemployee_has_checklist WHERE Newemployee_idNewemployee = '$row->Newemployee_idNewemployee'";
+                                                                $second = "SELECT Checklist_idChecklist, Newemployee_idNewemployee FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$row->Newemployee_idNewemployee'";
                                                                $resa = $db->query($second);
 
                                                                 if(!$resa){
@@ -193,8 +193,8 @@ if (!isLoggedIN()){
                                                                     echo  "failed";
                                                                 }else if ($resa->num_rows>0){
                                                                 while ($row= $resa->fetch_object()) {
-                                                                    $querya = "SELECT international FROM newemployee WHERE idNewemployee = '$row->Newemployee_idNewemployee'";
-                                                                     $queryfin = "SELECT * FROM checklist WHERE idChecklist = '$row->Checklist_idChecklist'";
+                                                                    $querya = "SELECT international FROM Newemployee WHERE idNewemployee = '$row->Newemployee_idNewemployee'";
+                                                                     $queryfin = "SELECT * FROM Checklist WHERE idChecklist = '$row->Checklist_idChecklist'";
                                                                     $final = $db->query($queryfin);
                                                                     $finale = $db->query($querya);
                                                                     if(!$finale){

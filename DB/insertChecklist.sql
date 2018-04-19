@@ -1,4 +1,4 @@
-INSERT INTO `checklist` (`idChecklist`, `checkpointsNO`, `checkpointsEN`, `responsible`, `language`, `leader`) VALUES
+INSERT INTO `checklist` (`idChecklist`, `checkpointsNO`, `checkpointsEN`, `responsible`, `nationality`, `leader`) VALUES
   (NULL, 'Tilpasset liste og utpeking av roller.', 'Customized list and role distribution', 'Leder', 'Norsk', 'Nei'),
   (NULL, 'SDI gir en konfirmasjon av at arbeidskontrakt har kommet tilbake.', 'SDI gives a confirmation that the contract of the new instated has been accepted', 'Leder', 'Norsk', 'Nei'),
   (NULL, 'Alt nødvendig lagt i personal mappen.', 'All necessary documents are delivered to his or her personnel file', 'HR', 'Norsk', 'Nei'),

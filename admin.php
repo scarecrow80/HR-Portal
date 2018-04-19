@@ -185,7 +185,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">september 2016</h3>
                                             <div class="toggler-content">
                                                 <p>TODOTODOTODOTODOTODO</p>
-                                               <?php $db = mysqli_connect("student.cs.hioa.no", "s236619", "", "s236619");
+                                               <?php
                                                 if(!$db){
                                                 die("Feil i databasetilkobling:".$db->connect_error);
                                                 }

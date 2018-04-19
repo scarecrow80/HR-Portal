@@ -417,7 +417,7 @@ if (isset($_POST['createCheckList'])) {
         $querya = "SELECT international FROM Newemployee";
         $finale = $db->query($querya);
         if(!$finale){
-            echo $query;
+            echo $querya;
             echo "you loose punk";
         }
         elseif ($finale->num_rows>0){
@@ -458,7 +458,7 @@ if(!$res){
     while ($row = $res->fetch_object()) {
 
         $query = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Users_idUsers = '$row->idUsers'";
-        $result = $db->query($querya);
+        $result = $db->query($query);
 
         if(!$result){
             echo $query;

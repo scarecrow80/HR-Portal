@@ -1,5 +1,6 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
+
 /*if (!admin()){
     $_SESSION['msg'] = "You have to log in as admin";
     session_destroy();
@@ -185,20 +186,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">september 2016</h3>
                                             <div class="toggler-content">
                                                 <p>TODOTODOTODOTODOTODO</p>
-                                               <?php $db = mysqli_connect("localhost", "root", "", "db_hr_portal");
-                                                if(!$db){
-                                                die("Feil i databasetilkobling:".$db->connect_error);
-                                                }
-                                                $query = "select * from checklist ";
-                                                $result = $db->query($query);
-                                                if(!$result){
-                                                echo "viewing failed";
-                                                }
-                                                else{
-                                                while ($row = $result->fetch_object()){
-                                                echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
-                                                }
-                                                }?>
+                                               <?php oversikt()?>
 
                                             </div>
                                         </article>
@@ -222,11 +210,13 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                             <div id="delete" class="page tilsatt" style="display:none">
                                             <p>TODOTODOTODOTODOTODO delete user</p>
                                 <form action="" method="post">
-
-                                    <label for>Navn</label>
-                                    <input type="text" name="fnavn" value=""><br>
-
-                                    <input type="submit" class="btn btn-primary" name="Check" id="Check">Delete Checklist</input>
+                                    <table>
+                                    <tr class="input-group">
+                                        <td>Fornavn: </td>
+                                        <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
+                                    </tr><br>
+                                    </table>
+                                    <button type="submit" class="btn btn-primary" name="del" id="del">Delete Checklist</button>
 
                                 </form>
                             </div>
@@ -269,7 +259,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
                                     </table>
                                     <button class="btn btn-cancel" type="button">Avbryt</button>
-                                    <button type="submit" class="btn btn-primary" name="register">Register</button>
+                                    <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>
                                 </form>
                             </div>
                                 <div class="tilsatt">

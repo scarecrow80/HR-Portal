@@ -5,7 +5,7 @@
 session_start();
 $username ="";
 $errors = array();
-$db = mysqli_connect('localhost', 'root', '', 'db_hr_portal');
+$db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
 //check if inputs are correct!
 
 if (isset($_POST['register'])){
@@ -23,7 +23,7 @@ if (isset($_POST['register'])){
         //$salt = random_bytes(10).$password_first;
         //$password= hash('sha512', $password_first);
 
-        $query = "INSERT INTO newemployee (firstname, lastname, workposition , international, startdate) 
+        $query = "INSERT INTO Newemployee (firstname, lastname, workposition , international, startdate) 
   			  VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
         $result = $db->query($query);
         if(!$result){
@@ -60,10 +60,10 @@ if (isset($_POST['createCheckList'])) {
         //$salt = random_bytes(10).$password_first;
         //$password= hash('sha512', $password_first);
 
-        $query = "INSERT INTO newemployee (firstname, lastname, workposition , international, startdate) 
+        $query = "INSERT INTO Newemployee (firstname, lastname, workposition , international, startdate) 
   			  VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
         $result = $db->query($query);
-        $result2 = "SELECT * FROM checklist";
+        $result2 = "SELECT * FROM Checklist";
 
 
 
@@ -76,12 +76,12 @@ if (isset($_POST['createCheckList'])) {
             if ($workposition == "Ansatt" && $international == "Nei") {
 
                 $idNewemployee = $db->insert_id;
-                $query = "SELECT idChecklist FROM checklist WHERE nationality = 'Norsk' AND leader = 'Nei' ";
+                $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk' AND leader = 'Nei' ";
                 $res = mysqli_query($db, $query);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
-                    $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
 
                     $res2 = mysqli_query($db, $query2);
 
@@ -98,12 +98,12 @@ if (isset($_POST['createCheckList'])) {
             } elseif ($workposition == "Ansatt" && $international == "Ja") {
 
                 $idNewemployee = $db->insert_id;
-                $query = "SELECT idChecklist FROM checklist WHERE leader = 'Nei' ";
+                $query = "SELECT idChecklist FROM Checklist WHERE leader = 'Nei' ";
                 $res = mysqli_query($db, $query);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
-                    $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
 
                     $res2 = mysqli_query($db, $query2);
 
@@ -120,12 +120,12 @@ if (isset($_POST['createCheckList'])) {
             } elseif ($workposition == "Leder" && $international == "Nei") {
 
                 $idNewemployee = $db->insert_id;
-                $query = "SELECT idChecklist FROM checklist WHERE nationality = 'Norsk'";
+                $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk'";
                 $res = mysqli_query($db, $query);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
-                    $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
 
                     $res2 = mysqli_query($db, $query2);
 
@@ -142,12 +142,12 @@ if (isset($_POST['createCheckList'])) {
             } elseif ($workposition == "Leder" && $international == "Ja") {
 
                 $idNewemployee = $db->insert_id;
-                $query = "SELECT idChecklist FROM checklist ";
+                $query = "SELECT idChecklist FROM Checklist ";
                 $res = mysqli_query($db, $query);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
-                    $query2 = "INSERT INTO newemployee_has_checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
 
                     $res2 = mysqli_query($db, $query2);
 
@@ -189,7 +189,7 @@ if (isset($_POST['createCheckList'])) {
         //attempt login if no errors found. Password needs to be encrypted again
         if (count($errors) == 0) {
             $password = md5($password);
-            $query = "SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1";
+            $query = "SELECT * FROM Users WHERE username='$username' AND password='$password' LIMIT 1";
             $result = $db->query($query);
 
             if ($db->affected_rows == 1) {
@@ -238,7 +238,7 @@ if (isset($_POST['createCheckList'])) {
         if (empty($idChecklist)) {
             array_push($errors, "Checklist number is required");
         }
-        $user_check = "SELECT idChecklist FROM checklist WHERE idChecklist='$idChecklist'";
+        $user_check = "SELECT idChecklist FROM Checklist WHERE idChecklist='$idChecklist'";
         $result = $db->query($user_check);
         $id = mysqli_fetch_assoc($result);
         if (!$id) {
@@ -247,7 +247,7 @@ if (isset($_POST['createCheckList'])) {
         } else {
             if (count($errors) == 0) {
 
-                $query = "DELETE FROM checklist WHERE idChecklist='$idChecklist'";
+                $query = "DELETE FROM Checklist WHERE idChecklist='$idChecklist'";
                 $result = $db->query($query);
 
                 if (!$result) {
@@ -347,7 +347,7 @@ if (isset($_POST['createCheckList'])) {
         global $db, $username, $errors;
         $username = e($_POST['username']);
         $user_type = e($_POST['user_type']);
-        $user_check = "SELECT username FROM users WHERE username= '$username'";
+        $user_check = "SELECT username FROM Users WHERE username= '$username'";
         $result = $db->query($user_check);
         $user = mysqli_fetch_assoc($result);
         if (!$user) {
@@ -356,7 +356,7 @@ if (isset($_POST['createCheckList'])) {
         } else {
 
             if (count($errors) == 0) {
-                $query = "UPDATE users SET usertype = '$user_type' WHERE username='$username'";
+                $query = "UPDATE Users SET usertype = '$user_type' WHERE username='$username'";
                 $result = $db->query($query);
                 if (!$result) {
                     echo "wrong in the script";
@@ -374,7 +374,7 @@ if (isset($_POST['createCheckList'])) {
         global $db, $username, $errors;
         $firstname = e($_POST['firstname']);
         $Checklistnumber = e($_POST['Checklistnumber']);
-        $user_check = "SELECT firstname FROM users WHERE firstname= '$firstname'";
+        $user_check = "SELECT firstname FROM Users WHERE firstname= '$firstname'";
         $result = $db->query($user_check);
         $user = mysqli_fetch_assoc($result);
         if (!$user) {
@@ -382,7 +382,7 @@ if (isset($_POST['createCheckList'])) {
             array_push($errors, "Not a user");
         } else {
 
-            $query = "UPDATE checklist SET responsible = '$firstname' WHERE idChecklist= $Checklistnumber";
+            $query = "UPDATE Checklist SET responsible = '$firstname' WHERE idChecklist= $Checklistnumber";
 
             if (mysqli_query($db, $query)) {
                 echo "mentor assigned";
@@ -402,13 +402,13 @@ if (isset($_POST['createCheckList'])) {
         $original_password = e($_POST['original_password']);
         $new_password = e($_POST['new_password']);
         $original_password = md5($original_password);
-        $user_check = "SELECT username FROM users WHERE username= '$username'";
+        $user_check = "SELECT username FROM Users WHERE username= '$username'";
         $result = $db->query($user_check);
         $user = mysqli_fetch_assoc($result);
         if (!$user) {
             array_push($errors, "Not a user");
         } else {
-            $pass_check = "SELECT password from users WHERE password= '$original_password'";
+            $pass_check = "SELECT password from Users WHERE password= '$original_password'";
             $result = $db->query($pass_check);
             $pass = mysqli_fetch_assoc($result);
             if (!$pass) {
@@ -418,7 +418,7 @@ if (isset($_POST['createCheckList'])) {
                 //edit password adnd cryptate the password in md5 cryption
                 if (count($errors) == 0) {
                     $password = md5($new_password);
-                    $query = "UPDATE users SET password = '$password' WHERE username='$username'";
+                    $query = "UPDATE Users SET password = '$password' WHERE username='$username'";
                     $result = $db->query($query);
                     if (!$result) {
                         echo "Wrong in the script";
@@ -441,13 +441,13 @@ if (isset($_POST['createCheckList'])) {
         $lastname = e($_GET['lastname']);
 
 
-        $query = "SELECT * FROM newemployee WHERE lastname= '$lastname'";
+        $query = "SELECT * FROM Newemployee WHERE lastname= '$lastname'";
         $result = $db->query($query);
         if (!$result) {
             echo "viewing failed";
         } else {
             while ($row = $result->fetch_object()) {
-                echo "<li>" . "ID number " . $row->firstname . "  " . $row->lastname . " gonna get the title of " . $row->workposition . "has an international background " . $row->international . " start wokring on " . $row->startdate . " " . $row->checked . "</li>";
+                echo "<li>" . "ID number " . $row->firstname . "  " . $row->lastname . " gonna get the title of " . $row->workposition . "has an international background " . $row->international . " start working on " . $row->startdate . " " . $row->checked . "</li>";
             }
         }
 
@@ -457,7 +457,7 @@ if (isset($_POST['createCheckList'])) {
     function getUserByID($id)
     {
         global $db;
-        $query = "SELECT * FROM users WHERE id=" . $id;
+        $query = "SELECT * FROM Users WHERE id=" . $id;
         $result = $db->query($query);
         $user = mysqli_fetch_assoc($result);
         return $user;

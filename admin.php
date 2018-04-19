@@ -1,11 +1,11 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
-/*if (!admin()){
+if (!admin()){
     $_SESSION['msg'] = "You have to log in as admin";
     session_destroy();
     unset($_SESSION['user']);
     header('location: ../HR-Portal/index.php');
-}*/
+}
 ?>
 <!DOCTYPE html>
 
@@ -269,7 +269,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
                                     </table>
                                     <button class="btn btn-cancel" type="button">Avbryt</button>
-                                    <button type="submit" class="btn btn-primary" name="register">Register</button>
+                                    <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>
                                 </form>
                             </div>
                                 <div class="tilsatt">

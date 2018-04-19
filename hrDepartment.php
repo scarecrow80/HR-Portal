@@ -1,11 +1,11 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
-/*if (!HR()){
+if (!HR()){
     $_SESSION['msg'] = "wrong logintype";
     session_destroy();
     unset($_SESSION['user']);
     header('location: ../index.php');
-}*/
+}
 ?>
 <!DOCTYPE html>
 

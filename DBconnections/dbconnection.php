@@ -373,24 +373,45 @@ if (isset($_POST['createCheckList'])) {
     {
         global $db, $username, $errors;
         $firstname = e($_POST['firstname']);
-        $Checklistnumber = e($_POST['Checklistnumber']);
-        $user_check = "SELECT firstname FROM users WHERE firstname= '$firstname'";
+        $Mentorname = e($_POST['Mentorname']);
+        $user_check = "SELECT firstname FROM users WHERE firstname= '$Mentorname'";
         $result = $db->query($user_check);
         $user = mysqli_fetch_assoc($result);
         if (!$user) {
             echo "not a user";
             array_push($errors, "Not a user");
         } else {
-
-            $query = "UPDATE checklist SET responsible = '$firstname' WHERE idChecklist= $Checklistnumber";
-
-            if (mysqli_query($db, $query)) {
-                echo "mentor assigned";
+            $id = "SELECT idNewemployee FROM newemployee WHERE firstname = '$firstname'";
+            $id2 = "SELECT idUsers FROM users WHERE firstname = '$Mentorname'";
+            $resultid = $db->query($id);
+            if (!$resultid) {
+                echo "not correct id";
             } else {
-                echo "wrong in the script";
+                while ($row = mysqli_fetch_assoc($resultid)) {
+                    $resultid2 = $db->query($id2);
+                    $id4 = $row['idNewemployee'];
+                    if (!$resultid2) {
+                        echo "user dont have that id";
+                    } else {
+
+                        while ($row = mysqli_fetch_assoc($resultid2)) {
+                            $id3 = $row['idUsers'];
+                            $query = "INSERT INTO users_has_newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$id3', '$id4') ";
+                            if (mysqli_query($db, $query)) {
+                                echo "mentor assigned";
+                            } else {
+                                echo $query;
+                                echo "wrong in the script";
+                            }
+                        }
+                    }
+
+
+                }
+
             }
         }
-
     }
 
 //edit the password of a user

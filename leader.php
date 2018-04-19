@@ -1,11 +1,11 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
-/*if (!leader()){
+if (!leader()){
     $_SESSION['msg'] = "You have to log in as leader";
     session_destroy();
     unset($_SESSION['user']);
     header('location: ../HR-Portal/index.php');
-}*/
+}
 ?>
 <!DOCTYPE html>
 
@@ -256,13 +256,13 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                     <form action="" method="post">
                                         <table>
                                             <tr class="input-group">
-                                    <td>Firstname</td>
+                                    <td>Employeename</td>
                                                 <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
                                             </tr>
                                             <tr class="input-group">
 
-                                    <td>ID-number</td>
-                                            <td> <input type="number" name="Checklistnumber" id="Checklistnumber" value=""/></td>
+                                    <td>Mentorname</td>
+                                            <td> <input type="text" name="Mentorname" id="" value=""/></td>
                                             </tr>
                                         </table>
                                     <button type="submit" class="btn btn-primary" name="Assign" id="Assign">Assign mentor</button>

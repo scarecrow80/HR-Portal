@@ -211,7 +211,7 @@ if (!isLoggedIN()){
 
                                                                                     while ($row= $final-> fetch_object()) {
 
-                                                                                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsNO . " responsible is " . $row->responsible . " is " . $row->nationality. " is a leader " . $row->leader . "</li>";
+                                                                                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsEN . " responsible is " . $row->responsible . " is " . $row->nationality. " is a leader " . $row->leader . "</li>";
                                                                                         }
                                                                                     }
                                                                                 else{
@@ -225,7 +225,7 @@ if (!isLoggedIN()){
 
                                                                                     while ($row= $final-> fetch_object()) {
 
-                                                                                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsEN . " responsible is " . $row->responsible . " From " . $row->nationality. " is a leader " . $row->leader . "</li>";
+                                                                                            echo "<li>" . $row->idChecklist . " " . $row->checkpointsNO . " responsible is " . $row->responsible . " From " . $row->nationality. " is a leader " . $row->leader . "</li>";
 
                                                                                     }
                                                                                 }else{

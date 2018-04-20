@@ -56,17 +56,23 @@ if (isset($_POST['register'])){
     $usertype= e($_POST['usertype']);
     $password = e($_POST["password"]);
     $repeatPassword = e($_POST['repeatPassword']);
-    //
 
-    //$confirm_password = e($_POST['confirm_password']);
+    $query = "SELECT * FROM Users WHERE username = '$username' ";
+    $usernameExist = mysqli_query($db, $query);
+
     if (empty($firstname)) {array_push($errors, "You need a firstname");}
     if (empty($lastname)) {array_push($errors, "write your lastname");}
     if (empty($username)) {array_push($errors, "write the username");}
+
+    //Check that password and repeat is alike
     if ($password != $repeatPassword){
         echo "Password not valid";
     }
-    //add user and cryptate the password in md5 cryption
-
+    //Check if username in use already
+    else if (mysqli_num_rows($usernameExist) > 0){
+        echo "Username already in use";
+    }
+    //add user and crypt the password in md5 encryption
     else{
         if (count($errors) == 0) {
 

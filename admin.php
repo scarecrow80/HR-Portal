@@ -225,6 +225,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                     </table>
                                     <button type="submit" class="btn btn-primary" name="Edilis" id="Edilis">Endre Punkt</button>
                                 </form>
+                                <br>
                                 <form action="" method="post">
                                     <table>
                                         <tr class="input-group">
@@ -236,85 +237,8 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             <td> <input type="text" name="innde"/></td><br>
                                         </tr>
                                         <tr class="input-group">
-
-                                            <td>Ansvarlig</td>
-                                            <td> <input type="text" name="Ans" id="Ans" value=""/></td>
-                                        </tr>
-                                    </table>
-                                    <tr class="input-group">
-                                        <td>Nasjonalitet: </td>
-                                        <td><select name="nasj" class="field comment-alerts" required />
-                                            <option value=""></option>
-                                            <option value="Norsk">Norsk</option>
-                                            <option value="Internasjonal">Internasjonal</option>
-                                        </td>
-                                    </tr>
-                                    <tr class="input-group">
-                                        <td>Innhold</td>
-                                        <td> <input type="text" name="innd"/></td><br>
-                                    </tr>
-                                    <tr class="input-group">
-                                        <td>Leder: </td>
-                                        <td><select name="Led" class="field comment-alerts" required />
-                                            <option value=""></option>
-                                            <option value="Ja">Ja</option>
-                                            <option value="Nei">Nei</option>
-                                        </td>
-                                    </tr>
-                                    <button type="submit" class="btn btn-primary" name="Nyp" id="Nyp">Nytt punkt</button>
-                                </form>
-                                <form action="" method="post">
-                                    <table>
-                                        <tr class="input-group">
-                                            <td>Nummer</td>
-                                            <td> <input type="number" name="numb"/></td><br>
-                                        </tr>
-                                        <tr class="input-group">
-
-                                            <td>Innhold</td>
-                                            <td> <input type="text" name="Innd" id="Innd" value=""/></td>
-                                        </tr>
-                                    </table>
-                                    <button type="submit" class="btn btn-primary" name="Deletent" id="Deleteent">Slett Punkt</button>
-                                </form>
-
-
-                            </div>
-
-                            <div id="delete" class="page tilsatt" style="display:none">
-                                            <p>TODOTODOTODOTODOTODO delete user</p>
-                                <form action="" method="post">
-                                    <table>
-                                    <tr class="input-group">
-                                        <td>Fornavn: </td>
-                                        <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
-                                    </tr><br>
-                                    </table>
-                                    <button type="submit" class="btn btn-primary" name="del" id="del">Delete Checklist</button>
-
-                                </form>
-                            </div>
-
-                            <div id="create" class="page tilsatt" style="display:none">
-                                            <p>TODOTODOTODOTODOTODO create user</p>
-
-                                <form action="" method="post">
-                                    <table>
-                                        <tr class="input-group">
-                                            <td>Fornavn: </td>
-                                            <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
-                                        </tr>
-                                        <tr class="input-group">
-                                            <td>Etternavn: </td>
-                                            <td><input type="text" name="lastname"  class="field comment-alerts" required/> </td>
-                                        </tr>
-                                        <tr class="input-group">
-                                            <td>Brukernavn: </td>
-                                            <td><input type="text" name="username"  class="field comment-alerts" required/> </td>
-                                        </tr>
-                                        <tr class="input-group">
                                             <td>Brukertype: </td>
-                                            <td><select name="usertype" class="field comment-alerts" required>
+                                            <td><select name="ans" class="field comment-alerts" required>
                                                     <option value=""></option>
                                                     <option value="admin">Administrator</option>
                                                     <option value="leader">Leder</option>
@@ -323,25 +247,108 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                                 </select>
                                             </td>
                                         </tr>
-                                        <tr class="input-group">
-                                            <td>Passord: </td>
-                                            <td><input type="password" name="password" class="field comment-alerts" required /> </td>
-                                        </tr>
-                                        <tr class="input-group">
-                                            <td>Gjenta passord: </td>
-                                            <td><input type="password" name="repeatPassword" class="field comment-alerts" required /> </td>
-                                        </tr>
+                                    <tr class="input-group">
+                                        <td>Nasjonalitet: </td>
+                                        <td><select name="nasj" class="field comment-alerts" required />
+                                            <option value=""></option>
+                                            <option value="Norsk">Norsk</option>
+                                            <option value="Internasjonal">Internasjonal</option>
+                                        </select>
+                                        </td>
+                                    </tr>
 
+                                    <tr class="input-group">
+                                        <td>Leder: </td>
+                                        <td><select name="Led" class="field comment-alerts" required />
+                                            <option value=""></option>
+                                            <option value="Ja">Ja</option>
+                                            <option value="Nei">Nei</option>
+                                        </select>
+                                        </td>
+                                    </tr>
                                     </table>
-                                    <button class="btn btn-cancel" type="button">Avbryt</button>
-                                    <button type="submit" class="btn btn-primary" name="register">Register</button>
-                                </form>
-                            </div>
-                                <div class="tilsatt">
-                                    <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'">Logout</button>
-                                </div>
+                                    <button type="submit" class="btn btn-primary" name="Nypunkt" id="Nypunkt">Nytt Punkt</button>
+                                </form><br>
 
-                        </div><!-- </div> --> <!-- END: innholdskolonne -->
+                                <form action="" method="post">
+                                     <table>
+                                         <tr class="input-group">
+                                             <td>Nummer</td>
+                                             <td> <input type="number" name="numb"/></td><br>
+                                         </tr>
+                                         <tr class="input-group">
+
+                                             <td>Innhold</td>
+                                             <td> <input type="text" name="Innd" id="Innd" value=""/></td>
+                                         </tr>
+                                     </table>
+                                     <button type="submit" class="btn btn-primary" name="Deletent" id="Deleteent">Slett Punkt</button>
+                                 </form>
+
+
+                             </div>
+
+                             <div id="delete" class="page tilsatt" style="display:none">
+                                             <p>TODOTODOTODOTODOTODO delete user</p>
+                                 <form action="" method="post">
+                                     <table>
+                                     <tr class="input-group">
+                                         <td>Fornavn: </td>
+                                         <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
+                                     </tr><br>
+                                     </table>
+                                     <button type="submit" class="btn btn-primary" name="del" id="del">Delete Checklist</button>
+
+                                 </form>
+                             </div>
+
+                             <div id="create" class="page tilsatt" style="display:none">
+                                             <p>TODOTODOTODOTODOTODO create user</p>
+
+                                 <form action="" method="post">
+                                     <table>
+                                         <tr class="input-group">
+                                             <td>Fornavn: </td>
+                                             <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
+                                         </tr>
+                                         <tr class="input-group">
+                                             <td>Etternavn: </td>
+                                             <td><input type="text" name="lastname"  class="field comment-alerts" required/> </td>
+                                         </tr>
+                                         <tr class="input-group">
+                                             <td>Brukernavn: </td>
+                                             <td><input type="text" name="username"  class="field comment-alerts" required/> </td>
+                                         </tr>
+                                         <tr class="input-group">
+                                             <td>Brukertype: </td>
+                                             <td><select name="usertype" class="field comment-alerts" required>
+                                                     <option value=""></option>
+                                                     <option value="admin">Administrator</option>
+                                                     <option value="leader">Leder</option>
+                                                     <option value="HR">HR</option>
+                                                     <option value="mentor">Fadder</option>
+                                                 </select>
+                                             </td>
+                                         </tr>
+                                         <tr class="input-group">
+                                             <td>Passord: </td>
+                                             <td><input type="password" name="password" class="field comment-alerts" required /> </td>
+                                         </tr>
+                                         <tr class="input-group">
+                                             <td>Gjenta passord: </td>
+                                             <td><input type="password" name="repeatPassword" class="field comment-alerts" required /> </td>
+                                         </tr>
+
+                                     </table>
+                                     <button class="btn btn-cancel" type="button">Avbryt</button>
+                                     <button type="submit" class="btn btn-primary" name="register">Register</button>
+                                 </form>
+                             </div>
+                                 <div class="tilsatt">
+                                     <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'">Logout</button>
+                                 </div>
+
+                         </div><!-- </div> --> <!-- END: innholdskolonne -->
                     </div> <!-- END: section -->
 
 

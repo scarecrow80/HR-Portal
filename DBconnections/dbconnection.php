@@ -400,10 +400,12 @@ if (isset($_POST['createCheckList'])) {
 if (isset($_POST['Updatemen'])){
     updatementor();
 }
-
+if (isset($_POST['Nypunkt'])){
+    pointlist();
+}
 if (isset($_POST['Assign'])) {
-        addmentor();
-    }
+    addmentor();
+}
 //edit a usertype
     function edittype()
     {
@@ -656,6 +658,40 @@ if(!$res){
 }
 
 }
+function Edlist(){
+
+}
+function pointlist() {
+    global $db, $errors;
+    $innd = e($_POST['innd']);
+    $innde = e($_POST['innde']);
+    $ans = e($_POST['ans']);
+    $nasj = e($_POST['nasj']);
+    $Led = e($_POST['Led']);
+    $ind_check = "SELECT checkpointsNO FROM Checklist WHERE checkpointsNO= '$innd'";
+    $result = $db->query($ind_check);
+    $user = mysqli_fetch_assoc($result);
+    if ($user) {
+        echo "Alreadly a checkpoint";
+        array_push($errors, "Not a user");
+    }else {
+        $query = "INSERT INTO Checklist (checkpointsNO, checkpointsEN, responsible, nationality, leader)
+                                VALUES ('$innd', '$innde', '$ans', '$nasj', '$Led' ) ";
+        $res = mysqli_query($db, $query);
+        if (!$res) {
+
+        } elseif ($db->affected_rows == 0) {
+            echo "something else went wrong";
+        } else {
+            echo "point added";
+        }
+    }
+}
+function Dellist(){
+
+
+}
+
 //edit the password of a user
     function editpass()
     {

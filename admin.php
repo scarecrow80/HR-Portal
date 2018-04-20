@@ -211,6 +211,72 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
                             <div id="change" class="page tilsatt" style="display:none">
                                 <p>TODOTODOTODOTODOTODO change user</p>
+                                <form action="" method="post">
+                                    <table>
+                                        <tr class="input-group">
+                                            <td>Orginale Punkt</td>
+                                            <td> <input type="text" name="orgpunkt"/></td><br>
+                                        </tr>
+                                        <tr class="input-group">
+
+                                            <td>Ny Punkt</td>
+                                            <td> <input type="text" name="Nypunkt" id="Nypunkt" value=""/></td>
+                                        </tr>
+                                    </table>
+                                    <button type="submit" class="btn btn-primary" name="Edilis" id="Edilis">Endre Punkt</button>
+                                </form>
+                                <form action="" method="post">
+                                    <table>
+                                        <tr class="input-group">
+                                            <td>Innhold</td>
+                                            <td> <input type="text" name="innd"/></td><br>
+                                        </tr>
+                                        <tr class="input-group">
+                                            <td>Innhold Engelsk</td>
+                                            <td> <input type="text" name="innde"/></td><br>
+                                        </tr>
+                                        <tr class="input-group">
+
+                                            <td>Ansvarlig</td>
+                                            <td> <input type="text" name="Ans" id="Ans" value=""/></td>
+                                        </tr>
+                                    </table>
+                                    <tr class="input-group">
+                                        <td>Nasjonalitet: </td>
+                                        <td><select name="nasj" class="field comment-alerts" required />
+                                            <option value=""></option>
+                                            <option value="Norsk">Norsk</option>
+                                            <option value="Internasjonal">Internasjonal</option>
+                                        </td>
+                                    </tr>
+                                    <tr class="input-group">
+                                        <td>Innhold</td>
+                                        <td> <input type="text" name="innd"/></td><br>
+                                    </tr>
+                                    <tr class="input-group">
+                                        <td>Leder: </td>
+                                        <td><select name="Led" class="field comment-alerts" required />
+                                            <option value=""></option>
+                                            <option value="Ja">Ja</option>
+                                            <option value="Nei">Nei</option>
+                                        </td>
+                                    </tr>
+                                    <button type="submit" class="btn btn-primary" name="Nyp" id="Nyp">Nytt punkt</button>
+                                </form>
+                                <form action="" method="post">
+                                    <table>
+                                        <tr class="input-group">
+                                            <td>Nummer</td>
+                                            <td> <input type="number" name="numb"/></td><br>
+                                        </tr>
+                                        <tr class="input-group">
+
+                                            <td>Innhold</td>
+                                            <td> <input type="text" name="Innd" id="Innd" value=""/></td>
+                                        </tr>
+                                    </table>
+                                    <button type="submit" class="btn btn-primary" name="Deletent" id="Deleteent">Slett Punkt</button>
+                                </form>
 
 
                             </div>

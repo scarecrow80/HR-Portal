@@ -81,7 +81,18 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
         <div id="mobile-menu">
             <ul>
-
+                <li class="main-menu">
+                    <a class="list" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                </li>
+                <li class="main-menu">
+                    <a class="list" id="" role="menuitem" title="Endre på sjekkliste"> <span class="nav-item-label"> Endre på sjekkliste </span> </a>
+                </li>
+                <li class="main-menu">
+                    <a class="list" id="" role="menuitem" title="Slett gamle sjekklister"> <span class="nav-item-label"> Slett gamle sjekklister </span> </a>
+                </li>
+                <li class="main-menu">
+                    <a class="list" id="" role="menuitem" title="Opprett bruker"> <span class="nav-item-label"> Opprett bruker </span> </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -97,6 +108,31 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                         <li><a href="http://www.hioa.no/eng">EnglishTODO</a></li>
                     </ul>
 
+                    <ul id="Nav">
+                        <li class="active active " id="tzju_" role="presentation">
+                            <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                        </li>
+                        <li class=" " id="ahej_" role="presentation">
+                            <a class="list" onclick="openPage('change')" id="" role="menuitem" title="Endre på sjekkliste"> <span class="nav-item-label"> Endre på sjekkliste </span> </a>
+                        </li>
+                        <li class=" " id="fyzs_" role="presentation">
+                            <a class="list" onclick="openPage('delete')" id="" role="menuitem" title="Slett gamle sjekklister"> <span class="nav-item-label"> Slett gamle sjekklister </span> </a>
+                        </li>
+                        <li class=" " id="oivt_" role="presentation">
+                            <a class="list" onclick="openPage('create')" id="" role="menuitem" title="Opprett bruker"> <span class="nav-item-label"> Opprett bruker </span> </a>
+                        </li>
+                    </ul>
+                    <script>
+
+                        function openPage(pageName){
+                            var i;
+                            var x = document.getElementsByClassName("page");
+                            for (i = 0; i < x.length; i++){
+                                x[i].style.display = "none";
+                            }
+                            document.getElementById(pageName).style.display = "block";
+                        }
+                    </script>
                 </div> <!-- END: navcontainer -->
             </nav>
         </div> <!-- contentWrapper -->
@@ -117,34 +153,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
             <div class="contentWrapper">
                 <div id="breadCrumb">
                     <!-- Path content: START -->
-                    <div class="tilsatt">
-                        <div class="portlet-wiki">
-                            <div class="navbar hidden-print" id="zoru">
-                                <div class="navbar-inner">
-                                    <div class="container"> <a class="btn btn-navbar" id="_36_hgkjNavbarBtn" data-navid="_36_hgkj" tabindex="0"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
-                                        <div class="collapse nav-collapse">
-                                            <ul aria-label="Wiki" class="nav " id="_36_hgkj" role="menubar">
 
-                                                <li class="active active " id="tzju_" role="presentation">
-                                                    <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
-                                                </li>
-                                                <li class=" " id="ahej_" role="presentation">
-                                                    <a class="list" onclick="openPage('change')" id="" role="menuitem" title="Endre på sjekkliste"> <span class="nav-item-label"> Endre på sjekkliste </span> </a>
-                                                </li>
-                                                <li class=" " id="fyzs_" role="presentation">
-                                                    <a class="list" onclick="openPage('delete')" id="" role="menuitem" title="Slett gamle sjekklister"> <span class="nav-item-label"> Slett gamle sjekklister </span> </a>
-                                                </li>
-                                                <li class=" " id="oivt_" role="presentation">
-                                                    <a class="list" onclick="openPage('create')" id="" role="menuitem" title="Opprett bruker"> <span class="nav-item-label"> Opprett bruker </span> </a>
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Path content: END -->
                 </div>
 
@@ -245,26 +254,27 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             <td><input type="text" name="lastname"  class="field comment-alerts" required/> </td>
                                         </tr>
                                         <tr class="input-group">
-                                            <td>Stilling: </td>
-                                            <td><select name="workposition" class="field comment-alerts" required>
+                                            <td>Brukernavn: </td>
+                                            <td><input type="text" name="username"  class="field comment-alerts" required/> </td>
+                                        </tr>
+                                        <tr class="input-group">
+                                            <td>Brukertype: </td>
+                                            <td><select name="usertype" class="field comment-alerts" required>
                                                     <option value=""></option>
-                                                    <option value="Leder">Leder</option>
-                                                    <option value="Ansatt">Ansatt</option>
+                                                    <option value="admin">Administrator</option>
+                                                    <option value="leader">Leder</option>
+                                                    <option value="HR">HR</option>
+                                                    <option value="mentor">Fadder</option>
                                                 </select>
                                             </td>
                                         </tr>
                                         <tr class="input-group">
-                                            <td>Internasjonal: </td>
-                                            <td><select name="international" class="field comment-alerts" required>
-                                                    <option value=""></option>
-                                                    <option value="Ja">Ja</option>
-                                                    <option value="Nei">Nei</option>
-                                                </select>
-                                            </td>
+                                            <td>Passord: </td>
+                                            <td><input type="password" name="password" class="field comment-alerts" required /> </td>
                                         </tr>
                                         <tr class="input-group">
-                                            <td>Ansatt dato: </td>
-                                            <td><input type="date" name="startdate" class="field comment-alerts" required /> </td>
+                                            <td>Gjenta passord: </td>
+                                            <td><input type="password" name="password" class="field comment-alerts" required /> </td>
                                         </tr>
 
                                     </table>
@@ -275,18 +285,6 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                 <div class="tilsatt">
                                     <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'">Logout</button>
                                 </div>
-                                <script>
-
-                                    function openPage(pageName){
-                                        var i;
-                                        var x = document.getElementsByClassName("page");
-                                        for (i = 0; i < x.length; i++){
-                                            x[i].style.display = "none";
-                                        }
-                                        document.getElementById(pageName).style.display = "block";
-                                    }
-                                </script>
-
                         </div><!-- </div> --> <!-- END: innholdskolonne -->
                     </div> <!-- END: section -->
 

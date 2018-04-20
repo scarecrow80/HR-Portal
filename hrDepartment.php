@@ -1,10 +1,10 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
-/*if (!HR()){
-    $_SESSION['msg'] = "wrong logintype";
+/*if (!leader()){
+    $_SESSION['msg'] = "You have to log in as leader";
     session_destroy();
     unset($_SESSION['user']);
-    header('location: ../index.php');
+    header('location: ../HR-Portal/index.php');
 }*/
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
     <meta property="og:image" content="img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - HR-avdeling</title>
+    <title>OsloMet - HR</title>
 
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
@@ -81,7 +81,12 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
         <div id="mobile-menu">
             <ul>
-
+                <li class="main-menu">
+                    <a class="list" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                </li>
+                <li class="main-menu">
+                    <a class="list" id="" role="menuitem" title="Søk"> <span class="nav-item-label"> Søk </span> </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -96,6 +101,26 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                     <ul id="topMenu">
                         <li><a href="http://www.hioa.no/eng">EnglishTODO</a></li>
                     </ul>
+
+                    <ul id="Nav">
+                        <li class="active active " id="tzju_" role="presentation">
+                            <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                        </li>
+                        <li class=" " id="ahej_" role="presentation">
+                            <a class="list" onclick="openPage('search')" id="" role="menuitem" title="Søk"> <span class="nav-item-label"> Søk </span> </a>
+                        </li>
+                    </ul>
+                    <script>
+
+                        function openPage(pageName){
+                            var i;
+                            var x = document.getElementsByClassName("page");
+                            for (i = 0; i < x.length; i++){
+                                x[i].style.display = "none";
+                            }
+                            document.getElementById(pageName).style.display = "block";
+                        }
+                    </script>
 
                 </div> <!-- END: navcontainer -->
             </nav>
@@ -117,29 +142,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
             <div class="contentWrapper">
                 <div id="breadCrumb">
                     <!-- Path content: START -->
-                    <div class="tilsatt">
-                        <div class="portlet-wiki">
-                            <div class="navbar hidden-print" id="zoru">
-                                <div class="navbar-inner">
-                                    <div class="container"> <a class="btn btn-navbar" id="_36_hgkjNavbarBtn" data-navid="_36_hgkj" tabindex="0"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
-                                        <div class="collapse nav-collapse">
-                                            <ul aria-label="Wiki" class="nav " id="_36_hgkj" role="menubar">
 
-                                                <li class="active active " id="tzju_" role="presentation">
-                                                    <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
-                                                </li>
-                                                <li class=" " id="ahej_" role="presentation">
-                                                    <a class="list" onclick="openPage('search')" id="" role="menuitem" title="Søk"> <span class="nav-item-label"> Søk </span> </a>
-                                                </li>
-
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Path content: END -->
                 </div>
 
@@ -179,7 +182,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                         <article class="h-card vcard person-card article-contact" role="article">
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">september 2016</h3>
                                             <div class="toggler-content">
-                                                <p>TODOTODOTODOTODOTODO Overview</p>
+                                                <p>TODOTODOTODOTODOTODO</p>
                                             </div>
                                         </article>
 
@@ -187,18 +190,18 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             <h3 title="Oversikt over sjekklister" class="toggler-header article-contact-heading">oktober 2016</h3>
                                             <div class="toggler-content">
                                                 <p>TODOTODOTODOTODOTODO Overview</p>
-                                                <?php $db = mysqli_connect("localhost", "root", "", "db_hr_portal");
+                                                <?php
                                                 if(!$db){
                                                     die("Feil i databasetilkobling:".$db->connect_error);
                                                 }
-                                                $query = "select * from checklist ";
+                                                $query = "select * from Checklist ";
                                                 $result = $db->query($query);
                                                 if(!$result){
                                                     echo "viewing failed";
                                                 }
                                                 else{
                                                     while ($row = $result->fetch_object()){
-                                                        echo "<li>".$row->idChecklist. " ".$row->checkpoints." responsible is ".$row->responsible."</li>";
+                                                        echo "<li>".$row->idChecklist. " ".$row->checkpointsNO." responsible is ".$row->responsible."</li>";
                                                     }
                                                 }?>
 
@@ -218,23 +221,10 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                     </form>
 
                                 </div>
+
                                 <div class="tilsatt">
-                                    <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'" ">
-                                    Logout
-
-                                    </button>
+                                    <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'">Logout</button>
                                 </div>
-                                <script>
-
-                                    function openPage(pageName){
-                                        var i;
-                                        var x = document.getElementsByClassName("page");
-                                        for (i = 0; i < x.length; i++){
-                                            x[i].style.display = "none";
-                                        }
-                                        document.getElementById(pageName).style.display = "block";
-                                    }
-                                </script>
 
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
                         </div> <!-- END: section -->

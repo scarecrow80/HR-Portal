@@ -344,7 +344,12 @@ if (isset($_POST['createCheckList'])) {
     if (isset($_GET['search'])) {
         searchuser();
     }
-    if (isset($_POST['Assign'])) {
+
+if (isset($_POST['Updatemen'])){
+    updatementor();
+}
+
+if (isset($_POST['Assign'])) {
         addmentor();
     }
 //edit a usertype
@@ -375,8 +380,54 @@ if (isset($_POST['createCheckList'])) {
         }
 
     }
+//Update mentor
+function updatementor()
+{
+    global $db, $errors;
+    $firstname = e($_POST['firstname']);
+    $Mentorname = e($_POST['Mentorname']);
+    $user_check = "SELECT firstname FROM Users WHERE firstname= '$Mentorname'";
+    $result = $db->query($user_check);
+    $user = mysqli_fetch_assoc($result);
+    if (!$user) {
+        echo "not a user";
+        array_push($errors, "Not a user");
+    } else {
+        $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
+        $id2 = "SELECT idUsers FROM Users WHERE firstname = '$Mentorname'";
+        $resultid = $db->query($id);
 
-    function addmentor()
+        if (!$resultid) {
+            echo "not correct id";
+
+        } else {
+            while ($row = mysqli_fetch_assoc($resultid)) {
+                $resultid2 = $db->query($id2);
+                $id4 = $row['idNewemployee'];
+
+                if (!$resultid2) {
+                    echo "user dont have that id";
+                } else {
+                    while ($row = mysqli_fetch_assoc($resultid2)) {
+                        $id3 = $row['idUsers'];
+                        $query = "UPDATE Users_has_Newemployee SET Users_idUsers= '$id3' WHERE Newemployee_idNewemployee='$id4'";
+                        $result = $db->query($query);
+
+                        if ($result === TRUE) {
+
+                            echo "Mentor edited successful";
+
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+//adds a mentor to the newemployye
+function addmentor()
     {
         global $db, $username, $errors;
         $firstname = e($_POST['firstname']);

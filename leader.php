@@ -275,6 +275,20 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                         </table>
                                     <button type="submit" class="btn btn-primary" name="Assign" id="Assign">Assign mentor</button>
                                     </form>
+                                    <form action="" method="post">
+                                        <table>
+                                            <tr class="input-group">
+                                                <td>Nyansatt</td>
+                                                <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
+                                            </tr>
+                                            <tr class="input-group">
+
+                                                <td>NyFadder</td>
+                                                <td> <input type="text" name="Mentorname" id="Mentorname" value=""/></td>
+                                            </tr>
+                                        </table>
+                                        <button type="submit" class="btn btn-primary" name="Updatemen" id="Updatemen">Re-Assign mentor</button>
+                                    </form>
                                 </div>
                                 <div class="tilsatt">
                                     <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'" ">

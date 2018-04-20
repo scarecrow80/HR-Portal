@@ -81,7 +81,15 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
         <div id="mobile-menu">
             <ul>
-
+                <li class="main-menu">
+                    <a class="list" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                </li>
+                <li class="main-menu">
+                    <a class="list" id="" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
+                </li>
+                <li class="main-menu">
+                    <a class="list" id="" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -96,6 +104,30 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                     <ul id="topMenu">
                         <li><a href="http://www.hioa.no/eng">EnglishTODO</a></li>
                     </ul>
+
+                    <ul id="Nav">
+                        <li class="active active " id="tzju_" role="presentation">
+                            <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                        </li>
+                        <li class=" " id="ahej_" role="presentation">
+                            <a class="list" onclick="openPage('createList')" id="" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
+                        </li>
+                        <li class=" " id="fyzs_" role="presentation">
+                            <a class="list" onclick="openPage('assignMentor')" id="" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
+                        </li>
+
+                    </ul>
+                    <script>
+
+                        function openPage(pageName){
+                            var i;
+                            var x = document.getElementsByClassName("page");
+                            for (i = 0; i < x.length; i++){
+                                x[i].style.display = "none";
+                            }
+                            document.getElementById(pageName).style.display = "block";
+                        }
+                    </script>
 
                 </div> <!-- END: navcontainer -->
             </nav>
@@ -117,31 +149,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
             <div class="contentWrapper">
                 <div id="breadCrumb">
                     <!-- Path content: START -->
-                    <div class="tilsatt">
-                        <div class="portlet-wiki">
-                            <div class="navbar hidden-print" id="zoru">
-                                <div class="navbar-inner">
-                                    <div class="container"> <a class="btn btn-navbar" id="_36_hgkjNavbarBtn" data-navid="_36_hgkj" tabindex="0"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
-                                        <div class="collapse nav-collapse">
-                                            <ul aria-label="Wiki" class="nav " id="_36_hgkj" role="menubar">
 
-                                                <li class="active active " id="tzju_" role="presentation">
-                                                    <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
-                                                </li>
-                                                <li class=" " id="ahej_" role="presentation">
-                                                    <a class="list" onclick="openPage('createList')" id="" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
-                                                </li>
-                                                <li class=" " id="fyzs_" role="presentation">
-                                                    <a class="list" onclick="openPage('assignMentor')" id="" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Path content: END -->
                 </div>
 

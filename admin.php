@@ -263,28 +263,17 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                         </tr>
                                         <tr class="input-group">
                                             <td>Gjenta passord: </td>
-                                            <td><input type="password" name="password" class="field comment-alerts" required /> </td>
+                                            <td><input type="password" name="repeatPassword" class="field comment-alerts" required /> </td>
                                         </tr>
 
                                     </table>
                                     <button class="btn btn-cancel" type="button">Avbryt</button>
-                                    <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>
+                                    <button type="submit" class="btn btn-primary" name="register">Register</button>
                                 </form>
                             </div>
                                 <div class="tilsatt">
                                     <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'">Logout</button>
                                 </div>
-                            <script>
-
-                                function openPage(pageName){
-                                    var i;
-                                    var x = document.getElementsByClassName("page");
-                                    for (i = 0; i < x.length; i++){
-                                        x[i].style.display = "none";
-                                    }
-                                    document.getElementById(pageName).style.display = "block";
-                                }
-                            </script>
 
                         </div><!-- </div> --> <!-- END: innholdskolonne -->
                     </div> <!-- END: section -->

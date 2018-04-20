@@ -7,35 +7,81 @@ $username ="";
 $errors = array();
 //$db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
 $db = mysqli_connect( 'localhost', 'root',  '', 'db_hr_portal');
-//check if inputs are correct!
 
+function valider_firstname($firstname)
+{
+    if(!preg_match("/^[a-zA-ZøæåØÆÅ.\- ]{2,20}$/", $firstname))
+    {
+        echo "Firstname is wrong, use only letters. <br/>";
+        return false;
+    }
+    return $firstname;
+}
+
+function valider_lastname($lastname)
+{
+    if(!preg_match("/^[a-zA-ZøæåØÆÅ.\- ]{2,20}$/", $lastname))
+    {
+        echo "Lastname is wrong, use only letters. <br/>";
+        return false;
+    }
+    return $lastname;
+}
+
+function valider_username($username)
+{
+    if(!preg_match("/^[a-zA-ZøæåØÆÅ0-9.\- ]{2,20}$/", $username))
+    {
+        echo "Username is not allowed. <br/>";
+        return false;
+    }
+    return $username;
+}
+
+function valider_password($password)
+    {
+        if(!preg_match("/^[a-zA-ZøæåØÆÅ0-9\-_]{2,20}$/", $password))
+        {
+            echo "Password not valid, please use a valid pattern. <br/>";
+            return false;
+        }
+        return $password;
+    }
+
+//check if inputs are correct!
 if (isset($_POST['register'])){
-    $firstname = e($_POST['firstname']);
-    $lastname = e($_POST['lastname']);
-    $workposition = e($_POST['workposition']);
-    $international= e($_POST['international']);
-    $startdate = e($_POST['startdate']);
+    $firstname = valider_firstname($_POST["firstname"]);
+    $lastname = valider_lastname($_POST["lastname"]);
+    $username = valider_username($_POST["username"]);
+    $usertype= e($_POST['usertype']);
+    $password = e($_POST["password"]);
+    $repeatPassword = e($_POST['repeatPassword']);
+    //
+
     //$confirm_password = e($_POST['confirm_password']);
     if (empty($firstname)) {array_push($errors, "You need a firstname");}
     if (empty($lastname)) {array_push($errors, "write your lastname");}
-    if (empty($workposition)) {array_push($errors, "write the workposition");}
+    if (empty($username)) {array_push($errors, "write the username");}
+    if ($password != $repeatPassword){
+        echo "Password not valid";
+    }
     //add user and cryptate the password in md5 cryption
-    if (count($errors) ==0){
-        //$salt = random_bytes(10).$password_first;
-        //$password= hash('sha512', $password_first);
 
-        $query = "INSERT INTO Newemployee (firstname, lastname, workposition , international, startdate) 
-  			  VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
-        $result = $db->query($query);
-        if(!$result){
-            echo "Wrong in the script";
-        }
-        //elseif(mysqli_affected_rows($db) == 0){
-        elseif($db->affected_rows == 0){
-            echo "The script worked, but the user wasn't added";
-        }
-        else{
-            echo "newemployee was added";
+    else{
+        if (count($errors) == 0) {
+
+            $password = md5($_POST['password']);
+            $query = "INSERT INTO Users (firstname, lastname, username , usertype, password) 
+                  VALUES('$firstname', '$lastname', '$username', '$usertype', '$password')";
+            $result = $db->query($query);
+            if (!$result) {
+                echo "Wrong in the script";
+            } //elseif(mysqli_affected_rows($db) == 0){
+            elseif ($db->affected_rows == 0) {
+                echo "The script worked, but the user wasn't added";
+            } else {
+                echo "user was added";
+            }
         }
     }
 }

@@ -5,7 +5,8 @@
 session_start();
 $username ="";
 $errors = array();
-$db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
+//$db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
+$db = mysqli_connect( 'localhost', 'root',  '', 'db_hr_portal');
 //check if inputs are correct!
 
 if (isset($_POST['register'])){
@@ -223,7 +224,7 @@ if (isset($_POST['createCheckList'])) {
 
     }
 
-    if (isset($_POST["check"])) {
+    if (isset($_POST["del"])) {
         deletechecklist();
     }
 //delete user
@@ -231,52 +232,42 @@ if (isset($_POST['createCheckList'])) {
     {
         global $db, $username, $errors;
         //get values
-        $fnavn = e($_POST['fnavn']);
+        $firstname = e($_POST['firstname']);
 
 
         // make sure form is filled properly
-        if (empty($fnavn)) {
-            array_push($errors, "You need the employees name");
-        }
-        $user_check = "SELECT firstname FROM Newemployee WHERE firstname= '$fnavn'";
-        $result = $db->query($user_check);
-        $user = mysqli_fetch_assoc($result);
-        if (!$user) {
-            array_push($errors, "Not a list");
-            echo "not an excisting checklist";
+
+
+
+
+
+        $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
+        $resultid = $db->query($id);
+        if (!$resultid) {
+            echo "not correct id";
         } else {
-            if (count($errors) == 0) {
-                $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$fnavn'";
-                $idresult = $db->query($id);
-                $check = mysqli_fetch_assoc($idresult);
-                if (!$check) {
-                    array_push($errors, "id wrong");
-                    echo "not having id number";
-                } else {
-                    while ($row = $check) {
-                        $chekedid = $row['Newemployee_idNewemploye'];
-                        $query = "DELETE FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee='$chekedid'";
-                        $result = $db->query($query);
+            while ($row = mysqli_fetch_assoc($resultid)) {
+                $id4 = $row['idNewemployee'];
+                        $query = "DELETE FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$id4'";
+                        echo $query;
 
-                        if (!$result) {
-                            echo "couldn't delete list";
-
+                        if ($db->query($query) === TRUE) {
+                            $dquery = "DELETE FROM Newemployee WHERE idNewemployee = '$id4'";
+                            echo $dquery;
+                            if ($db->query($dquery) === TRUE) {
+                                echo "delete succesfull";
+                            } else {
+                                echo "couldn't delete employee";
+                            }
 
                         } else {
-                            $dquery = "DELETE FROM Newemployee WHERE firstname = '$fnavn'";
-                            $del = $db->query($dquery);
-                            if (!$del){
-                                echo "list was deleted but couldn't delete employee";
-                            }
-                            echo "checklist and employee deleted";
+                            echo "Checklist couldn't be deleted";
                         }
 
 
                     }
-
                 }
-            }
-        }
+
     }
 
 //making sure you only enter if logged in
@@ -373,7 +364,8 @@ if (isset($_POST['createCheckList'])) {
             if (count($errors) == 0) {
                 $query = "UPDATE Users SET usertype = '$user_type' WHERE username='$username'";
                 $result = $db->query($query);
-                if (!$result) {
+                $chck = mysqli_fetch_assoc($result);
+                if (!$chck) {
                     echo "wrong in the script";
                 } else {
                     echo "user type edited successful";
@@ -399,32 +391,43 @@ if (isset($_POST['createCheckList'])) {
             $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
             $id2 = "SELECT idUsers FROM Users WHERE firstname = '$Mentorname'";
             $resultid = $db->query($id);
+
             if (!$resultid) {
                 echo "not correct id";
+
             } else {
                 while ($row = mysqli_fetch_assoc($resultid)) {
                     $resultid2 = $db->query($id2);
                     $id4 = $row['idNewemployee'];
+                    $test = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id4' ";
+                    $testresult = $db->query($test);
                     if (!$resultid2) {
                         echo "user dont have that id";
                     } else {
 
-                        while ($row = mysqli_fetch_assoc($resultid2)) {
-                            $id3 = $row['idUsers'];
-                            $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                         if($db->affected_rows == 1  ) {
+                            echo "This employee has a mentor already";
+                        } else{
+
+                            while ($row = mysqli_fetch_assoc($resultid2)) {
+                                $id3 = $row['idUsers'];
+
+                                $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
                                 VALUES ('$id3', '$id4') ";
-                            if (mysqli_query($db, $query)) {
-                                echo "mentor assigned";
-                            } else {
-                                echo $query;
-                                echo "wrong in the script";
+                                $res = mysqli_query($db, $query);
+                                if (!$res) {
+
+                                } elseif ($db->affected_rows == 0) {
+                                    echo "something else went wrong";
+                                } else {
+                                    echo "mentor assigned";
+                                }
                             }
                         }
+
                     }
 
-
                 }
-
             }
         }
     }

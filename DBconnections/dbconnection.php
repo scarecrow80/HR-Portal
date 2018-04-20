@@ -391,32 +391,43 @@ if (isset($_POST['createCheckList'])) {
             $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
             $id2 = "SELECT idUsers FROM Users WHERE firstname = '$Mentorname'";
             $resultid = $db->query($id);
+
             if (!$resultid) {
                 echo "not correct id";
+
             } else {
                 while ($row = mysqli_fetch_assoc($resultid)) {
                     $resultid2 = $db->query($id2);
                     $id4 = $row['idNewemployee'];
+                    $test = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id4' ";
+                    $testresult = $db->query($test);
                     if (!$resultid2) {
                         echo "user dont have that id";
                     } else {
 
-                        while ($row = mysqli_fetch_assoc($resultid2)) {
-                            $id3 = $row['idUsers'];
-                            $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                         if($db->affected_rows == 1  ) {
+                            echo "This employee has a mentor already";
+                        } else{
+
+                            while ($row = mysqli_fetch_assoc($resultid2)) {
+                                $id3 = $row['idUsers'];
+
+                                $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
                                 VALUES ('$id3', '$id4') ";
-                            if (mysqli_query($db, $query)) {
-                                echo "mentor assigned";
-                            } else {
-                                echo $query;
-                                echo "wrong in the script";
+                                $res = mysqli_query($db, $query);
+                                if (!$res) {
+
+                                } elseif ($db->affected_rows == 0) {
+                                    echo "something else went wrong";
+                                } else {
+                                    echo "mentor assigned";
+                                }
                             }
                         }
+
                     }
 
-
                 }
-
             }
         }
     }

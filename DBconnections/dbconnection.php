@@ -286,20 +286,25 @@ if (isset($_POST['createCheckList'])) {
         //get values
         $firstname = e($_POST['firstname']);
 
-
+        if (empty($firstname)) {array_push($errors, "You need a firstname");}
         // make sure form is filled properly
 
 
-
-
-
-        $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
-        $resultid = $db->query($id);
-        if (!$resultid) {
-            echo "not correct id";
-        } else {
-            while ($row = mysqli_fetch_assoc($resultid)) {
-                $id4 = $row['idNewemployee'];
+        $name_check = "SELECT firstname FROM Newemployee WHERE firstname= '$firstname'";
+        $result = $db->query($name_check);
+        $in = mysqli_fetch_assoc($result);
+        if (!$in) {
+            echo "Not a name";
+            array_push($errors, "Not a user");
+        }else {
+            if (count($errors) == 0) {
+                $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
+                $resultid = $db->query($id);
+                if (!$resultid) {
+                    echo "not correct id";
+                } else {
+                    while ($row = mysqli_fetch_assoc($resultid)) {
+                        $id4 = $row['idNewemployee'];
                         $query = "DELETE FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$id4'";
                         echo $query;
 
@@ -319,7 +324,8 @@ if (isset($_POST['createCheckList'])) {
 
                     }
                 }
-
+            }
+        }
     }
 
 //making sure you only enter if logged in
@@ -400,8 +406,12 @@ if (isset($_POST['createCheckList'])) {
 if (isset($_POST['Updatemen'])){
     updatementor();
 }
-if (isset($_POST['Nypunkt'])){
+if (isset($_POST['Edilis'])){
+    Edlist();
+} elseif  (isset($_POST['Nypunkt'])){
     pointlist();
+} elseif (isset($_POST['Deletent'])){
+    Dellist();
 }
 if (isset($_POST['Assign'])) {
     addmentor();
@@ -659,7 +669,35 @@ if(!$res){
 
 }
 function Edlist(){
+global $db, $errors;
+$orgpunkt = e($_POST['orgpunkt']);
+$Nypunkt = e($_POST['Nypunkt']);
+$Engpunkt = e($_POST['Engpunkt']);
+$punkt_check = "SELECT checkpointsNO FROM Checklist WHERE checkpointsNO = '$orgpunkt'";
+$res = $db->query($punkt_check);
+$punkt = mysqli_fetch_assoc($res);
+if(!$punkt){
+    echo "Not a chekcpoint create it instead";
+    array_push($errors, "Not a point");
+}else{
+    $check_punkt = "SELECT checkpointsNO FROM Checklist where checkpointsNO = '$Nypunkt'";
+    $resa = $db->query($check_punkt);
+    $pun = mysqli_fetch_assoc($resa);
+    if($pun){
+        echo "already a point";
+        array_push($errors, "Already a point");
+    }else{
+        $query = "UPDATE Checklist SET  checkpointsNO = '$Nypunkt', checkpointsEN = '$Engpunkt' WHERE checkpointsNO = '$orgpunkt'";
 
+        $result = $db->query($query);
+        if(!$result){
+            echo $query;
+            echo "wrong in the script";
+        } else{
+            echo "checklist edit succesfull";
+        }
+    }
+}
 }
 function pointlist() {
     global $db, $errors;
@@ -668,6 +706,7 @@ function pointlist() {
     $ans = e($_POST['ans']);
     $nasj = e($_POST['nasj']);
     $Led = e($_POST['Led']);
+    if (empty($innd)) {array_push($errors, "You need to write something");}
     $ind_check = "SELECT checkpointsNO FROM Checklist WHERE checkpointsNO= '$innd'";
     $result = $db->query($ind_check);
     $user = mysqli_fetch_assoc($result);
@@ -675,21 +714,52 @@ function pointlist() {
         echo "Alreadly a checkpoint";
         array_push($errors, "Not a user");
     }else {
-        $query = "INSERT INTO Checklist (checkpointsNO, checkpointsEN, responsible, nationality, leader)
+        if (count($errors) == 0) {
+            $query = "INSERT INTO Checklist (checkpointsNO, checkpointsEN, responsible, nationality, leader)
                                 VALUES ('$innd', '$innde', '$ans', '$nasj', '$Led' ) ";
-        $res = mysqli_query($db, $query);
-        if (!$res) {
+            $res = mysqli_query($db, $query);
+            if (!$res) {
 
-        } elseif ($db->affected_rows == 0) {
-            echo "something else went wrong";
-        } else {
-            echo "point added";
+            } elseif ($db->affected_rows == 0) {
+                echo "something else went wrong";
+            } else {
+                echo "point added";
+            }
         }
     }
 }
 function Dellist(){
+global $db,$errors;
+    $Innd = e($_POST['Innd']);
+    if (empty($innd)) {array_push($errors, "You need to write something");}
+    $ind_check = "SELECT checkpointsNO FROM Checklist WHERE checkpointsNO= '$Innd'";
+    $result = $db->query($ind_check);
+    $in = mysqli_fetch_assoc($result);
+    if (!$in) {
+        echo "Not a checkpoint";
+        array_push($errors, "Not a user");
+    }else {
+        $numb_check = "SELECT idChecklist FROM Checklist WHERE  checkpointsNO = '$Innd'";
 
+        $res = $db->query($numb_check);
+        if (!$res) {
+            echo $numb_check;
+            echo "not correct id";
+        } else {
+            while ($row = mysqli_fetch_assoc($res)) {
+                $id = $row['idChecklist'];
+                $dquery = "DELETE FROM Checklist WHERE idChecklist = '$id'";
 
+                if ($db->query($dquery) === TRUE){
+                    echo "delete is good";
+                }else{
+                    echo  $dquery;
+                    echo "some error made delete fail" .$db->error;
+                }
+            }
+
+        }
+    }
 }
 
 //edit the password of a user

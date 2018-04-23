@@ -222,6 +222,10 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             <td>Ny Punkt</td>
                                             <td> <input type="text" name="Nypunkt" id="Nypunkt" value=""/></td>
                                         </tr>
+                                        <tr class ="input-group">
+                                            <td>Engelsk nytt punkt</td>
+                                            <td><input type="text" name="Engpunkt" id="Engpunkt"/> </td>
+                                        </tr>
                                     </table>
                                     <button type="submit" class="btn btn-primary" name="Edilis" id="Edilis">Endre Punkt</button>
                                 </form>
@@ -272,10 +276,10 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
                                 <form action="" method="post">
                                      <table>
-                                         <tr class="input-group">
+                                         <!--<tr class="input-group">
                                              <td>Nummer</td>
                                              <td> <input type="number" name="numb"/></td><br>
-                                         </tr>
+                                         </tr>-->
                                          <tr class="input-group">
 
                                              <td>Innhold</td>

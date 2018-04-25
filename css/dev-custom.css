@@ -1830,7 +1830,7 @@ section input, header textarea {
     -ms-transition: box-shadow 0.5s !important;
     -o-transition: box-shadow 0.5s !important;
     outline: none !important;
-    -webkit-appearance: none !important;
+
     box-shadow: none !important; }
 
 section input:focus, section textarea:focus,

@@ -132,10 +132,46 @@ include('../HR-Portal/DBconnections/dbconnection.php');
             </ul>
         </div>
     </div>
-    <?php
-    include_once 'Elements/Header.php';
-    ?>
 
+
+    <div id="top">
+        <div class="contentWrapper">
+            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="img/hioa-logo-web_697×120_no.png" /></a>
+            <nav>
+                <div id="navcontainer" class="fullsizeBlock">
+
+                    <ul id="topMenu">
+                        <li><a href="http://www.hioa.no/eng">EnglishTODO</a></li>
+                    </ul>
+
+                    <ul id="Nav">
+                        <li class="active active " id="tzju_" role="presentation">
+                            <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                        </li>
+                        <li class=" " id="ahej_" role="presentation">
+                            <a class="list" onclick="openPage('createList')" id="" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
+                        </li>
+                        <li class=" " id="fyzs_" role="presentation">
+                            <a class="list" onclick="openPage('assignMentor')" id="" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
+                        </li>
+
+                    </ul>
+                    <script>
+
+                        function openPage(pageName){
+                            var i;
+                            var x = document.getElementsByClassName("page");
+                            for (i = 0; i < x.length; i++){
+                                x[i].style.display = "none";
+                            }
+                            document.getElementById(pageName).style.display = "block";
+                        }
+                    </script>
+
+                </div> <!-- END: navcontainer -->
+            </nav>
+        </div> <!-- contentWrapper -->
+    </div><!-- top -->
     <!-- <div class="clearfloat"></div> -->
     <!-- <div id="page" class="nosidemenu noextrainfo section_id_1 subtree_level_0_node_id_2 subtree_level_1_node_id_23577"> -->
     <!-- Header area: START -->
@@ -297,10 +333,6 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
                                     </script>
                                     </section>
-                                        <input type="text" name="name">
-
-
-
 
                                 </div>
 
@@ -350,16 +382,30 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                     <form action="" method="post">
                                         <table>
                                             <tr class="input-group">
-                                    <td>Firstname</td>
+                                    <td>Nyansatt</td>
                                                 <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
                                             </tr>
                                             <tr class="input-group">
 
-                                    <td>ID-number</td>
-                                            <td> <input type="number" name="Checklistnumber" id="Checklistnumber" value=""/></td>
+                                    <td>Fadder</td>
+                                            <td> <input type="text" name="Mentorname" id="Mentorname" value=""/></td>
                                             </tr>
                                         </table>
                                     <button type="submit" class="btn btn-primary" name="Assign" id="Assign">Assign mentor</button>
+                                    </form>
+                                    <form action="" method="post">
+                                        <table>
+                                            <tr class="input-group">
+                                                <td>Nyansatt</td>
+                                                <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
+                                            </tr>
+                                            <tr class="input-group">
+
+                                                <td>NyFadder</td>
+                                                <td> <input type="text" name="Mentorname" id="Mentorname" value=""/></td>
+                                            </tr>
+                                        </table>
+                                        <button type="submit" class="btn btn-primary" name="Updatemen" id="Updatemen">Re-Assign mentor</button>
                                     </form>
                                 </div>
                                 <div class="tilsatt">
@@ -398,9 +444,77 @@ include('../HR-Portal/DBconnections/dbconnection.php');
         <!-- Footer area: START -->
 
         <div class="clearfloat"></div>
-        <?php
-        include_once 'Elements/Footer.php';
-        ?>
+        <div id="footer">
+            <div class="inner">
+                <div class="contentWrapper">
+                    <div id="footerMenuContainer">
+                        <div class="footerMenu">
+                            <h4 class="footerMenuHeader">HiOA</h4>
+
+                            <ul>
+                                <li><a href="http://www.hioa.no/Om-HiOA">Om høgskolen</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Organisasjonskart">Organisasjon</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Strategier">Strategi</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Ledige-stillinger">Ledige stillinger</a></li>
+                                <li><a href="http://www.hioa.no/Kontakt-oss/Mediekontakt">Mediekontakt</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Kart-og-veibeskrivelse">Kart og veibeskrivelse</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Informasjonskapsler-paa-Hioa.no">Om informasjonskapsler</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="footerMenu">
+                            <h4 class="footerMenuHeader">Kontaktinformasjon</h4>
+                            <p>
+                                Høgskolen i Oslo og Akershus<br/>
+                                Postboks 4 St. Olavs plass<br />                         0130 Oslo <br />
+                                Tlf.: 67 23 50 00 <br />
+                                E-post: <a href="mailto:post@hioa.no">post@hioa.no</a>
+                            </p>
+                        </div>
+                        <div class="footerMenu">
+
+                            <h4 class="footerMenuHeader">
+                                Møt oss her
+                            </h4>
+                            <ul>
+                                <li><a class="imagelink facebook" href="http://www.facebook.com/hioa">Facebook</a></li>
+                                <li><a class="imagelink twitter" href="https://twitter.com/#!/HiOA_info">Twitter</a></li>
+                                <li><a class="imagelink linkedin" href="http://no.linkedin.com/company/h-gskolen-i-oslo-og-akershus">LinkedIn</a></li>
+                                <li><a class="imagelink flickr" href="http://www.flickr.com/photos/hioa/">Flickr</a></li>
+                                <li><a class="imagelink instagram" href="http://www.instagram.com/hioa">Instagram</a></li>
+                                <li><a class="imagelink googleplus" rel="publisher" href="https://plus.google.com/106065048460808498234">Google+</a></li>
+                            </ul>
+                        </div>
+                        <div class="footerMenu">
+                            <h4 class="footerMenuHeader last">Aktuelt</h4>
+                            <ul>
+                                <li><a href="http://www.hioa.no/Aktuelt">Aktuelle saker fra HiOA</a>  </li>
+                                <li><a href="http://vitenogpraksis.no/?origin=externfooter">Viten + praksis - HiOAs forskningsmagasin</a></li>
+                                <li><a href="http://www.khrono.no">Khrono - HiOAs uavhengige nettavis</a>  </li>
+                                <li><a href="http://blogg.hioa.no/">blogg.hioa.no</a></li>
+                            </ul>
+                        </div>
+                        <div class="footerMenu last">
+                            <ul>
+                                <li>
+                                    <a class="imagelink fortilsatte" href="https://www.hioa.no/For-tilsatte">For tilsatte</a>
+                                </li>
+                                <li>
+                                    <a href="https://prod.cms.hioa.no/admin" target="_blank" title="Login">eZ Publish</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> <!-- footer menu container -->
+                    <div class="clearfloat"></div>
+                </div>
+            </div> <!-- contentwrapper -->
+        </div> <!-- inner -->
+    </div> <!-- footer -->
+    <!-- Footer area: END -->
+    <!-- Footer area: END -->
+    <!-- </div> -->
+    <!-- Complete page area: END -->
+    <!-- Footer script area: START --><!-- Footer script area: END -->
     <script type="text/javascript" src="js/all.js" charset="utf-8"></script>
 
 

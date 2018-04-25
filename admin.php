@@ -225,11 +225,11 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             <table>
                                                 <tr class="input-group">
                                                     <td>Innhold</td>
-                                                    <td> <input type="text" name="innd"/></td><br>
+                                                    <td><textarea input="text" id="" name="innd" placeholder="Skriv punkt her" rows="5"></textarea></td>
                                                 </tr>
                                                 <tr class="input-group">
                                                     <td>Innhold Engelsk</td>
-                                                    <td> <input type="text" name="innde"/></td><br>
+                                                    <td><textarea input="text" id="" name="innde" placeholder="Skriv punkt her på engelsk" rows="5"></textarea></td>
                                                 </tr>
                                                 <tr class="input-group">
                                                     <td>Brukertype: </td>
@@ -282,17 +282,18 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                         <form action="" method="post">
                                             <table>
                                                 <tr class="input-group">
-                                                    <td>Orginalt Punkt</td>
-                                                    <td> <input type="text" name="orgpunkt"/></td><br>
+
+                                                    <td><textarea type="text" name="orgpunkt" ></textarea></td><br>
                                                 </tr>
+
                                                 <tr class="input-group">
 
-                                                    <td>Nytt Punkt</td>
-                                                    <td> <input type="text" name="Nypunkt" id="Nypunkt" value=""/></td>
+                                                    <td> <textarea type="text" name="Nypunkt" id="Nypunkt" value="" placeholder="Skriv inn nytt punkt på norsk her"></textarea></td>
                                                 </tr>
+
                                                 <tr class ="input-group">
-                                                    <td>Engelsk nytt punkt</td>
-                                                    <td><input type="text" name="Engpunkt" id="Engpunkt"/> </td>
+
+                                                    <td><textarea type="text" name="Engpunkt" id="Engpunkt" placeholder="Skriv inn nytt punkt på engelsk her"></textarea></td>
                                                 </tr>
                                             </table>
                                             <button type="submit" class="btn btn-primary" name="Edilis" id="Edilis">Endre Punkt</button>
@@ -316,13 +317,77 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                                     <td>Nummer</td>
                                                     <td> <input type="number" name="numb"/></td><br>
                                                 </tr>-->
-                                                <tr class="input-group">
+                                                <tr>
+                                                    <th>Sjekkpunkt på norsk</th>
+                                                    <th>Sjekkpunkt på engelsk</th>
+                                                    <th>Ansvarlig</th>
+                                                    <th>Nasjonalitet</th>
+                                                    <th>Leder</th>
+                                                    <th>Valg</th>
+                                                </tr>
+                                                <?php
+                                                $sql = "Select * FROM Checklist";
+                                                $result = mysqli_query($db, $sql);
+
+                                                if ($result) {
+
+                                                    while($row = mysqli_fetch_assoc($result)){
+                                                        $check_id = $row["idChecklist"];
+
+                                                        echo "<tr>";
+                                                        echo "<td>".$row["checkpointsNO"]."</td>";
+                                                        echo "<td>".$row["checkpointsEN"]."</td>";
+                                                        echo "<td>".$row["responsible"]."</td>";
+                                                        echo "<td>".$row["nationality"]."</td>";
+                                                        echo "<td>".$row["leader"]."</td>";
+                                                        echo "<td><input type='radio' name='DeletePoint' value='$check_id'/></td>";
+                                                        echo "</tr>";
+
+                                                    }echo "</table>";
+                                                }
+                                                else{
+                                                    echo "No connection to database or no checkpoints to select";
+                                                }
+
+                                                ?>
+
+                                                <!--<tr class="input-group">
 
                                                     <td>Innhold</td>
-                                                    <td> <input type="text" name="Innd" id="Innd" value=""/></td>
-                                                </tr>
-                                            </table>
-                                            <button type="submit" class="btn btn-primary" name="Deletent" id="Deleteent">Slett Punkt</button>
+                                                    <td> <textarea type="text" name="Innd" id="Innd" value=""></textarea></td>
+                                                </tr>-->
+                                                <button type="submit" class="btn btn-primary" name="Delete" id="Delete" >Slett Punkt</button>
+                                                <?php
+
+                                                if(isset($_POST["Delete"])) {
+
+                                                    $checkpointId = $_POST["DeletePoint"];
+                                                    $sql = "DELETE FROM Checklist WHERE idChecklist = '".$checkpointId."'";
+                                                    $sql2 = "DELETE FROM Newemployee_has_Checklist WHERE Checklist_idChecklist = '".$checkpointId."'";
+
+                                                    $result2 = mysqli_query($db,$sql);
+                                                    $result3 = mysqli_query($db,$sql2);
+
+                                                    if(!$result2) {
+
+                                                        if(mysqli_affected_rows($db) > 0) {
+                                                            echo " *Sjekkpunkt er slettet * ";
+                                                        }
+                                                        else {
+                                                            echo " * Kunne ikke finne punkt for sletting *";
+                                                        }
+                                                    }
+                                                    if(!$result3) {
+
+                                                        if(mysqli_affected_rows($db) > 0) {
+                                                            echo " *Sjekkpunkt er slettet fra Newemployee_has_Checklist* ";
+                                                        }
+                                                        else {
+                                                            echo " * Kunne ikke finne punkt for sletting *";
+                                                        }
+                                                    }
+                                                }
+                                                ?>
                                         </form>
                                     </div>
                                 </div>

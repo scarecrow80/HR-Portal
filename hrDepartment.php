@@ -82,10 +82,10 @@ include('../HR-Portal/DBconnections/dbconnection.php');
         <div id="mobile-menu">
             <ul>
                 <li class="main-menu">
-                    <a class="list" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                    <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
                 </li>
                 <li class="main-menu">
-                    <a class="list" id="" role="menuitem" title="Søk"> <span class="nav-item-label"> Søk </span> </a>
+                    <a class="list" id="" onclick="openPage('search')" role="menuitem" title="Søk"> <span class="nav-item-label"> Søk </span> </a>
                 </li>
             </ul>
         </div>

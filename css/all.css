@@ -3218,7 +3218,10 @@ ul#user_tags
 	clear: both;
 }
 
-
+.checkbox{
+	width: 30px;
+	height: 30px;
+}
 
 ul#user_tags li {
 	float: left;
@@ -6596,6 +6599,8 @@ body.article.course ul.sort input[type=checkbox] {
 	vertical-align: central;
 	padding: 0;
 	margin: 0;
+	height: 5px;
+	width: 5px;
 	margin-right: 3px;
 	margin-top: 1px;
 }

@@ -82,16 +82,16 @@ include('../HR-Portal/DBconnections/dbconnection.php');
         <div id="mobile-menu">
             <ul>
                 <li class="main-menu">
-                    <a class="list" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                    <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
                 </li>
                 <li class="main-menu">
-                    <a class="list" id="" role="menuitem" title="Endre på sjekkliste"> <span class="nav-item-label"> Endre på sjekkliste </span> </a>
+                    <a class="list" id="" onclick="openPage('change')" role="menuitem" title="Endre på sjekkliste"> <span class="nav-item-label"> Endre på sjekkliste </span> </a>
                 </li>
                 <li class="main-menu">
-                    <a class="list" id="" role="menuitem" title="Slett gamle sjekklister"> <span class="nav-item-label"> Slett gamle sjekklister </span> </a>
+                    <a class="list" id="" onclick="openPage('delete')" role="menuitem" title="Slett gamle sjekklister"> <span class="nav-item-label"> Slett gamle sjekklister </span> </a>
                 </li>
                 <li class="main-menu">
-                    <a class="list" id="" role="menuitem" title="Opprett bruker"> <span class="nav-item-label"> Opprett bruker </span> </a>
+                    <a class="list" id="" onclick="openPage('create')" role="menuitem" title="Opprett bruker"> <span class="nav-item-label"> Opprett bruker </span> </a>
                 </li>
             </ul>
         </div>
@@ -210,84 +210,193 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                             </div>
 
                             <div id="change" class="page tilsatt" style="display:none">
-                                <p>TODOTODOTODOTODOTODO change user</p>
-                                <form action="" method="post">
-                                    <table>
-                                        <tr class="input-group">
-                                            <td>Orginale Punkt</td>
-                                            <td> <input type="text" name="orgpunkt"/></td><br>
-                                        </tr>
-                                        <tr class="input-group">
 
-                                            <td>Ny Punkt</td>
-                                            <td> <input type="text" name="Nypunkt" id="Nypunkt" value=""/></td>
-                                        </tr>
-                                        <tr class ="input-group">
-                                            <td>Engelsk nytt punkt</td>
-                                            <td><input type="text" name="Engpunkt" id="Engpunkt"/> </td>
-                                        </tr>
-                                    </table>
-                                    <button type="submit" class="btn btn-primary" name="Edilis" id="Edilis">Endre Punkt</button>
-                                </form>
-                                <br>
-                                <form action="" method="post">
-                                    <table>
-                                        <tr class="input-group">
-                                            <td>Innhold</td>
-                                            <td> <input type="text" name="innd"/></td><br>
-                                        </tr>
-                                        <tr class="input-group">
-                                            <td>Innhold Engelsk</td>
-                                            <td> <input type="text" name="innde"/></td><br>
-                                        </tr>
-                                        <tr class="input-group">
-                                            <td>Brukertype: </td>
-                                            <td><select name="ans" class="field comment-alerts" required>
-                                                    <option value=""></option>
-                                                    <option value="admin">Administrator</option>
-                                                    <option value="leader">Leder</option>
-                                                    <option value="HR">HR</option>
-                                                    <option value="mentor">Fadder</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                    <tr class="input-group">
-                                        <td>Nasjonalitet: </td>
-                                        <td><select name="nasj" class="field comment-alerts" required />
-                                            <option value=""></option>
-                                            <option value="Norsk">Norsk</option>
-                                            <option value="Internasjonal">Internasjonal</option>
-                                        </select>
-                                        </td>
-                                    </tr>
+                                <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                     thetitle="Opprette nytt sjekkliste punkt">
 
-                                    <tr class="input-group">
-                                        <td>Leder: </td>
-                                        <td><select name="Led" class="field comment-alerts" required />
-                                            <option value=""></option>
-                                            <option value="Ja">Ja</option>
-                                            <option value="Nei">Nei</option>
-                                        </select>
-                                        </td>
-                                    </tr>
-                                    </table>
-                                    <button type="submit" class="btn btn-primary" name="Nypunkt" id="Nypunkt">Nytt Punkt</button>
-                                </form><br>
+                                    <h2>
+                                        Opprette nytt sjekkliste punkt
+                                    </h2>
 
-                                <form action="" method="post">
-                                     <table>
-                                         <!--<tr class="input-group">
-                                             <td>Nummer</td>
-                                             <td> <input type="number" name="numb"/></td><br>
-                                         </tr>-->
-                                         <tr class="input-group">
+                                    <div class="mr_fleksi_content">
 
-                                             <td>Innhold</td>
-                                             <td> <input type="text" name="Innd" id="Innd" value=""/></td>
-                                         </tr>
-                                     </table>
-                                     <button type="submit" class="btn btn-primary" name="Deletent" id="Deleteent">Slett Punkt</button>
-                                 </form>
+                                        <p>Opprett et nytt sjekkliste punkt.</p>
+                                        <form action="" method="post">
+                                            <table>
+                                                <tr class="input-group">
+                                                    <td>Innhold</td>
+                                                    <td><textarea input="text" id="" name="innd" placeholder="Skriv punkt her" rows="5"></textarea></td>
+                                                </tr>
+                                                <tr class="input-group">
+                                                    <td>Innhold Engelsk</td>
+                                                    <td><textarea input="text" id="" name="innde" placeholder="Skriv punkt her på engelsk" rows="5"></textarea></td>
+                                                </tr>
+                                                <tr class="input-group">
+                                                    <td>Brukertype: </td>
+                                                    <td><select name="ans" class="field comment-alerts" required>
+                                                            <option value=""></option>
+                                                            <option value="admin">Administrator</option>
+                                                            <option value="leader">Leder</option>
+                                                            <option value="HR">HR</option>
+                                                            <option value="mentor">Fadder</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr class="input-group">
+                                                    <td>Nasjonalitet: </td>
+                                                    <td><select name="nasj" class="field comment-alerts" required />
+                                                        <option value=""></option>
+                                                        <option value="Norsk">Norsk</option>
+                                                        <option value="Internasjonal">Internasjonal</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="input-group">
+                                                    <td>Leder: </td>
+                                                    <td><select name="Led" class="field comment-alerts" required />
+                                                        <option value=""></option>
+                                                        <option value="Ja">Ja</option>
+                                                        <option value="Nei">Nei</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <button type="submit" class="btn btn-primary" name="Nypunkt" id="Nypunkt">Nytt Punkt</button>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                     thetitle="Endre sjekkliste punkt">
+
+                                    <h2>
+                                        Endre sjekkliste punkt
+                                    </h2>
+
+                                    <div class="mr_fleksi_content">
+
+                                        <p>Endre et sjekkliste punkt.</p>
+                                        <form action="" method="post">
+                                            <table>
+                                                <tr class="input-group">
+
+                                                    <td><textarea type="text" name="orgpunkt" ></textarea></td><br>
+                                                </tr>
+
+                                                <tr class="input-group">
+
+                                                    <td> <textarea type="text" name="Nypunkt" id="Nypunkt" value="" placeholder="Skriv inn nytt punkt på norsk her"></textarea></td>
+                                                </tr>
+
+                                                <tr class ="input-group">
+
+                                                    <td><textarea type="text" name="Engpunkt" id="Engpunkt" placeholder="Skriv inn nytt punkt på engelsk her"></textarea></td>
+                                                </tr>
+                                            </table>
+                                            <button type="submit" class="btn btn-primary" name="Edilis" id="Edilis">Endre Punkt</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                     thetitle="Slett et sjekklist punkt">
+
+                                    <h2>
+                                        Slett et sjekklist punkt
+                                    </h2>
+
+                                    <div class="mr_fleksi_content">
+
+                                        <p>Slett et sjekklist punkt</p>
+                                        <form action="" method="post">
+                                            <table>
+                                                <!--<tr class="input-group">
+                                                    <td>Nummer</td>
+                                                    <td> <input type="number" name="numb"/></td><br>
+                                                </tr>-->
+                                                <tr>
+                                                    <th>Sjekkpunkt på norsk</th>
+                                                    <th>Sjekkpunkt på engelsk</th>
+                                                    <th>Ansvarlig</th>
+                                                    <th>Nasjonalitet</th>
+                                                    <th>Leder</th>
+                                                    <th>Valg</th>
+                                                </tr>
+                                                <?php
+                                                $sql = "Select * FROM Checklist";
+                                                $result = mysqli_query($db, $sql);
+
+                                                if ($result) {
+
+                                                    while($row = mysqli_fetch_assoc($result)){
+                                                        $check_id = $row["idChecklist"];
+
+                                                        echo "<tr>";
+                                                        echo "<td>".$row["checkpointsNO"]."</td>";
+                                                        echo "<td>".$row["checkpointsEN"]."</td>";
+                                                        echo "<td>".$row["responsible"]."</td>";
+                                                        echo "<td>".$row["nationality"]."</td>";
+                                                        echo "<td>".$row["leader"]."</td>";
+                                                        echo "<td><input type='radio' name='DeletePoint' value='$check_id'/></td>";
+                                                        echo "</tr>";
+
+                                                    }echo "</table>";
+                                                }
+                                                else{
+                                                    echo "No connection to database or no checkpoints to select";
+                                                }
+
+                                                ?>
+
+                                                <!--<tr class="input-group">
+
+                                                    <td>Innhold</td>
+                                                    <td> <textarea type="text" name="Innd" id="Innd" value=""></textarea></td>
+                                                </tr>-->
+                                                <button type="submit" class="btn btn-primary" name="Delete" id="Delete" >Slett Punkt</button>
+                                                <?php
+
+                                                if(isset($_POST["Delete"])) {
+
+                                                    $checkpointId = $_POST["DeletePoint"];
+                                                    $sql = "DELETE FROM Checklist WHERE idChecklist = '".$checkpointId."'";
+                                                    $sql2 = "DELETE FROM Newemployee_has_Checklist WHERE Checklist_idChecklist = '".$checkpointId."'";
+
+                                                    $result2 = mysqli_query($db,$sql);
+                                                    $result3 = mysqli_query($db,$sql2);
+
+                                                    if(!$result2) {
+
+                                                        if(mysqli_affected_rows($db) > 0) {
+                                                            echo " *Sjekkpunkt er slettet * ";
+                                                        }
+                                                        else {
+                                                            echo " * Kunne ikke finne punkt for sletting *";
+                                                        }
+                                                    }
+                                                    if(!$result3) {
+
+                                                        if(mysqli_affected_rows($db) > 0) {
+                                                            echo " *Sjekkpunkt er slettet fra Newemployee_has_Checklist* ";
+                                                        }
+                                                        else {
+                                                            echo " * Kunne ikke finne punkt for sletting *";
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+
+
+
 
 
                              </div>

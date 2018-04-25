@@ -82,13 +82,13 @@ include('../HR-Portal/DBconnections/dbconnection.php');
         <div id="mobile-menu">
             <ul>
                 <li class="main-menu">
-                    <a class="list" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
+                    <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
                 </li>
                 <li class="main-menu">
-                    <a class="list" id="" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
+                    <a class="list" id="" onclick="openPage('createList')" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
                 </li>
                 <li class="main-menu">
-                    <a class="list" id="" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
+                    <a class="list" id="" onclick="openPage('assignMentor')" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
                 </li>
             </ul>
         </div>

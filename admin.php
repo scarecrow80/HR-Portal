@@ -1,11 +1,11 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
-/*if (!admin()){
+if (!admin()){
     $_SESSION['msg'] = "You have to log in as admin";
     session_destroy();
     unset($_SESSION['user']);
     header('location: ../HR-Portal/index.php');
-}*/
+}
 ?>
 <!DOCTYPE html>
 

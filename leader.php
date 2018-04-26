@@ -1,11 +1,11 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
-/*if (!leader()){
+if (!leader()){
     $_SESSION['msg'] = "You have to log in as leader";
     session_destroy();
     unset($_SESSION['user']);
     header('location: ../HR-Portal/index.php');
-}*/
+}
 ?>
 <!DOCTYPE html>
 

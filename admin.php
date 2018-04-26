@@ -193,11 +193,12 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                         <?php
                                         $db = mysqli_connect("student.cs.hioa.no", "s236619", "", "s236619");
                                         //$db = mysqli_connect("localhost", "root", "", "db_hr_portal");
+                                        //include '../HR-Portal/DBconnections/dbconnection.php';
                                         if(!$db){
                                             die("Feil i databasetilkobling:".$db->connect_error);
                                         }
-
-                                        $qry =  "SELECT idNewemployee,firstname, lastname FROM Newemployee";
+                                        //$userId = $_SESSION;
+                                        $qry =  "SELECT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee";
                                         $res = mysqli_query($db, $qry);
                                         if(!$res){
                                             echo "query failed";
@@ -213,7 +214,7 @@ include('../HR-Portal/DBconnections/dbconnection.php');
                                             $article = ' <article class="h-card vcard person-card article-contact" role="article"><h3 title="Oversikt over sjekklister"  class="toggler-header article-contact-heading"> ';
                                             $article.=$f_name." ".$l_name." ";
                                             $article.= '</h3><div class="toggler-content"><form action="" method="post"><table><tr><th>Oppgave</th><th>Sjekkboks</th></tr>';
-                                            $qry2 = "SELECT Newemployee_idNewemployee, Checklist_idChecklist, checked FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee='$id_new'";
+                                            $qry2 = "SELECT Newemployee_idNewemployee, Checklist_idChecklist, checked FROM Newemployee_has_Checklist INNER JOIN Checklist ON idChecklist WHERE Checklist_idChecklist = idChecklist AND Newemployee_idNewemployee='$id_new'";
                                             $res2 = mysqli_query($db, $qry2);
 
                                             if(!$res2){

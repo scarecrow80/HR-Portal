@@ -291,12 +291,9 @@ include('../HR-Portal/DBconnections/dbconnection.php');
 
                                             $article.='</td>
                                             </tr>';
-                                             
-                                             
-
 
                                         }
-                                        $article.='<button type="submit">Submit</button>';
+                                        //$article.='<button type="submit">Submit</button>';
                                         $article.= '</table></form></div></article>';
                                         echo $article;
 

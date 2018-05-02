@@ -1,7 +1,7 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
-if (!leader()){
-    $_SESSION['msg'] = "You have to log in as leader";
+if (!HR()){
+    $_SESSION['msg'] = "You have to log in as one from hr the department ";
     session_destroy();
     unset($_SESSION['user']);
     header('location: ../HR-Portal/index.php');

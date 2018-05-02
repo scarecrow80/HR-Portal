@@ -201,7 +201,7 @@ if (!admin()){
                                         $qry =  "SELECT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee";
                                         $res = mysqli_query($db, $qry);
                                         if(!$res){
-                                            echo "query failed";
+                                            echo '<script type="text/javascript">alert("Query failed");</script>';
                                         }
 
 
@@ -218,7 +218,7 @@ if (!admin()){
                                             $res2 = mysqli_query($db, $qry2);
 
                                             if(!$res2){
-                                                echo "RES2 er tom";
+                                                echo '<script type="text/javascript">alert("Tom resultat");</script>';
                                                 die();
                                             }
                                             while($row2 = mysqli_fetch_assoc($res2)){
@@ -413,7 +413,7 @@ if (!admin()){
                                                     }echo "</table>";
                                                 }
                                                 else{
-                                                    echo "No connection to database or no checkpoints to select";
+                                                    echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
                                                 }
 
                                                 ?>
@@ -438,19 +438,19 @@ if (!admin()){
                                                     if(!$result2) {
 
                                                         if(mysqli_affected_rows($db) > 0) {
-                                                            echo " *Sjekkpunkt er slettet * ";
+                                                            echo '<script type="text/javascript">alert("Delete worked");</script>';
                                                         }
                                                         else {
-                                                            echo " * Kunne ikke finne punkt for sletting *";
+                                                            echo '<script type="text/javascript">alert("Punktet eksiterer ikke");</script>';
                                                         }
                                                     }
                                                     if(!$result3) {
 
                                                         if(mysqli_affected_rows($db) > 0) {
-                                                            echo " *Sjekkpunkt er slettet fra Newemployee_has_Checklist* ";
+                                                            echo '<script type="text/javascript">alert("Skjekkpunktet er slettet");</script>';
                                                         }
                                                         else {
-                                                            echo " * Kunne ikke finne punkt for sletting *";
+                                                            echo '<script type="text/javascript">alert("Finner ikke slettepunktet");</script>';
                                                         }
                                                     }
                                                 }

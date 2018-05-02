@@ -236,7 +236,7 @@ if (!leader()){
                                         $qry =  "SELECT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee WHERE Users_has_Newemployee.Users_idUsers = 19";
                                         $res = mysqli_query($db, $qry);
                                         if(!$res){
-                                            echo "query failed";
+                                            echo '<script type="text/javascript">alert("Failed query");</script>';
                                         }
 
 
@@ -253,7 +253,7 @@ if (!leader()){
                                             $res2 = mysqli_query($db, $qry2);
 
                                             if(!$res2){
-                                                echo "RES2 er tom";
+                                                echo '<script type="text/javascript">alert("Tom res");</script>';
                                                 die();
                                             }
                                             while($row2 = mysqli_fetch_assoc($res2)){

@@ -461,7 +461,7 @@ if (isset($_POST['createCheckList'])) {
     function updatementor()
     {
         global $db, $errors;
-        $firstname = e($_POST['firstname']);
+        $employee = e($_POST['empname']);
         $mentor = e($_POST['mentor']);
         $user_check = "SELECT firstname FROM Users WHERE firstname = '$mentor' ";
         $result = $db->query($user_check);
@@ -471,7 +471,7 @@ if (isset($_POST['createCheckList'])) {
             echo $user_check;
             array_push($errors, "Not a user");
         } else {
-            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
+            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$employee'";
             $id2 = "SELECT idUsers FROM Users WHERE firstname = '$mentor' ";
             $resultid = $db->query($id);
 

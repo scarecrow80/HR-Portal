@@ -507,9 +507,9 @@ if (isset($_POST['createCheckList'])) {
     function addmentor()
     {
         global $db, $username, $errors;
-        $Empname = e($_POST['Empname']);
+        $employee = e($_POST['Empname']);
         $mentor = e($_POST['mentor']);
-        $user_check = "SELECT firstname FROM Users WHERE firstname = '$mentor'";
+        $user_check = "SELECT firstname FROM Newemployee WHERE firstname = '$employee'";
         $result = $db->query($user_check);
         $user = mysqli_fetch_assoc($result);
         if (!$user) {
@@ -517,7 +517,7 @@ if (isset($_POST['createCheckList'])) {
             echo $user_check;
             array_push($errors, "Not a user");
         } else {
-            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$Empname'";
+            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$employee'";
             $id2 = "SELECT idUsers FROM Users WHERE firstname = '$mentor'";
             $resultid = $db->query($id);
 

@@ -103,7 +103,13 @@ if (isset($_POST['createCheckList'])) {
     $workposition = e($_POST['workposition']);
     $international = e($_POST['international']);
     $startdate = e($_POST['startdate']);
-    //$confirm_password = e($_POST['confirm_password']);
+    //$id = $_SESSION['user'];
+    // $queryias ="SELECT Firstname from Users WHERE idUsers = '$id';
+    //$resalt=  $DB->$query("$queryas");
+    // if  and if not sentences
+    //    while ($row = mysqli_fetch_assoc($resalt))
+    // $ans = $row['Firstname'];
+    //insert nede ansvarlig value $ans
     if (empty($firstname)) {
         array_push($errors, "You need a firstname");
     }

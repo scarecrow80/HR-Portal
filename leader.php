@@ -345,7 +345,7 @@ if (!leader()){
 
                                         </table>
                                         <button class="btn btn-cancel" type="button">Avbryt</button>
-                                        <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>>
+                                        <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>
                                     </form>
 
 
@@ -356,13 +356,30 @@ if (!leader()){
                                     <form action="" method="post">
                                         <table>
                                             <tr class="input-group">
-                                    <td>Nyansatt</td>
-                                                <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
+                                                <td>Nyansatt: </td>
+                                                <td> <select name="firstname" class="field comment-alerts">
+                                                    <?php
+                                                    $query = mysqli_query($db, "SELECT Newemployee.firstname FROM Newemployee") or die(mysqli_error());
+                                                    while ($row = $query->fetch_assoc()){
+
+                                                        echo "<option value=\"firstname\">" . $row['firstname'] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                                </td>
                                             </tr>
+
                                             <tr class="input-group">
 
                                     <td>Fadder</td>
-                                            <td> <input type="text" name="Mentorname" id="Mentorname" value=""/></td>
+                                            <td><select name="Mentorname" class="field comment-alerts">
+                                                <?php
+                                                $querya = mysqli_query($db, "Select Users.firstname FROM Users WHERE Users.usertype = 'mentor'") or die(mysqli_error());
+                                                while ( ($row2 = $querya->fetch_assoc())) {
+                                                    echo "<option value=\"Mentorname\">" . $row2['firstname'] . "</option>";
+                                                }?>
+                                                </select>
+                                            </td>
                                             </tr>
                                         </table>
                                     <button type="submit" class="btn btn-primary" name="Assign" id="Assign">Assign mentor</button>
@@ -371,12 +388,28 @@ if (!leader()){
                                         <table>
                                             <tr class="input-group">
                                                 <td>Nyansatt</td>
-                                                <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
+                                                <td> <select name="firstname" class="field comment-alerts">
+                                                        <?php
+                                                        $query = mysqli_query($db, "SELECT Newemployee.firstname FROM Newemployee") or die(mysqli_error());
+                                                        while ($row = $query->fetch_assoc()){
+
+                                                            echo "<option value=\"firstname\">" . $row['firstname'] . "</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </td>
                                             </tr>
                                             <tr class="input-group">
 
                                                 <td>NyFadder</td>
-                                                <td> <input type="text" name="Mentorname" id="Mentorname" value=""/></td>
+                                                <td><select name="Mentorname" class="field comment-alerts">
+                                                        <?php
+                                                        $querya = mysqli_query($db, "Select Users.firstname FROM Users WHERE Users.usertype = 'mentor'") or die(mysqli_error());
+                                                        while ( ($row2 = $querya->fetch_assoc())) {
+                                                            echo "<option value=\"Mentorname\">" . $row2['firstname'] . "</option>";
+                                                        }?>
+                                                    </select>
+                                                </td>
                                             </tr>
                                         </table>
                                         <button type="submit" class="btn btn-primary" name="Updatemen" id="Updatemen">Re-Assign mentor</button>

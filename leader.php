@@ -361,7 +361,7 @@ if (!leader()){
                                         <table>
                                             <tr class="input-group">
                                                 <td>Nyansatt: </td>
-                                                <td> <select name="Empname" class="field comment-alerts">
+                                                <td> <select name="empname" class="field comment-alerts">
                                                     <?php
                                                     $query = mysqli_query($db, "SELECT firstname FROM Newemployee") or die(mysqli_error());
                                                     while ($row = $query->fetch_assoc()){

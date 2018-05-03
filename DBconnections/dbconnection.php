@@ -487,6 +487,8 @@ if (isset($_POST['createCheckList'])) {
                     } else {
                         while ($row = mysqli_fetch_assoc($resultid2)) {
                             $id3 = $row['idUsers'];
+
+
                             $query = "UPDATE Users_has_Newemployee SET Users_idUsers= '$id3' WHERE Newemployee_idNewemployee='$id4'";
                             $result = $db->query($query);
 
@@ -494,7 +496,11 @@ if (isset($_POST['createCheckList'])) {
 
                                 echo '<script type="text/javascript">alert("Mentor edit worked");</script>';
 
+                            } else{
+                                echo '<script type="text/javascript">alert("Something wrong happend");</script>';
+
                             }
+
                         }
                     }
                 }
@@ -507,7 +513,7 @@ if (isset($_POST['createCheckList'])) {
     function addmentor()
     {
         global $db, $username, $errors;
-        $employee = e($_POST['Empname']);
+        $employee = e($_POST['empname']);
         $mentor = e($_POST['mentor']);
         $user_check = "SELECT firstname FROM Newemployee WHERE firstname = '$employee'";
         $result = $db->query($user_check);

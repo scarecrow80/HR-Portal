@@ -328,7 +328,9 @@ if (!leader()){
                                                 <option value=""></option>
                                                 <option value="Leder">Leder</option>
                                                 <option value="Ansatt">Ansatt</option>
+                                                </select>
                                                 </td>
+
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Internasjonal: </td>
@@ -336,7 +338,9 @@ if (!leader()){
                                                 <option value=""></option>
                                                 <option value="Ja">Ja</option>
                                                 <option value="Nei">Nei</option>
+                                                    </select>
                                                 </td>
+
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Ansatt dato: </td>
@@ -357,12 +361,14 @@ if (!leader()){
                                         <table>
                                             <tr class="input-group">
                                                 <td>Nyansatt: </td>
-                                                <td> <select name="firstname" class="field comment-alerts">
+                                                <td> <select name="Empname" class="field comment-alerts">
                                                     <?php
-                                                    $query = mysqli_query($db, "SELECT Newemployee.firstname FROM Newemployee") or die(mysqli_error());
+                                                    $query = mysqli_query($db, "SELECT firstname FROM Newemployee") or die(mysqli_error());
                                                     while ($row = $query->fetch_assoc()){
 
-                                                        echo "<option value=\"firstname\">" . $row['firstname'] . "</option>";
+                                                        unset($name);
+                                                        $name = $row['firstname'];
+                                                        echo '<option value="'.$name.'">'.$name. '</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -370,19 +376,20 @@ if (!leader()){
                                             </tr>
 
                                             <tr class="input-group">
-
-                                    <td>Fadder</td>
-                                            <td><select name="Mentorname" class="field comment-alerts">
+                                                <td>Fadder</td>
+                                                <td><select name="mentor" type="text" class="field comment-alerts">
                                                 <?php
-                                                $querya = mysqli_query($db, "Select Users.firstname FROM Users WHERE Users.usertype = 'mentor'") or die(mysqli_error());
+                                                $querya = mysqli_query($db, "Select firstname FROM Users WHERE usertype = 'mentor'") or die(mysqli_error());
                                                 while ( ($row2 = $querya->fetch_assoc())) {
-                                                    echo "<option value=\"Mentorname\">" . $row2['firstname'] . "</option>";
+                                                    unset($name);
+                                                    $name = $row2['firstname'];
+                                                    echo '<option value="'.$name.'">'.$name. '</option>';
                                                 }?>
                                                 </select>
                                             </td>
                                             </tr>
                                         </table>
-                                    <button type="submit" class="btn btn-primary" name="Assign" id="Assign">Assign mentor</button>
+                                    <button type="submit" class="btn btn-primary" name="Assign">Assign mentor</button>
                                     </form>
                                     <form action="" method="post">
                                         <table>
@@ -390,10 +397,12 @@ if (!leader()){
                                                 <td>Nyansatt</td>
                                                 <td> <select name="firstname" class="field comment-alerts">
                                                         <?php
-                                                        $query = mysqli_query($db, "SELECT Newemployee.firstname FROM Newemployee") or die(mysqli_error());
+                                                        $query = mysqli_query($db, "SELECT firstname FROM Newemployee") or die(mysqli_error());
                                                         while ($row = $query->fetch_assoc()){
 
-                                                            echo "<option value=\"firstname\">" . $row['firstname'] . "</option>";
+                                                            unset($name);
+                                                            $name = $row['firstname'];
+                                                            echo '<option value="'.$name.'">'.$name. '</option>';
                                                         }
                                                         ?>
                                                     </select>
@@ -402,17 +411,19 @@ if (!leader()){
                                             <tr class="input-group">
 
                                                 <td>NyFadder</td>
-                                                <td><select name="Mentorname" class="field comment-alerts">
+                                                <td><select name="mentor" class="field comment-alerts">
                                                         <?php
-                                                        $querya = mysqli_query($db, "Select Users.firstname FROM Users WHERE Users.usertype = 'mentor'") or die(mysqli_error());
+                                                        $querya = mysqli_query($db, "Select firstname FROM Users WHERE usertype = 'mentor'") or die(mysqli_error());
                                                         while ( ($row2 = $querya->fetch_assoc())) {
-                                                            echo "<option value=\"Mentorname\">" . $row2['firstname'] . "</option>";
+                                                            unset($name);
+                                                            $name = $row2['firstname'];
+                                                            echo '<option value="'.$name.'">'.$name. '</option>';
                                                         }?>
                                                     </select>
                                                 </td>
                                             </tr>
                                         </table>
-                                        <button type="submit" class="btn btn-primary" name="Updatemen" id="Updatemen">Re-Assign mentor</button>
+                                        <button type="submit" class="btn btn-primary" name="Updatemen">Re-Assign mentor</button>
                                     </form>
                                 </div>
                                 <div class="tilsatt">

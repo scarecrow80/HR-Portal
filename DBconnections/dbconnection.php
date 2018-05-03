@@ -462,16 +462,17 @@ if (isset($_POST['createCheckList'])) {
     {
         global $db, $errors;
         $firstname = e($_POST['firstname']);
-        $Mentorname = e($_POST['Mentorname']);
-        $user_check = "SELECT firstname FROM Users WHERE firstname= '$Mentorname'";
+        $mentor = e($_POST['mentor']);
+        $user_check = "SELECT firstname FROM Users WHERE firstname = '$mentor' ";
         $result = $db->query($user_check);
         $user = mysqli_fetch_assoc($result);
         if (!$user) {
             echo '<script type="text/javascript">alert("Not a user");</script>';
+            echo $user_check;
             array_push($errors, "Not a user");
         } else {
             $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
-            $id2 = "SELECT idUsers FROM Users WHERE firstname = '$Mentorname'";
+            $id2 = "SELECT idUsers FROM Users WHERE firstname = '$mentor' ";
             $resultid = $db->query($id);
 
             if (!$resultid) {
@@ -506,17 +507,18 @@ if (isset($_POST['createCheckList'])) {
     function addmentor()
     {
         global $db, $username, $errors;
-        $firstname = e($_POST['firstname']);
-        $Mentorname = e($_POST['Mentorname']);
-        $user_check = "SELECT firstname FROM Users WHERE firstname= '$Mentorname'";
+        $Empname = e($_POST['Empname']);
+        $mentor = e($_POST['mentor']);
+        $user_check = "SELECT firstname FROM Users WHERE firstname = '$mentor'";
         $result = $db->query($user_check);
         $user = mysqli_fetch_assoc($result);
         if (!$user) {
             echo '<script type="text/javascript">alert("Not a user");</script>';
+            echo $user_check;
             array_push($errors, "Not a user");
         } else {
-            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
-            $id2 = "SELECT idUsers FROM Users WHERE firstname = '$Mentorname'";
+            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$Empname'";
+            $id2 = "SELECT idUsers FROM Users WHERE firstname = '$mentor'";
             $resultid = $db->query($id);
 
             if (!$resultid) {

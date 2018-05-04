@@ -420,6 +420,8 @@ if (isset($_POST['createCheckList'])) {
     if (isset($_POST["edit"])) {
         editpass();
     }
+
+
 //if use typeedit form got to edittype function
     if (isset($_POST["type_edit"])) {
         edittype();
@@ -441,6 +443,7 @@ if (isset($_POST['createCheckList'])) {
     if (isset($_POST['Assign'])) {
         addmentor();
     }
+
 //edit a usertype
     function edittype()
     {
@@ -469,7 +472,39 @@ if (isset($_POST['createCheckList'])) {
         }
 
     }
+    function ment()
+    {
+        global $db;
+        $query = mysqli_query($db, "SELECT firstname FROM Users where usertype= 'mentor'") or die(mysqli_error());
+        echo "<select name=\"mentor\" class=\"field comment-alerts\">";
 
+        while ($row = $query->fetch_assoc()) {
+
+            unset($name);
+            $name = $row['firstname'];
+
+            echo "<option value ='" . $name . "'>" . $name . "</option>";
+
+        }
+    }
+function emp()
+{
+    global  $db;
+    $query = mysqli_query($db, "SELECT firstname FROM Newemployee") or die(mysqli_error());
+    echo "<select name=\"empname\" class=\"field comment-alerts\">";
+
+    while ($row = $query->fetch_assoc()){
+
+        unset($name);
+        $name = $row['firstname'];
+
+        echo  "<option value ='".$name."'>".$name."</option>";
+
+    }
+    echo  "</select>";
+
+
+}
 //Update mentor
     function updatementor()
     {

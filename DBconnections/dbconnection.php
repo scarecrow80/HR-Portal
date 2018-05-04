@@ -257,7 +257,7 @@ if (isset($_POST['createCheckList'])) {
                     $_SESSION['success'] = "Logged in getting you to list";
                     header('location: ../Hr-Portal/leader.php');
                 } else if ($logged_in_user['usertype'] == 'mentor') {
-                    $_SESSION['user'] = $logged_in_user['username'];
+                    $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success'] = "Logged in getting you to list";
                     header('location: ../HR-Portal/mentor.php');
                 } else {
@@ -363,7 +363,7 @@ if (isset($_POST['createCheckList'])) {
 //fadder cant login to some place
     function fadder()
     {
-        if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'fadder') {
+        if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'mentor') {
             return true;
         } else {
             return false;

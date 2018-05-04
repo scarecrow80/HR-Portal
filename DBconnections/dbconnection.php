@@ -134,12 +134,13 @@ if (isset($_POST['createCheckList'])) {
         } elseif ($db->affected_rows == 0) {
             echo "The script worked, but the user wasn't added";
         } elseif ($db->affected_rows > 0) {
-
+            $i = 0;
             if ($workposition == "Ansatt" && $international == "Nei") {
 
                 $idNewemployee = $db->insert_id;
                 $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk' AND leader = 'Nei' ";
                 $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
@@ -155,15 +156,19 @@ if (isset($_POST['createCheckList'])) {
                         echo '<script type="text/javascript">alert("The list wasnt added, but the script worked");</script>';
 
                     } else {
-                        echo '<script type="text/javascript">alert("This worked as a normal ansatt");</script>';
-
+                        if ($i == ($num_rows - 1)) {
+                            echo '<script type="text/javascript">alert("This worked as a normal ansatt");</script>';
+                        }
+                        $i++;
                     }
                 }
-            } elseif ($workposition == "Ansatt" && $international == "Ja") {
+            }
+            elseif ($workposition == "Ansatt" && $international == "Ja") {
 
                 $idNewemployee = $db->insert_id;
                 $query = "SELECT idChecklist FROM Checklist WHERE leader = 'Nei' ";
                 $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
@@ -177,15 +182,18 @@ if (isset($_POST['createCheckList'])) {
                     } elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("List wasnt added, but the script worked");</script>';
                     } else {
-                        echo '<script type="text/javascript">alert("An international worker was addded");</script>';
+                        if ( $i == ( $num_rows - 1 ) ) {
+                            echo '<script type="text/javascript">alert("An international worker was addded");</script>';
+                        }
 
                     }
-                }
+               $i++; }
             } elseif ($workposition == "Leder" && $international == "Nei") {
 
                 $idNewemployee = $db->insert_id;
                 $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk'";
                 $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
@@ -199,15 +207,18 @@ if (isset($_POST['createCheckList'])) {
                     } elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("The list wasnt added, but the script worked");</script>';
                     } else {
-                        echo '<script type="text/javascript">alert("A norwegian leader was added");</script>';
-
+                        if ( $i == ( $num_rows - 1 ) ) {
+                            echo '<script type="text/javascript">alert("A norwegian leader was added");</script>';
+                        }
                     }
-                }
+               $i++; }
             } elseif ($workposition == "Leder" && $international == "Ja") {
 
                 $idNewemployee = $db->insert_id;
                 $query = "SELECT idChecklist FROM Checklist ";
                 $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
+
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
@@ -221,10 +232,12 @@ if (isset($_POST['createCheckList'])) {
                     } elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("List wasnt added, but the script worked");</script>';
                     } else {
-                        echo '<script type="text/javascript">alert("International leader added");</script>';
+                        if ($i == ($num_rows - 1)) {
+                            echo '<script type="text/javascript">alert("International leader added");</script>';
+                        }
                     }
-                }
 
+            $i++;    }
             }
         }
     }

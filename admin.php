@@ -347,24 +347,12 @@ if (!admin()){
 
                                         <p>Endre et sjekkliste punkt.</p>
                                         <form action="" method="post">
-                                            <table>
-                                                <tr class="input-group">
-
-                                                    <td><textarea type="text" name="orgpunkt" ></textarea></td><br>
-                                                </tr>
-
-                                                <tr class="input-group">
-
-                                                    <td> <textarea type="text" name="Nypunkt" id="Nypunkt" value="" placeholder="Skriv inn nytt punkt på norsk her"></textarea></td>
-                                                </tr>
-
-                                                <tr class ="input-group">
-
-                                                    <td><textarea type="text" name="Engpunkt" id="Engpunkt" placeholder="Skriv inn nytt punkt på engelsk her"></textarea></td>
-                                                </tr>
-                                            </table>
-                                            <button type="submit" class="btn btn-primary" name="Edilis" id="Edilis">Endre Punkt</button>
+                                                <select name="checkpoint">
+                                                    <?php selectPoint() ?>
+                                                </select>
+                                                <input type="submit" class="btn btn-primary" name="selectPoint" value="Velg sjekkpunkt" />
                                         </form>
+                                            <?php changePoint() ?>
                                     </div>
                                 </div>
 
@@ -380,43 +368,12 @@ if (!admin()){
                                         <p>Slett et sjekklist punkt</p>
                                         <form action="" method="post">
                                             <table>
+
                                                 <!--<tr class="input-group">
                                                     <td>Nummer</td>
                                                     <td> <input type="number" name="numb"/></td><br>
                                                 </tr>-->
-                                                <tr>
-                                                    <th>Sjekkpunkt på norsk</th>
-                                                    <th>Sjekkpunkt på engelsk</th>
-                                                    <th>Ansvarlig</th>
-                                                    <th>Nasjonalitet</th>
-                                                    <th>Leder</th>
-                                                    <th>Valg</th>
-                                                </tr>
-                                                <?php
-                                                $sql = "Select * FROM Checklist";
-                                                $result = mysqli_query($db, $sql);
-
-                                                if ($result) {
-
-                                                    while($row = mysqli_fetch_assoc($result)){
-                                                        $check_id = $row["idChecklist"];
-
-                                                        echo "<tr>";
-                                                        echo "<td>".$row["checkpointsNO"]."</td>";
-                                                        echo "<td>".$row["checkpointsEN"]."</td>";
-                                                        echo "<td>".$row["responsible"]."</td>";
-                                                        echo "<td>".$row["nationality"]."</td>";
-                                                        echo "<td>".$row["leader"]."</td>";
-                                                        echo "<td><input type='radio' name='DeletePoint' value='$check_id'/></td>";
-                                                        echo "</tr>";
-
-                                                    }echo "</table>";
-                                                }
-                                                else{
-                                                    echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
-                                                }
-
-                                                ?>
+                                                <?php selectDeletePoint() ?>
 
                                                 <!--<tr class="input-group">
 
@@ -424,47 +381,10 @@ if (!admin()){
                                                     <td> <textarea type="text" name="Innd" id="Innd" value=""></textarea></td>
                                                 </tr>-->
                                                 <button type="submit" class="btn btn-primary" name="Delete" id="Delete" >Slett Punkt</button>
-                                                <?php
-
-                                                if(isset($_POST["Delete"])) {
-
-                                                    $checkpointId = $_POST["DeletePoint"];
-                                                    $sql = "DELETE FROM Checklist WHERE idChecklist = '".$checkpointId."'";
-                                                    $sql2 = "DELETE FROM Newemployee_has_Checklist WHERE Checklist_idChecklist = '".$checkpointId."'";
-
-                                                    $result2 = mysqli_query($db,$sql);
-                                                    $result3 = mysqli_query($db,$sql2);
-
-                                                    if(!$result2) {
-
-                                                        if(mysqli_affected_rows($db) > 0) {
-                                                            echo '<script type="text/javascript">alert("Delete worked");</script>';
-                                                        }
-                                                        else {
-                                                            echo '<script type="text/javascript">alert("Punktet eksiterer ikke");</script>';
-                                                        }
-                                                    }
-                                                    if(!$result3) {
-
-                                                        if(mysqli_affected_rows($db) > 0) {
-                                                            echo '<script type="text/javascript">alert("Skjekkpunktet er slettet");</script>';
-                                                        }
-                                                        else {
-                                                            echo '<script type="text/javascript">alert("Finner ikke slettepunktet");</script>';
-                                                        }
-                                                    }
-                                                }
-                                                ?>
+                                            <?php deletePoint() ?>
                                         </form>
                                     </div>
                                 </div>
-
-
-
-
-
-
-
 
                              </div>
 

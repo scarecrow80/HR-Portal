@@ -5,8 +5,8 @@
 session_start();
 $username ="";
 $errors = array();
-$db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
-//$db = mysqli_connect( 'localhost', 'root',  '', 'db_hr_portal');
+//$db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
+$db = mysqli_connect( 'localhost', 'root',  '', 'db_hr_portal');
 
 function valider_firstname($firstname)
 {
@@ -753,44 +753,6 @@ if (isset($_POST['createCheckList'])) {
         }
     }
 
-    function Dellist()
-    {
-        global $db, $errors;
-        $Innd = e($_POST['Innd']);
-        if (empty($innd)) {
-            array_push($errors, "You need to write something");
-        }
-        $ind_check = "SELECT checkpointsNO FROM Checklist WHERE checkpointsNO= '$Innd'";
-        $result = $db->query($ind_check);
-        $in = mysqli_fetch_assoc($result);
-        if (!$in) {
-            echo '<script type="text/javascript">alert("Not a checkpoint");</script>';
-            array_push($errors, "Not a user");
-        } else {
-            $numb_check = "SELECT idChecklist FROM Checklist WHERE  checkpointsNO = '$Innd'";
-
-            $res = $db->query($numb_check);
-            if (!$res) {
-                echo $numb_check;
-                echo '<script type="text/javascript">alert("Not correct id");</script>';
-            } else {
-                while ($row = mysqli_fetch_assoc($res)) {
-                    $id = $row['idChecklist'];
-                    $dquery = "DELETE FROM Checklist WHERE idChecklist = '$id'";
-
-                    if ($db->query($dquery) === TRUE) {
-                        echo '<script type="text/javascript">alert("Delete worked");</script>';
-                    } else {
-                        echo $dquery;
-                        echo '<script type="text/javascript">alert("Some error made delete fail" . $db->error);</script>';
-
-                    }
-                }
-
-            }
-        }
-    }
-
 //edit the password of a user
     function editpass()
     {
@@ -883,5 +845,156 @@ if (isset($_POST['createCheckList'])) {
         }
     }
 
+    function selectPoint()
+    {
+        global $db, $errors;
+        $sql ="SELECT * FROM Checklist";
+        $result = $db->query($sql);
+
+        if (mysqli_num_rows($result) > 0){
+
+            while($row = mysqli_fetch_assoc($result)){
+                echo '<option value="'.$row["idChecklist"].'">'.$row["checkpointsNO"].' Ansvarlig:'.$row["responsible"].', Nasjonalitet:'.$row["nationality"].', Lederstilling:'.$row["leader"].'';
+            }
+        }
+        else{
+            echo "No connection to database or server";
+        }
+    }
+
+    function changePoint()
+    {
+        if(isset($_POST["selectPoint"]))
+        {
+            global $db, $errors;
+            $checkpointId = e($_POST["checkpoint"]);
+            $sql = "SELECT * FROM Checklist WHERE Checklist.idChecklist ='".$checkpointId."'";
+            $result = $db->query($sql);
+
+            $result2 = mysqli_fetch_assoc($result);
+            $checkpointId = e($result2["idChecklist"]);
+            $checkpointNO = e($result2["checkpointsNO"]);
+            $checkpointEN = e($result2["checkpointsEN"]);
+            $responsible = e($result2["responsible"]);
+            $nationality = e($result2["nationality"]);
+            $leader = e($result2["leader"]);
+
+            echo "<form action='' method='post' ><table>";
+            echo "<tr class='input-group'><td><label type='text' name='checkPointId' value='$checkpointId' readonly >".$checkpointId."</td></tr>";
+            echo "<tr class='input-group'><td><textarea type='text' name='orgPointNO' id='$checkpointId' readonly >".$checkpointNO."</textarea></td><br></tr>";
+            echo "<tr class='input-group'><td> <textarea type='text' name='newPointNO' id='$checkpointId' placeholder='Skriv inn nytt punkt på norsk her'></textarea></td></tr>";
+            echo "<tr class='input-group'><td><textarea type='text' name='orgPointEN' id='$checkpointId' readonly >".$checkpointEN."</textarea></td><br></tr>";
+            echo "<tr class ='input-group'><td><textarea type='text' name='newPointEN' id='$checkpointId' placeholder='Skriv inn nytt punkt på engelsk her'></textarea></td></tr>";
+            echo "</table>";
+            echo "<button type='submit' class='btn btn-primary' name='changingPoint'>Forandre</button>";
+            echo "</form>";
+        }
+
+        if(isset($_POST["changingPoint"]))
+        {
+            global $db, $errors;
+            $checkpointId2 = e($_POST["checkPointId"]);
+            $newPointNO = e($_POST["newPointNO"]);
+            $newPointEN = e($_POST["newPointEN"]);
+            $orgPointNO = e($_POST["orgPointNO"]);
+            $orgPointEN = e($_POST["orgPointEN"]);
+
+            $sql = "UPDATE Checklist SET checkpointsNO = '$newPointNO', checkpointsEN = '$newPointEN' WHERE idChecklist = '$checkpointId2'";
+
+            if ($newPointNO == $orgPointNO && $newPointEN == $orgPointEN){
+
+                echo '<script type="text/javascript">alert("The new and original points are identical.");</script>';
+            }
+
+            elseif($newPointNO != $orgPointNO || $newPointEN != $orgPointEN){
+                if(mysqli_query($db, $sql)){
+
+                    if(mysqli_affected_rows($db) > 0){
+
+                        echo '<script type="text/javascript">alert("The checkpoint is altered");</script>';
+                    }
+                    else{
+
+                        echo '<script type="text/javascript">alert("Something wrong happened");</script>';
+                    }
+                }
+                else{
+                    echo '<script type="text/javascript">alert("Something wrong happened  2");</script>';
+                }
+
+            }
+            else{
+                echo '<script type="text/javascript">alert("Something wrong happened  3");</script>';
+            }
+        }
+    }
+
+    function selectDeletePoint()
+    {
+        echo "<tr><th>Valg</th>";
+        echo "<th>Sjekkpunkt på norsk</th>";
+        echo "<th>Sjekkpunkt på engelsk</th>";
+        echo "<th>Ansvarlig</th>";
+        echo "<th>Nasjonalitet</th>";
+        echo "<th>Leder</th></tr>";
+
+        global $db, $errors;
+        $sql = "Select * FROM Checklist";
+        $result = mysqli_query($db, $sql);
+
+        if ($result) {
+
+            while($row = mysqli_fetch_assoc($result)){
+                $check_id = $row["idChecklist"];
+
+                echo "<tr>";
+                echo "<td><input type='radio' name='DeletePoint' value='$check_id'/></td>";
+                echo "<td>".$row["checkpointsNO"]."</td>";
+                echo "<td>".$row["checkpointsEN"]."</td>";
+                echo "<td>".$row["responsible"]."</td>";
+                echo "<td>".$row["nationality"]."</td>";
+                echo "<td>".$row["leader"]."</td>";
+                echo "</tr>";
+
+            }echo "</table>";
+        }
+        else{
+            echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
+        }
+    }
+
+    function deletePoint()
+    {
+        if(isset($_POST["Delete"])) {
+
+            global $db, $errors;
+            $checkpointId = e($_POST["DeletePoint"]);
+            $sql = "DELETE FROM Checklist WHERE idChecklist = '".$checkpointId."'";
+            $sql2 = "DELETE FROM Newemployee_has_Checklist WHERE Checklist_idChecklist = '".$checkpointId."'";
+
+            $result2 = mysqli_query($db,$sql);
+            $result3 = mysqli_query($db,$sql2);
+
+            if(!$result2) {
+
+                if(mysqli_affected_rows($db) > 0) {
+                    echo '<script type="text/javascript">alert("Delete worked");</script>';
+                }
+                else {
+                    echo '<script type="text/javascript">alert("Punktet eksiterer ikke");</script>';
+                }
+            }
+            if(!$result3) {
+
+                if(mysqli_affected_rows($db) > 0) {
+                    echo '<script type="text/javascript">alert("Skjekkpunktet er slettet");</script>';
+                }
+                else {
+                    echo '<script type="text/javascript">alert("Finner ikke slettepunktet");</script>';
+                }
+            }
+        }
+
+    }
 
 

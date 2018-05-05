@@ -397,7 +397,7 @@ if (!admin()){
                                          <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
                                      </tr><br>
                                      </table>
-                                     <button type="submit" class="btn btn-primary" name="del" id="del">Delete Checklist</button>
+                                     <button type="submit" class="btn btn-primary" name="del" >Delete Checklist</button>
 
                                  </form>
                              </div>

@@ -134,12 +134,13 @@ if (isset($_POST['createCheckList'])) {
         } elseif ($db->affected_rows == 0) {
             echo "The script worked, but the user wasn't added";
         } elseif ($db->affected_rows > 0) {
-
+            $i = 0;
             if ($workposition == "Ansatt" && $international == "Nei") {
 
                 $idNewemployee = $db->insert_id;
                 $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk' AND leader = 'Nei' ";
                 $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
@@ -155,15 +156,19 @@ if (isset($_POST['createCheckList'])) {
                         echo '<script type="text/javascript">alert("The list wasnt added, but the script worked");</script>';
 
                     } else {
-                        echo '<script type="text/javascript">alert("This worked as a normal ansatt");</script>';
-
+                        if ($i == ($num_rows - 1)) {
+                            echo '<script type="text/javascript">alert("This worked as a normal ansatt");</script>';
+                        }
+                        $i++;
                     }
                 }
-            } elseif ($workposition == "Ansatt" && $international == "Ja") {
+            }
+            elseif ($workposition == "Ansatt" && $international == "Ja") {
 
                 $idNewemployee = $db->insert_id;
                 $query = "SELECT idChecklist FROM Checklist WHERE leader = 'Nei' ";
                 $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
@@ -177,15 +182,18 @@ if (isset($_POST['createCheckList'])) {
                     } elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("List wasnt added, but the script worked");</script>';
                     } else {
-                        echo '<script type="text/javascript">alert("An international worker was addded");</script>';
+                        if ( $i == ( $num_rows - 1 ) ) {
+                            echo '<script type="text/javascript">alert("An international worker was addded");</script>';
+                        }
 
                     }
-                }
+               $i++; }
             } elseif ($workposition == "Leder" && $international == "Nei") {
 
                 $idNewemployee = $db->insert_id;
                 $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk'";
                 $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
@@ -199,15 +207,18 @@ if (isset($_POST['createCheckList'])) {
                     } elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("The list wasnt added, but the script worked");</script>';
                     } else {
-                        echo '<script type="text/javascript">alert("A norwegian leader was added");</script>';
-
+                        if ( $i == ( $num_rows - 1 ) ) {
+                            echo '<script type="text/javascript">alert("A norwegian leader was added");</script>';
+                        }
                     }
-                }
+               $i++; }
             } elseif ($workposition == "Leder" && $international == "Ja") {
 
                 $idNewemployee = $db->insert_id;
                 $query = "SELECT idChecklist FROM Checklist ";
                 $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
+
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
@@ -221,10 +232,12 @@ if (isset($_POST['createCheckList'])) {
                     } elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("List wasnt added, but the script worked");</script>';
                     } else {
-                        echo '<script type="text/javascript">alert("International leader added");</script>';
+                        if ($i == ($num_rows - 1)) {
+                            echo '<script type="text/javascript">alert("International leader added");</script>';
+                        }
                     }
-                }
 
+            $i++;    }
             }
         }
     }
@@ -310,34 +323,37 @@ if (isset($_POST['createCheckList'])) {
             array_push($errors, "Not a user");
         } else {
             if (count($errors) == 0) {
-                $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
-                $resultid = $db->query($id);
+                $idquery = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
+                $resultid = $db->query($idquery);
                 if (!$resultid) {
                     echo '<script type="text/javascript">alert("Not correct Id");</script>';
                 } else {
                     while ($row = mysqli_fetch_assoc($resultid)) {
-                        $id4 = $row['idNewemployee'];
-                        $query = "DELETE FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$id4'";
-                        echo $query;
+                        $id5 = $row['idNewemployee'];
+                        $query = "DELETE FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$id5' ";
 
-                        if ($db->query($query) === TRUE) {
-                            $dquery = "DELETE FROM Newemployee WHERE idNewemployee = '$id4'";
-                            echo $dquery;
+
+                        echo $query; echo "<br> <br />";
+
+                        if ($db->query($query) === TRUE ) {
+                            $dquery = "DELETE FROM Newemployee WHERE idNewemployee = '$id5'";
                             if ($db->query($dquery) === TRUE) {
                                 echo '<script type="text/javascript">alert("Delete successfull");</script>';
                             } else {
-                                echo '<script type="text/javascript">alert("Couldnt delete");</script>';
+                                echo '<script type="text/javascript">alert("Dquery is faulty");</script>';
                             }
 
-                        } else {
-                            echo '<script type="text/javascript">alert("Delete failed");</script>';
+                        }
+                        else {
+                                echo '<script type="text/javascript">alert("Delete failed");</script>';
                         }
 
+                    }
 
                     }
                 }
             }
-        }
+
     }
 
 //making sure you only enter if logged in
@@ -407,6 +423,8 @@ if (isset($_POST['createCheckList'])) {
     if (isset($_POST["edit"])) {
         editpass();
     }
+
+
 //if use typeedit form got to edittype function
     if (isset($_POST["type_edit"])) {
         edittype();
@@ -428,6 +446,7 @@ if (isset($_POST['createCheckList'])) {
     if (isset($_POST['Assign'])) {
         addmentor();
     }
+
 //edit a usertype
     function edittype()
     {
@@ -456,7 +475,39 @@ if (isset($_POST['createCheckList'])) {
         }
 
     }
+    function ment()
+    {
+        global $db;
+        $query = mysqli_query($db, "SELECT firstname FROM Users where usertype= 'mentor'") or die(mysqli_error());
+        echo "<select name=\"mentor\" class=\"field comment-alerts\">";
 
+        while ($row = $query->fetch_assoc()) {
+
+            unset($name);
+            $name = $row['firstname'];
+
+            echo "<option value ='" . $name . "'>" . $name . "</option>";
+
+        }
+    }
+function emp()
+{
+    global  $db;
+    $query = mysqli_query($db, "SELECT firstname FROM Newemployee") or die(mysqli_error());
+    echo "<select name=\"empname\" class=\"field comment-alerts\">";
+
+    while ($row = $query->fetch_assoc()){
+
+        unset($name);
+        $name = $row['firstname'];
+
+        echo  "<option value ='".$name."'>".$name."</option>";
+
+    }
+    echo  "</select>";
+
+
+}
 //Update mentor
     function updatementor()
     {
@@ -487,21 +538,35 @@ if (isset($_POST['createCheckList'])) {
                     } else {
                         while ($row = mysqli_fetch_assoc($resultid2)) {
                             $id3 = $row['idUsers'];
+                            $querya = "SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id4'";
+                            $resulta = $db->query($querya);
+                            if (!$resulta) {
+                                echo "something";
+                            } else {
+                                while ($row2 = mysqli_fetch_assoc($resulta)) {
+                                    $haha = $row2['Users_idUsers'];
+                                    if ($haha == $id3) {
+                                        echo '<script type="text/javascript">alert("same mentor error");</script>';
+                                    }
+                                    else {
+                                        $query = "UPDATE Users_has_Newemployee SET Users_idUsers= '$id3' WHERE Newemployee_idNewemployee='$id4'";
+                                        $result = $db->query($query);
 
+                                        if ($result === TRUE) {
 
-                            $query = "UPDATE Users_has_Newemployee SET Users_idUsers= '$id3' WHERE Newemployee_idNewemployee='$id4'";
-                            $result = $db->query($query);
+                                            echo '<script type="text/javascript">alert("Mentor edit worked");</script>';
 
-                            if ($result === TRUE) {
+                                        } else {
+                                            echo '<script type="text/javascript">alert("Something wrong happend");</script>';
 
-                                echo '<script type="text/javascript">alert("Mentor edit worked");</script>';
+                                        }
+                                    }
 
-                            } else{
-                                echo '<script type="text/javascript">alert("Something wrong happend");</script>';
+                                }
 
                             }
-
                         }
+
                     }
                 }
             }

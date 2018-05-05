@@ -361,31 +361,12 @@ if (!leader()){
                                         <table>
                                             <tr class="input-group">
                                                 <td>Nyansatt: </td>
-                                                <td> <select name="empname" class="field comment-alerts">
-                                                    <?php
-                                                    $query = mysqli_query($db, "SELECT firstname FROM Newemployee") or die(mysqli_error());
-                                                    while ($row = $query->fetch_assoc()){
-
-                                                        unset($name);
-                                                        $name = $row['firstname'];
-                                                        echo '<option value="'.$name.'">'.$name. '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                                </td>
+                                                <td><?php emp(); ?></td>
                                             </tr>
 
                                             <tr class="input-group">
                                                 <td>Fadder</td>
-                                                <td><select name="mentor" type="text" class="field comment-alerts">
-                                                <?php
-                                                $querya = mysqli_query($db, "Select firstname FROM Users WHERE usertype = 'mentor'") or die(mysqli_error());
-                                                while ( ($row2 = $querya->fetch_assoc())) {
-                                                    unset($name);
-                                                    $name = $row2['firstname'];
-                                                    echo '<option value="'.$name.'">'.$name. '</option>';
-                                                }?>
-                                                </select>
+                                                <td><?php ment(); ?>
                                             </td>
                                             </tr>
                                         </table>
@@ -395,31 +376,12 @@ if (!leader()){
                                         <table>
                                             <tr class="input-group">
                                                 <td>Nyansatt</td>
-                                                <td> <select name="empname" class="field comment-alerts">
-                                                        <?php
-                                                        $query = mysqli_query($db, "SELECT firstname FROM Newemployee") or die(mysqli_error());
-                                                        while ($row = $query->fetch_assoc()){
-
-                                                            unset($name);
-                                                            $name = $row['firstname'];
-                                                            echo '<option value="'.$name.'">'.$name. '</option>';
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </td>
+                                                <td><?php emp(); ?></td>
                                             </tr>
                                             <tr class="input-group">
 
                                                 <td>NyFadder</td>
-                                                <td><select name="mentor" class="field comment-alerts">
-                                                        <?php
-                                                        $querya = mysqli_query($db, "Select firstname FROM Users WHERE usertype = 'mentor'") or die(mysqli_error());
-                                                        while ( ($row2 = $querya->fetch_assoc())) {
-                                                            unset($name);
-                                                            $name = $row2['firstname'];
-                                                            echo '<option value="'.$name.'">'.$name. '</option>';
-                                                        }?>
-                                                    </select>
+                                                <td><?php ment(); ?>
                                                 </td>
                                             </tr>
                                         </table>

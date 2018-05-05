@@ -265,14 +265,16 @@ if (!HR()){
                                 </div>
 
 
-                                <div id="search" class="page tilsatt" style="display:none">
-                                    <p>TODOTODOTODOTODOTODO search for user</p>
-                                    <form action="" method="get">
-                                        <label for>Name</label>
-                                        <input type="text" name="lastname"value=""</input><br>
 
-                                        <input type="submit" class="btn btn-primary" name="search" id="search">search for a User</input>
+                                <div id="search" class="page tilsatt" style="display:none">
+                                    <p>Søk opp ansatte</p>
+                                    <form action="" method="post">
+                                        <tr class="input-group">
+                                            <td><input type="text" name="searchFr" class="field comment-alerts" ></td>
+                                        </tr>
+                                        <button type="submit" class="btn btn-primary" name="searcF" >Søk</button>
                                     </form>
+                                    <?php searchEmployee() ?>
 
                                 </div>
 
@@ -282,6 +284,12 @@ if (!HR()){
 
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
                         </div> <!-- END: section -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

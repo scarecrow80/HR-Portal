@@ -1028,6 +1028,44 @@ function emp()
         }
 
     }
+function searchEmployee()
+{
+    if(isset($_POST["searcF"])) {
+        echo "<form action='' method='post'><table>";
+
+        global $db, $errors;
+        $searchForEmployee = e($_POST["searchFr"]);
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $result = $db->query($sql);
+
+        if ($result) {
+
+
+            echo "<tr><th>Fornavn</th>";
+            echo "<th>Etternavn</th>";
+            echo "<th>Arbeidstilling</th>";
+            echo "<th>Internasjonal</th>";
+            echo "<th>Startdato</th></tr>";
+
+            while ($row = mysqli_fetch_assoc($result)) {
+
+
+                echo "<tr>";
+                echo "<td>" . $row["firstname"] . "</td>";
+                echo "<td>" . $row["lastname"] . "</td>";
+                echo "<td>" . $row["workposition"] . "</td>";
+                echo "<td>" . $row["international"] . "</td>";
+                echo "<td>" . $row["startdate"] . "</td>";
+                echo "</tr>";
+
+            }
+
+        } else {
+            echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
+        }
+    }
+
+}
 
     function searchForEmployee()
     {

@@ -5,8 +5,8 @@
 session_start();
 $username ="";
 $errors = array();
-//$db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
-$db = mysqli_connect( 'localhost', 'root',  '', 'db_hr_portal');
+$db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
+//$db = mysqli_connect( 'localhost', 'root',  '', 'db_hr_portal');
 
 function valider_firstname($firstname)
 {
@@ -1105,6 +1105,84 @@ function emp()
                 }
             }
             if(!$result4) {
+
+                if(mysqli_affected_rows($db) > 0) {
+                    echo '<script type="text/javascript">alert("Users_has_Newemployee er slettet");</script>';
+                }
+                else {
+                    echo '<script type="text/javascript">alert("Finner ikke Users_has_Newemployee");</script>';
+                }
+            }
+        }
+    }
+
+    function searchForUser()
+    {
+        if(isset($_POST["searchForUser"]))
+        {
+            echo "<form action='' method='post'><table>";
+
+            global $db, $errors;
+            $searchForUser = e($_POST["userSearch"]);
+            $sql = "SELECT * FROM Users WHERE Users.firstname LIKE '".$searchForUser."%'  OR Users.lastname LIKE '".$searchForUser."%'";
+            $result = $db->query($sql);
+
+            echo $sql;
+
+            if ($result) {
+
+                echo "<tr><th>Valg</th>";
+                echo "<th>Fornavn</th>";
+                echo "<th>Etternavn</th>";
+                echo "<th>Brukernavn</th>";
+                echo "<th>Brukertype</th></tr>";
+
+                while($row = mysqli_fetch_assoc($result)){
+
+                    $newUserId = $row["idUsers"];
+
+                    echo "<tr>";
+                    echo "<td><input type='radio' name='DeleteUserValue' value='$newUserId'/></td>";
+                    echo "<td>".$row["firstname"]."</td>";
+                    echo "<td>".$row["lastname"]."</td>";
+                    echo "<td>".$row["username"]."</td>";
+                    echo "<td>".$row["usertype"]."</td>";
+                    echo "</tr>";
+
+                }echo "</table><button type='submit' class='btn btn-primary' name='DeleteUser' >Slett bruker</button></form>";
+
+            }
+            else{
+                echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
+            }
+        }
+    }
+
+    function deleteUser()
+    {
+        if(isset($_POST["DeleteUser"])) {
+
+            global $db, $errors;
+            $idUsers2 = e($_POST["DeleteUserValue"]);
+
+            $sql = "DELETE FROM Users WHERE idUsers = '".$idUsers2."'";
+            $sql2 = "DELETE FROM Users_has_Newemployee WHERE Users_idUsers = '".$idUsers2."'";
+
+            echo $sql."<br>".$sql2;
+
+            $result3 = mysqli_query($db,$sql2);
+            $result2 = mysqli_query($db,$sql);
+
+            if(!$result2) {
+
+                if(mysqli_affected_rows($db) > 0) {
+                    echo '<script type="text/javascript">alert("User er slettet");</script>';
+                }
+                else {
+                    echo '<script type="text/javascript">alert("Finner ikke User");</script>';
+                }
+            }
+            if(!$result3) {
 
                 if(mysqli_affected_rows($db) > 0) {
                     echo '<script type="text/javascript">alert("Users_has_Newemployee er slettet");</script>';

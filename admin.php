@@ -93,6 +93,9 @@ if (!admin()){
                 <li class="main-menu">
                     <a class="list" id="" onclick="openPage('create')" role="menuitem" title="Opprett bruker"> <span class="nav-item-label"> Opprett bruker </span> </a>
                 </li>
+                <li class="main-menu">
+                    <a class="list" id="" onclick="openPage('deleteUser')" role="menuitem" title="Slett bruker"> <span class="nav-item-label"> Slett bruker </span> </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -120,6 +123,9 @@ if (!admin()){
                         </li>
                         <li class=" " id="oivt_" role="presentation">
                             <a class="list" onclick="openPage('create')" id="" role="menuitem" title="Opprett bruker"> <span class="nav-item-label"> Opprett bruker </span> </a>
+                        </li>
+                        <li class=" " id="oivt_" role="presentation">
+                            <a class="list" onclick="openPage('deleteUser')" id="" role="menuitem" title="Slett bruker"> <span class="nav-item-label"> Slett bruker </span> </a>
                         </li>
                     </ul>
                     <script>
@@ -191,9 +197,6 @@ if (!admin()){
                                     </script>
                                     <section class="section section-events article-toggle" role="region">
                                         <?php
-                                        $db = mysqli_connect("student.cs.hioa.no", "s236619", "", "s236619");
-                                        //$db = mysqli_connect("localhost", "root", "", "db_hr_portal");
-                                        //include '../HR-Portal/DBconnections/dbconnection.php';
                                         if(!$db){
                                             die("Feil i databasetilkobling:".$db->connect_error);
                                         }
@@ -205,7 +208,7 @@ if (!admin()){
                                         }
 
 
-                                        while($row = mysqli_fetch_assoc($res)){
+                                        while($row = mysqli_fetch_assoc($res)) {
                                             $id_new = $row['idNewemployee'];
                                             $f_name = $row['firstname'];
                                             $l_name = $row['lastname'];
@@ -221,7 +224,7 @@ if (!admin()){
                                                 echo '<script type="text/javascript">alert("Tom resultat");</script>';
                                                 die();
                                             }
-                                            while($row2 = mysqli_fetch_assoc($res2)){
+                                            while($row2 = mysqli_fetch_assoc($res2)) {
                                                 $check_id = $row2['Checklist_idChecklist'];
                                                 $checked = $row2['checked'];
                                                 $emp_id = $row2['Newemployee_idNewemployee'];
@@ -443,6 +446,24 @@ if (!admin()){
                                      <button type="submit" class="btn btn-primary" name="register">Register</button>
                                  </form>
                              </div>
+
+                                <div id="deleteUser" class="page tilsatt" style="display:none">
+                                    <p>TODOTODOTODOTODOTODO slett user</p>
+
+                                    <form action="" method="post">
+
+                                        <tr class="input-group">
+                                            <td><input type="text" name="userSearch" class="field comment-alerts" ></td>
+                                        </tr>
+                                        <button type="submit" class="btn btn-primary" name="searchForUser" >Søk</button>
+                                    </form>
+                                    <?php
+                                    searchForUser();
+                                    deleteUser();
+                                    ?>
+
+
+                                </div>
                                  <div class="tilsatt">
                                      <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'">Logout</button>
                                  </div>

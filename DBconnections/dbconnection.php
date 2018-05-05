@@ -304,7 +304,7 @@ if (isset($_POST['createCheckList'])) {
     }
 //delete user
     function deletechecklist()
-    {
+    {/*
         global $db, $username, $errors;
         //get values
         $firstname = e($_POST['firstname']);
@@ -352,7 +352,7 @@ if (isset($_POST['createCheckList'])) {
 
                     }
                 }
-            }
+            }*/
 
     }
 
@@ -751,39 +751,6 @@ function emp()
 
     }
 
-    function Edlist()
-    {
-        global $db, $errors;
-        $orgpunkt = e($_POST['orgpunkt']);
-        $Nypunkt = e($_POST['Nypunkt']);
-        $Engpunkt = e($_POST['Engpunkt']);
-        $punkt_check = "SELECT checkpointsNO FROM Checklist WHERE checkpointsNO = '$orgpunkt'";
-        $res = $db->query($punkt_check);
-        $punkt = mysqli_fetch_assoc($res);
-        if (!$punkt) {
-            echo '<script type="text/javascript">alert("Checkpoint dont exist. Make it");</script>';
-            array_push($errors, "Not a point");
-        } else {
-            $check_punkt = "SELECT checkpointsNO FROM Checklist where checkpointsNO = '$Nypunkt'";
-            $resa = $db->query($check_punkt);
-            $pun = mysqli_fetch_assoc($resa);
-            if ($pun) {
-                echo '<script type="text/javascript">alert("Already a checkpoint");</script>';
-                array_push($errors, "Already a point");
-            } else {
-                $query = "UPDATE Checklist SET  checkpointsNO = '$Nypunkt', checkpointsEN = '$Engpunkt' WHERE checkpointsNO = '$orgpunkt'";
-
-                $result = $db->query($query);
-                if (!$result) {
-                    echo $query;
-                    echo '<script type="text/javascript">alert("the script didnt worked");</script>';
-                } else {
-                    echo '<script type="text/javascript">alert("Checklist edit worked");</script>';
-                }
-            }
-        }
-    }
-
     function pointlist()
     {
         global $db, $errors;
@@ -1060,6 +1027,93 @@ function emp()
             }
         }
 
+    }
+
+    function searchForEmployee()
+    {
+        if(isset($_POST["searchFor"]))
+        {
+            echo "<form action='' method='post'><table>";
+
+            global $db, $errors;
+            $searchForEmployee = e($_POST["searchForEmployee"]);
+            $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '".$searchForEmployee."%'  OR Newemployee.lastname LIKE '".$searchForEmployee."%'";
+            $result = $db->query($sql);
+
+            if ($result) {
+
+                echo "<tr><th>Valg</th>";
+                echo "<th>Fornavn</th>";
+                echo "<th>Etternavn</th>";
+                echo "<th>Arbeidstilling</th>";
+                echo "<th>Internasjonal</th>";
+                echo "<th>Startdato</th></tr>";
+
+                while($row = mysqli_fetch_assoc($result)){
+
+                    $newEmployeeId = $row["idNewemployee"];
+
+                    echo "<tr>";
+                    echo "<td><input type='radio' name='DeleteEmployeeValue' value='$newEmployeeId'/></td>";
+                    echo "<td>".$row["firstname"]."</td>";
+                    echo "<td>".$row["lastname"]."</td>";
+                    echo "<td>".$row["workposition"]."</td>";
+                    echo "<td>".$row["international"]."</td>";
+                    echo "<td>".$row["startdate"]."</td>";
+                    echo "</tr>";
+
+                }echo "</table><button type='submit' class='btn btn-primary' name='DeleteEmployee' >Slett ansatt</button></form>";
+
+            }
+            else{
+                echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
+            }
+        }
+    }
+
+    function deleteEmployee()
+    {
+        if(isset($_POST["DeleteEmployee"])) {
+
+            global $db, $errors;
+            $idNewemployee2 = e($_POST["DeleteEmployeeValue"]);
+
+            $sql = "DELETE FROM Newemployee WHERE idNewemployee = '".$idNewemployee2."'";
+            $sql2 = "DELETE FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '".$idNewemployee2."'";
+            $sql3 = "DELETE FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '".$idNewemployee2."'";
+
+            $result3 = mysqli_query($db,$sql2);
+            $result4 = mysqli_query($db,$sql3);
+            $result2 = mysqli_query($db,$sql);
+
+            if(!$result2) {
+
+                if(mysqli_affected_rows($db) > 0) {
+                    echo '<script type="text/javascript">alert("Newemployee er slettet");</script>';
+                }
+                else {
+                    echo '<script type="text/javascript">alert("Finner ikke Newemployee");</script>';
+                }
+            }
+            if(!$result3) {
+
+                if(mysqli_affected_rows($db) > 0) {
+                    echo '<script type="text/javascript">alert("Newemployee_has_Checklist er slettet");</script>';
+                }
+                else {
+                    echo '<script type="text/javascript">alert("Finner ikke Newemployee_has_Checklist");</script>';
+                }
+            }
+            if(!$result4) {
+
+                if(mysqli_affected_rows($db) > 0) {
+                    echo '<script type="text/javascript">alert("Users_has_Newemployee er slettet");</script>';
+                }
+                else {
+                    echo '<script type="text/javascript">alert("Finner ikke Users_has_Newemployee");</script>';
+                }
+            }
+        }
     }
 
 

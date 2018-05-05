@@ -389,17 +389,16 @@ if (!admin()){
                              </div>
 
                              <div id="delete" class="page tilsatt" style="display:none">
-                                             <p>TODOTODOTODOTODOTODO delete user</p>
+                                 <p>Søk opp ansatte og slett gamle sjekklister</p>
                                  <form action="" method="post">
-                                     <table>
                                      <tr class="input-group">
-                                         <td>Fornavn: </td>
-                                         <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
-                                     </tr><br>
-                                     </table>
-                                     <button type="submit" class="btn btn-primary" name="del" >Delete Checklist</button>
-
+                                         <td><input type="text" name="searchForEmployee" class="field comment-alerts" ></td>
+                                     </tr>
+                                     <button type="submit" class="btn btn-primary" name="searchFor" >Søk</button>
                                  </form>
+                                 <?php searchForEmployee() ?>
+
+                                 <?php deleteEmployee() ?>
                              </div>
 
                              <div id="create" class="page tilsatt" style="display:none">

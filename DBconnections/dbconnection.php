@@ -478,52 +478,55 @@ if (isset($_POST['createCheckList'])) {
     function ment()
     {
         global $db;
-        $query = mysqli_query($db, "SELECT firstname FROM Users where usertype= 'mentor'") or die(mysqli_error());
-        echo "<select name=\"mentor\" class=\"field comment-alerts\">";
+        $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor'") or die(mysqli_error());
+        echo "<select name=\"mentorSelect\" class=\"field comment-alerts\">";
 
         while ($row = $query->fetch_assoc()) {
 
-            unset($name);
-            $name = $row['firstname'];
+            unset($f_name, $l_name);
+            $user_id = $row['idUsers'];
+            $f_name = $row['firstname'];
+            $l_name = $row['lastname'];
 
-            echo "<option value ='" . $name . "'>" . $name . "</option>";
+            echo '<option value="'.$user_id.'">'.$f_name.' '.$l_name.'</option>';
 
         }
     }
 function emp()
 {
     global  $db;
-    $query = mysqli_query($db, "SELECT firstname FROM Newemployee") or die(mysqli_error());
+    $query = mysqli_query($db, "SELECT idNewemployee, firstname, lastname FROM Newemployee") or die(mysqli_error());
     echo "<select name=\"empname\" class=\"field comment-alerts\">";
 
     while ($row = $query->fetch_assoc()){
 
-        unset($name);
-        $name = $row['firstname'];
+        unset($f_name, $l_name);
+        $employee_id = $row['idNewemployee'];
+        $f_name = $row['firstname'];
+        $l_name = $row['lastname'];
 
-        echo  "<option value ='".$name."'>".$name."</option>";
+        echo  '<option value="'.$employee_id.'">'.$f_name.' '.$l_name.'</option>';
 
     }
     echo  "</select>";
-
-
 }
 //Update mentor
     function updatementor()
     {
         global $db, $errors;
         $employee = e($_POST['empname']);
-        $mentor = e($_POST['mentor']);
-        $user_check = "SELECT firstname FROM Users WHERE firstname = '$mentor' ";
+        $mentor = e($_POST['mentorSelect']);
+        $user_check = "SELECT firstname, lastname FROM Users WHERE idUsers = $mentor ";
         $result = $db->query($user_check);
         $user = mysqli_fetch_assoc($result);
+
         if (!$user) {
             echo '<script type="text/javascript">alert("Not a user");</script>';
             echo $user_check;
             array_push($errors, "Not a user");
         } else {
-            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$employee'";
-            $id2 = "SELECT idUsers FROM Users WHERE firstname = '$mentor' ";
+            $id = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
+            $id2 = "SELECT idUsers FROM Users WHERE idUsers = '$mentor' ";
             $resultid = $db->query($id);
 
             if (!$resultid) {
@@ -579,8 +582,8 @@ function emp()
     {
         global $db, $username, $errors;
         $employee = e($_POST['empname']);
-        $mentor = e($_POST['mentor']);
-        $user_check = "SELECT firstname FROM Newemployee WHERE firstname = '$employee'";
+        $mentor = e($_POST['mentorSelect']);
+        $user_check = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
         $result = $db->query($user_check);
         $user = mysqli_fetch_assoc($result);
         if (!$user) {
@@ -588,8 +591,8 @@ function emp()
             echo $user_check;
             array_push($errors, "Not a user");
         } else {
-            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$employee'";
-            $id2 = "SELECT idUsers FROM Users WHERE firstname = '$mentor'";
+            $id = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
+            $id2 = "SELECT idUsers FROM Users WHERE idUsers = '$mentor'";
             $resultid = $db->query($id);
 
             if (!$resultid) {

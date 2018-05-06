@@ -1058,7 +1058,7 @@ function searchEmployee()
                 echo "<td>" . $row["startdate"] . "</td>";
                 echo "</tr>";
 
-            }
+            }echo "</table>";
 
         } else {
             echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';

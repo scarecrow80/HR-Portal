@@ -200,10 +200,6 @@ $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
         searchuser();
     }
 
-
-
-
-
 //edit a usertype
     function edittype()
     {
@@ -232,14 +228,6 @@ $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
         }
 
     }
-
-
-
-
-
-
-
-
 
     function oversikt()
     {
@@ -273,10 +261,6 @@ $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
         }
 
     }
-
-
-
-
 
 //edit the password of a user
     function editpass()

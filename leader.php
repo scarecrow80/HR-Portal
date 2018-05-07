@@ -316,7 +316,7 @@ if (!leader()){
                                         <table>
                                             <tr class="input-group">
                                                 <td>Fornavn: </td>
-                                                <td><input type="text" name='firstname' class="field comment-alerts" required/> </td>
+                                                <td><input type="text" name="firstname" class="field comment-alerts" required/> </td>
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Etternavn: </td>
@@ -340,7 +340,6 @@ if (!leader()){
                                                 <option value="Nei">Nei</option>
                                                     </select>
                                                 </td>
-
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Ansatt dato: </td>

@@ -45,7 +45,7 @@ $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
                 } else if ($logged_in_user['usertype'] == 'leader') {
                     $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success'] = "Logged in";
-                    header('location: ../HR-Portal/admin.php');
+                    header('location: ../HR-Portal/leader.php');
                 } else if ($logged_in_user['usertype'] == 'mentor') {
                     $_SESSION['user'] = $logged_in_user['username'];
                     $_SESSION['success'] = "Logged in getting you to list";

@@ -103,13 +103,7 @@ if (isset($_POST['createCheckList'])) {
     $workposition = e($_POST['workposition']);
     $international = e($_POST['international']);
     $startdate = e($_POST['startdate']);
-    //$id = $_SESSION['user'];
-    // $queryias ="SELECT Firstname from Users WHERE idUsers = '$id';
-    //$resalt=  $DB->$query("$queryas");
-    // if  and if not sentences
-    //    while ($row = mysqli_fetch_assoc($resalt))
-    // $ans = $row['Firstname'];
-    //insert nede ansvarlig value $ans
+    //$confirm_password = e($_POST['confirm_password']);
     if (empty($firstname)) {
         array_push($errors, "You need a firstname");
     }
@@ -119,14 +113,16 @@ if (isset($_POST['createCheckList'])) {
     if (empty($workposition)) {
         array_push($errors, "write the workposition");
     }
-
+    //add user and cryptate the password in md5 cryption
     if (count($errors) == 0) {
-
+        //$salt = random_bytes(10).$password_first;
+        //$password= hash('sha512', $password_first);
 
         $query = "INSERT INTO Newemployee (firstname, lastname, workposition , international, startdate) 
-  			  VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
+              VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
         $result = $db->query($query);
         $result2 = "SELECT * FROM Checklist";
+
 
 
         if (!$result) {
@@ -277,8 +273,8 @@ if (isset($_POST['createCheckList'])) {
                     header('location: ../HR-Portal/admin.php');
                 } else if ($logged_in_user['usertype'] == 'leader') {
                     $_SESSION['user'] = $logged_in_user;
-                    $_SESSION['success'] = "Logged in getting you to list";
-                    header('location: ../Hr-Portal/leader.php');
+                    $_SESSION['success'] = "Logged in";
+                    header('location: ../HR-Portal/admin.php');
                 } else if ($logged_in_user['usertype'] == 'mentor') {
                     $_SESSION['user'] = $logged_in_user['username'];
                     $_SESSION['success'] = "Logged in getting you to list";

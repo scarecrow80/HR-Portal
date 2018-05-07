@@ -348,6 +348,8 @@ if (!admin()){
 
                                     <div class="mr_fleksi_content">
 
+                                        
+
                                         <p>Endre et sjekkliste punkt.</p>
                                         <form action="" method="post">
                                                 <select name="checkpoint">

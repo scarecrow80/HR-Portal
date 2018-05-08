@@ -452,7 +452,7 @@ function addMentor()
                 if (!$resultId2) {
                     echo '<script type="text/javascript">alert("User and id dont match");</script>';
                 } else {
-                    while ($row = mysqli_fetch_assoc($resultid2)) {
+                    while ($row = mysqli_fetch_assoc($resultId2)) {
                         $idUsers = $row['idUsers'];
 
                             $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)

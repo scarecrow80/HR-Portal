@@ -7,7 +7,7 @@ function overviewAll()
         die("Feil i databasetilkobling:" . $db->connect_error);
     }
     //$userId = $_SESSION;
-    $qry = "SELECT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee";
+    $qry = "SELECT DISTINCT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee";
     $res = mysqli_query($db, $qry);
     if (!$res) {
         echo '<script type="text/javascript">alert("Query failed");</script>';
@@ -53,10 +53,10 @@ function overviewAll()
                 $article .= $checked;
                 $article .= '" id="';
                 $article .= $check_id;
-                $article .= '" onclick="test(this.name, this.id, this.value)"/>';
+                $article .= '" onclick="return false;" onkeydown="e = e || window.event; if(e.keyCode !== 9) return false;"/>';
 
             } else {
-                $article .= '<input type="checkbox" class="checkbox" name="empty" checked onclick="postData(this.name, this.value, this.id)" value="';
+                $article .= '<input type="checkbox" class="checkbox" name="empty" checked   onclick="return false;" onkeydown="e = e || window.event; if(e.keyCode !== 9) return false;"';
 
                 $article .= $checked;
 

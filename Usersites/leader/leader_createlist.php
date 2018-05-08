@@ -105,10 +105,28 @@ include "leader_session.php"; ?>
                                                         <td>Ansatt dato: </td>
                                                         <td><input type='date' name="startdate" class="field comment-alerts" required /> </td>
                                                     </tr>
+                                                    <tr class="input-group">
+                                                        <td>Velg ansvarlig leder: </td>
+                                                        <td>
+                                                            <?php selectLeader() ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="input-group">
+                                                        <td>Velg ansvarlig HR-ansatt: </td>
+                                                        <td>
+                                                            <?php selectHr() ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="input-group">
+                                                        <td>Velg ansvarlig fadder: </td>
+                                                        <td>
+                                                            <?php selectMentor() ?>
+                                                        </td>
+                                                    </tr>
 
                                                 </table>
                                                 <button class="btn btn-cancel" type="button">Avbryt</button>
-                                                <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>>
+                                                <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>
                                             </form>
 
 

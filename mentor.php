@@ -167,7 +167,7 @@ if (!isLoggedIN()){
                                 <!-- END: section -->
 
                         <div class="tilsatt">
-                            <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'" ">
+                            <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/DBconnections/logout.php'" ">
                                 Logout
                             </button>
                         </div>

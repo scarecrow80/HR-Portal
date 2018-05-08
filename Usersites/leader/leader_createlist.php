@@ -1,5 +1,6 @@
 <?php
 include "leader_session.php"; ?>
+
 <!DOCTYPE html>
 
 
@@ -11,7 +12,7 @@ include "leader_session.php"; ?>
 
     <title>OsloMet - Opprett sjekkliste</title>
     <?php
-    include_once "../Elements/Metaheads.php";
+    include_once "../../Elements/Metaheads.php";
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -28,10 +29,10 @@ include "leader_session.php"; ?>
     <li><a href="#footer">Bottom menu (skip)</a></li>
 </ul>
 <div class="container" data-role="page">
-    <img id="printLogo" alt="Print logo HiOA" src="../img/Hioa-Logo-s_h-orig.png" />
+    <img id="printLogo" alt="Print logo HiOA" src="../../img/Hioa-Logo-s_h-orig.png" />
     <div id="hioa-toolbar">
         <div id="mobile-menu-trigger">
-            <img src="../img/hioa-meny-knapp_off.png" alt="meny" />
+            <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
         <a href="/eng/">English</a>
@@ -45,7 +46,7 @@ include "leader_session.php"; ?>
 
     <div id="top">
         <div class="contentWrapper">
-            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../img/hioa-logo-web_697×120_no.png" /></a>
+            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../../img/hioa-logo-web_697×120_no.png" /></a>
             <nav>
                 <?php
                 include "nav_leader.php";
@@ -73,36 +74,59 @@ include "leader_session.php"; ?>
                                 <div id="test">
                                     <div id="overview" class="page tilsatt">
                                         <div id="createList" class="page tilsatt" >
-                                            <p>Assign mentor</p>
+                                            <p>Create list</p>
                                             <form action="" method="post">
                                                 <table>
                                                     <tr class="input-group">
-                                                        <td>Nyansatt: </td>
-                                                        <td><?php emp(); ?></td>
+                                                        <td>Fornavn: </td>
+                                                        <td><input type="text" name='firstname' class="field comment-alerts" required/> </td>
                                                     </tr>
-
                                                     <tr class="input-group">
-                                                        <td>Fadder</td>
-                                                        <td><?php ment(); ?>
+                                                        <td>Etternavn: </td>
+                                                        <td><input type="text" name="lastname" class="field comment-alerts" required/> </td>
+                                                    </tr>
+                                                    <tr class="input-group">
+                                                        <td>Stilling: </td>
+                                                        <td><select name="workposition" class="field comment-alerts" required />
+                                                            <option value=""></option>
+                                                            <option value="Leder">Leder</option>
+                                                            <option value="Ansatt">Ansatt</option>
                                                         </td>
                                                     </tr>
-                                                </table>
-                                                <button type="submit" class="btn btn-primary" name="Assign">Assign mentor</button>
-                                            </form>
-                                            <form action="" method="post">
-                                                <table>
                                                     <tr class="input-group">
-                                                        <td>Nyansatt</td>
-                                                        <td><?php emp(); ?></td>
-                                                    </tr>
-                                                    <tr class="input-group">
-
-                                                        <td>NyFadder</td>
-                                                        <td><?php ment(); ?>
+                                                        <td>Internasjonal: </td>
+                                                        <td><select name="international" class="field comment-alerts" required>
+                                                                <option value=""></option>
+                                                                <option value="Ja">Ja</option>
+                                                                <option value="Nei">Nei</option>
                                                         </td>
                                                     </tr>
+                                                    <tr class="input-group">
+                                                        <td>Ansatt dato: </td>
+                                                        <td><input type='date' name="startdate" class="field comment-alerts" required /> </td>
+                                                    </tr>
+                                                    <tr class="input-group">
+                                                        <td>Velg ansvarlig leder: </td>
+                                                        <td>
+                                                            <?php selectLeader() ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="input-group">
+                                                        <td>Velg ansvarlig HR-ansatt: </td>
+                                                        <td>
+                                                            <?php selectHr() ?>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="input-group">
+                                                        <td>Velg ansvarlig fadder: </td>
+                                                        <td>
+                                                            <?php selectMentor() ?>
+                                                        </td>
+                                                    </tr>
+
                                                 </table>
-                                                <button type="submit" class="btn btn-primary" name="Updatemen">Re-Assign mentor</button>
+                                                <button class="btn btn-cancel" type="button">Avbryt</button>
+                                                <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>
                                             </form>
 
 
@@ -123,7 +147,7 @@ include "leader_session.php"; ?>
 
 
     <?php
-    include "../Elements/Footer.php";
+    include "../../Elements/Footer.php";
     ?>
 
 

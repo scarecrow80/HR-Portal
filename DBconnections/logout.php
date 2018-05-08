@@ -1,5 +1,5 @@
 <?php
-include('../HR-Portal/DBconnections/dbconnection.php');
+include('dbconnection.php');
 if (logOut()){
     $_SESSION['msg'] = "Logged out";
     session_destroy();

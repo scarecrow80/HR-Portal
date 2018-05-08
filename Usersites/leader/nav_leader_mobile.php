@@ -12,6 +12,6 @@
         <a class="list" id="" href="leader_assign.php" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
     </li>
     <li class="main-menu">
-        <a class="list" id="" href="../logout.php" role="menuitem" title="Logg ut"> <span class="nav-item-label"> Logg ut </span> </a>
+        <a class="list" id="" href="../../DBconnections/logout.php" role="menuitem" title="Logg ut"> <span class="nav-item-label"> Logg ut </span> </a>
     </li>
 </ul>

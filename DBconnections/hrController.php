@@ -76,7 +76,7 @@ function overviewHr(){
 
     }
 }
-
+//Serach for one or more employees
 function searchEmployee()
 {
     if(isset($_POST["searcF"])) {
@@ -94,19 +94,48 @@ function searchEmployee()
             echo "<th>Etternavn</th>";
             echo "<th>Arbeidstilling</th>";
             echo "<th>Internasjonal</th>";
-            echo "<th>Startdato</th></tr>";
+            echo "<th>Startdato</th>";
+            echo "<th>Fadder</th></tr>";
 
             while ($row = mysqli_fetch_assoc($result)) {
+                $id = $row['idNewemployee'];
+
+                $sqa = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE  Newemployee_idNewemployee = $id";
+
+                $result2 = $db->query($sqa);
+                if($db->affected_rows == 0){
+                    echo "<tr>";
+                    echo "<td>" . $row["firstname"] . "</td>";
+                    echo "<td>" . $row["lastname"] . "</td>";
+                    echo "<td>" . $row["workposition"] . "</td>";
+                    echo "<td>" . $row["international"] . "</td>";
+                    echo "<td>" . $row["startdate"] . "</td>";
+                    echo "<td>" . "Ingen Fadder" . "</td>";
+                    echo "</tr>";
+
+                }
+
+              else{
+
+                        $sqb = "SELECT firstname FROM Users WHERE usertype = 'mentor' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $result3 = $db->query($sqb);
+                        if($result3) {
+                            while ($row2 = mysqli_fetch_assoc($result3)) {
+
+                                echo "<tr>";
+                                echo "<td>" . $row["firstname"] . "</td>";
+                                echo "<td>" . $row["lastname"] . "</td>";
+                                echo "<td>" . $row["workposition"] . "</td>";
+                                echo "<td>" . $row["international"] . "</td>";
+                                echo "<td>" . $row["startdate"] . "</td>";
+                                echo "<td>" . $row2["firstname"] . "</td>";
+                                echo "</tr>";
+                            }
+                        }
 
 
-                echo "<tr>";
-                echo "<td>" . $row["firstname"] . "</td>";
-                echo "<td>" . $row["lastname"] . "</td>";
-                echo "<td>" . $row["workposition"] . "</td>";
-                echo "<td>" . $row["international"] . "</td>";
-                echo "<td>" . $row["startdate"] . "</td>";
-                echo "</tr>";
 
+                }
             }echo "</table>";
 
         } else {

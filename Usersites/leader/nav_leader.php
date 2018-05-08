@@ -2,6 +2,10 @@
 
     <ul id="topMenu">
         <li><a href="http://www.hioa.no/eng">EnglishTODO</a></li>
+        <li class=" " id="" role="presentation">
+            <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logg ut" style="cursor: pointer"> <span class="nav-item-label"> Logg ut</span> </a>
+        </li>
+
     </ul>
 
     <ul id="Nav">
@@ -16,9 +20,6 @@
         </li>
         <li class=" " id="fyzs_" role="presentation">
             <a class="list" href="leader_assign.php" id="" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
-        </li>
-        <li class=" " id="fyzs_" role="presentation">
-            <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logg ut" style="cursor: pointer"> <span class="nav-item-label"> Logg ut</span> </a>
         </li>
 
     </ul>

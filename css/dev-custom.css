@@ -2359,14 +2359,14 @@ ul.footer-navigation {
     content: '' !important; }
 
 /* special CSS rule for all external links */
-a[href*="//"]:not([href*="hioa.no"]):after {
+/*a[href*="//"]:not([href*="hioa.no"]):after {
     font-family: "hioa";
     content: "\e817";
     display: inline-block;
     padding-left: 3px;
     vertical-align: middle;
     line-height: 1.5rem !important; }
-
+*/
 .parallax-secondNavTopHalf-1 {
     width: 30% !important; }
 

@@ -1,7 +1,7 @@
 <?php
 include('../DBconnections/dbconnection.php');
-if (!leader()){
-    $_SESSION['msg'] = "You have to log in as leader";
+if (!HR()){
+    $_SESSION['msg'] = "You have to log in as HR";
     session_destroy();
     unset($_SESSION['user']);
     header('location: ../index.php');
@@ -12,7 +12,7 @@ if (!leader()){
 
 <html itemscope itemtype="http://schema.org/Article" xmlns="http://www.w3.org/1999/xhtml" xml:lang="nb" lang="nb">
 <head>
-<title>OsloMet - Mine oppgaver</title>
+    <title>OsloMet - Mine oppgaver</title>
     <?php
     include_once "../Elements/Metaheads.php";
     ?>
@@ -56,7 +56,7 @@ if (!leader()){
         <a href="/eng/">English</a>
         <div id="mobile-menu">
             <?php
-            include "nav_leader_mobile.php";
+            include "nav_hr_mobile.php";
             ?>
         </div>
     </div>
@@ -67,7 +67,7 @@ if (!leader()){
             <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../img/hioa-logo-web_697×120_no.png" /></a>
             <nav>
                 <?php
-                include "nav_leader.php";
+                include "nav_hr.php";
                 ?>
             </nav>   <!-- END: navcontainer -->
         </div> <!-- contentWrapper -->
@@ -93,7 +93,7 @@ if (!leader()){
                                     <div id="overview" class="page tilsatt">
                                         <section class="section section-events article-toggle" role="region">
                                             <?php
-                                            include "../Overviews/Overview_leader_own.php";
+                                            include "../Overviews/Overview_hr_own.php";
 
                                             ?>
                                         </section>

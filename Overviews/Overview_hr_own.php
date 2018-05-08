@@ -1,5 +1,5 @@
 <?php
-include_once '../HR-Portal/DBconnections/dbconnection.php';
+include_once '../DBconnections/dbconnection.php';
 $db = mysqli_connect("student.cs.hioa.no", "s236619", "", "s236619");
 //$db = mysqli_connect("localhost", "root", "", "db_hr_portal");
 //include '../HR-Portal/DBconnections/dbconnection.php';

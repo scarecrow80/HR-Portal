@@ -380,7 +380,6 @@ function searchForUser()
         $sql = "SELECT * FROM Users WHERE Users.firstname LIKE '".$searchForUser."%'  OR Users.lastname LIKE '".$searchForUser."%'";
         $result = $db->query($sql);
 
-        echo $sql;
 
         if ($result) {
 

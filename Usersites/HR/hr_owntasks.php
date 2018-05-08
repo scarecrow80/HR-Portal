@@ -100,6 +100,7 @@ include "hr_session.php";
             </div>
         </div><!--end:frameWrapper-->
     </div>
+</div>
     <div class="clearfloat"></div>
 
 

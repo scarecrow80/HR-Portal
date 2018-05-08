@@ -30,7 +30,7 @@ if (!isLoggedIN()){
     <meta name="description" content="" />
     <meta itemprop="description" content="" />
 
-    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="shortcut icon" href="../img/favicon.ico" />
 
     <!-- <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
     <meta name="viewport" content="width=device-width" /> -->
@@ -41,23 +41,25 @@ if (!isLoggedIN()){
 
 
     <!--[if lte IE 8]>
-    <link rel="stylesheet" href="css/ie8.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/ie8.css" type="text/css" media="screen"/>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="css/all.css" />
-    <link rel="stylesheet" type="text/css" href="css/aui.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-yamm.css" />
-    <link rel="stylesheet" type="text/css" href="css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="css/dev-custom.css" />
+    <link rel="stylesheet" type="text/css" href="../css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-yamm.css" />
+    <link rel="stylesheet" type="text/css" href="../css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../css/dev-custom.css" />
 
 
     <!-- IE conditional comments; for bug fixes for different IE versions -->
-    <!--[if IE 5]>     <style type="text/css"> @import url(css/browsers/ie5.css);    </style> <![endif]-->
-    <!--[if lte IE 7]> <style type="text/css"> @import url(css/browsers/ie7lte.css); </style> <![endif]-->
+    <!--[if IE 5]>
+    <style type="text/css"> @import url(../css/browsers/ie5.css);    </style> <![endif]-->
+    <!--[if lte IE 7]>
+    <style type="text/css"> @import url(../css/browsers/ie7lte.css); </style> <![endif]-->
 
-    <link rel="stylesheet" type="text/css" media="print"  href="css/print.css" />
+    <link rel="stylesheet" type="text/css" media="print"  href="../css/print.css" />
 
-    <link rel="stylesheet" type="text/css"  href="css/upgrade_rearrange_fixes.css" />
+    <link rel="stylesheet" type="text/css"  href="../css/upgrade_rearrange_fixes.css" />
 
 
 </head>
@@ -71,10 +73,10 @@ if (!isLoggedIN()){
     <li><a href="#footer">Bottom menu (skip)</a></li>
 </ul>
 <div class="container" data-role="page">
-    <img id="printLogo" alt="Print logo HiOA" src="img/Hioa-Logo-s_h-orig.png" />
+    <img id="printLogo" alt="Print logo HiOA" src="../img/Hioa-Logo-s_h-orig.png" />
     <div id="hioa-toolbar">
         <div id="mobile-menu-trigger">
-            <img src="img/hioa-meny-knapp_off.png" alt="meny" />
+            <img src="../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
         <a href="/eng/">English</a>
@@ -89,7 +91,7 @@ if (!isLoggedIN()){
 
     <div id="top">
         <div class="contentWrapper">
-            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="img/hioa-logo-web_697×120_no.png" /></a>
+            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../img/hioa-logo-web_697×120_no.png" /></a>
             <nav>
                 <div id="navcontainer" class="fullsizeBlock">
 
@@ -167,7 +169,7 @@ if (!isLoggedIN()){
                                 <!-- END: section -->
 
                         <div class="tilsatt">
-                            <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/DBconnections/logout.php'" ">
+                            <button class="btn btn-cancel" type="button" onclick="window.location='../DBconnections/logout.php'" ">
                                 Logout
                             </button>
                         </div>
@@ -257,7 +259,7 @@ if (!isLoggedIN()){
     <!-- </div> -->
     <!-- Complete page area: END -->
     <!-- Footer script area: START --><!-- Footer script area: END -->
-    <script type="text/javascript" src="js/all.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/all.js" charset="utf-8"></script>
 
 
 </body>

@@ -99,21 +99,22 @@ include "leader_session.php"; ?>
                                                     </table>
                                                     <button type="submit" class="btn btn-primary" name="assignMentor">Tildel Fadder</button>
                                                 </form>
+                                                <!--
                                                 <form action="" method="post">
                                                     <table>
                                                         <tr class="input-group">
                                                             <td>Ny ansatt: </td>
-                                                            <td><?php employeeSelect(); ?></td>
+                                                            <td><?php //employeeSelect(); ?></td>
                                                         </tr>
                                                         <tr class="input-group">
 
                                                             <td>Ny Fadder: </td>
-                                                            <td><?php mentorSelect(); ?>
+                                                            <td><?php //mentorSelect(); ?>
                                                             </td>
                                                         </tr>
                                                     </table>
                                                     <button type="submit" class="btn btn-primary" name="updateMentor">Tildel ny Fadder</button>
-                                                </form>
+                                                </form> -->
                                             </div>
                                         </div>
                                         <div class="mrflexibox block_result_list tjenestebox left width_full"
@@ -140,21 +141,22 @@ include "leader_session.php"; ?>
                                                     </table>
                                                     <button type="submit" class="btn btn-primary" name="assignLeader">Tildel Leder</button>
                                                 </form>
+                                                <!--
                                                 <form action="" method="post">
                                                     <table>
                                                         <tr class="input-group">
                                                             <td>Ny ansatt: </td>
-                                                            <td><?php employeeSelect(); ?></td>
+                                                            <td><?php //employeeSelect(); ?></td>
                                                         </tr>
                                                         <tr class="input-group">
 
                                                             <td>Ny Leder: </td>
-                                                            <td><?php leaderSelect(); ?>
+                                                            <td><?php //leaderSelect(); ?>
                                                             </td>
                                                         </tr>
                                                     </table>
                                                     <button type="submit" class="btn btn-primary" name="updateLeader">Tildel ny Leder</button>
-                                                </form>
+                                                </form> -->
                                             </div>
                                         </div>
                                         <div class="mrflexibox block_result_list tjenestebox left width_full"
@@ -181,21 +183,22 @@ include "leader_session.php"; ?>
                                                     </table>
                                                     <button type="submit" class="btn btn-primary" name="assignHr">Tildel HR-ansatt</button>
                                                 </form>
+                                                <!--
                                                 <form action="" method="post">
                                                     <table>
                                                         <tr class="input-group">
                                                             <td>Ny ansatt: </td>
-                                                            <td><?php employeeSelect(); ?></td>
+                                                            <td><?php //employeeSelect(); ?></td>
                                                         </tr>
                                                         <tr class="input-group">
 
                                                             <td>Ny HR-ansatt: </td>
-                                                            <td><?php hrSelect(); ?>
+                                                            <td><?php //hrSelect(); ?>
                                                             </td>
                                                         </tr>
                                                     </table>
                                                     <button type="submit" class="btn btn-primary" name="updateHr">Tildel ny HR-ansatt</button>
-                                                </form>
+                                                </form> -->
                                             </div>
                                         </div>
 

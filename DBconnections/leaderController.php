@@ -452,7 +452,7 @@ function addMentor()
                 if (!$resultId2) {
                     echo '<script type="text/javascript">alert("User and id dont match");</script>';
                 } else {
-
+                    if($testresult){
                     if ($db->affected_rows == 1) {
                         echo '<script type="text/javascript">alert("Employee has already a mentor edit mentor instead");</script>';
                     } else {
@@ -471,8 +471,9 @@ function addMentor()
                                 echo '<script type="text/javascript">alert("Mentor assigned");</script>';
                             }
                         }
-                    }
 
+                    }
+               }
                 }
 
             }
@@ -594,8 +595,8 @@ function updateLeader()
                             echo "something";
                         } else {
                             while ($row2 = mysqli_fetch_assoc($resulta)) {
-                                $haha = $row2['Users_idUsers'];
-                                if ($haha == $id3) {
+                                $Userid = $row2['Users_idUsers'];
+                                if ($Userid == $id3) {
                                     echo '<script type="text/javascript">alert("same leader error");</script>';
                                 }
                                 else {

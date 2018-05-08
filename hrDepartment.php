@@ -1,7 +1,9 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
+include('../HR-Portal/DBconnections/hrController.php');
+include('../HR-Portal/DBconnections/commonController.php');
 if (!HR()){
-    $_SESSION['msg'] = "You have to log in as leader";
+    $_SESSION['msg'] = "You have to log in as one from hr the department ";
     session_destroy();
     unset($_SESSION['user']);
     header('location: ../HR-Portal/index.php');
@@ -85,9 +87,6 @@ if (!HR()){
                     <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
                 </li>
                 <li class="main-menu">
-                    <a class="list" onclick="openPage('mytasks')" role="menuitem" title="Mine oppgaver"> <span class="nav-item-label"> Mine oppgaver </span> </a>
-                </li>
-                <li class="main-menu">
                     <a class="list" id="" onclick="openPage('search')" role="menuitem" title="Søk"> <span class="nav-item-label"> Søk </span> </a>
                 </li>
             </ul>
@@ -106,11 +105,8 @@ if (!HR()){
                     </ul>
 
                     <ul id="Nav">
-                        <li class="active active " id="tzju_9" role="presentation">
+                        <li class="active active " id="tzju_" role="presentation">
                             <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
-                        </li>
-                        <li class="active active " id="asdqr" role="presentation">
-                            <a class="list" onclick="openPage('mytasks')" role="menuitem" title="Mine oppgaver"> <span class="nav-item-label"> Mine oppgaver</span> </a>
                         </li>
                         <li class=" " id="ahej_" role="presentation">
                             <a class="list" onclick="openPage('search')" id="" role="menuitem" title="Søk"> <span class="nav-item-label"> Søk </span> </a>
@@ -185,62 +181,29 @@ if (!HR()){
                                         });
                                     </script>
                                     <section class="section section-events article-toggle" role="region">
-                                        <?php
-                                        include "Overview_leader_all.php";
-                                        ?>
+                                        <?php overviewAll() ?>
 
+                                        <p id="test"></p>
                                         <script>
-                                         //   var inputElem = document.getElementsByTagName("checkbox");
+                                            var inputElem = document.getElementsByTagName("checkbox");
 
 
                                         </script>
                                     </section>
-                                </div>
+
                                 </div>
 
-                            <div class="section">
-                                <a id="nonav3" class="hiddenTxt" name="nonav3"></a>
-                            <div id="firstGrid">
-                            <div style="flot:left;clear:both;">
-                                <div id="mytasks" class="page tilsatt" style="display:none">
-                                    <p>Mine oppgaver</p>
-                                    <script>
-                                        YUI().use("aui-toggler", function(a) {
-                                            new a.TogglerDelegate({
-                                                animated: true,
-                                                closeAllOnExpand: true,
-                                                container: ".article-toggle",
-                                                content: ".toggler-content",
-                                                expanded: false,
-                                                header: ".toggler-header",
-                                                transition: {
-                                                    duration: 0.2,
-                                                    easing: "cubic-bezier(0, 0.1, 0, 1)"
-                                                }
-                                            })
-                                        });
-                                    </script>
 
-
-                                    <section class="section section-events article-toggle" role="region">
-                                        <?php
-                                        include "Overview_hr_own.php";
-                                        ?>
-
-                                    </section>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
 
                                 <div id="search" class="page tilsatt" style="display:none">
-                                    <p>TODOTODOTODOTODOTODO search for user</p>
-                                    <form action="" method="get">
-                                        <label for>Name</label>
-                                        <input type="text" name="lastname"value=""</input><br>
-
-                                        <input type="submit" class="btn btn-primary" name="search" id="search">search for a User</input>
+                                    <p>Søk opp ansatte</p>
+                                    <form action="" method="post">
+                                        <tr class="input-group">
+                                            <td><input type="text" name="searchFr" class="field comment-alerts" ></td>
+                                        </tr>
+                                        <button type="submit" class="btn btn-primary" name="searcF" >Søk</button>
                                     </form>
+                                    <?php searchEmployee() ?>
 
                                 </div>
 
@@ -250,6 +213,12 @@ if (!HR()){
 
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
                         </div> <!-- END: section -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

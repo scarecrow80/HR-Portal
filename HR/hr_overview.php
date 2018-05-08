@@ -1,11 +1,5 @@
 <?php
-include('../DBconnections/dbconnection.php');
-if (!HR()){
-    $_SESSION['msg'] = "You have to log in as leader";
-    session_destroy();
-    unset($_SESSION['user']);
-    header('location: ../index.php');
-}
+include "hr_session.php";
 ?>
 <!DOCTYPE html>
 
@@ -94,7 +88,7 @@ if (!HR()){
                                     <div id="overview" class="page tilsatt">
                                         <section class="section section-events article-toggle" role="region">
                                             <?php
-                                            include "../Overviews/Overview_leader_all.php";
+                                            OverviewAll();
 
                                             ?>
                                         </section>

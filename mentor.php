@@ -1,9 +1,9 @@
-<?php include('../HR-Portal/DBconnections/dbconnection.php');
-if (!fadder()){
-    $_SESSION['msg'] = "You have to log in as leader";
-    session_destroy();
-    unset($_SESSION['user']);
-    header('location: ../HR-Portal/index.php');
+<?php
+include('../HR-Portal/DBconnections/dbconnection.php');
+include('../HR-Portal/DBconnections/mentorController.php');
+if (!isLoggedIN()){
+   $_SESSION['msg'] = "you must be logged in to enter";
+    header( 'location: ../HR-Portal/index.php');
 }
 
 ?>
@@ -154,9 +154,7 @@ if (!fadder()){
                                         });
                                     </script>
                                     <section class="section section-events article-toggle" role="region">
-                                        <?php
-                                        include "Overviews/Overview_mentor_own.php";
-                                        ?>
+                                        <?php overviewMentor() ?>
                                         <p id="test"></p>
                                         <script>
                                             var inputElem = document.getElementsByTagName("checkbox");

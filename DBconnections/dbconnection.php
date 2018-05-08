@@ -8,240 +8,7 @@ $errors = array();
 $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
 //$db = mysqli_connect( 'localhost', 'root',  '', 'db_hr_portal');
 
-function valider_firstname($firstname)
-{
-    if(!preg_match("/^[a-zA-ZøæåØÆÅ.\- ]{2,20}$/", $firstname))
-    {
-        echo '<script type="text/javascript">alert("Firstname can only have letters");</script>';
-        echo "Firstname is wrong, use only letters. <br/>";
-        return false;
-    }
-    return $firstname;
-}
 
-function valider_lastname($lastname)
-{
-    if(!preg_match("/^[a-zA-ZøæåØÆÅ.\- ]{2,20}$/", $lastname))
-    {
-        echo '<script type="text/javascript">alert("Lastname error contatning other than letters");</script>';
-        echo "Lastname is wrong, use only letters. <br/>";
-        return false;
-    }
-    return $lastname;
-}
-
-function valider_username($username)
-{
-    if(!preg_match("/^[a-zA-ZøæåØÆÅ0-9.\- ]{2,20}$/", $username))
-    {
-        echo '<script type="text/javascript">alert("USername ");</script>';
-        echo "Username is not allowed. <br/>";
-        return false;
-    }
-    return $username;
-}
-
-function valider_password($password)
-    {
-        if(!preg_match("/^[a-zA-ZøæåØÆÅ0-9\-_]{2,20}$/", $password))
-        {
-            echo "Password not valid, please use a valid pattern. <br/>";
-            return false;
-        }
-        return $password;
-    }
-
-//check if inputs are correct!
-if (isset($_POST['register'])){
-    $firstname = valider_firstname($_POST["firstname"]);
-    $lastname = valider_lastname($_POST["lastname"]);
-    $username = valider_username($_POST["username"]);
-    $usertype= e($_POST['usertype']);
-    $password = e($_POST["password"]);
-    $repeatPassword = e($_POST['repeatPassword']);
-
-    $query = "SELECT * FROM Users WHERE username = '$username' ";
-    $usernameExist = mysqli_query($db, $query);
-
-    if (empty($firstname)) {array_push($errors, "You need a firstname");}
-    if (empty($lastname)) {array_push($errors, "write your lastname");}
-    if (empty($username)) {array_push($errors, "write the username");}
-
-    //Check that password and repeat is alike
-    if ($password != $repeatPassword){
-        echo "Password not valid";
-    }
-    //Check if username in use already
-    else if (mysqli_num_rows($usernameExist) > 0){
-        echo "Username already in use";
-    }
-    //add user and crypt the password in md5 encryption
-    else{
-        if (count($errors) == 0) {
-
-            $password = md5($_POST['password']);
-            $query = "INSERT INTO Users (firstname, lastname, username , usertype, password) 
-                  VALUES('$firstname', '$lastname', '$username', '$usertype', '$password')";
-            $result = $db->query($query);
-            if (!$result) {
-                echo '<script type="text/javascript">alert("Wrong in the script");</script>';
-
-            } //elseif(mysqli_affected_rows($db) == 0){
-            elseif ($db->affected_rows == 0) {
-                echo '<script type="text/javascript">alert("User wasnt added, but the script worked");</script>';
-
-            } else {
-                echo '<script type="text/javascript">alert("User added");</script>';
-            }
-        }
-    }
-}
-
-if (isset($_POST['createCheckList'])) {
-    $firstname = e($_POST['firstname']);
-    $lastname = e($_POST['lastname']);
-    $workposition = e($_POST['workposition']);
-    $international = e($_POST['international']);
-    $startdate = e($_POST['startdate']);
-    //$id = $_SESSION['user'];
-    // $queryias ="SELECT Firstname from Users WHERE idUsers = '$id';
-    //$resalt=  $DB->$query("$queryas");
-    // if  and if not sentences
-    //    while ($row = mysqli_fetch_assoc($resalt))
-    // $ans = $row['Firstname'];
-    //insert nede ansvarlig value $ans
-    if (empty($firstname)) {
-        array_push($errors, "You need a firstname");
-    }
-    if (empty($lastname)) {
-        array_push($errors, "write your lastname");
-    }
-    if (empty($workposition)) {
-        array_push($errors, "write the workposition");
-    }
-
-    if (count($errors) == 0) {
-
-
-        $query = "INSERT INTO Newemployee (firstname, lastname, workposition , international, startdate) 
-  			  VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
-        $result = $db->query($query);
-        $result2 = "SELECT * FROM Checklist";
-
-
-        if (!$result) {
-            echo "Wrong in the script";
-        } elseif ($db->affected_rows == 0) {
-            echo "The script worked, but the user wasn't added";
-        } elseif ($db->affected_rows > 0) {
-            $i = 0;
-            if ($workposition == "Ansatt" && $international == "Nei") {
-
-                $idNewemployee = $db->insert_id;
-                $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk' AND leader = 'Nei' ";
-                $res = mysqli_query($db, $query);
-                $num_rows = mysqli_num_rows($res);
-
-                while ($row = mysqli_fetch_assoc($res)) {
-                    $checkId = $row['idChecklist'];
-                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
-
-                    $res2 = mysqli_query($db, $query2);
-
-                    if (!$res2) {
-
-                        echo '<script type="text/javascript">alert("Wrong in the script");</script>';
-
-                    } elseif ($db->affected_rows == 0) {
-                        echo '<script type="text/javascript">alert("The list wasnt added, but the script worked");</script>';
-
-                    } else {
-                        if ($i == ($num_rows - 1)) {
-                            echo '<script type="text/javascript">alert("This worked as a normal ansatt");</script>';
-                        }
-                        $i++;
-                    }
-                }
-            }
-            elseif ($workposition == "Ansatt" && $international == "Ja") {
-
-                $idNewemployee = $db->insert_id;
-                $query = "SELECT idChecklist FROM Checklist WHERE leader = 'Nei' ";
-                $res = mysqli_query($db, $query);
-                $num_rows = mysqli_num_rows($res);
-
-                while ($row = mysqli_fetch_assoc($res)) {
-                    $checkId = $row['idChecklist'];
-                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
-
-                    $res2 = mysqli_query($db, $query2);
-
-                    if (!$res2) {
-                        echo $query2;
-                        echo '<script type="text/javascript">alert("Another wrong in the script");</script>';
-                    } elseif ($db->affected_rows == 0) {
-                        echo '<script type="text/javascript">alert("List wasnt added, but the script worked");</script>';
-                    } else {
-                        if ( $i == ( $num_rows - 1 ) ) {
-                            echo '<script type="text/javascript">alert("An international worker was addded");</script>';
-                        }
-
-                    }
-               $i++; }
-            } elseif ($workposition == "Leder" && $international == "Nei") {
-
-                $idNewemployee = $db->insert_id;
-                $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk'";
-                $res = mysqli_query($db, $query);
-                $num_rows = mysqli_num_rows($res);
-
-                while ($row = mysqli_fetch_assoc($res)) {
-                    $checkId = $row['idChecklist'];
-                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
-
-                    $res2 = mysqli_query($db, $query2);
-
-                    if (!$res2) {
-                        echo $query2;
-                        echo '<script type="text/javascript">alert("Script wrong");</script>';
-                    } elseif ($db->affected_rows == 0) {
-                        echo '<script type="text/javascript">alert("The list wasnt added, but the script worked");</script>';
-                    } else {
-                        if ( $i == ( $num_rows - 1 ) ) {
-                            echo '<script type="text/javascript">alert("A norwegian leader was added");</script>';
-                        }
-                    }
-               $i++; }
-            } elseif ($workposition == "Leder" && $international == "Ja") {
-
-                $idNewemployee = $db->insert_id;
-                $query = "SELECT idChecklist FROM Checklist ";
-                $res = mysqli_query($db, $query);
-                $num_rows = mysqli_num_rows($res);
-
-
-                while ($row = mysqli_fetch_assoc($res)) {
-                    $checkId = $row['idChecklist'];
-                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
-
-                    $res2 = mysqli_query($db, $query2);
-
-                    if (!$res2) {
-                        echo $query2;
-                        echo '<script type="text/javascript">alert("Something wrong");</script>';
-                    } elseif ($db->affected_rows == 0) {
-                        echo '<script type="text/javascript">alert("List wasnt added, but the script worked");</script>';
-                    } else {
-                        if ($i == ($num_rows - 1)) {
-                            echo '<script type="text/javascript">alert("International leader added");</script>';
-                        }
-                    }
-
-            $i++;    }
-            }
-        }
-    }
-}
 //login
     if (isset($_POST["login"])) {
         login();
@@ -277,8 +44,8 @@ if (isset($_POST['createCheckList'])) {
                     header('location: ../HR-Portal/admin.php');
                 } else if ($logged_in_user['usertype'] == 'leader') {
                     $_SESSION['user'] = $logged_in_user;
-                    $_SESSION['success'] = "Logged in getting you to list";
-                    header('location: ../Hr-Portal/leader.php');
+                    $_SESSION['success'] = "Logged in";
+                    header('location: ../HR-Portal/leader.php');
                 } else if ($logged_in_user['usertype'] == 'mentor') {
                     $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success'] = "Logged in getting you to list";
@@ -298,7 +65,7 @@ if (isset($_POST['createCheckList'])) {
         }
 
     }
-
+/*
     if (isset($_POST["del"])) {
         deletechecklist();
     }
@@ -323,35 +90,38 @@ if (isset($_POST['createCheckList'])) {
             array_push($errors, "Not a user");
         } else {
             if (count($errors) == 0) {
-                $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
-                $resultid = $db->query($id);
+                $idquery = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
+                $resultid = $db->query($idquery);
                 if (!$resultid) {
                     echo '<script type="text/javascript">alert("Not correct Id");</script>';
                 } else {
                     while ($row = mysqli_fetch_assoc($resultid)) {
-                        $id4 = $row['idNewemployee'];
-                        $query = "DELETE FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$id4'";
-                        echo $query;
+                        $id5 = $row['idNewemployee'];
+                        $query = "DELETE FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$id5' ";
 
-                        if ($db->query($query) === TRUE) {
-                            $dquery = "DELETE FROM Newemployee WHERE idNewemployee = '$id4'";
-                            echo $dquery;
+
+                        echo $query; echo "<br> <br />";
+
+                        if ($db->query($query) === TRUE ) {
+                            $dquery = "DELETE FROM Newemployee WHERE idNewemployee = '$id5'";
                             if ($db->query($dquery) === TRUE) {
                                 echo '<script type="text/javascript">alert("Delete successfull");</script>';
                             } else {
-                                echo '<script type="text/javascript">alert("Couldnt delete");</script>';
+                                echo '<script type="text/javascript">alert("Dquery is faulty");</script>';
                             }
 
-                        } else {
-                            echo '<script type="text/javascript">alert("Delete failed");</script>';
+                        }
+                        else {
+                                echo '<script type="text/javascript">alert("Delete failed");</script>';
                         }
 
+                    }
 
                     }
                 }
             }
-        }
-    }
+
+    }*/
 
 //making sure you only enter if logged in
     function isLoggedIN()
@@ -408,7 +178,7 @@ if (isset($_POST['createCheckList'])) {
     }
 
 //logout function on logout.php
-    function logO()
+    function logOut()
     {
         if (isset($_SESSION['user'])) {
             return true;
@@ -420,6 +190,8 @@ if (isset($_POST['createCheckList'])) {
     if (isset($_POST["edit"])) {
         editpass();
     }
+
+
 //if use typeedit form got to edittype function
     if (isset($_POST["type_edit"])) {
         edittype();
@@ -428,19 +200,10 @@ if (isset($_POST['createCheckList'])) {
         searchuser();
     }
 
-    if (isset($_POST['Updatemen'])) {
-        updatementor();
-    }
-    if (isset($_POST['Edilis'])) {
-        Edlist();
-    } elseif (isset($_POST['Nypunkt'])) {
-        pointlist();
-    } elseif (isset($_POST['Deletent'])) {
-        Dellist();
-    }
-    if (isset($_POST['Assign'])) {
-        addmentor();
-    }
+
+
+
+
 //edit a usertype
     function edittype()
     {
@@ -470,115 +233,13 @@ if (isset($_POST['createCheckList'])) {
 
     }
 
-//Update mentor
-    function updatementor()
-    {
-        global $db, $errors;
-        $employee = e($_POST['empname']);
-        $mentor = e($_POST['mentor']);
-        $user_check = "SELECT firstname FROM Users WHERE firstname = '$mentor' ";
-        $result = $db->query($user_check);
-        $user = mysqli_fetch_assoc($result);
-        if (!$user) {
-            echo '<script type="text/javascript">alert("Not a user");</script>';
-            echo $user_check;
-            array_push($errors, "Not a user");
-        } else {
-            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$employee'";
-            $id2 = "SELECT idUsers FROM Users WHERE firstname = '$mentor' ";
-            $resultid = $db->query($id);
-
-            if (!$resultid) {
-                echo '<script type="text/javascript">alert("Wrong id");</script>';
-            } else {
-                while ($row = mysqli_fetch_assoc($resultid)) {
-                    $resultid2 = $db->query($id2);
-                    $id4 = $row['idNewemployee'];
-
-                    if (!$resultid2) {
-                        echo '<script type="text/javascript">alert("User and id dont match");</script>';
-                    } else {
-                        while ($row = mysqli_fetch_assoc($resultid2)) {
-                            $id3 = $row['idUsers'];
 
 
-                            $query = "UPDATE Users_has_Newemployee SET Users_idUsers= '$id3' WHERE Newemployee_idNewemployee='$id4'";
-                            $result = $db->query($query);
 
-                            if ($result === TRUE) {
 
-                                echo '<script type="text/javascript">alert("Mentor edit worked");</script>';
 
-                            } else{
-                                echo '<script type="text/javascript">alert("Something wrong happend");</script>';
 
-                            }
 
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-
-//adds a mentor to the newemployye
-    function addmentor()
-    {
-        global $db, $username, $errors;
-        $employee = e($_POST['empname']);
-        $mentor = e($_POST['mentor']);
-        $user_check = "SELECT firstname FROM Newemployee WHERE firstname = '$employee'";
-        $result = $db->query($user_check);
-        $user = mysqli_fetch_assoc($result);
-        if (!$user) {
-            echo '<script type="text/javascript">alert("Not a user");</script>';
-            echo $user_check;
-            array_push($errors, "Not a user");
-        } else {
-            $id = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$employee'";
-            $id2 = "SELECT idUsers FROM Users WHERE firstname = '$mentor'";
-            $resultid = $db->query($id);
-
-            if (!$resultid) {
-                echo '<script type="text/javascript">alert("Wrong id");</script>';
-
-            } else {
-                while ($row = mysqli_fetch_assoc($resultid)) {
-                    $resultid2 = $db->query($id2);
-                    $id4 = $row['idNewemployee'];
-                    $test = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id4' ";
-                    $testresult = $db->query($test);
-                    if (!$resultid2) {
-                        echo '<script type="text/javascript">alert("User and id dont match");</script>';
-                    } else {
-
-                        if ($db->affected_rows == 1) {
-                            echo '<script type="text/javascript">alert("Employee has already a mentor edit mentor instead");</script>';
-                        } else {
-
-                            while ($row = mysqli_fetch_assoc($resultid2)) {
-                                $id3 = $row['idUsers'];
-
-                                $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
-                                VALUES ('$id3', '$id4') ";
-                                $res = mysqli_query($db, $query);
-                                if (!$res) {
-
-                                } elseif ($db->affected_rows == 0) {
-                                    echo '<script type="text/javascript">alert("Something failed");</script>';
-                                } else {
-                                    echo '<script type="text/javascript">alert("Mentor assigned");</script>';
-                                }
-                            }
-                        }
-
-                    }
-
-                }
-            }
-        }
-    }
 
     function oversikt()
     {
@@ -613,196 +274,9 @@ if (isset($_POST['createCheckList'])) {
 
     }
 
-    function oversikt_mentor()
-    {
-        global $db, $errors;
-        $username = $_SESSION['user'];
-
-        $first = "SELECT idUsers FROM Users WHERE username= '$username'";
-        $res = $db->query($first);
-        if (!$res) {
-            echo "view failed";
-        } else if ($res->num_rows > 0) {
-            while ($row = $res->fetch_object()) {
-
-                $query = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Users_idUsers = '$row->idUsers'";
-                $result = $db->query($query);
-
-                if (!$result) {
-                    echo $query;
-                    echo '<script type="text/javascript">alert("Viewing failed");</script>';
-                } else if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_object()) {
-                        $second = "SELECT Checklist_idChecklist, Newemployee_idNewemployee FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$row->Newemployee_idNewemployee'";
-                        $resa = $db->query($second);
-
-                        if (!$resa) {
-                            echo $second;
-                            echo '<script type="text/javascript">alert("Failed");</script>';
-                        } else if ($resa->num_rows > 0) {
-                            while ($row = $resa->fetch_object()) {
-                                $querya = "SELECT international FROM Newemployee WHERE idNewemployee = '$row->Newemployee_idNewemployee'";
-                                $queryfin = "SELECT * FROM Checklist WHERE idChecklist = '$row->Checklist_idChecklist'";
-                                $final = $db->query($queryfin);
-                                $finale = $db->query($querya);
-                                if (!$finale) {
-                                    echo $querya;
-                                    echo '<script type="text/javascript">alert("Error");</script>';
-                                } elseif ($finale->num_rows > 0) {
-                                    while ($row = $finale->fetch_object()) {
-                                        if ($row->international == "Ja") {
-                                            if (!$final) {
-                                                echo $queryfin;
-                                                echo '<script type="text/javascript">alert("game over");</script>';
-                                            } elseif ($final->num_rows > 0) {
-
-                                                while ($row = $final->fetch_object()) {
-
-                                                    echo "<li>" . $row->idChecklist . " " . $row->checkpointsEN . " responsible is " . $row->responsible . " is " . $row->nationality . " is a leader " . $row->leader . "</li>";
-                                                }
-                                            } else {
-                                                echo '<script type="text/javascript">alert("Troubled checklist");</script>';
-                                            }
-                                        } else {
-                                            if (!$final) {
-                                                echo $queryfin;
-                                                echo '<script type="text/javascript">alert("Failure");</script>';
-                                            } elseif ($final->num_rows > 0) {
-
-                                                while ($row = $final->fetch_object()) {
-
-                                                    echo "<li>" . $row->idChecklist . " " . $row->checkpointsNO . " responsible is " . $row->responsible . " From " . $row->nationality . " is a leader " . $row->leader . "</li>";
-
-                                                }
-                                            } else {
-                                                echo '<script type="text/javascript">alert("Troubled list");</script>';
-                                            }
-                                        }
-                                    }
-                                }
-
-                            }
-                        } else {
-                            echo '<script type="text/javascript">alert("Newemployee dont have a checklist");</script>';
 
 
-                        }
-                    }
-                } else {
-                    echo '<script type="text/javascript">alert("Isnt mentoring anyone at the moment");</script>';
 
-                }
-            }
-        } else {
-            echo '<script type="text/javascript">alert("Troubled registartion");</script>';
-        }
-
-    }
-
-    function Edlist()
-    {
-        global $db, $errors;
-        $orgpunkt = e($_POST['orgpunkt']);
-        $Nypunkt = e($_POST['Nypunkt']);
-        $Engpunkt = e($_POST['Engpunkt']);
-        $punkt_check = "SELECT checkpointsNO FROM Checklist WHERE checkpointsNO = '$orgpunkt'";
-        $res = $db->query($punkt_check);
-        $punkt = mysqli_fetch_assoc($res);
-        if (!$punkt) {
-            echo '<script type="text/javascript">alert("Checkpoint dont exist. Make it");</script>';
-            array_push($errors, "Not a point");
-        } else {
-            $check_punkt = "SELECT checkpointsNO FROM Checklist where checkpointsNO = '$Nypunkt'";
-            $resa = $db->query($check_punkt);
-            $pun = mysqli_fetch_assoc($resa);
-            if ($pun) {
-                echo '<script type="text/javascript">alert("Already a checkpoint");</script>';
-                array_push($errors, "Already a point");
-            } else {
-                $query = "UPDATE Checklist SET  checkpointsNO = '$Nypunkt', checkpointsEN = '$Engpunkt' WHERE checkpointsNO = '$orgpunkt'";
-
-                $result = $db->query($query);
-                if (!$result) {
-                    echo $query;
-                    echo '<script type="text/javascript">alert("the script didnt worked");</script>';
-                } else {
-                    echo '<script type="text/javascript">alert("Checklist edit worked");</script>';
-                }
-            }
-        }
-    }
-
-    function pointlist()
-    {
-        global $db, $errors;
-        $innd = e($_POST['innd']);
-        $innde = e($_POST['innde']);
-        $ans = e($_POST['ans']);
-        $nasj = e($_POST['nasj']);
-        $Led = e($_POST['Led']);
-        if (empty($innd)) {
-            echo '<script type="text/javascript">alert("Empty write something");</script>';
-            array_push($errors, "You need to write something");
-        }
-        $ind_check = "SELECT checkpointsNO FROM Checklist WHERE checkpointsNO= '$innd'";
-        $result = $db->query($ind_check);
-        $user = mysqli_fetch_assoc($result);
-        if ($user) {
-            echo '<script type="text/javascript">alert("Already a checkpoint");</script>';
-            array_push($errors, "Checkpoint is already here");
-        } else {
-            if (count($errors) == 0) {
-                $query = "INSERT INTO Checklist (checkpointsNO, checkpointsEN, responsible, nationality, leader)
-                                VALUES ('$innd', '$innde', '$ans', '$nasj', '$Led' ) ";
-                $res = mysqli_query($db, $query);
-                if (!$res) {
-
-                } elseif ($db->affected_rows == 0) {
-                    echo '<script type="text/javascript">alert("Something failed");</script>';
-                } else {
-                    echo '<script type="text/javascript">alert("Point added");</script>';
-                }
-            }
-        }
-    }
-
-    function Dellist()
-    {
-        global $db, $errors;
-        $Innd = e($_POST['Innd']);
-        if (empty($innd)) {
-            array_push($errors, "You need to write something");
-        }
-        $ind_check = "SELECT checkpointsNO FROM Checklist WHERE checkpointsNO= '$Innd'";
-        $result = $db->query($ind_check);
-        $in = mysqli_fetch_assoc($result);
-        if (!$in) {
-            echo '<script type="text/javascript">alert("Not a checkpoint");</script>';
-            array_push($errors, "Not a user");
-        } else {
-            $numb_check = "SELECT idChecklist FROM Checklist WHERE  checkpointsNO = '$Innd'";
-
-            $res = $db->query($numb_check);
-            if (!$res) {
-                echo $numb_check;
-                echo '<script type="text/javascript">alert("Not correct id");</script>';
-            } else {
-                while ($row = mysqli_fetch_assoc($res)) {
-                    $id = $row['idChecklist'];
-                    $dquery = "DELETE FROM Checklist WHERE idChecklist = '$id'";
-
-                    if ($db->query($dquery) === TRUE) {
-                        echo '<script type="text/javascript">alert("Delete worked");</script>';
-                    } else {
-                        echo $dquery;
-                        echo '<script type="text/javascript">alert("Some error made delete fail" . $db->error);</script>';
-
-                    }
-                }
-
-            }
-        }
-    }
 
 //edit the password of a user
     function editpass()
@@ -895,6 +369,21 @@ if (isset($_POST['createCheckList'])) {
             echo '</div>';
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

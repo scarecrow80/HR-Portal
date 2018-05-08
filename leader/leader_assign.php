@@ -1,12 +1,5 @@
 <?php
-include('../DBconnections/dbconnection.php');
-if (!leader()){
-    $_SESSION['msg'] = "You have to log in as leader";
-    session_destroy();
-    unset($_SESSION['user']);
-    header('location: ../HR-Portal/index.php');
-}
-?>
+include "leader_session.php"; ?>
 <!DOCTYPE html>
 
 
@@ -84,30 +77,32 @@ if (!leader()){
                                             <form action="" method="post">
                                                 <table>
                                                     <tr class="input-group">
-                                                        <td>Nyansatt</td>
-                                                        <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
+                                                        <td>Nyansatt: </td>
+                                                        <td><?php emp(); ?></td>
                                                     </tr>
-                                                    <tr class="input-group">
 
+                                                    <tr class="input-group">
                                                         <td>Fadder</td>
-                                                        <td> <input type="text" name="Mentorname" id="Mentorname" value=""/></td>
+                                                        <td><?php ment(); ?>
+                                                        </td>
                                                     </tr>
                                                 </table>
-                                                <button type="submit" class="btn btn-primary" name="Assign" id="Assign">Assign mentor</button>
+                                                <button type="submit" class="btn btn-primary" name="Assign">Assign mentor</button>
                                             </form>
                                             <form action="" method="post">
                                                 <table>
                                                     <tr class="input-group">
                                                         <td>Nyansatt</td>
-                                                        <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
+                                                        <td><?php emp(); ?></td>
                                                     </tr>
                                                     <tr class="input-group">
 
                                                         <td>NyFadder</td>
-                                                        <td> <input type="text" name="Mentorname" id="Mentorname" value=""/></td>
+                                                        <td><?php ment(); ?>
+                                                        </td>
                                                     </tr>
                                                 </table>
-                                                <button type="submit" class="btn btn-primary" name="Updatemen" id="Updatemen">Re-Assign mentor</button>
+                                                <button type="submit" class="btn btn-primary" name="Updatemen">Re-Assign mentor</button>
                                             </form>
 
 

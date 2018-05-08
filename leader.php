@@ -1,5 +1,7 @@
 <?php
 include('../HR-Portal/DBconnections/dbconnection.php');
+include('../HR-Portal/DBconnections/leaderController.php');
+
 if (!leader()){
     $_SESSION['msg'] = "You have to log in as leader";
     session_destroy();
@@ -60,39 +62,8 @@ if (!leader()){
     <link rel="stylesheet" type="text/css"  href="css/upgrade_rearrange_fixes.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
     <script>
-        YUI().use('aui-toggler',
-            function(Y) {
-                new Y.TogglerDelegate({
-                    animated: true,
-                    closeAllOnExpand: true,
-                    container: "#test",
-                    content: ".toggler-content",
-                    expanded: false,
-                    header: ".toggler-header",
-                    transition: {
-                        duration: 0.2,
-                        easing: "cubic-bezier(0, 0.1, 0.1)"
-                    }
-                }).render();
-            });
-    </script>
-    <script>
-
-        function openPage(pageName){
-            var i;
-            var x = document.getElementsByClassName("page");
-            for (i = 0; i < x.length; i++){
-                x[i].style.display = "none";
-            }
-            document.getElementById(pageName).style.display = "block";
-        }
-    </script>
-
-
-    <script>
-    /*    $(document).ready(function() {
+        $(document).ready(function() {
 
             $("input").keyup(function() {
                 var name = $("input").val();
@@ -125,7 +96,7 @@ if (!leader()){
 
 
 
-*/
+
 
 
     </script>
@@ -155,9 +126,6 @@ if (!leader()){
                     <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
                 </li>
                 <li class="main-menu">
-                    <a class="list" onclick="openPage('own_task')" role="menuitem" title="Mine oppgaver"> <span class="nav-item-label"> Mine oppgaver</span> </a>
-                </li>
-                <li class="main-menu">
                     <a class="list" id="" onclick="openPage('createList')" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
                 </li>
                 <li class="main-menu">
@@ -182,21 +150,25 @@ if (!leader()){
                         <li class="active active " id="tzju_" role="presentation">
                             <a class="list" onclick="openPage('overview')" role="menuitem" title="Oversikt"> <span class="nav-item-label"> Oversikt </span> </a>
                         </li>
-                        <li class=" " id="lami_" role="presentation">
-                            <a class="list" onclick="openPage('own_task')" role="menuitem" title="Mine oppgaver"> <span class="nav-item-label"> Mine oppgaver</span> </a>
-                        </li>
                         <li class=" " id="ahej_" role="presentation">
                             <a class="list" onclick="openPage('createList')" id="" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
                         </li>
                         <li class=" " id="fyzs_" role="presentation">
                             <a class="list" onclick="openPage('assignMentor')" id="" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
                         </li>
-                        <li class=" " id="fyzs_" role="presentation">
-                            <a class="list" onclick="window.location='../HR-Portal/logout.php'" id="" role="menuitem" title="Logg ut"> <span class="nav-item-label"> Logg ut</span> </a>
-                        </li>
 
                     </ul>
+                    <script>
 
+                        function openPage(pageName){
+                            var i;
+                            var x = document.getElementsByClassName("page");
+                            for (i = 0; i < x.length; i++){
+                                x[i].style.display = "none";
+                            }
+                            document.getElementById(pageName).style.display = "block";
+                        }
+                    </script>
 
                 </div> <!-- END: navcontainer -->
             </nav>
@@ -225,7 +197,7 @@ if (!leader()){
                 <div id="section">		          <!-- Main area content: START -->
 
                     <div class="section">
-                        <!-- <a id="nonav3" class="hiddenTxt" name="nonav3"></a> Hva gjør denne?-->
+                        <a id="nonav3" class="hiddenTxt" name="nonav3"></a>
 
 
 
@@ -233,51 +205,44 @@ if (!leader()){
                         <div id="firstGrid">		<!-- <div class="venstrekolonne"> -->
                             <!-- </div> --> <!-- END: venstrekolonne -->		<!-- <div class="hoyrekolonne"> -->
                             <!-- </div> --> <!-- END: hoyrekolonne -->
-                        <div style="flot:left;clear:both;">
+                            <div style="flot:left;clear:both;">
 
-
-                                <div id="test">
+                                <script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
                                 <div id="overview" class="page tilsatt">
 
-
+                                    <script>
+                                        YUI().use("aui-toggler", function(a) {
+                                            new a.TogglerDelegate({
+                                                animated: true,
+                                                closeAllOnExpand: true,
+                                                container: ".article-toggle",
+                                                content: ".toggler-content",
+                                                expanded: false,
+                                                header: ".toggler-header",
+                                                transition: {
+                                                    duration: 0.2,
+                                                    easing: "cubic-bezier(0, 0.1, 0, 1)"
+                                                }
+                                            })
+                                        });
+                                    </script>
                                     <section class="section section-events article-toggle" role="region">
-                                        <?php
-                                        include "Overview_leader_all.php";
-
-                                        ?>
-
+                                        <?php overviewLeader() ?>
+                                        <p id="test"></p>
                                         <script>
-                                          // var inputElem = document.getElementsByTagName("checkbox");
-
-
+                                            var inputElem = document.getElementsByTagName("checkbox");
                                         </script>
                                     </section>
 
-
-                                </div>
-                    </div>
-
-                                <div id="test">
-                                <div id="own_task" class="page tilsatt" style="flot:left;clear:both;">
-
-
-
-                                    <section class="section section-events article-toggle" role="region">
-
-
-
-                                    </section>
-
-                                </div>
                                 </div>
 
                                 <div id="createList" class="page tilsatt" style="display:none">
-                                    <p>Create list</p>
+                                    <p>TODOTODOTODOTODOTODO create list</p>
                                     <form action="" method="post">
                                         <table>
                                             <tr class="input-group">
                                                 <td>Fornavn: </td>
-                                                <td><input type="text" name='firstname' class="field comment-alerts" required/> </td>
+                                                <td><input type="text" name="firstname" class="field comment-alerts" required/> </td>
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Etternavn: </td>
@@ -289,7 +254,9 @@ if (!leader()){
                                                 <option value=""></option>
                                                 <option value="Leder">Leder</option>
                                                 <option value="Ansatt">Ansatt</option>
+                                                </select>
                                                 </td>
+
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Internasjonal: </td>
@@ -297,6 +264,7 @@ if (!leader()){
                                                 <option value=""></option>
                                                 <option value="Ja">Ja</option>
                                                 <option value="Nei">Nei</option>
+                                                    </select>
                                                 </td>
                                             </tr>
                                             <tr class="input-group">
@@ -306,41 +274,43 @@ if (!leader()){
 
                                         </table>
                                         <button class="btn btn-cancel" type="button">Avbryt</button>
-                                        <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>>
+                                        <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>
                                     </form>
 
 
                                 </div>
 
                                 <div id="assignMentor" class="page tilsatt" style="display:none">
-                                    <p>Assign mentor</p>
+                                    <p>TODOTODOTODOTODOTODO assign mentor</p>
                                     <form action="" method="post">
                                         <table>
                                             <tr class="input-group">
-                                    <td>Nyansatt</td>
-                                                <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
+                                                <td>Nyansatt: </td>
+                                                <td><?php emp(); ?></td>
                                             </tr>
-                                            <tr class="input-group">
 
-                                    <td>Fadder</td>
-                                            <td> <input type="text" name="Mentorname" id="Mentorname" value=""/></td>
+                                            <tr class="input-group">
+                                                <td>Fadder</td>
+                                                <td><?php ment(); ?>
+                                            </td>
                                             </tr>
                                         </table>
-                                    <button type="submit" class="btn btn-primary" name="Assign" id="Assign">Assign mentor</button>
+                                    <button type="submit" class="btn btn-primary" name="Assign">Assign mentor</button>
                                     </form>
                                     <form action="" method="post">
                                         <table>
                                             <tr class="input-group">
                                                 <td>Nyansatt</td>
-                                                <td> <input type="text" name="firstname" value="<?php echo $username; ?>"/></td><br>
+                                                <td><?php emp(); ?></td>
                                             </tr>
                                             <tr class="input-group">
 
                                                 <td>NyFadder</td>
-                                                <td> <input type="text" name="Mentorname" id="Mentorname" value=""/></td>
+                                                <td><?php ment(); ?>
+                                                </td>
                                             </tr>
                                         </table>
-                                        <button type="submit" class="btn btn-primary" name="Updatemen" id="Updatemen">Re-Assign mentor</button>
+                                        <button type="submit" class="btn btn-primary" name="Updatemen">Re-Assign mentor</button>
                                     </form>
                                 </div>
                                 <div class="tilsatt">
@@ -348,12 +318,23 @@ if (!leader()){
                                     Logout
                                     </button>
                                 </div>
+                                <script>
+
+                                    function openPage(pageName){
+                                        var i;
+                                        var x = document.getElementsByClassName("page");
+                                        for (i = 0; i < x.length; i++){
+                                            x[i].style.display = "none";
+                                        }
+                                        document.getElementById(pageName).style.display = "block";
+                                    }
+                                </script>
 
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
                         </div> <!-- END: section -->
 
 
-                    </div>
+
                         <!-- Main area content: END -->
                     </div>
                 </div>
@@ -422,9 +403,7 @@ if (!leader()){
                             <ul>
                                 <li>
                                     <a class="imagelink fortilsatte" href="https://www.hioa.no/For-tilsatte">For tilsatte</a>
-</html>
-
-</li>
+                                </li>
                                 <li>
                                     <a href="https://prod.cms.hioa.no/admin" target="_blank" title="Login">eZ Publish</a>
                                 </li>
@@ -441,7 +420,8 @@ if (!leader()){
     <!-- </div> -->
     <!-- Complete page area: END -->
     <!-- Footer script area: START --><!-- Footer script area: END -->
-
     <script type="text/javascript" src="js/all.js" charset="utf-8"></script>
 
+
 </body>
+</html>

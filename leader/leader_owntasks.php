@@ -1,12 +1,5 @@
 <?php
-include('../DBconnections/dbconnection.php');
-if (!leader()){
-    $_SESSION['msg'] = "You have to log in as leader";
-    session_destroy();
-    unset($_SESSION['user']);
-    header('location: ../index.php');
-}
-?>
+include "leader_session.php"; ?>
 <!DOCTYPE html>
 
 
@@ -92,10 +85,7 @@ if (!leader()){
                                 <div id="test">
                                     <div id="overview" class="page tilsatt">
                                         <section class="section section-events article-toggle" role="region">
-                                            <?php
-                                            include "../Overviews/Overview_leader_own.php";
-
-                                            ?>
+                                            <?php overviewLeader() ?>
                                         </section>
                                     </div>
                                 </div>

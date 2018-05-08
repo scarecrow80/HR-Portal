@@ -72,43 +72,130 @@ include "leader_session.php"; ?>
                             <div style="flot:left;clear:both;">
                                 <div id="test">
                                     <div id="overview" class="page tilsatt">
-                                        <div id="createList" class="page tilsatt" >
-                                            <p>Assign mentor</p>
-                                            <form action="" method="post">
-                                                <table>
-                                                    <tr class="input-group">
-                                                        <td>Nyansatt: </td>
-                                                        <td><?php emp(); ?></td>
-                                                    </tr>
 
-                                                    <tr class="input-group">
-                                                        <td>Fadder</td>
-                                                        <td><?php ment(); ?>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                <button type="submit" class="btn btn-primary" name="Assign">Assign mentor</button>
-                                            </form>
-                                            <form action="" method="post">
-                                                <table>
-                                                    <tr class="input-group">
-                                                        <td>Nyansatt</td>
-                                                        <td><?php emp(); ?></td>
-                                                    </tr>
-                                                    <tr class="input-group">
+                                        <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                             thetitle="Tildel fadder">
 
-                                                        <td>NyFadder</td>
-                                                        <td><?php ment(); ?>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                <button type="submit" class="btn btn-primary" name="Updatemen">Re-Assign mentor</button>
-                                            </form>
+                                            <h2>
+                                                Tildel fadder
+                                            </h2>
 
+                                            <div class="mr_fleksi_content">
+                                                <p>Tildel fadder</p>
+                                                <form action="" method="post">
+                                                    <table>
+                                                        <tr class="input-group">
+                                                            <td>Ny ansatt: </td>
+                                                            <td><?php employeeSelect(); ?></td>
+                                                        </tr>
 
+                                                        <tr class="input-group">
+                                                            <td>Fadder: </td>
+                                                            <td><?php mentorSelect(); ?>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <button type="submit" class="btn btn-primary" name="assignMentor">Tildel Fadder</button>
+                                                </form>
+                                                <form action="" method="post">
+                                                    <table>
+                                                        <tr class="input-group">
+                                                            <td>Ny ansatt: </td>
+                                                            <td><?php employeeSelect(); ?></td>
+                                                        </tr>
+                                                        <tr class="input-group">
+
+                                                            <td>Ny Fadder: </td>
+                                                            <td><?php mentorSelect(); ?>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <button type="submit" class="btn btn-primary" name="updateMentor">Tildel ny Fadder</button>
+                                                </form>
+                                            </div>
                                         </div>
+                                        <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                             thetitle="Tildel Leder">
 
+                                            <h2>
+                                                Tildel Leder
+                                            </h2>
 
+                                            <div class="mr_fleksi_content">
+                                                <p>Tildel Leder</p>
+                                                <form action="" method="post">
+                                                    <table>
+                                                        <tr class="input-group">
+                                                            <td>Ny ansatt: </td>
+                                                            <td><?php employeeSelect(); ?></td>
+                                                        </tr>
+
+                                                        <tr class="input-group">
+                                                            <td>Leder: </td>
+                                                            <td><?php leaderSelect(); ?>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <button type="submit" class="btn btn-primary" name="assignLeader">Tildel Leder</button>
+                                                </form>
+                                                <form action="" method="post">
+                                                    <table>
+                                                        <tr class="input-group">
+                                                            <td>Ny ansatt: </td>
+                                                            <td><?php employeeSelect(); ?></td>
+                                                        </tr>
+                                                        <tr class="input-group">
+
+                                                            <td>Ny Leder: </td>
+                                                            <td><?php leaderSelect(); ?>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <button type="submit" class="btn btn-primary" name="updateLeader">Tildel ny Leder</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                             thetitle="Tildel HR-ansatt">
+
+                                            <h2>
+                                                Tildel HR-ansatt
+                                            </h2>
+
+                                            <div class="mr_fleksi_content">
+                                                <p>Tildel HR-ansatt</p>
+                                                <form action="" method="post">
+                                                    <table>
+                                                        <tr class="input-group">
+                                                            <td>Ny ansatt: </td>
+                                                            <td><?php employeeSelect(); ?></td>
+                                                        </tr>
+
+                                                        <tr class="input-group">
+                                                            <td>Hr-ansatt: </td>
+                                                            <td><?php hrSelect(); ?>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <button type="submit" class="btn btn-primary" name="assignHr">Tildel HR-ansatt</button>
+                                                </form>
+                                                <form action="" method="post">
+                                                    <table>
+                                                        <tr class="input-group">
+                                                            <td>Ny ansatt: </td>
+                                                            <td><?php employeeSelect(); ?></td>
+                                                        </tr>
+                                                        <tr class="input-group">
+
+                                                            <td>Ny HR-ansatt: </td>
+                                                            <td><?php hrSelect(); ?>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <button type="submit" class="btn btn-primary" name="updateHr">Tildel ny HR-ansatt</button>
+                                                </form>
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>

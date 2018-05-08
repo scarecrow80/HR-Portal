@@ -59,17 +59,20 @@ if (isset($_POST['register'])){
     $query = "SELECT * FROM Users WHERE username = '$username' ";
     $usernameExist = mysqli_query($db, $query);
 
-    if (empty($firstname)) {array_push($errors, "You need a firstname");}
-    if (empty($lastname)) {array_push($errors, "write your lastname");}
-    if (empty($username)) {array_push($errors, "write the username");}
+    if (empty($firstname)) {array_push($errors, "You need a firstname");
+    echo '<script type="text/javascript">alert("Empty field");</script>';}
+    if (empty($lastname)) {array_push($errors, "write your lastname");
+        echo '<script type="text/javascript">alert("Empty field");</script>';}
+    if (empty($username)) {array_push($errors, "write the username");
+        echo '<script type="text/javascript">alert("Empty field");</script>';}
 
     //Check that password and repeat is alike
     if ($password != $repeatPassword){
-        echo "Password not valid";
+        echo '<script type="text/javascript">alert("Invalid Password");</script>';
     }
     //Check if username in use already
     else if (mysqli_num_rows($usernameExist) > 0){
-        echo "Username already in use";
+        echo '<script type="text/javascript">alert("Username already exists");</script>';
     }
     //add user and crypt the password in md5 encryption
     else{

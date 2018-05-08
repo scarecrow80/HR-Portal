@@ -5,30 +5,18 @@ include "leader_session.php"; ?>
 
 <html itemscope itemtype="http://schema.org/Article" xmlns="http://www.w3.org/1999/xhtml" xml:lang="nb" lang="nb">
 <head>
-<title>OsloMet - Mine oppgaver</title>
+
+
+
+
+    <title>OsloMet - Opprett sjekkliste</title>
     <?php
-    include_once "../Elements/Metaheads.php";
+    include_once "../../Elements/Metaheads.php";
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
-    <script>
-        YUI().use('aui-toggler',
-            function(Y) {
-                new Y.TogglerDelegate({
-                    animated: true,
-                    closeAllOnExpand: true,
-                    container: "#test",
-                    content: ".toggler-content",
-                    expanded: false,
-                    header: ".toggler-header",
-                    transition: {
-                        duration: 0.2,
-                        easing: "cubic-bezier(0, 0.1, 0.1)"
-                    }
-                }).render();
-            });
-    </script>
+
 </head>
 
 <!-- Complete page area: START -->
@@ -40,10 +28,10 @@ include "leader_session.php"; ?>
     <li><a href="#footer">Bottom menu (skip)</a></li>
 </ul>
 <div class="container" data-role="page">
-    <img id="printLogo" alt="Print logo HiOA" src="../img/Hioa-Logo-s_h-orig.png" />
+    <img id="printLogo" alt="Print logo HiOA" src="../../img/Hioa-Logo-s_h-orig.png" />
     <div id="hioa-toolbar">
         <div id="mobile-menu-trigger">
-            <img src="../img/hioa-meny-knapp_off.png" alt="meny" />
+            <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
         <a href="/eng/">English</a>
@@ -57,7 +45,7 @@ include "leader_session.php"; ?>
 
     <div id="top">
         <div class="contentWrapper">
-            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../img/hioa-logo-web_697×120_no.png" /></a>
+            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../../img/hioa-logo-web_697×120_no.png" /></a>
             <nav>
                 <?php
                 include "nav_leader.php";
@@ -84,9 +72,44 @@ include "leader_session.php"; ?>
                             <div style="flot:left;clear:both;">
                                 <div id="test">
                                     <div id="overview" class="page tilsatt">
-                                        <section class="section section-events article-toggle" role="region">
-                                            <?php overviewLeader() ?>
-                                        </section>
+                                        <div id="createList" class="page tilsatt" >
+                                            <p>Assign mentor</p>
+                                            <form action="" method="post">
+                                                <table>
+                                                    <tr class="input-group">
+                                                        <td>Nyansatt: </td>
+                                                        <td><?php emp(); ?></td>
+                                                    </tr>
+
+                                                    <tr class="input-group">
+                                                        <td>Fadder</td>
+                                                        <td><?php ment(); ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <button type="submit" class="btn btn-primary" name="Assign">Assign mentor</button>
+                                            </form>
+                                            <form action="" method="post">
+                                                <table>
+                                                    <tr class="input-group">
+                                                        <td>Nyansatt</td>
+                                                        <td><?php emp(); ?></td>
+                                                    </tr>
+                                                    <tr class="input-group">
+
+                                                        <td>NyFadder</td>
+                                                        <td><?php ment(); ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <button type="submit" class="btn btn-primary" name="Updatemen">Re-Assign mentor</button>
+                                            </form>
+
+
+                                        </div>
+
+
+
                                     </div>
                                 </div>
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
@@ -100,7 +123,7 @@ include "leader_session.php"; ?>
 
 
     <?php
-    include "../Elements/Footer.php";
+    include "../../Elements/Footer.php";
     ?>
 
 

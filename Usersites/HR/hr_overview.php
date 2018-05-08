@@ -9,7 +9,7 @@ include "hr_session.php";
     <meta property="og:image" content="../img/HiOA-logo-stor-versjon.png"/>
     <title>OsloMet - Mine oppgaver</title>
     <?php
-    include_once "../Elements/Metaheads.php";
+    include_once "../../Elements/Metaheads.php";
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -42,10 +42,10 @@ include "hr_session.php";
     <li><a href="#footer">Bottom menu (skip)</a></li>
 </ul>
 <div class="container" data-role="page">
-    <img id="printLogo" alt="Print logo HiOA" src="../img/Hioa-Logo-s_h-orig.png" />
+    <img id="printLogo" alt="Print logo HiOA" src="../../img/Hioa-Logo-s_h-orig.png" />
     <div id="hioa-toolbar">
         <div id="mobile-menu-trigger">
-            <img src="../img/hioa-meny-knapp_off.png" alt="meny" />
+            <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
         <a href="/eng/">English</a>
@@ -59,7 +59,7 @@ include "hr_session.php";
 
     <div id="top">
         <div class="contentWrapper">
-            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../img/hioa-logo-web_697×120_no.png" /></a>
+            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../../img/hioa-logo-web_697×120_no.png" /></a>
             <nav>
                 <?php
                 include "nav_hr.php";
@@ -105,7 +105,7 @@ include "hr_session.php";
 
 
     <?php
-    include "../Elements/Footer.php";
+    include "../../Elements/Footer.php";
     ?>
 
 

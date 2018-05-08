@@ -1,18 +1,14 @@
 <?php
-include "leader_session.php"; ?>
+include "hr_session.php";
+?>
 <!DOCTYPE html>
 
 
 <html itemscope itemtype="http://schema.org/Article" xmlns="http://www.w3.org/1999/xhtml" xml:lang="nb" lang="nb">
 <head>
-
-    <meta property="og:image" content="../img/HiOA-logo-stor-versjon.png"/>
-
-
-    <title>OsloMet - Oversikt</title>
-
+    <title>OsloMet - Mine oppgaver</title>
     <?php
-    include_once "../Elements/Metaheads.php";
+    include_once "../../Elements/Metaheads.php";
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -45,16 +41,16 @@ include "leader_session.php"; ?>
     <li><a href="#footer">Bottom menu (skip)</a></li>
 </ul>
 <div class="container" data-role="page">
-    <img id="printLogo" alt="Print logo HiOA" src="../img/Hioa-Logo-s_h-orig.png" />
+    <img id="printLogo" alt="Print logo HiOA" src="../../img/Hioa-Logo-s_h-orig.png" />
     <div id="hioa-toolbar">
         <div id="mobile-menu-trigger">
-            <img src="../img/hioa-meny-knapp_off.png" alt="meny" />
+            <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
         <a href="/eng/">English</a>
         <div id="mobile-menu">
             <?php
-            include "nav_leader_mobile.php";
+            include "nav_hr_mobile.php";
             ?>
         </div>
     </div>
@@ -62,10 +58,10 @@ include "leader_session.php"; ?>
 
     <div id="top">
         <div class="contentWrapper">
-            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../img/hioa-logo-web_697×120_no.png" /></a>
+            <a id="logo" href="http://www.hioa.no/"><img width="236" height="auto" alt="Logo - HiOA - Tilbake til forsida HiOA" src="../../img/hioa-logo-web_697×120_no.png" /></a>
             <nav>
                 <?php
-                include "nav_leader.php";
+                include "nav_hr.php";
                 ?>
             </nav>   <!-- END: navcontainer -->
         </div> <!-- contentWrapper -->
@@ -81,36 +77,38 @@ include "leader_session.php"; ?>
             <div class="bodyframe_left side"></div>
             <div class="contentWrapper">
                 <!-- <div id="breadCrumb"> </div> -->
-                     <div id="section">		          <!-- Main area content: START -->
-                     <div class="section">
+                <div id="section">		          <!-- Main area content: START -->
+                    <div class="section">
                         <!-- <a id="nonav3" class="hiddenTxt" name="nonav3"></a> Hva gjør denne?-->
                         <!-- <div class="innholdskolonne"> -->
                         <div id="firstGrid">
                             <div style="flot:left;clear:both;">
                                 <div id="test">
                                     <div id="overview" class="page tilsatt">
-                                         <section class="section section-events article-toggle" role="region">
+                                        <section class="section section-events article-toggle" role="region">
                                             <?php
-                                            OverviewAll(); ?>
+                                            OverviewHR();
+
+                                            ?>
                                         </section>
                                     </div>
                                 </div>
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
                         </div> <!-- END: section -->
-                     </div> <!-- Main area content: END -->
+                    </div> <!-- Main area content: END -->
                 </div>
             </div>
         </div><!--end:frameWrapper-->
     </div>
- <div class="clearfloat"></div>
+    <div class="clearfloat"></div>
 
 
     <?php
-    include "../Elements/Footer.php";
+    include "../../Elements/Footer.php";
     ?>
 
 
-<script type="text/javascript" src="js/all.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/all.js" charset="utf-8"></script>
 
 </body>
 </html>

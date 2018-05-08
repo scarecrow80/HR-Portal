@@ -214,173 +214,173 @@ if (!admin()){
 
                                 <div id="change" class="page tilsatt" style="display:none">
 
-                                <div class="mrflexibox block_result_list tjenestebox left width_full"
-                                     thetitle="Opprette nytt sjekkliste punkt">
+                                    <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                         thetitle="Opprette nytt sjekkliste punkt">
 
-                                    <h2>
-                                        Opprette nytt sjekkliste punkt
-                                    </h2>
+                                        <h2>
+                                            Opprette nytt sjekkliste punkt
+                                        </h2>
 
-                                    <div class="mr_fleksi_content">
+                                        <div class="mr_fleksi_content">
 
-                                        <p>Opprett et nytt sjekkliste punkt.</p>
-                                        <form action="" method="post">
-                                            <table>
-                                                <tr class="input-group">
-                                                    <td>Innhold</td>
-                                                    <td><textarea input="text" id="" name="newPointNo" placeholder="Skriv punkt her" rows="5"></textarea></td>
-                                                </tr>
-                                                <tr class="input-group">
-                                                    <td>Innhold Engelsk</td>
-                                                    <td><textarea input="text" id="" name="newPointEn" placeholder="Skriv punkt her på engelsk" rows="5"></textarea></td>
-                                                </tr>
-                                                <tr class="input-group">
-                                                    <td>Brukertype: </td>
-                                                    <td><select name="userType" class="field comment-alerts" required>
+                                            <p>Opprett et nytt sjekkliste punkt.</p>
+                                            <form action="" method="post">
+                                                <table>
+                                                    <tr class="input-group">
+                                                        <td>Innhold</td>
+                                                        <td><textarea input="text" id="" name="newPointNo" placeholder="Skriv punkt her" rows="5"></textarea></td>
+                                                    </tr>
+                                                    <tr class="input-group">
+                                                        <td>Innhold Engelsk</td>
+                                                        <td><textarea input="text" id="" name="newPointEn" placeholder="Skriv punkt her på engelsk" rows="5"></textarea></td>
+                                                    </tr>
+                                                    <tr class="input-group">
+                                                        <td>Brukertype: </td>
+                                                        <td><select name="userType" class="field comment-alerts" required>
+                                                                <option value=""></option>
+                                                                <option value="admin">Administrator</option>
+                                                                <option value="leader">Leder</option>
+                                                                <option value="HR">HR</option>
+                                                                <option value="mentor">Fadder</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="input-group">
+                                                        <td>Nasjonalitet: </td>
+                                                        <td><select name="nationality" class="field comment-alerts" required />
                                                             <option value=""></option>
-                                                            <option value="admin">Administrator</option>
-                                                            <option value="leader">Leder</option>
-                                                            <option value="HR">HR</option>
-                                                            <option value="mentor">Fadder</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr class="input-group">
-                                                    <td>Nasjonalitet: </td>
-                                                    <td><select name="nationality" class="field comment-alerts" required />
-                                                        <option value=""></option>
-                                                        <option value="Norsk">Norsk</option>
-                                                        <option value="Internasjonal">Internasjonal</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
+                                                            <option value="Norsk">Norsk</option>
+                                                            <option value="Internasjonal">Internasjonal</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
 
-                                                <tr class="input-group">
-                                                    <td>Leder: </td>
-                                                    <td><select name="leader" class="field comment-alerts" required />
-                                                        <option value=""></option>
-                                                        <option value="Ja">Ja</option>
-                                                        <option value="Nei">Nei</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <button type="submit" class="btn btn-primary" name="createNewPoint" id="Nypunkt">Nytt Punkt</button>
-                                        </form>
+                                                    <tr class="input-group">
+                                                        <td>Leder: </td>
+                                                        <td><select name="leader" class="field comment-alerts" required />
+                                                            <option value=""></option>
+                                                            <option value="Ja">Ja</option>
+                                                            <option value="Nei">Nei</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <button type="submit" class="btn btn-primary" name="createNewPoint" id="Nypunkt">Nytt Punkt</button>
+                                            </form>
 
 
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="mrflexibox block_result_list tjenestebox left width_full"
-                                     thetitle="Endre sjekkliste punkt">
+                                    <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                         thetitle="Endre sjekkliste punkt">
 
-                                    <h2>
-                                        Endre sjekkliste punkt
-                                    </h2>
+                                        <h2>
+                                            Endre sjekkliste punkt
+                                        </h2>
 
-                                    <div class="mr_fleksi_content">
+                                        <div class="mr_fleksi_content">
 
-                                        
 
-                                        <p>Endre et sjekkliste punkt.</p>
-                                        <form action="" method="post">
+
+                                            <p>Endre et sjekkliste punkt.</p>
+                                            <form action="" method="post">
                                                 <select name="checkpoint">
                                                     <?php selectPoint() ?>
                                                 </select>
                                                 <input type="submit" class="btn btn-primary" name="selectPoint" value="Velg sjekkpunkt" />
-                                        </form>
+                                            </form>
                                             <?php changePoint() ?>
+                                        </div>
                                     </div>
+
+                                    <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                         thetitle="Slett et sjekklist punkt">
+
+                                        <h2>
+                                            Slett et sjekklist punkt
+                                        </h2>
+
+                                        <div class="mr_fleksi_content">
+
+                                            <p>Slett et sjekklist punkt</p>
+                                            <form action="" method="post">
+                                                <table>
+
+                                                    <!--<tr class="input-group">
+                                                        <td>Nummer</td>
+                                                        <td> <input type="number" name="numb"/></td><br>
+                                                    </tr>-->
+                                                    <?php selectDeletePoint() ?>
+
+                                                    <!--<tr class="input-group">
+
+                                                        <td>Innhold</td>
+                                                        <td> <textarea type="text" name="Innd" id="Innd" value=""></textarea></td>
+                                                    </tr>-->
+                                                    <button type="submit" class="btn btn-primary" name="Delete" id="Delete" >Slett Punkt</button>
+                                                    <?php deletePoint() ?>
+                                            </form>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <div class="mrflexibox block_result_list tjenestebox left width_full"
-                                     thetitle="Slett et sjekklist punkt">
+                                <div id="delete" class="page tilsatt" style="display:none">
+                                    <p>Søk opp ansatte og slett gamle sjekklister</p>
+                                    <form action="" method="post">
+                                        <tr class="input-group">
+                                            <td><input type="text" name="searchForEmployee" class="field comment-alerts" ></td>
+                                        </tr>
+                                        <button type="submit" class="btn btn-primary" name="searchFor" >Søk</button>
+                                    </form>
+                                    <?php searchForEmployee() ?>
 
-                                    <h2>
-                                        Slett et sjekklist punkt
-                                    </h2>
-
-                                    <div class="mr_fleksi_content">
-
-                                        <p>Slett et sjekklist punkt</p>
-                                        <form action="" method="post">
-                                            <table>
-
-                                                <!--<tr class="input-group">
-                                                    <td>Nummer</td>
-                                                    <td> <input type="number" name="numb"/></td><br>
-                                                </tr>-->
-                                                <?php selectDeletePoint() ?>
-
-                                                <!--<tr class="input-group">
-
-                                                    <td>Innhold</td>
-                                                    <td> <textarea type="text" name="Innd" id="Innd" value=""></textarea></td>
-                                                </tr>-->
-                                                <button type="submit" class="btn btn-primary" name="Delete" id="Delete" >Slett Punkt</button>
-                                            <?php deletePoint() ?>
-                                        </form>
-                                    </div>
+                                    <?php deleteEmployee() ?>
                                 </div>
 
-                             </div>
+                                <div id="create" class="page tilsatt" style="display:none">
+                                    <p>TODOTODOTODOTODOTODO create user</p>
 
-                             <div id="delete" class="page tilsatt" style="display:none">
-                                 <p>Søk opp ansatte og slett gamle sjekklister</p>
-                                 <form action="" method="post">
-                                     <tr class="input-group">
-                                         <td><input type="text" name="searchForEmployee" class="field comment-alerts" ></td>
-                                     </tr>
-                                     <button type="submit" class="btn btn-primary" name="searchFor" >Søk</button>
-                                 </form>
-                                 <?php searchForEmployee() ?>
+                                    <form action="" method="post">
+                                        <table>
+                                            <tr class="input-group">
+                                                <td>Fornavn: </td>
+                                                <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Etternavn: </td>
+                                                <td><input type="text" name="lastname"  class="field comment-alerts" required/> </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Brukernavn: </td>
+                                                <td><input type="text" name="username"  class="field comment-alerts" required/> </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Brukertype: </td>
+                                                <td><select name="usertype" class="field comment-alerts" required>
+                                                        <option value=""></option>
+                                                        <option value="admin">Administrator</option>
+                                                        <option value="leader">Leder</option>
+                                                        <option value="HR">HR</option>
+                                                        <option value="mentor">Fadder</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Passord: </td>
+                                                <td><input type="password" name="password" class="field comment-alerts" required /> </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Gjenta passord: </td>
+                                                <td><input type="password" name="repeatPassword" class="field comment-alerts" required /> </td>
+                                            </tr>
 
-                                 <?php deleteEmployee() ?>
-                             </div>
-
-                             <div id="create" class="page tilsatt" style="display:none">
-                                             <p>TODOTODOTODOTODOTODO create user</p>
-
-                                 <form action="" method="post">
-                                     <table>
-                                         <tr class="input-group">
-                                             <td>Fornavn: </td>
-                                             <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
-                                         </tr>
-                                         <tr class="input-group">
-                                             <td>Etternavn: </td>
-                                             <td><input type="text" name="lastname"  class="field comment-alerts" required/> </td>
-                                         </tr>
-                                         <tr class="input-group">
-                                             <td>Brukernavn: </td>
-                                             <td><input type="text" name="username"  class="field comment-alerts" required/> </td>
-                                         </tr>
-                                         <tr class="input-group">
-                                             <td>Brukertype: </td>
-                                             <td><select name="usertype" class="field comment-alerts" required>
-                                                     <option value=""></option>
-                                                     <option value="admin">Administrator</option>
-                                                     <option value="leader">Leder</option>
-                                                     <option value="HR">HR</option>
-                                                     <option value="mentor">Fadder</option>
-                                                 </select>
-                                             </td>
-                                         </tr>
-                                         <tr class="input-group">
-                                             <td>Passord: </td>
-                                             <td><input type="password" name="password" class="field comment-alerts" required /> </td>
-                                         </tr>
-                                         <tr class="input-group">
-                                             <td>Gjenta passord: </td>
-                                             <td><input type="password" name="repeatPassword" class="field comment-alerts" required /> </td>
-                                         </tr>
-
-                                     </table>
-                                     <button class="btn btn-cancel" type="button">Avbryt</button>
-                                     <button type="submit" class="btn btn-primary" name="register">Register</button>
-                                 </form>
-                             </div>
+                                        </table>
+                                        <button class="btn btn-cancel" type="button">Avbryt</button>
+                                        <button type="submit" class="btn btn-primary" name="register">Register</button>
+                                    </form>
+                                </div>
 
                                 <div id="deleteUser" class="page tilsatt" style="display:none">
                                     <p>TODOTODOTODOTODOTODO slett user</p>
@@ -399,101 +399,105 @@ if (!admin()){
 
 
                                 </div>
-                                 <div class="tilsatt">
-                                     <button class="btn btn-cancel" type="button" onclick="window.location='../DBconnections/logout.php'">Logout</button>
-                                 </div>
+                                <div class="tilsatt">
 
-                         </div><!-- </div> --> <!-- END: innholdskolonne -->
-                    </div> <!-- END: section -->
+                                    <button class="btn btn-cancel" type="button" onclick="window.location='../DBconnections/logout.php'">Logout</button>
+
+                                    <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/DBconnections/logout.php'">Logout</button>
+
+                                </div>
+
+                            </div><!-- </div> --> <!-- END: innholdskolonne -->
+                        </div> <!-- END: section -->
 
 
 
-                    <!-- Main area content: END -->
+                        <!-- Main area content: END -->
+                    </div>
                 </div>
-            </div>
-        </div><!--end:frameWrapper-->
-    </div>        <!-- Extra area: START -->
+            </div><!--end:frameWrapper-->
+        </div>        <!-- Extra area: START -->
 
-    <!-- Extra area: END -->
-    <!--  </div>
-      </div> -->
-    <!-- Columns area: END -->
-    <!-- Footer area: START -->
-    <!-- Footer area: START -->
+        <!-- Extra area: END -->
+        <!--  </div>
+          </div> -->
+        <!-- Columns area: END -->
+        <!-- Footer area: START -->
+        <!-- Footer area: START -->
 
-    <div class="clearfloat"></div>
-    <div id="footer">
-        <div class="inner">
-            <div class="contentWrapper">
-                <div id="footerMenuContainer">
-                    <div class="footerMenu">
-                        <h4 class="footerMenuHeader">HiOA</h4>
+        <div class="clearfloat"></div>
+        <div id="footer">
+            <div class="inner">
+                <div class="contentWrapper">
+                    <div id="footerMenuContainer">
+                        <div class="footerMenu">
+                            <h4 class="footerMenuHeader">HiOA</h4>
 
-                        <ul>
-                            <li><a href="http://www.hioa.no/Om-HiOA">Om høgskolen</a></li>
-                            <li><a href="http://www.hioa.no/Om-HiOA/Organisasjonskart">Organisasjon</a></li>
-                            <li><a href="http://www.hioa.no/Om-HiOA/Strategier">Strategi</a></li>
-                            <li><a href="http://www.hioa.no/Om-HiOA/Ledige-stillinger">Ledige stillinger</a></li>
-                            <li><a href="http://www.hioa.no/Kontakt-oss/Mediekontakt">Mediekontakt</a></li>
-                            <li><a href="http://www.hioa.no/Om-HiOA/Kart-og-veibeskrivelse">Kart og veibeskrivelse</a></li>
-                            <li><a href="http://www.hioa.no/Om-HiOA/Informasjonskapsler-paa-Hioa.no">Om informasjonskapsler</a></li>
+                            <ul>
+                                <li><a href="http://www.hioa.no/Om-HiOA">Om høgskolen</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Organisasjonskart">Organisasjon</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Strategier">Strategi</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Ledige-stillinger">Ledige stillinger</a></li>
+                                <li><a href="http://www.hioa.no/Kontakt-oss/Mediekontakt">Mediekontakt</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Kart-og-veibeskrivelse">Kart og veibeskrivelse</a></li>
+                                <li><a href="http://www.hioa.no/Om-HiOA/Informasjonskapsler-paa-Hioa.no">Om informasjonskapsler</a></li>
 
-                        </ul>
-                    </div>
-                    <div class="footerMenu">
-                        <h4 class="footerMenuHeader">Kontaktinformasjon</h4>
-                        <p>
-                            Høgskolen i Oslo og Akershus<br/>
-                            Postboks 4 St. Olavs plass<br />                         0130 Oslo <br />
-                            Tlf.: 67 23 50 00 <br />
-                            E-post: <a href="mailto:post@hioa.no">post@hioa.no</a>
-                        </p>
-                    </div>
-                    <div class="footerMenu">
+                            </ul>
+                        </div>
+                        <div class="footerMenu">
+                            <h4 class="footerMenuHeader">Kontaktinformasjon</h4>
+                            <p>
+                                Høgskolen i Oslo og Akershus<br/>
+                                Postboks 4 St. Olavs plass<br />                         0130 Oslo <br />
+                                Tlf.: 67 23 50 00 <br />
+                                E-post: <a href="mailto:post@hioa.no">post@hioa.no</a>
+                            </p>
+                        </div>
+                        <div class="footerMenu">
 
-                        <h4 class="footerMenuHeader">
-                            Møt oss her
-                        </h4>
-                        <ul>
-                            <li><a class="imagelink facebook" href="http://www.facebook.com/hioa">Facebook</a></li>
-                            <li><a class="imagelink twitter" href="https://twitter.com/#!/HiOA_info">Twitter</a></li>
-                            <li><a class="imagelink linkedin" href="http://no.linkedin.com/company/h-gskolen-i-oslo-og-akershus">LinkedIn</a></li>
-                            <li><a class="imagelink flickr" href="http://www.flickr.com/photos/hioa/">Flickr</a></li>
-                            <li><a class="imagelink instagram" href="http://www.instagram.com/hioa">Instagram</a></li>
-                            <li><a class="imagelink googleplus" rel="publisher" href="https://plus.google.com/106065048460808498234">Google+</a></li>
-                        </ul>
-                    </div>
-                    <div class="footerMenu">
-                        <h4 class="footerMenuHeader last">Aktuelt</h4>
-                        <ul>
-                            <li><a href="http://www.hioa.no/Aktuelt">Aktuelle saker fra HiOA</a>  </li>
-                            <li><a href="http://vitenogpraksis.no/?origin=externfooter">Viten + praksis - HiOAs forskningsmagasin</a></li>
-                            <li><a href="http://www.khrono.no">Khrono - HiOAs uavhengige nettavis</a>  </li>
-                            <li><a href="http://blogg.hioa.no/">blogg.hioa.no</a></li>
-                        </ul>
-                    </div>
-                    <div class="footerMenu last">
-                        <ul>
-                            <li>
-                                <a class="imagelink fortilsatte" href="https://www.hioa.no/For-tilsatte">For tilsatte</a>
-                            </li>
-                            <li>
-                                <a href="https://prod.cms.hioa.no/admin" target="_blank" title="Login">eZ Publish</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div> <!-- footer menu container -->
-                <div class="clearfloat"></div>
-            </div>
-        </div> <!-- contentwrapper -->
-    </div> <!-- inner -->
-</div> <!-- footer -->
-<!-- Footer area: END -->
-<!-- Footer area: END -->
-<!-- </div> -->
-<!-- Complete page area: END -->
-<!-- Footer script area: START --><!-- Footer script area: END -->
-<script type="text/javascript" src="../js/all.js" charset="utf-8"></script>
+                            <h4 class="footerMenuHeader">
+                                Møt oss her
+                            </h4>
+                            <ul>
+                                <li><a class="imagelink facebook" href="http://www.facebook.com/hioa">Facebook</a></li>
+                                <li><a class="imagelink twitter" href="https://twitter.com/#!/HiOA_info">Twitter</a></li>
+                                <li><a class="imagelink linkedin" href="http://no.linkedin.com/company/h-gskolen-i-oslo-og-akershus">LinkedIn</a></li>
+                                <li><a class="imagelink flickr" href="http://www.flickr.com/photos/hioa/">Flickr</a></li>
+                                <li><a class="imagelink instagram" href="http://www.instagram.com/hioa">Instagram</a></li>
+                                <li><a class="imagelink googleplus" rel="publisher" href="https://plus.google.com/106065048460808498234">Google+</a></li>
+                            </ul>
+                        </div>
+                        <div class="footerMenu">
+                            <h4 class="footerMenuHeader last">Aktuelt</h4>
+                            <ul>
+                                <li><a href="http://www.hioa.no/Aktuelt">Aktuelle saker fra HiOA</a>  </li>
+                                <li><a href="http://vitenogpraksis.no/?origin=externfooter">Viten + praksis - HiOAs forskningsmagasin</a></li>
+                                <li><a href="http://www.khrono.no">Khrono - HiOAs uavhengige nettavis</a>  </li>
+                                <li><a href="http://blogg.hioa.no/">blogg.hioa.no</a></li>
+                            </ul>
+                        </div>
+                        <div class="footerMenu last">
+                            <ul>
+                                <li>
+                                    <a class="imagelink fortilsatte" href="https://www.hioa.no/For-tilsatte">For tilsatte</a>
+                                </li>
+                                <li>
+                                    <a href="https://prod.cms.hioa.no/admin" target="_blank" title="Login">eZ Publish</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> <!-- footer menu container -->
+                    <div class="clearfloat"></div>
+                </div>
+            </div> <!-- contentwrapper -->
+        </div> <!-- inner -->
+    </div> <!-- footer -->
+    <!-- Footer area: END -->
+    <!-- Footer area: END -->
+    <!-- </div> -->
+    <!-- Complete page area: END -->
+    <!-- Footer script area: START --><!-- Footer script area: END -->
+    <script type="text/javascript" src="../js/all.js" charset="utf-8"></script>
 
 
 </body>

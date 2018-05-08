@@ -102,6 +102,7 @@ if (isset($_POST['createCheckList'])) {
 
         $query = "INSERT INTO Newemployee (firstname, lastname, workposition , international, startdate) 
               VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
+
         $result = $db->query($query);
         $result2 = "SELECT * FROM Checklist";
 
@@ -123,12 +124,21 @@ if (isset($_POST['createCheckList'])) {
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
                     $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query3 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleLeader', '$idNewemployee') ";
+                    $query4 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleHr', '$idNewemployee') ";
+                    $query5 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleMentor', '$idNewemployee') ";
 
                     $res2 = mysqli_query($db, $query2);
+                    $res3 = mysqli_query($db, $query3);
+                    $res4 = mysqli_query($db, $query4);
+                    $res5 = mysqli_query($db, $query5);
 
                     if (!$res2) {
 
-                        echo '<script type="text/javascript">alert("Wrong in the script");</script>';
+                        echo '<script type="text/javascript">alert("Wrong in the script 1");</script>';
 
                     } elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("The list wasnt added, but the script worked");</script>';
@@ -151,12 +161,21 @@ if (isset($_POST['createCheckList'])) {
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
                     $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query3 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleLeader', '$idNewemployee') ";
+                    $query4 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleHr', '$idNewemployee') ";
+                    $query5 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleMentor', '$idNewemployee') ";
 
                     $res2 = mysqli_query($db, $query2);
+                    $res3 = mysqli_query($db, $query3);
+                    $res4 = mysqli_query($db, $query4);
+                    $res5 = mysqli_query($db, $query5);
 
                     if (!$res2) {
                         echo $query2;
-                        echo '<script type="text/javascript">alert("Another wrong in the script");</script>';
+                        echo '<script type="text/javascript">alert("Another wrong in the script 2");</script>';
                     } elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("List wasnt added, but the script worked");</script>';
                     } else {
@@ -176,10 +195,19 @@ if (isset($_POST['createCheckList'])) {
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
                     $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query3 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleLeader', '$idNewemployee') ";
+                    $query4 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleHr', '$idNewemployee') ";
+                    $query5 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleMentor', '$idNewemployee') ";
 
                     $res2 = mysqli_query($db, $query2);
+                    $res3 = mysqli_query($db, $query3);
+                    $res4 = mysqli_query($db, $query4);
+                    $res5 = mysqli_query($db, $query5);
 
-                    if (!$res2) {
+                    if (!$res2 ||  !$res3 || !$res4 || !$res5) {
                         echo $query2;
                         echo '<script type="text/javascript">alert("Script wrong");</script>';
                     } elseif ($db->affected_rows == 0) {
@@ -201,8 +229,17 @@ if (isset($_POST['createCheckList'])) {
                 while ($row = mysqli_fetch_assoc($res)) {
                     $checkId = $row['idChecklist'];
                     $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query3 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleLeader', '$idNewemployee') ";
+                    $query4 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleHr', '$idNewemployee') ";
+                    $query5 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleMentor', '$idNewemployee') ";
 
                     $res2 = mysqli_query($db, $query2);
+                    $res3 = mysqli_query($db, $query3);
+                    $res4 = mysqli_query($db, $query4);
+                    $res5 = mysqli_query($db, $query5);
 
                     if (!$res2) {
                         echo $query2;
@@ -425,7 +462,7 @@ function selectHr()
 {
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR'") or die(mysqli_error());
-    echo "<select name=\"responsibleLeader\" class=\"field comment-alerts\">";
+    echo "<select name=\"responsibleHr\" class=\"field comment-alerts\">";
 
     while ($row = $query->fetch_assoc()) {
 

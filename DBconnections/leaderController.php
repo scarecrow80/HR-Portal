@@ -265,6 +265,7 @@ function employeeSelect()
     global  $db;
     $query = mysqli_query($db, "SELECT idNewemployee, firstname, lastname FROM Newemployee") or die(mysqli_error());
     echo "<select name=\"empname\" class=\"field comment-alerts\">";
+    echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()){
 
@@ -273,9 +274,7 @@ function employeeSelect()
         $f_name = $row['firstname'];
         $l_name = $row['lastname'];
 
-        echo '<option value=""></option>';
         echo  '<option value="'.$employee_id.'">'.$f_name.' '.$l_name.'</option>';
-
     }
     echo  "</select>";
 }
@@ -285,6 +284,7 @@ function mentorSelect()
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor'") or die(mysqli_error());
     echo "<select name=\"mentorSelect\" class=\"field comment-alerts\">";
+    echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
 
@@ -293,7 +293,6 @@ function mentorSelect()
         $f_name = $row['firstname'];
         $l_name = $row['lastname'];
 
-        echo '<option value=""></option>';
         echo '<option value="'.$user_id.'">'.$f_name.' '.$l_name.'</option>';
 
     }
@@ -304,6 +303,7 @@ function selectMentor()
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor'") or die(mysqli_error());
     echo "<select name=\"responsibleMentor\" class=\"field comment-alerts\">";
+    echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
 
@@ -312,7 +312,6 @@ function selectMentor()
         $f_name = $row['firstname'];
         $l_name = $row['lastname'];
 
-        echo '<option value=""></option>';
         echo '<option value="'.$user_id.'">'.$f_name.' '.$l_name.'</option>';
 
     }
@@ -323,6 +322,7 @@ function selectLeader()
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'leader'") or die(mysqli_error());
     echo "<select name=\"responsibleLeader\" class=\"field comment-alerts\">";
+    echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
 
@@ -331,7 +331,6 @@ function selectLeader()
         $f_name = $row['firstname'];
         $l_name = $row['lastname'];
 
-        echo '<option value=""></option>';
         echo '<option value="'.$user_id.'">'.$f_name.' '.$l_name.'</option>';
 
     }
@@ -342,6 +341,7 @@ function selectHr()
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR'") or die(mysqli_error());
     echo "<select name=\"responsibleHr\" class=\"field comment-alerts\">";
+    echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
 
@@ -350,7 +350,6 @@ function selectHr()
         $f_name = $row['firstname'];
         $l_name = $row['lastname'];
 
-        echo '<option value=""></option>';
         echo '<option value="'.$user_id.'">'.$f_name.' '.$l_name.'</option>';
 
     }
@@ -429,28 +428,28 @@ function addMentor()
     global $db, $username, $errors;
     $employee = e($_POST['empname']);
     $mentor = e($_POST['mentorSelect']);
-    $user_check = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
-    $result = $db->query($user_check);
+    $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
+    $result = $db->query($sql);
     $user = mysqli_fetch_assoc($result);
     if (!$user) {
         echo '<script type="text/javascript">alert("Not a user");</script>';
-        echo $user_check;
+        echo $sql;
         array_push($errors, "Not a user");
     } else {
-        $id = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
-        $id2 = "SELECT idUsers FROM Users WHERE idUsers = '$mentor'";
-        $resultid = $db->query($id);
+        $sql2 = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
+        $sql3 = "SELECT idUsers FROM Users WHERE idUsers = '$mentor'";
+        $resultId = $db->query($sql2);
 
-        if (!$resultid) {
+        if (!$resultId) {
             echo '<script type="text/javascript">alert("Wrong id");</script>';
 
         } else {
-            while ($row = mysqli_fetch_assoc($resultid)) {
-                $resultid2 = $db->query($id2);
-                $id4 = $row['idNewemployee'];
-                $test = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id4' ";
-                $testresult = $db->query($test);
-                if (!$resultid2) {
+            while ($row = mysqli_fetch_assoc($resultId)) {
+                $resultId2 = $db->query($sql3);
+                $idNewemployee = $row['idNewemployee'];
+                $sql4 = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$idNewemployee' ";
+                $testresult = $db->query($sql4);
+                if (!$resultId2) {
                     echo '<script type="text/javascript">alert("User and id dont match");</script>';
                 } else {
 
@@ -458,11 +457,11 @@ function addMentor()
                         echo '<script type="text/javascript">alert("Employee has already a mentor edit mentor instead");</script>';
                     } else {
 
-                        while ($row = mysqli_fetch_assoc($resultid2)) {
-                            $id3 = $row['idUsers'];
+                        while ($row = mysqli_fetch_assoc($resultId2)) {
+                            $idUsers = $row['idUsers'];
 
                             $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
-                                VALUES ('$id3', '$id4') ";
+                                VALUES ('$idUsers', '$idNewemployee') ";
                             $res = mysqli_query($db, $query);
                             if (!$res) {
 
@@ -486,6 +485,7 @@ function leaderSelect()
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'leader'") or die(mysqli_error());
     echo "<select name=\"leaderSelect\" class=\"field comment-alerts\">";
+    echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
 
@@ -494,7 +494,6 @@ function leaderSelect()
         $f_name = $row['firstname'];
         $l_name = $row['lastname'];
 
-        echo '<option value=""></option>';
         echo '<option value="'.$user_id.'">'.$f_name.' '.$l_name.'</option>';
 
     }
@@ -630,6 +629,7 @@ function hrSelect()
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR'") or die(mysqli_error());
     echo "<select name=\"responsibleHr\" class=\"field comment-alerts\">";
+    echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
 
@@ -638,7 +638,6 @@ function hrSelect()
         $f_name = $row['firstname'];
         $l_name = $row['lastname'];
 
-        echo '<option value=""></option>';
         echo '<option value="'.$user_id.'">'.$f_name.' '.$l_name.'</option>';
 
     }

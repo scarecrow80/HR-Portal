@@ -82,6 +82,9 @@ if (isset($_POST['createCheckList'])) {
     $workposition = e($_POST['workposition']);
     $international = e($_POST['international']);
     $startdate = e($_POST['startdate']);
+    $responsibleLeader = e($_POST['responsibleLeader']);
+    $responsibleHr = e($_POST['responsibleHr']);
+    $responsibleMentor = e($_POST['responsibleMentor']);
 
     if (empty($firstname)) {
         array_push($errors, "You need a firstname");
@@ -384,7 +387,7 @@ function selectMentor()
 {
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor'") or die(mysqli_error());
-    echo "<select name=\"mentorSelect\" class=\"field comment-alerts\">";
+    echo "<select name=\"responsibleMentor\" class=\"field comment-alerts\">";
 
     while ($row = $query->fetch_assoc()) {
 

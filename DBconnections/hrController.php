@@ -103,23 +103,22 @@ function searchEmployee()
                 $sqa = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE  Newemployee_idNewemployee = $id";
 
                 $result2 = $db->query($sqa);
-                if($db->affected_rows == 0){
-                    echo "<tr>";
-                    echo "<td>" . $row["firstname"] . "</td>";
-                    echo "<td>" . $row["lastname"] . "</td>";
-                    echo "<td>" . $row["workposition"] . "</td>";
-                    echo "<td>" . $row["international"] . "</td>";
-                    echo "<td>" . $row["startdate"] . "</td>";
-                    echo "<td>" . "Ingen Fadder" . "</td>";
-                    echo "</tr>";
+                if($result2) {
+                    if ($db->affected_rows == 0) {
+                        echo "<tr>";
+                        echo "<td>" . $row["firstname"] . "</td>";
+                        echo "<td>" . $row["lastname"] . "</td>";
+                        echo "<td>" . $row["workposition"] . "</td>";
+                        echo "<td>" . $row["international"] . "</td>";
+                        echo "<td>" . $row["startdate"] . "</td>";
+                        echo "<td>" . "Ingen Fadder" . "</td>";
+                        echo "</tr>";
 
-                }
-
-              else{
+                    } else {
 
                         $sqb = "SELECT firstname FROM Users WHERE usertype = 'mentor' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
                         $result3 = $db->query($sqb);
-                        if($result3) {
+                        if ($result3) {
                             while ($row2 = mysqli_fetch_assoc($result3)) {
 
                                 echo "<tr>";
@@ -134,7 +133,7 @@ function searchEmployee()
                         }
 
 
-
+                    }
                 }
             }echo "</table>";
 

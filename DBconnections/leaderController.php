@@ -423,7 +423,7 @@ function updateMentor()
 }
 
 //adds a mentor to the newemployee
-function addMentor()
+function addmentor()
 {
     global $db, $username, $errors;
     $employee = e($_POST['empname']);
@@ -438,43 +438,35 @@ function addMentor()
     } else {
         $sql2 = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
         $sql3 = "SELECT idUsers FROM Users WHERE idUsers = '$mentor'";
-        $resultId = $db->query($sql2);
+        $resultid = $db->query($sql2);
 
-        if (!$resultId) {
+        if (!$resultid) {
             echo '<script type="text/javascript">alert("Wrong id");</script>';
 
         } else {
-            while ($row = mysqli_fetch_assoc($resultId)) {
-                $resultId2 = $db->query($sql3);
+            while ($row = mysqli_fetch_assoc($resultid)) {
+                $resultid2 = $db->query($sql3);
                 $idNewemployee = $row['idNewemployee'];
                 $sql4 = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$idNewemployee' ";
                 $testresult = $db->query($sql4);
-                if (!$resultId2) {
+                if (!$resultid2) {
                     echo '<script type="text/javascript">alert("User and id dont match");</script>';
                 } else {
+                    while ($row = mysqli_fetch_assoc($resultid2)) {
+                        $idUsers = $row['idUsers'];
 
-                    if ($db->affected_rows == 1) {
-                        echo '<script type="text/javascript">alert("Employee has already a mentor edit mentor instead");</script>';
-                    } else {
-
-                        while ($row = mysqli_fetch_assoc($resultId2)) {
-                            $idUsers = $row['idUsers'];
-
-                            $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                        $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
                                 VALUES ('$idUsers', '$idNewemployee') ";
-                            $res = mysqli_query($db, $query);
-                            if (!$res) {
+                        $res = mysqli_query($db, $query);
+                        if (!$res) {
 
-                            } elseif ($db->affected_rows == 0) {
-                                echo '<script type="text/javascript">alert("Something failed");</script>';
-                            } else {
-                                echo '<script type="text/javascript">alert("Mentor assigned");</script>';
-                            }
+                        } elseif ($db->affected_rows == 0) {
+                            echo '<script type="text/javascript">alert("Something failed");</script>';
+                        } else {
+                            echo '<script type="text/javascript">alert("Mentor assigned");</script>';
                         }
                     }
-
                 }
-
             }
         }
     }
@@ -500,59 +492,48 @@ function leaderSelect()
 }
 
 function addLeader()
-{
-    global $db, $username, $errors;
+{global $db, $username, $errors;
     $employee = e($_POST['empname']);
     $leader = e($_POST['leaderSelect']);
-    $user_check = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
-    $result = $db->query($user_check);
+    $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
+    $result = $db->query($sql);
     $user = mysqli_fetch_assoc($result);
     if (!$user) {
         echo '<script type="text/javascript">alert("Not a user");</script>';
-        echo $user_check;
+        echo $sql;
         array_push($errors, "Not a user");
     } else {
-        $id = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
-        $id2 = "SELECT idUsers FROM Users WHERE idUsers = '$leader'";
-        $resultid = $db->query($id);
-        echo $id;
-        echo $id2;
+        $sql2 = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
+        $sql3 = "SELECT idUsers FROM Users WHERE idUsers = '$leader'";
+        $resultId = $db->query($sql2);
 
-        if (!$resultid) {
+        if (!$resultId) {
             echo '<script type="text/javascript">alert("Wrong id");</script>';
 
         } else {
-            while ($row = mysqli_fetch_assoc($resultid)) {
-                $resultid2 = $db->query($id2);
-                $id4 = $row['idNewemployee'];
-                $test = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id4' ";
-                $testresult = $db->query($test);
-                if (!$resultid2) {
+            while ($row = mysqli_fetch_assoc($resultId)) {
+                $resultId2 = $db->query($sql3);
+                $idNewemployee = $row['idNewemployee'];
+                $sql4 = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$idNewemployee' ";
+                $testresult = $db->query($sql4);
+                if (!$resultId2) {
                     echo '<script type="text/javascript">alert("User and id dont match");</script>';
                 } else {
+                    while ($row = mysqli_fetch_assoc($resultId2)) {
+                        $idUsers = $row['idUsers'];
 
-                    if ($db->affected_rows == 1) {
-                        echo '<script type="text/javascript">alert("Employee has already a leader edit leader instead");</script>';
-                    } else {
+                        $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$idUsers', '$idNewemployee') ";
+                        $res = mysqli_query($db, $query);
+                        if (!$res) {
 
-                        while ($row = mysqli_fetch_assoc($resultid2)) {
-                            $id3 = $row['idUsers'];
-
-                            $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
-                                VALUES ('$id3', '$id4') ";
-                            $res = mysqli_query($db, $query);
-                            if (!$res) {
-
-                            } elseif ($db->affected_rows == 0) {
-                                echo '<script type="text/javascript">alert("Something failed");</script>';
-                            } else {
-                                echo '<script type="text/javascript">alert("Leader assigned");</script>';
-                            }
+                        } elseif ($db->affected_rows == 0) {
+                            echo '<script type="text/javascript">alert("Something failed");</script>';
+                        } else {
+                            echo '<script type="text/javascript">alert("Leader assigned");</script>';
                         }
                     }
-
                 }
-
             }
         }
     }
@@ -628,7 +609,7 @@ function hrSelect()
 {
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR'") or die(mysqli_error());
-    echo "<select name=\"responsibleHr\" class=\"field comment-alerts\">";
+    echo "<select name=\"hrSelect\" class=\"field comment-alerts\">";
     echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
@@ -644,59 +625,48 @@ function hrSelect()
 }
 
 function addHr()
-{
-    global $db, $username, $errors;
+{global $db, $username, $errors;
     $employee = e($_POST['empname']);
-    $leader = e($_POST['leaderSelect']);
-    $user_check = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
-    $result = $db->query($user_check);
+    $hr = e($_POST['hrSelect']);
+    $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
+    $result = $db->query($sql);
     $user = mysqli_fetch_assoc($result);
     if (!$user) {
         echo '<script type="text/javascript">alert("Not a user");</script>';
-        echo $user_check;
+        echo $sql;
         array_push($errors, "Not a user");
     } else {
-        $id = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
-        $id2 = "SELECT idUsers FROM Users WHERE idUsers = '$leader'";
-        $resultid = $db->query($id);
-        echo $id;
-        echo $id2;
+        $sql2 = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
+        $sql3 = "SELECT idUsers FROM Users WHERE idUsers = '$hr'";
+        $resultId = $db->query($sql2);
 
-        if (!$resultid) {
+        if (!$resultId) {
             echo '<script type="text/javascript">alert("Wrong id");</script>';
 
         } else {
-            while ($row = mysqli_fetch_assoc($resultid)) {
-                $resultid2 = $db->query($id2);
-                $id4 = $row['idNewemployee'];
-                $test = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id4' ";
-                $testresult = $db->query($test);
-                if (!$resultid2) {
+            while ($row = mysqli_fetch_assoc($resultId)) {
+                $resultId2 = $db->query($sql3);
+                $idNewemployee = $row['idNewemployee'];
+                $sql4 = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$idNewemployee' ";
+                $testresult = $db->query($sql4);
+                if (!$resultId2) {
                     echo '<script type="text/javascript">alert("User and id dont match");</script>';
                 } else {
+                    while ($row = mysqli_fetch_assoc($resultId2)) {
+                        $idUsers = $row['idUsers'];
 
-                    if ($db->affected_rows == 1) {
-                        echo '<script type="text/javascript">alert("Employee has already a leader edit leader instead");</script>';
-                    } else {
+                        $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$idUsers', '$idNewemployee') ";
+                        $res = mysqli_query($db, $query);
+                        if (!$res) {
 
-                        while ($row = mysqli_fetch_assoc($resultid2)) {
-                            $id3 = $row['idUsers'];
-
-                            $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
-                                VALUES ('$id3', '$id4') ";
-                            $res = mysqli_query($db, $query);
-                            if (!$res) {
-
-                            } elseif ($db->affected_rows == 0) {
-                                echo '<script type="text/javascript">alert("Something failed");</script>';
-                            } else {
-                                echo '<script type="text/javascript">alert("Leader assigned");</script>';
-                            }
+                        } elseif ($db->affected_rows == 0) {
+                            echo '<script type="text/javascript">alert("Something failed");</script>';
+                        } else {
+                            echo '<script type="text/javascript">alert("HR-employee assigned");</script>';
                         }
                     }
-
                 }
-
             }
         }
     }

@@ -398,7 +398,7 @@ if (!admin()){
 
                                 </div>
                                  <div class="tilsatt">
-                                     <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/logout.php'">Logout</button>
+                                     <button class="btn btn-cancel" type="button" onclick="window.location='../HR-Portal/DBconnections/logout.php'">Logout</button>
                                  </div>
 
                          </div><!-- </div> --> <!-- END: innholdskolonne -->

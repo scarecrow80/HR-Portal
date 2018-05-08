@@ -86,7 +86,9 @@ include "leader_session.php"; ?>
                                                     <table>
                                                         <tr class="input-group">
                                                             <td>Ny ansatt: </td>
-                                                            <td><?php employeeSelect(); ?></td>
+                                                            <td>
+                                                                <?php employeeSelect(); ?>
+                                                            </td>
                                                         </tr>
 
                                                         <tr class="input-group">

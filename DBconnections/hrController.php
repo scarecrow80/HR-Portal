@@ -8,8 +8,8 @@ function overviewHr(){
     if(!$db){
         die("Feil i databasetilkobling:".$db->connect_error);
     }
-    //$userId = $_SESSION;
-    $qry =  "SELECT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee WHERE Users_has_Newemployee.Users_idUsers = 20";
+    $userId = $_SESSION['user']['idUsers'];
+    $qry =  "SELECT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee WHERE Users_has_Newemployee.Users_idUsers = $userId";
     $res = mysqli_query($db, $qry);
     if(!$res){
         echo '<script type="text/javascript">alert("Query failed");</script>';

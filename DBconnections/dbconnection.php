@@ -45,15 +45,15 @@ $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
                 } else if ($logged_in_user['usertype'] == 'leader') {
                     $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success'] = "Logged in";
-                    header('location: ../HR-Portal/leader.php');
+                    header('location: ../HR-Portal/leader/leader_overview.php');
                 } else if ($logged_in_user['usertype'] == 'mentor') {
-                    $_SESSION['user'] = $logged_in_user['username'];
+                    $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success'] = "Logged in getting you to list";
                     header('location: ../HR-Portal/mentor.php');
                 } else {
                     $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success'] = "Logged in getting you to list";
-                    header('location: ../HR-Portal/hrDepartment.php');
+                    header('location: ../HR-Portal/HR/hr_overview.php');
                 }
 
             } else {
@@ -158,7 +158,7 @@ $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
 //fadder cant login to some place
     function fadder()
     {
-        if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'fadder') {
+        if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'mentor') {
             return true;
         } else {
             return false;

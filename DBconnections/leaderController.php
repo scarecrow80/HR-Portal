@@ -423,7 +423,7 @@ function updateMentor()
 }
 
 //adds a mentor to the newemployee
-function addmentor()
+function addMentor()
 {
     global $db, $username, $errors;
     $employee = e($_POST['empname']);
@@ -438,24 +438,24 @@ function addmentor()
     } else {
         $sql2 = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
         $sql3 = "SELECT idUsers FROM Users WHERE idUsers = '$mentor'";
-        $resultid = $db->query($sql2);
+        $resultId = $db->query($sql2);
 
-        if (!$resultid) {
+        if (!$resultId) {
             echo '<script type="text/javascript">alert("Wrong id");</script>';
 
         } else {
-            while ($row = mysqli_fetch_assoc($resultid)) {
-                $resultid2 = $db->query($sql3);
+            while ($row = mysqli_fetch_assoc($resultId)) {
+                $resultId2 = $db->query($sql3);
                 $idNewemployee = $row['idNewemployee'];
                 $sql4 = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$idNewemployee' ";
                 $testresult = $db->query($sql4);
-                if (!$resultid2) {
+                if (!$resultId2) {
                     echo '<script type="text/javascript">alert("User and id dont match");</script>';
                 } else {
                     while ($row = mysqli_fetch_assoc($resultid2)) {
                         $idUsers = $row['idUsers'];
 
-                        $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                            $query = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
                                 VALUES ('$idUsers', '$idNewemployee') ";
                         $res = mysqli_query($db, $query);
                         if (!$res) {
@@ -492,7 +492,8 @@ function leaderSelect()
 }
 
 function addLeader()
-{global $db, $username, $errors;
+{
+    global $db, $username, $errors;
     $employee = e($_POST['empname']);
     $leader = e($_POST['leaderSelect']);
     $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
@@ -575,8 +576,8 @@ function updateLeader()
                             echo "something";
                         } else {
                             while ($row2 = mysqli_fetch_assoc($resulta)) {
-                                $haha = $row2['Users_idUsers'];
-                                if ($haha == $id3) {
+                                $Userid = $row2['Users_idUsers'];
+                                if ($Userid == $id3) {
                                     echo '<script type="text/javascript">alert("same leader error");</script>';
                                 }
                                 else {
@@ -625,7 +626,8 @@ function hrSelect()
 }
 
 function addHr()
-{global $db, $username, $errors;
+{
+    global $db, $username, $errors;
     $employee = e($_POST['empname']);
     $hr = e($_POST['hrSelect']);
     $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";

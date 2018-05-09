@@ -81,7 +81,24 @@ include "admin_session.php";
                         <div id="firstGrid">		<!-- <div class="venstrekolonne"> -->
                             <!-- </div> --> <!-- END: venstrekolonne -->		<!-- <div class="hoyrekolonne"> -->
                             <!-- </div> --> <!-- END: hoyrekolonne -->
+                            <script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
                             <div style="flot:left;clear:both;">
+                                <script>
+                                    YUI().use("aui-toggler", function(a) {
+                                        new a.TogglerDelegate({
+                                            animated: true,
+                                            closeAllOnExpand: true,
+                                            container: ".article-toggle",
+                                            content: ".toggler-content",
+                                            expanded: false,
+                                            header: ".toggler-header",
+                                            transition: {
+                                                duration: 0.2,
+                                                easing: "cubic-bezier(0, 0.1, 0, 1)"
+                                            }
+                                        })
+                                    });
+                                </script>
 
                                 <div id="delete" class="page tilsatt">
                                     <p>Søk opp ansatte og slett gamle sjekklister</p>
@@ -91,10 +108,29 @@ include "admin_session.php";
                                         </tr>
                                         <button type="submit" class="btn btn-primary" name="searchFor" >Søk</button>
                                     </form>
+                                    <form action='' method='post'>
+                                    <section class='section section-events article-toggle' role='region' >
+                                        <script>
+                                            function actRad(id) {
+                                                document.getElementById(id).checked = true;
+                                            }
+
+                                            $("#r11").on("click", function() {
+                                                $(this)
+                                                    .parent()
+                                                    .find("article")
+                                                    .trigger("click");
+                                            });
+                                        </script>
                                     <?php searchForEmployee() ?>
 
                                     <?php deleteEmployee() ?>
+
+                                    </section>
+                                       <button type='submit' class='btn btn-primary' name='DeleteEmployee' >Slett ansatt</button>
+                                    </form>";
                                 </div>
+
                                 <!-- END: section -->
 
 

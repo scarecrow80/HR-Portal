@@ -172,10 +172,9 @@ function createChecklist()
     if (empty($workposition)) {
         array_push($errors, "write the workposition");
     }
-    //add user and cryptate the password in md5 cryption
+
     if (count($errors) == 0) {
-        //$salt = random_bytes(10).$password_first;
-        //$password= hash('sha512', $password_first);
+
 
         $query = "INSERT INTO Newemployee (firstname, lastname, workposition , international, startdate) 
               VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
@@ -186,9 +185,9 @@ function createChecklist()
 
 
         if (!$result) {
-            echo "Wrong in the script";
+            echo '<script type="text/javascript">alert("Feil"); </script>';
         } elseif ($db->affected_rows == 0) {
-            echo "The script worked, but the user wasn't added";
+            echo '<script type="text/javascript">alert("Fungerte, men kjørte ikke"); </script>';
         } elseif ($db->affected_rows > 0) {
             $i = 0;
             if ($workposition == "Ansatt" && $international == "Nei") {
@@ -215,14 +214,14 @@ function createChecklist()
 
                     if (!$res2) {
 
-                        echo '<script type="text/javascript">alert("Wrong in the script 1");</script>';
+                        echo '<script type="text/javascript">alert("Scriptet feilet");</script>';
 
                     } elseif ($db->affected_rows == 0) {
-                        echo '<script type="text/javascript">alert("The list wasnt added, but the script worked");</script>';
+                        echo '<script type="text/javascript">alert("Scriptet fungerte, men kunne ikke gjøre oppgaven");</script>';
 
                     } else {
                         if ($i == ($num_rows - 1)) {
-                            echo '<script type="text/javascript">alert("This worked as a normal ansatt");</script>';
+                            echo '<script type="text/javascript">alert("Sjekkliste laget for vanlig nyansatt");</script>';
                         }
                         $i++;
                     }
@@ -252,12 +251,12 @@ function createChecklist()
 
                     if (!$res2) {
                         echo $query2;
-                        echo '<script type="text/javascript">alert("Another wrong in the script 2");</script>';
+                        echo '<script type="text/javascript">alert("Scriptet fungerte ikke");</script>';
                     } elseif ($db->affected_rows == 0) {
-                        echo '<script type="text/javascript">alert("List wasnt added, but the script worked");</script>';
+                        echo '<script type="text/javascript">alert("Scriptet ble utført, men kunne ikke gjøre oppgaven ");</script>';
                     } else {
                         if ( $i == ( $num_rows - 1 ) ) {
-                            echo '<script type="text/javascript">alert("An international worker was addded");</script>';
+                            echo '<script type="text/javascript">alert("Sjekkliste laget for en internasjonal nyansatt");</script>';
                         }
 
                     }
@@ -286,12 +285,12 @@ function createChecklist()
 
                     if (!$res2 ||  !$res3 || !$res4 || !$res5) {
                         echo $query2;
-                        echo '<script type="text/javascript">alert("Script wrong");</script>';
+                        echo '<script type="text/javascript">alert("Scriptet er feil");</script>';
                     } elseif ($db->affected_rows == 0) {
-                        echo '<script type="text/javascript">alert("The list wasnt added, but the script worked");</script>';
+                        echo '<script type="text/javascript">alert("Sjekklisten fikk ikke til å sette inn leder");</script>';
                     } else {
                         if ( $i == ( $num_rows - 1 ) ) {
-                            echo '<script type="text/javascript">alert("A norwegian leader was added");</script>';
+                            echo '<script type="text/javascript">alert("Sjekkliste laget for en ny leder");</script>';
                         }
                     }
                     $i++; }
@@ -320,12 +319,12 @@ function createChecklist()
 
                     if (!$res2) {
                         echo $query2;
-                        echo '<script type="text/javascript">alert("Something wrong");</script>';
+                        echo '<script type="text/javascript">alert("Misslyket Script");</script>';
                     } elseif ($db->affected_rows == 0) {
-                        echo '<script type="text/javascript">alert("List wasnt added, but the script worked");</script>';
+                        echo '<script type="text/javascript">alert("Scriptet ble kjørt, men fikk ikke lagt til");</script>';
                     } else {
                         if ($i == ($num_rows - 1)) {
-                            echo '<script type="text/javascript">alert("International leader added");</script>';
+                            echo '<script type="text/javascript">alert("Sjekkliste laget for en internasjonal nyleder");</script>';
                         }
                     }
 

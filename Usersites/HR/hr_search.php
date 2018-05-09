@@ -93,7 +93,7 @@ include "hr_session.php";
                                             </tr>
                                             <button type="submit" class="btn btn-primary" name="searcF" >Søk</button>
                                         </form>
-                                        <?php searchEmployee() ?>
+                                        <?php //searchEmployee() ?>
 
                                     </div>
                                     <div id="overview" class="page tilsatt">

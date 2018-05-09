@@ -6,30 +6,14 @@ include "hr_session.php";
 
 <html itemscope itemtype="http://schema.org/Article" xmlns="http://www.w3.org/1999/xhtml" xml:lang="nb" lang="nb">
 <head>
+
     <title>OsloMet - Mine oppgaver</title>
     <?php
     include_once "../../Elements/Metaheads.php";
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
-    <script>
-        YUI().use('aui-toggler',
-            function(Y) {
-                new Y.TogglerDelegate({
-                    animated: true,
-                    closeAllOnExpand: true,
-                    container: "#test",
-                    content: ".toggler-content",
-                    expanded: false,
-                    header: ".toggler-header",
-                    transition: {
-                        duration: 0.2,
-                        easing: "cubic-bezier(0, 0.1, 0.1)"
-                    }
-                }).render();
-            });
-    </script>
+
 </head>
 
 <!-- Complete page area: START -->
@@ -82,32 +66,66 @@ include "hr_session.php";
                         <!-- <a id="nonav3" class="hiddenTxt" name="nonav3"></a> Hva gjør denne?-->
                         <!-- <div class="innholdskolonne"> -->
                         <div id="firstGrid">
+                            <script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
                             <div style="flot:left;clear:both;">
+
+                                <script>
+                                    YUI().use("aui-toggler", function(a) {
+                                        new a.TogglerDelegate({
+                                            animated: true,
+                                            closeAllOnExpand: true,
+                                            container: ".article-toggle",
+                                            content: ".toggler-content",
+                                            expanded: false,
+                                            header: ".toggler-header",
+                                            transition: {
+                                                duration: 0.2,
+                                                easing: "cubic-bezier(0, 0.1, 0, 1)"
+                                            }
+                                        })
+                                    });
+                                </script>
 
                                     <div id="overview" class="page tilsatt">
 
-                                        <p>Søk opp ansatte</p>
+                                        <p>Søk opp ansatte:</p>
                                         <form action="" method="post">
                                             <tr class="input-group">
                                                 <td><input type="text" name="searchFr" class="field comment-alerts" ></td>
                                             </tr>
                                             <button type="submit" class="btn btn-primary" name="searcF" >Søk</button>
                                         </form>
-                                        <?php //searchEmployee() ?>
+                                        <div>
+                                        <section class="section section-events article-toggle" role="region">
 
+
+                                        <?php searchEmployee() ?>
+
+
+                                        </section></div>
                                     </div>
-                                    <div id="overview" class="page tilsatt">
+                                <div id="overview" class="page tilsatt">
 
-                                        <p>Søk opp om ansatte har fadder</p>
-                                        <form action="" method="post">
-                                            <tr class="input-group">
-                                                <td><input type="text" name="searchForConnected" class="field comment-alerts" ></td>
-                                            </tr>
-                                            <button type="submit" class="btn btn-primary" name="searchConnected" >Søk</button>
-                                        </form>
-                                        <?php searchEmployeeConnected() ?>
+                                    <p>Søk opp om ansatte har tilknytning:</p>
+                                    <form action="" method="post">
+                                        <tr class="input-group">
+                                            <td><input type="text" name="searchForConnected" class="field comment-alerts" ></td>
+                                        </tr>
+                                        <tr class="input-group">
+                                            <td>
+                                                <select type="text" name="searchConnectedUser" class="field comment-alerts" required >
+                                                    <option value=""></option>
+                                                    <option value="leader">Leder</option>
+                                                    <option value="mentor">Fadder</option>
+                                                    <option value="HR">HR-ansatt</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <button type="submit" class="btn btn-primary" name="searchConnected" >Søk</button>
+                                    </form>
+                                    <?php searchEmployeeConnected() ?>
 
-                                    </div>
+                                </div>
                                 </div>
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
                         </div> <!-- END: section -->

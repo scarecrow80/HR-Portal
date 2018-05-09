@@ -59,7 +59,7 @@ if (!isLoggedIN()){
                 <div id="navcontainer" class="fullsizeBlock">
 
                     <ul id="topMenu">
-                        <li><a href="mentor_overvieweng.php">EnglishTODO</a></li>
+                        <li><a href="mentor_overvieweng.php">English</a></li>
                         <li class=" " id="fyzs_" role="presentation">
                             <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logg ut"> <span class="nav-item-label" style="cursor: pointer"> Logg ut</span> </a>
                         </li>

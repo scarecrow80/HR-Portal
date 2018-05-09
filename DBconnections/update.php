@@ -16,7 +16,7 @@ if(!isset($_POST['formList'])){
         header('location: ../Usersites/mentor/mentor_overview.php');
     } else {
         echo "<script>alert('En kritisk feil skjedde! Du blir sendt tilbake til innlogging')</script>";
-        header('location: ../index.php');
+        header('location: ../DBconnections/logout.php');
     }
 } else {
     if($usertype == "leader"){
@@ -31,7 +31,7 @@ if(!isset($_POST['formList'])){
         header('location: ../Usersites/mentor/mentor_overview.php');
     } else {
         echo "<script>alert('En kritisk feil skjedde! Du blir sendt tilbake til innlogging')</script>";
-        header('location: ../../index.php');
+        header('location: ../DBconnections/logout.php');
     }
 
 }

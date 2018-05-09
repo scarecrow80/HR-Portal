@@ -108,27 +108,11 @@ include "admin_session.php";
                                         </tr>
                                         <button type="submit" class="btn btn-primary" name="searchFor" >Søk</button>
                                     </form>
-                                    <form action='' method='post'>
-                                    <section class='section section-events article-toggle' role='region' >
-                                        <script>
-                                            function actRad(id) {
-                                                document.getElementById(id).checked = true;
-                                            }
 
-                                            $("#r11").on("click", function() {
-                                                $(this)
-                                                    .parent()
-                                                    .find("article")
-                                                    .trigger("click");
-                                            });
-                                        </script>
                                     <?php searchForEmployee() ?>
 
                                     <?php deleteEmployee() ?>
 
-                                    </section>
-                                       <button type='submit' class='btn btn-primary' name='DeleteEmployee' >Slett ansatt</button>
-                                    </form>";
                                 </div>
 
                                 <!-- END: section -->

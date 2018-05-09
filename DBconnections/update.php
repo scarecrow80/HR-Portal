@@ -15,7 +15,7 @@ if(!isset($_POST['formList'])){
         echo "<script type=\"text/javascript\">alert('En må velge en sjekkboks');</script>";
         header('location: ../Usersites/mentor/mentor_overview.php');
     } else {
-        echo "<script type=\"text/javascript\">alert('En kritisk feil!');</script>";
+        echo "<script>alert('En kritisk feil skjedde! Du blir sendt tilbake til innlogging')</script>";
         header('location: ../index.php');
     }
 } else {
@@ -42,8 +42,9 @@ function update(){
         die("Feil i databasetilkobling:".$db->connect_error);
     }
 
-    $count  = count($alist);
+
     $alist = $_POST['formList'];
+    $count  = count($alist);
 
     for($i=0; $i < $count; $i++) {
             $exp = explode(" ", $alist[$i]);
@@ -56,16 +57,16 @@ function update(){
             settype($checked, "string");
 
             echo "Checked = " . $checked . "<br/>";
-            echo " Employee id = " . $emp . "<br/>";
+            echo "Employee id = " . $emp . "<br/>";
             echo "Checked id = " . $checkid . "<br/><br/>";
             if ($checked == 0) {
                 $query = "UPDATE Newemployee_has_Checklist SET checked = 1 WHERE Newemployee_idNewemployee = '$emp' AND Checklist_idChecklist ='$checkid'";
                 $result = mysqli_query($db, $query);
 
                 if (!$result) {
-                    echo '<script type="text/javascript">alert("Tomt Resultat");</script>';
+                    Echo "<script type=\"text/javascript\">alert('Den er tom!');</script>";
                 } else {
-                    echo '<script type="text/javascript">alert("Den gikk igjennom");</script>';
+                    //echo "<script type=\"text/javascript\">alert('Den gikk igjennom!');</script>";
                 }
             } else {
                 if ($checked == 1) {

@@ -55,7 +55,7 @@ function overviewHr(){
                 $article.='" />';
 
             } else{
-                $article.='<input type="checkbox" class="checkbox" checked value="1"';
+                $article.='<input type="checkbox" class="checkbox" checked value=""';
                 $article.='" name="formList[]">';
 
             }

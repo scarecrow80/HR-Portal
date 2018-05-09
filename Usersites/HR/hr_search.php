@@ -6,30 +6,14 @@ include "hr_session.php";
 
 <html itemscope itemtype="http://schema.org/Article" xmlns="http://www.w3.org/1999/xhtml" xml:lang="nb" lang="nb">
 <head>
+
     <title>OsloMet - Mine oppgaver</title>
     <?php
     include_once "../../Elements/Metaheads.php";
     ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
-    <script>
-        YUI().use('aui-toggler',
-            function(Y) {
-                new Y.TogglerDelegate({
-                    animated: true,
-                    closeAllOnExpand: true,
-                    container: "#test",
-                    content: ".toggler-content",
-                    expanded: false,
-                    header: ".toggler-header",
-                    transition: {
-                        duration: 0.2,
-                        easing: "cubic-bezier(0, 0.1, 0.1)"
-                    }
-                }).render();
-            });
-    </script>
+
 </head>
 
 <!-- Complete page area: START -->

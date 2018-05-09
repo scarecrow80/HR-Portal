@@ -5,17 +5,17 @@ $usertype = $_SESSION['user']['usertype'];
 
 if(!isset($_POST['formList'])){
     if($usertype == "leader"){
-        echo "<script>alert('En må velge en sjekkboks')</script>";
+        echo "<script type=\"text/javascript\">alert('En må velge en sjekkboks');</script>";
         header('location: ../Usersites/leader/leader_owntasks.php');
     } elseif ($usertype == "HR"){
-        echo "<script>alert('En må velge en sjekkboks')</script>";
+        echo "<script type=\"text/javascript\">alert('En må velge en sjekkboks');</script>";
         header('location: ../Usersites/HR/hr_owntasks.php');
 
     }elseif($usertype == "mentor"){
-        echo "<script>alert('En må velge en sjekkboks')</script>";
+        echo "<script type=\"text/javascript\">alert('En må velge en sjekkboks');</script>";
         header('location: ../Usersites/mentor/mentor_overview.php');
     } else {
-        echo "<script>alert('En kritisk feil skjedde! Du blir sendt tilbake til innlogging')</script>";
+        echo "<script type=\"text/javascript\">alert('En kritisk feil!');</script>";
         header('location: ../index.php');
     }
 } else {
@@ -63,9 +63,9 @@ function update(){
                 $result = mysqli_query($db, $query);
 
                 if (!$result) {
-                    Echo "Res er tom";
+                    echo '<script type="text/javascript">alert("Tomt Resultat");</script>';
                 } else {
-                    echo "Den gikk igjennom!";
+                    echo '<script type="text/javascript">alert("Den gikk igjennom");</script>';
                 }
             } else {
                 if ($checked == 1) {

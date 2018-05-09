@@ -41,16 +41,13 @@ function overviewHr(){
             $res3 =  mysqli_query($db, $qry3);
             $res4 = mysqli_fetch_assoc($res3);
 
-            $article.='
-                                             <tr>
-                                             <td>';
+            $article.=' <tr><td>';
             $article.=" ".$res4['checkpointsNO']." ";
-            $id_check=$res4['idChecklist'];
+
             $article.='</td>';
             $article.='<td height="30px" >';
             if($checked == 0){
                 $article.='<input type="checkbox" class="checkbox" name="formList[]"';
-               // $article.=$emp_id;
                 $article.='" value="';
                 $article.=$checked." ".$emp_id." " .$check_id;
                 $article.='" id="';
@@ -58,19 +55,13 @@ function overviewHr(){
                 $article.='" />';
 
             } else{
-                $article.='<input type="checkbox" class="checkbox" checked value="2"';
-
-                //$article.=$checked;
-
+                $article .= '<input type="checkbox" class="checkbox" name="empty" checked   onclick="return false;" onkeydown="e = e || window.event; if(e.keyCode !== 9) return false;"';
                 $article.='" name="formList[]">';
 
             }
-
-            $article.='</td>
-                                            </tr>';
+             $article.='</td></tr>';
 
         }
-
         $article.= '</table><br/><button type="submit" class="btn btn-primary">Oppdater</button></form></div></article>';
         echo $article;
 

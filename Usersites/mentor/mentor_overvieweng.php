@@ -16,7 +16,8 @@ if (!isLoggedIN()){
     <meta property="og:image" content="../../img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - Fadder</title>
+    <title>OsloMet - Mentor</title>
+
 
     <?php
     include_once "../../Elements/Metaheads.php";
@@ -40,12 +41,12 @@ if (!isLoggedIN()){
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="mentor_overvieweng.php">English</a>
+        <a href="mentor_overview.php">Norsk</a>
 
         <div id="mobile-menu">
             <ul>
                 <li class="main-menu">
-                    <a class="list" id="" href="../../DBconnections/logout.php" role="menuitem" title="Logg ut"> <span class="nav-item-label"> Logg ut </span> </a>
+                    <a class="list" id="" href="../../DBconnections/logout.php" role="menuitem" title="Log out"> <span class="nav-item-label"> Logg ut </span> </a>
                 </li>
             </ul>
         </div>
@@ -59,7 +60,7 @@ if (!isLoggedIN()){
                 <div id="navcontainer" class="fullsizeBlock">
 
                     <ul id="topMenu">
-                        <li><a href="mentor_overvieweng.php">English</a></li>
+                        <li><a href="mentor_overview.php"/>Norsk</a></li>
                         <li class=" " id="fyzs_" role="presentation">
                             <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logg ut"> <span class="nav-item-label" style="cursor: pointer"> Logg ut</span> </a>
                         </li>
@@ -126,7 +127,7 @@ if (!isLoggedIN()){
                                         });
                                     </script>
                                     <section class="section section-events article-toggle" role="region">
-                                        <?php overviewMentor() ?>
+                                        <?php overviewMentoreng() ?>
 
                                     </section>
 

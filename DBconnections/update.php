@@ -1,21 +1,52 @@
 <?php
-$db =  mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
-if(!$db){
-    die("Feil i databasetilkobling:".$db->connect_error);
-}
+include "dbconnection.php";
+
+$usertype = $_SESSION['user']['usertype'];
 
 if(!isset($_POST['formList'])){
-    echo "Tom";
-    header('location: ../Usersites/HR/hr_owntasks.php');
+    if($usertype == "leader"){
+        echo "<script type=\"text/javascript\">alert('En må velge en sjekkboks');</script>";
+        header('location: ../Usersites/leader/leader_owntasks.php');
+    } elseif ($usertype == "HR"){
+        echo "<script type=\"text/javascript\">alert('En må velge en sjekkboks');</script>";
+        header('location: ../Usersites/HR/hr_owntasks.php');
+
+    }elseif($usertype == "mentor"){
+        echo "<script type=\"text/javascript\">alert('En må velge en sjekkboks');</script>";
+        header('location: ../Usersites/mentor/mentor_overview.php');
+    } else {
+        echo "<script>alert('En kritisk feil skjedde! Du blir sendt tilbake til innlogging')</script>";
+        header('location: ../DBconnections/logout.php');
+    }
 } else {
+    if($usertype == "leader"){
+        update();
+        header('location: ../Usersites/leader/leader_owntasks.php');
+    } elseif ($usertype == "HR"){
+        update();
+        header('location: ../Usersites/HR/hr_owntasks.php');
+
+    }elseif($usertype == "mentor" ){
+        update();
+        header('location: ../Usersites/mentor/mentor_overview.php');
+    } else {
+        echo "<script>alert('En kritisk feil skjedde! Du blir sendt tilbake til innlogging')</script>";
+        header('location: ../DBconnections/logout.php');
+    }
+
+}
+
+function update(){
+    $db =  mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
+    if(!$db){
+        die("Feil i databasetilkobling:".$db->connect_error);
+    }
+
+
     $alist = $_POST['formList'];
+    $count  = count($alist);
 
-
-        $count  = count($alist);
-
-        echo ("Du valgte $count bokser<br/>");
-        for($i=0; $i < $count; $i++) {
-            //echo($alist[$i]."<br/>");
+    for($i=0; $i < $count; $i++) {
             $exp = explode(" ", $alist[$i]);
             $checked = $exp[0];
             $emp = $exp[1];
@@ -26,24 +57,23 @@ if(!isset($_POST['formList'])){
             settype($checked, "string");
 
             echo "Checked = " . $checked . "<br/>";
-            echo " Employee id = " . $emp . "<br/>";
+            echo "Employee id = " . $emp . "<br/>";
             echo "Checked id = " . $checkid . "<br/><br/>";
             if ($checked == 0) {
                 $query = "UPDATE Newemployee_has_Checklist SET checked = 1 WHERE Newemployee_idNewemployee = '$emp' AND Checklist_idChecklist ='$checkid'";
                 $result = mysqli_query($db, $query);
 
                 if (!$result) {
-                    Echo "Res er tom";
+                    Echo "<script type=\"text/javascript\">alert('Den er tom!');</script>";
                 } else {
-                    echo "Den gikk igjennom!";
+                    //echo "<script type=\"text/javascript\">alert('Den gikk igjennom!');</script>";
                 }
             } else {
-                if ($checked == 2) {
+                if ($checked == 1) {
                     $query = "UPDATE Newemployee_has_Checklist SET checked = 0 WHERE Newemployee_idNewemployee = '$emp' AND Checklist_idChecklist ='$checkid'";
                     $result = mysqli_query($db, $query);
                 }
-
             }
-
-        }header('location: ../Usersites/HR/hr_owntasks.php');
+        }
 }
+

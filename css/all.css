@@ -12,6 +12,14 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
 	font-size:100%;
 }
 
+#colorGrey{
+	background-color: #F1F0EE;
+}
+
+#colorWhite{
+	background-color: white;
+}
+
 table {
 	border-collapse:collapse;
 	border-spacing:0;

@@ -5,7 +5,8 @@ if(!$db){
 }
 
 if(!isset($_POST['formList'])){
-    echo "Tom";
+    echo '<script type="text/javascript">alert("Tom Form");</script>';
+
     header('location: ../Usersites/HR/hr_owntasks.php');
 } else {
     $alist = $_POST['formList'];
@@ -33,9 +34,9 @@ if(!isset($_POST['formList'])){
                 $result = mysqli_query($db, $query);
 
                 if (!$result) {
-                    Echo "Res er tom";
+                    echo '<script type="text/javascript">alert("Tomt Resultat");</script>';
                 } else {
-                    echo "Den gikk igjennom!";
+                    echo '<script type="text/javascript">alert("Den gikk igjennom");</script>';
                 }
             } else {
                 if ($checked == 2) {

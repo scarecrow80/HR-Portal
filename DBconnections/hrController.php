@@ -313,7 +313,7 @@ function searchEmployee()
             $l_name = $row['lastname'];
 
 
-            $article = ' <article class="h-card vcard person-card article-contact" role="article"><h3 title="Oversikt over sjekklister"  class="toggler-header article-contact-heading"> ';
+            $article = '<article class="h-card vcard person-card article-contact" role="article" id="colorWhite"><h3 title="Oversikt over sjekklister"  class="toggler-header article-contact-heading"> ';
             $article .= $f_name . " " . $l_name . " ";
             $article .= '</h3><div class="toggler-content"><form action="" method="post"><table><tr><th>Oppgave</th><th>Sjekkboks</th></tr>';
             $qry2 = "SELECT Newemployee_idNewemployee, Checklist_idChecklist, checked FROM Newemployee_has_Checklist INNER JOIN Checklist ON idChecklist WHERE Checklist_idChecklist = idChecklist AND Newemployee_idNewemployee='$id_new'";

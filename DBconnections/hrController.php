@@ -77,13 +77,13 @@ function overviewHr(){
     }
 }
 //Serach for one or more employees
-function searchEmployee()
+function searchEmployeeConnected()
 {
-    if(isset($_POST["searcF"])) {
+    if(isset($_POST["searchConnected"])) {
         echo "<form action='' method='post'><table>";
 
         global $db, $errors;
-        $searchForEmployee = e($_POST["searchFr"]);
+        $searchForEmployee = e($_POST["searchForConnected"]);
         $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
         $result = $db->query($sql);
 

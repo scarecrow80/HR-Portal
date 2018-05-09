@@ -82,7 +82,25 @@ include "hr_session.php";
                         <!-- <a id="nonav3" class="hiddenTxt" name="nonav3"></a> Hva gjør denne?-->
                         <!-- <div class="innholdskolonne"> -->
                         <div id="firstGrid">
+                            <script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
                             <div style="flot:left;clear:both;">
+
+                                <script>
+                                    YUI().use("aui-toggler", function(a) {
+                                        new a.TogglerDelegate({
+                                            animated: true,
+                                            closeAllOnExpand: true,
+                                            container: ".article-toggle",
+                                            content: ".toggler-content",
+                                            expanded: false,
+                                            header: ".toggler-header",
+                                            transition: {
+                                                duration: 0.2,
+                                                easing: "cubic-bezier(0, 0.1, 0, 1)"
+                                            }
+                                        })
+                                    });
+                                </script>
 
                                     <div id="overview" class="page tilsatt">
 
@@ -93,8 +111,14 @@ include "hr_session.php";
                                             </tr>
                                             <button type="submit" class="btn btn-primary" name="searcF" >Søk</button>
                                         </form>
+                                        <div>
+                                        <section class="section section-events article-toggle" role="region">
+
+
                                         <?php searchEmployee() ?>
 
+
+                                        </section></div>
                                     </div>
                                 </div>
                             </div><!-- </div> --> <!-- END: innholdskolonne -->

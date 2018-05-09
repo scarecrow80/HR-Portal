@@ -18,6 +18,9 @@
     <li class=" " id="ahej_" role="presentation">
         <a class="list" href="hr_search.php" id="" role="menuitem" title="Søk"> <span class="nav-item-label"> Søk </span> </a>
     </li>
+    <li class=" " id="ahej_" role="presentation">
+        <a class="list" href="hr_createlist.php" id="" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
+    </li>
     <li class=" " id="fyzs_" role="presentation">
         <a class="list" href="hr_assign.php" id="" role="menuitem" title="Tildel ansatt"> <span class="nav-item-label"> Tildel ansatt </span> </a>
     </li>

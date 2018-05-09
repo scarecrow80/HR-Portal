@@ -282,7 +282,7 @@ function deletePoint()
 
 }
 
-function searchForEmployee()
+function searchForEmployeeTesting()
 {
     if(isset($_POST["searchFor"]))
     {
@@ -307,7 +307,7 @@ function searchForEmployee()
             $l_name = $row['lastname'];
 
 
-            $article = '<article class="h-card vcard person-card article-contact" role="article"  onclick="actRad(this.id)" id='.$id_new.' ><h3 title="Oversikt over sjekklister"  class="toggler-header article-contact-heading"><input type="radio" name="DeleteEmployeeValue" id='.$id_new.' value='.$id_new.'/> ';
+            $article = '<article class="h-card vcard person-card article-contact" role="article" onclick="actRad(this.id)" id='.$id_new.' ><h3 title="Oversikt over sjekklister"  class="toggler-header article-contact-heading"><input type="radio" name="DeleteEmployeeValue" id="deleteButton" value='.$id_new.'/> ';
             $article .= $f_name . " " . $l_name . " ";
             $article .= '</h3><div class="toggler-content"><form action="" method="post"><table><tr><th>Oppgave</th><th>Sjekkboks</th></tr>';
             $qry2 = "SELECT Newemployee_idNewemployee, Checklist_idChecklist, checked FROM Newemployee_has_Checklist INNER JOIN Checklist ON idChecklist WHERE Checklist_idChecklist = idChecklist AND Newemployee_idNewemployee='$id_new'";
@@ -363,7 +363,7 @@ function searchForEmployee()
     }
 }
 
-function searchForEmployee2()
+function searchForEmployee()
 {
     if(isset($_POST["searchFor"]))
     {

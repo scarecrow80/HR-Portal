@@ -6,7 +6,7 @@ include "hr_session.php";
 
 <html itemscope itemtype="http://schema.org/Article" xmlns="http://www.w3.org/1999/xhtml" xml:lang="nb" lang="nb">
 <head>
-    <title>OsloMet - Mine oppgaver</title>
+    <title>OsloMet - Ledr Mine oppgaver</title>
     <?php
     include_once "../../Elements/Metaheads.php";
     ?>

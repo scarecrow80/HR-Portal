@@ -10,7 +10,7 @@ include "admin_session.php";
     <meta property="og:image" content="../../img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - Fadder</title>
+    <title>OsloMet - Admin</title>
 
     <?php
     include_once "../../Elements/Metaheads.php";

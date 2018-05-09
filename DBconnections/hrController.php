@@ -55,7 +55,7 @@ function overviewHr(){
                 $article.='" />';
 
             } else{
-                $article.='<input type="checkbox" class="checkbox" checked value=""';
+                $article .= '<input type="checkbox" class="checkbox" name="empty" checked   onclick="return false;" onkeydown="e = e || window.event; if(e.keyCode !== 9) return false;"';
                 $article.='" name="formList[]">';
 
             }

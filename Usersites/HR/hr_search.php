@@ -88,42 +88,62 @@ include "hr_session.php";
 
                                     <div id="overview" class="page tilsatt">
 
-                                        <p>Søk opp ansatte:</p>
-                                        <form action="" method="post">
-                                            <tr class="input-group">
-                                                <td><input type="text" name="searchFr" class="field comment-alerts" ></td>
-                                            </tr>
-                                            <button type="submit" class="btn btn-primary" name="searcF" >Søk</button>
-                                        </form>
-                                        <div>
-                                        <section class="section section-events article-toggle" role="region">
+                                        <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                             thetitle="Søk etter ansatte:">
 
+                                            <h2>
+                                                Søk etter ansatte:
+                                            </h2>
 
-                                        <?php searchEmployee() ?>
+                                            <div class="mr_fleksi_content">
 
-
-                                        </section></div>
+                                                <p>Søk etter ansatte:</p>
+                                                <form action="" method="post">
+                                                    <tr class="input-group">
+                                                        <td><input type="text" name="searchFr" class="field comment-alerts" ></td>
+                                                    </tr>
+                                                    <button type="submit" class="btn btn-primary" name="searcF" >Søk</button>
+                                                </form>
+                                                <section class='section section-events article-toggle' role='region' id="colorGrey">
+                                                    <?php searchEmployee() ?>
+                                                </section>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 <div id="overview" class="page tilsatt">
 
-                                    <p>Søk opp om ansatte har tilknytning:</p>
-                                    <form action="" method="post">
-                                        <tr class="input-group">
-                                            <td><input type="text" name="searchForConnected" class="field comment-alerts" ></td>
-                                        </tr>
-                                        <tr class="input-group">
-                                            <td>
-                                                <select type="text" name="searchConnectedUser" class="field comment-alerts" required >
-                                                    <option value=""></option>
-                                                    <option value="leader">Leder</option>
-                                                    <option value="mentor">Fadder</option>
-                                                    <option value="HR">HR-ansatt</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <button type="submit" class="btn btn-primary" name="searchConnected" >Søk</button>
-                                    </form>
-                                    <?php searchEmployeeConnected() ?>
+                                    <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                         thetitle="Søk om ansatte har tilknytning:">
+
+                                        <h2>
+                                            Søk om ansatte har tilknytning:
+                                        </h2>
+
+                                        <div class="mr_fleksi_content">
+
+                                            <p>Søk opp om ansatte har tilknytning:</p>
+                                            <form action="" method="post">
+                                                <tr class="input-group">
+                                                    <td><input type="text" name="searchForConnected" class="field comment-alerts" ></td>
+                                                </tr>
+                                                <tr class="input-group">
+                                                    <td>
+                                                        <select type="text" name="searchConnectedUser" class="field comment-alerts" required >
+                                                            <option value=""></option>
+                                                            <option value="leader">Leder</option>
+                                                            <option value="mentor">Fadder</option>
+                                                            <option value="HR">HR-ansatt</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <button type="submit" class="btn btn-primary" name="searchConnected" >Søk</button>
+                                            </form>
+                                            <?php searchEmployeeConnected() ?>
+                                        </div>
+                                    </div>
+
+
 
                                 </div>
                                 </div>

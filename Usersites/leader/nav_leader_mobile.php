@@ -9,7 +9,7 @@
         <a class="list" id="" href="leader_createlist.php" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
     </li>
     <li class="main-menu">
-        <a class="list" id="" href="leader_assign.php" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
+        <a class="list" id="" href="leader_assign.php" role="menuitem" title="Tildel ansatt"> <span class="nav-item-label"> Tildel ansatt </span> </a>
     </li>
     <li class="main-menu">
         <a class="list" id="" href="../../DBconnections/logout.php" role="menuitem" title="Logg ut"> <span class="nav-item-label"> Logg ut </span> </a>

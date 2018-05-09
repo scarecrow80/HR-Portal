@@ -16,10 +16,10 @@
             <a class="list" href="leader_owntasks.php" role="menuitem" title="Mine oppgaver"> <span class="nav-item-label"> Mine oppgaver</span> </a>
         </li>
         <li class=" " id="ahej_" role="presentation">
-            <a class="list" href="leader_createlist.php"" id="" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
+            <a class="list" href="leader_createlist.php" id="" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
         </li>
         <li class=" " id="fyzs_" role="presentation">
-            <a class="list" href="leader_assign.php" id="" role="menuitem" title="Tildel fadder"> <span class="nav-item-label"> Tildel fadder </span> </a>
+            <a class="list" href="leader_assign.php" id="" role="menuitem" title="Tildel ansatt"> <span class="nav-item-label"> Tildel ansatt </span> </a>
         </li>
 
     </ul>

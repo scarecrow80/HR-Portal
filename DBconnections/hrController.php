@@ -79,7 +79,80 @@ function overviewHr(){
 //Serach for one or more employees
 function searchEmployeeConnected()
 {
-    if(isset($_POST["searchConnected"])) {
+    if(isset($_POST["searchConnected"]) && $_POST['searchConnectedUser'] == 'leader') {
+        echo "<form action='' method='post'><table>";
+
+        global $db, $errors;
+        $searchForEmployee = e($_POST["searchForConnected"]);
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $result = $db->query($sql);
+
+        if ($result) {
+
+
+            echo "<tr><th>Fornavn</th>";
+            echo "<th>Etternavn</th>";
+            echo "<th>Arbeidstilling</th>";
+            echo "<th>Internasjonal</th>";
+            echo "<th>Startdato</th>";
+            echo "<th>Leder</th></tr>";
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                $id = e($row['idNewemployee']);
+                $f_name = e($row["firstname"]);
+                $l_name = e($row["lastname"]);
+                $workposition = e($row["workposition"]);
+                $international = e($row["international"]);
+                $startdate = e($row["startdate"]);
+
+                $sqa = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE  Newemployee_idNewemployee = $id";
+
+                $result2 = $db->query($sqa);
+                if($result2) {
+                    if ($db->affected_rows == 0) {
+                        echo "<tr>";
+                        echo "<td>" . $f_name . "</td>";
+                        echo "<td>" . $l_name . "</td>";
+                        echo "<td>" . $workposition . "</td>";
+                        echo "<td>" . $international . "</td>";
+                        echo "<td>" . $startdate . "</td>";
+                        echo "<td>" . "Ingen Leder" . "</td>";
+                        echo "</tr>";
+
+                    } else {
+
+                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'leader' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $result3 = $db->query($sqb);
+                        if ($result3) {
+                            while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $f_name = e($row["firstname"]);
+                                $l_name = e($row["lastname"]);
+                                $workposition = e($row["workposition"]);
+                                $international = e($row["international"]);
+                                $startdate = e($row["startdate"]);
+                                $name = e($row2['firstname'] . " ". $row2['lastname']);
+                                echo "<tr>";
+                                echo "<td>" . $f_name . "</td>";
+                                echo "<td>" . $l_name . "</td>";
+                                echo "<td>" . $workposition . "</td>";
+                                echo "<td>" . $international . "</td>";
+                                echo "<td>" . $startdate . "</td>";
+                                echo "<td>" . $name . "</td>";
+                                echo "</tr>";
+                            }
+                        }
+
+
+                    }
+                }
+            }echo "</table>";
+
+        } else {
+            echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
+        }
+    }
+
+    if(isset($_POST["searchConnected"]) && $_POST['searchConnectedUser'] == 'mentor') {
         echo "<form action='' method='post'><table>";
 
         global $db, $errors;
@@ -98,7 +171,12 @@ function searchEmployeeConnected()
             echo "<th>Fadder</th></tr>";
 
             while ($row = mysqli_fetch_assoc($result)) {
-                $id = $row['idNewemployee'];
+                $id = e($row['idNewemployee']);
+                $f_name = e($row["firstname"]);
+                $l_name = e($row["lastname"]);
+                $workposition = e($row["workposition"]);
+                $international = e($row["international"]);
+                $startdate = e($row["startdate"]);
 
                 $sqa = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE  Newemployee_idNewemployee = $id";
 
@@ -106,11 +184,11 @@ function searchEmployeeConnected()
                 if($result2) {
                     if ($db->affected_rows == 0) {
                         echo "<tr>";
-                        echo "<td>" . $row["firstname"] . "</td>";
-                        echo "<td>" . $row["lastname"] . "</td>";
-                        echo "<td>" . $row["workposition"] . "</td>";
-                        echo "<td>" . $row["international"] . "</td>";
-                        echo "<td>" . $row["startdate"] . "</td>";
+                        echo "<td>" . $f_name . "</td>";
+                        echo "<td>" . $l_name . "</td>";
+                        echo "<td>" . $workposition . "</td>";
+                        echo "<td>" . $international . "</td>";
+                        echo "<td>" . $startdate . "</td>";
                         echo "<td>" . "Ingen Fadder" . "</td>";
                         echo "</tr>";
 
@@ -120,13 +198,17 @@ function searchEmployeeConnected()
                         $result3 = $db->query($sqb);
                         if ($result3) {
                             while ($row2 = mysqli_fetch_assoc($result3)) {
-                                $name = $row2['firstname'] . " ". $row2['lastname'];
+                                $f_name = e($row["firstname"]);
+                                $l_name = e($row["lastname"]);
+                                $workposition = e($row["workposition"]);
+                                $international = e($row["international"]);
+                                $name = e($row2['firstname'] . " ". $row2['lastname']);
                                 echo "<tr>";
-                                echo "<td>" . $row["firstname"] . "</td>";
-                                echo "<td>" . $row["lastname"] . "</td>";
-                                echo "<td>" . $row["workposition"] . "</td>";
-                                echo "<td>" . $row["international"] . "</td>";
-                                echo "<td>" . $row["startdate"] . "</td>";
+                                echo "<td>" . $f_name . "</td>";
+                                echo "<td>" . $l_name . "</td>";
+                                echo "<td>" . $workposition . "</td>";
+                                echo "<td>" . $international . "</td>";
+                                echo "<td>" . $startdate . "</td>";
                                 echo "<td>" . $name . "</td>";
                                 echo "</tr>";
                             }
@@ -142,10 +224,79 @@ function searchEmployeeConnected()
         }
     }
 
-}*/
-/*if (isset($_POST['searcF'])) {
-    searchEmployee();
-}*/
+    if(isset($_POST["searchConnected"]) && $_POST['searchConnectedUser'] == 'HR') {
+        echo "<form action='' method='post'><table>";
+
+        global $db, $errors;
+        $searchForEmployee = e($_POST["searchForConnected"]);
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $result = $db->query($sql);
+
+        if ($result) {
+
+
+            echo "<tr><th>Fornavn</th>";
+            echo "<th>Etternavn</th>";
+            echo "<th>Arbeidstilling</th>";
+            echo "<th>Internasjonal</th>";
+            echo "<th>Startdato</th>";
+            echo "<th>HR-ansatt</th></tr>";
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                $id = e($row['idNewemployee']);
+                $f_name = e($row["firstname"]);
+                $l_name = e($row["lastname"]);
+                $workposition = e($row["workposition"]);
+                $international = e($row["international"]);
+                $startdate = e($row["startdate"]);
+
+                $sqa = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE  Newemployee_idNewemployee = $id";
+
+                $result2 = $db->query($sqa);
+                if($result2) {
+                    if ($db->affected_rows == 0) {
+                        echo "<tr>";
+                        echo "<td>" . $f_name . "</td>";
+                        echo "<td>" . $l_name . "</td>";
+                        echo "<td>" . $workposition . "</td>";
+                        echo "<td>" . $international . "</td>";
+                        echo "<td>" . $startdate . "</td>";
+                        echo "<td>" . "Ingen HR-ansatt" . "</td>";
+                        echo "</tr>";
+
+                    } else {
+
+                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'HR' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $result3 = $db->query($sqb);
+                        if ($result3) {
+                            while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $f_name = e($row["firstname"]);
+                                $l_name = e($row["lastname"]);
+                                $workposition = e($row["workposition"]);
+                                $international = e($row["international"]);
+                                $name = e($row2['firstname'] . " ". $row2['lastname']);
+                                echo "<tr>";
+                                echo "<td>" . $f_name . "</td>";
+                                echo "<td>" . $l_name . "</td>";
+                                echo "<td>" . $workposition . "</td>";
+                                echo "<td>" . $international . "</td>";
+                                echo "<td>" . $startdate . "</td>";
+                                echo "<td>" . $name . "</td>";
+                                echo "</tr>";
+                            }
+                        }
+
+
+                    }
+                }
+            }echo "</table>";
+
+        } else {
+            echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
+        }
+    }
+
+}
 
 function searchEmployee()
 {

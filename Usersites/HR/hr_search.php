@@ -96,6 +96,18 @@ include "hr_session.php";
                                         <?php searchEmployee() ?>
 
                                     </div>
+                                    <div id="overview" class="page tilsatt">
+
+                                        <p>Søk opp om ansatte har fadder</p>
+                                        <form action="" method="post">
+                                            <tr class="input-group">
+                                                <td><input type="text" name="searchForConnected" class="field comment-alerts" ></td>
+                                            </tr>
+                                            <button type="submit" class="btn btn-primary" name="searchConnected" >Søk</button>
+                                        </form>
+                                        <?php searchEmployeeConnected() ?>
+
+                                    </div>
                                 </div>
                             </div><!-- </div> --> <!-- END: innholdskolonne -->
                         </div> <!-- END: section -->

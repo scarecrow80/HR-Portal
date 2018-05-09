@@ -64,8 +64,7 @@ function overviewAll()
 
             }
 
-            $article .= '</td>
-                                            </tr>';
+            $article .= '</td></tr>';
 
         }
         //$article.='<button type="submit">Submit</button>';
@@ -74,3 +73,4 @@ function overviewAll()
 
     }
 }
+

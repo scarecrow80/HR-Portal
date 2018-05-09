@@ -9,7 +9,7 @@ include "leader_session.php"; ?>
     <meta property="og:image" content="../img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - Oversikt</title>
+    <title>OsloMet - Leder Oversikt</title>
 
     <?php
     include_once "../../Elements/Metaheads.php";

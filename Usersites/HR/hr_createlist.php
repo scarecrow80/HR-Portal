@@ -10,7 +10,7 @@ include "hr_session.php"; ?>
 
 
 
-    <title>OsloMet - Opprett sjekkliste</title>
+    <title>OsloMet - HR Opprett sjekkliste</title>
     <?php
     include_once "../../Elements/Metaheads.php";
     ?>

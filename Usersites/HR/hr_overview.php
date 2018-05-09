@@ -7,7 +7,7 @@ include "hr_session.php";
 <html itemscope itemtype="http://schema.org/Article" xmlns="http://www.w3.org/1999/xhtml" xml:lang="nb" lang="nb">
 <head>
     <meta property="og:image" content="../img/HiOA-logo-stor-versjon.png"/>
-    <title>OsloMet - Mine oppgaver</title>
+    <title>OsloMet - HR Oversikt</title>
     <?php
     include_once "../../Elements/Metaheads.php";
     ?>

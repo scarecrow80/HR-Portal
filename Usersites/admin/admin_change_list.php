@@ -107,7 +107,7 @@ include "admin_session.php";
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Brukertype: </td>
-                                                        <td><select name="userType" class="field comment-alerts" required>
+                                                        <td><select name="userType" class="field comment-alerts" id="choose2" required>
                                                                 <option value=""></option>
                                                                 <option value="leader">Leder</option>
                                                                 <option value="HR">HR</option>
@@ -115,9 +115,9 @@ include "admin_session.php";
                                                             </select>
                                                         </td>
                                                     </tr>
-                                                    <tr class="input-group">
+                                                    <   class="input-group">
                                                         <td>Nasjonalitet: </td>
-                                                        <td><select name="nationality" class="field comment-alerts" required />
+                                                        <td><select name="nationality" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>
                                                             <option value="Norsk">Norsk</option>
                                                             <option value="Internasjonal">Internasjonal</option>
@@ -127,7 +127,7 @@ include "admin_session.php";
 
                                                     <tr class="input-group">
                                                         <td>Leder: </td>
-                                                        <td><select name="leader" class="field comment-alerts" required />
+                                                        <td><select name="leader" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>
                                                             <option value="Ja">Ja</option>
                                                             <option value="Nei">Nei</option>
@@ -155,7 +155,7 @@ include "admin_session.php";
 
                                             <p>Endre et sjekkliste punkt.</p>
                                             <form action="" method="post">
-                                                <select name="checkpoint">
+                                                <select name="checkpoint" id="choose2">
                                                     <?php selectPoint() ?>
                                                 </select>
                                                 <input type="submit" class="btn btn-primary" name="selectPoint" value="Velg sjekkpunkt" />

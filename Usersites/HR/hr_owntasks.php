@@ -87,7 +87,7 @@ include "hr_session.php";
                                     <div id="overview" class="page tilsatt">
                                         <section class="section section-events article-toggle" role="region">
                                             <?php
-                                            OverviewHR();
+                                            OverviewHr();
 
                                             ?>
                                         </section>

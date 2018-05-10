@@ -109,7 +109,6 @@ include "admin_session.php";
                                                         <td>Brukertype: </td>
                                                         <td><select name="userType" class="field comment-alerts" required>
                                                                 <option value=""></option>
-                                                                <option value="admin">Administrator</option>
                                                                 <option value="leader">Leder</option>
                                                                 <option value="HR">HR</option>
                                                                 <option value="mentor">Fadder</option>

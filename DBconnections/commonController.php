@@ -347,7 +347,7 @@ function selectMentor()
 {
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor'") or die(mysqli_error());
-    echo "<select name=\"responsibleMentor\" class=\"field comment-alerts\">";
+    echo "<select name=\"responsibleMentor\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
@@ -366,7 +366,7 @@ function selectLeader()
 {
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'leader'") or die(mysqli_error());
-    echo "<select name=\"responsibleLeader\" class=\"field comment-alerts\">";
+    echo "<select name=\"responsibleLeader\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
@@ -385,7 +385,7 @@ function selectHr()
 {
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR'") or die(mysqli_error());
-    echo "<select name=\"responsibleHr\" class=\"field comment-alerts\">";
+    echo "<select name=\"responsibleHr\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {

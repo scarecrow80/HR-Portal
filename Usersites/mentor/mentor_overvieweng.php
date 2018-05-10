@@ -153,7 +153,7 @@ if (!isLoggedIN()){
                 <?php
                 include_once "../../Elements/Footer.php";
                 ?>
-            <script type="text/javascript" src="js/all.js" charset="utf-8"></script>
+
 
 
 </body>

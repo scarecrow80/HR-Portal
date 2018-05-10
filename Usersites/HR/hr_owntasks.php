@@ -109,7 +109,7 @@ include "hr_session.php";
     ?>
 
 
-    <script type="text/javascript" src="js/all.js" charset="utf-8"></script>
+
 
 </body>
 </html>

@@ -1,0 +1,58 @@
+#search-box{
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+#search-box:focus {
+    border: 3px solid #555;
+}
+
+#input-box{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+#input-box:focus {
+    border: 3px solid #555;
+}
+
+#datePicker {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+#choose {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+#choose2 {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px 20px;
+    border-width: 2px;
+    border-radius: 4px;
+    background-color: white;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}

@@ -27,6 +27,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/bootstrap-yamm.css" />
 <link rel="stylesheet" type="text/css" href="../../css/custom.css" />
 <link rel="stylesheet" type="text/css" href="../../css/dev-custom.css" />
+<link rel="stylesheet" type="text/css" href="../../css/newStyle.css" />
 
 
 <!-- IE conditional comments; for bug fixes for different IE versions -->

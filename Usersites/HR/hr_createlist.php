@@ -79,15 +79,15 @@ include "hr_session.php"; ?>
                                                 <table>
                                                     <tr class="input-group">
                                                         <td>Fornavn: </td>
-                                                        <td><input type="text" name='firstname' class="field comment-alerts" required/> </td>
+                                                        <td><input type="text" name='firstname' class="field comment-alerts" id="input-box" required/> </td>
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Etternavn: </td>
-                                                        <td><input type="text" name="lastname" class="field comment-alerts" required/> </td>
+                                                        <td><input type="text" name="lastname" class="field comment-alerts" id="input-box" required/> </td>
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Stilling: </td>
-                                                        <td><select name="workposition" class="field comment-alerts" required />
+                                                        <td><select name="workposition" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>
                                                             <option value="Leder">Leder</option>
                                                             <option value="Ansatt">Ansatt</option>
@@ -95,7 +95,7 @@ include "hr_session.php"; ?>
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Internasjonal: </td>
-                                                        <td><select name="international" class="field comment-alerts" required>
+                                                        <td><select name="international" class="field comment-alerts" id="choose2" required>
                                                                 <option value=""></option>
                                                                 <option value="Ja">Ja</option>
                                                                 <option value="Nei">Nei</option>
@@ -103,7 +103,7 @@ include "hr_session.php"; ?>
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Ansatt dato: </td>
-                                                        <td><input type='date' name="startdate" class="field comment-alerts" required /> </td>
+                                                        <td><input type='date' name="startdate" class="field comment-alerts" id="datePicker" required /> </td>
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Velg ansvarlig leder: </td>

@@ -12,6 +12,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
 	font-size:100%;
 }
 
+
 #colorGrey{
 	background-color: #F1F0EE;
 }
@@ -66,9 +67,9 @@ abbr, acronym {
 	border:0;
 }
 
-table, tr, td{
+table, tr, td, th{
 	margin:0;
-	padding:0;
+	padding:5px;
 	border:0;
 	font-size:100%;
 	font:inherit;
@@ -3239,8 +3240,10 @@ ul#user_tags
 
 .checkbox{
 	width: 30px;
-
+    margin: 7px 3px 0px 3px;
+    padding: 5px;
 	height: 30px;
+    float: right;
 }
 
 ul#user_tags li {
@@ -5721,13 +5724,42 @@ body.article table caption {
 	display: none;
 }
 
+#tableArt{
+    border: 1px solid black;
+    border-left-width: 0;
+    border-right-width: 0;
+    color: #000;
+
+}
+#tableArt:first-child{
+    border-left-width: 1px;
+}
+#tableArt:last-child{
+    border-right-width: 1px;
+}
+
 body.article table tbody tr td
 ,body.article table tbody tr th
 {
 	border: 1px solid black;
 	color: #000;
-	font-size: 1.2em;
+	font-size: 1.7em;
 }
+/*
+body.article table tbody tr td:first-child
+,body.article table tbody tr th:first-child
+{
+    border-left-width: 1px;
+ border-left-width: 0;
+    border-right-width: 0;
+}
+body.article table tbody tr td:last-child
+,body.article table tbody tr th:last-child
+{
+    border-right-width: 1px;
+
+}
+*/
 
 body.article div.bodyText td p {
 	font-size: 1em;
@@ -7215,13 +7247,15 @@ body.width-mini div.course_plan ul
 ,body.width-mini div.section ul
  {
 	font-size: 17px !important;
+    max-width: 97%;
 	color: #282828;
 }
 body.width-mini table.default
 , body.width-mini table.default p
 , body.width-mini table tbody tr td
 {
-	font-size: 8px !important;
+	font-size: 15px !important;
+    max-width: 97%;
 }
 body.width-mini table.default tr td:first-child {
 	width: 50px;

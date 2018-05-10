@@ -42,6 +42,11 @@ body {
 .controls-visible .portlet-topper {
     display: block; }
 
+.toggler-content-wrapper {
+    overflow: hidden;
+    position: relative;
+    max-width: 85%;
+}
 .portlet-borderless-container,
 .portlet-journal-content,
 .portlet {
@@ -5309,7 +5314,9 @@ a.nav-hioa-link:hover {
     color: #277d90 !important;
     margin: 0 0 .5em -1px;
     font-size: 28px !important;
-    padding: .5em .5em .4em; }
+    padding: .5em .5em .4em;
+    max-width: 80%;
+}
 .section .toggler-header:after {
     top: 25px;
     color: #277d90 !important; }

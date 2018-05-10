@@ -84,12 +84,12 @@ include "admin_session.php";
                             <div style="flot:left;clear:both;">
 
                                 <div id="deleteUser" class="page tilsatt">
-                                    <p>Slett user</p>
+                                    <h2>Slett bruker</h2>
 
                                     <form action="" method="post">
 
                                         <tr class="input-group">
-                                            <td><input type="text" name="userSearch" class="field comment-alerts" ></td>
+                                            <td><input type="text" name="userSearch" id="search-box" class="field comment-alerts" placeholder="Søk etter bruker" ></td>
                                         </tr>
                                         <button type="submit" class="btn btn-primary" name="searchForUser" >Søk</button>
                                     </form>

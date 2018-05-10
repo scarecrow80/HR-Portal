@@ -69,3 +69,4 @@
 <!-- </div> -->
 <!-- Complete page area: END -->
 <!-- Footer script area: START --><!-- Footer script area: END -->
+<script type="text/javascript" src="../../js/all.js" charset="utf-8"></script>

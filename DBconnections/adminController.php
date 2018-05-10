@@ -141,7 +141,7 @@ function selectPoint()
     if (mysqli_num_rows($result) > 0){
 
         while($row = mysqli_fetch_assoc($result)){
-            echo '<option value="'.$row["idChecklist"].'">'.$row["checkpointsNO"].' Ansvarlig:'.$row["responsible"].', Nasjonalitet:'.$row["nationality"].', Lederstilling:'.$row["leader"].'';
+            echo '<option value="'.$row["idChecklist"].'">'.$row["checkpointsNO"].' Ansvarlig:'.$row["responsible"].', Nasjonalitet:'.$row["nationality"].', Lederstilling:'.$row["leader"].'</option>';
         }
     }
     else{

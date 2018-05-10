@@ -23,7 +23,7 @@ function overviewLeader(){
 
         $article = ' <article class="h-card vcard person-card article-contact" role="article"><h3 title="Oversikt over sjekklister"  class="toggler-header article-contact-heading"> ';
         $article.=$f_name." ".$l_name." ";
-        $article.= '</h3><div class="toggler-content"><form action="../../DBconnections/update.php" method="post"><table><tr><th>Oppgave</th><th>Sjekkboks</th></tr>';
+        $article.= '</h3><div class="toggler-content"><form action="../../DBconnections/update.php" method="post"><table><tr id="tableArt"><th id="tableArt">Mine oppgaver</th><th id="tableArt"></th></tr>';
         $qry2 = "SELECT Newemployee_idNewemployee, Checklist_idChecklist, checked FROM Newemployee_has_Checklist INNER JOIN Checklist ON idChecklist WHERE Checklist_idChecklist = idChecklist AND responsible = 'Leder' AND Newemployee_idNewemployee='$id_new'";
         $res2 = mysqli_query($db, $qry2);
 
@@ -40,11 +40,11 @@ function overviewLeader(){
             $res3 =  mysqli_query($db, $qry3);
             $res4 = mysqli_fetch_assoc($res3);
 
-            $article.='<tr><td>';
+            $article.='<tr id="tableArt"><td id="tableArt">';
             $article.=" ".$res4['checkpointsNO']." ";
 
             $article.='</td>';
-            $article.='<td height="30px" >';
+            $article.='<td height="30px"  id="tableArt">';
             if($checked == 0){
                 $article.='<input type="checkbox" class="checkbox" name="formList[]"';
                 $article.='" value="';

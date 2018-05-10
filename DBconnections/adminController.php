@@ -315,7 +315,7 @@ function searchForEmployeeTesting()
 
             $article = '<article class="h-card vcard person-card article-contact" role="article" onclick="actRad(this.id)" id='.$id_new.' ><h3 title="Oversikt over sjekklister"  class="toggler-header article-contact-heading"><input type="radio" name="DeleteEmployeeValue" id="deleteButton" value='.$id_new.'/> ';
             $article .= $f_name . " " . $l_name . " ";
-            $article .= '</h3><div class="toggler-content"><form action="" method="post"><table><tr><th>Oppgave</th><th>Sjekkboks</th></tr>';
+            $article .= '</h3><div class="toggler-content"><form action="" method="post"><table><tr id="tableArt"><th id="tableArt">Mine oppgaver</th><th id="tableArt"></th></tr>';
             $qry2 = "SELECT Newemployee_idNewemployee, Checklist_idChecklist, checked FROM Newemployee_has_Checklist INNER JOIN Checklist ON idChecklist WHERE Checklist_idChecklist = idChecklist AND Newemployee_idNewemployee='$id_new'";
             $res2 = mysqli_query($db, $qry2);
 
@@ -333,12 +333,12 @@ function searchForEmployeeTesting()
                 $res4 = mysqli_fetch_assoc($res3);
 
                 $article .= '
-                                             <tr>
-                                             <td>';
+                                             <tr id="tableArt">
+                                             <td id="tableArt">';
                 $article .= " " . $res4['checkpointsNO'] . " ";
                 $id_check = $res4['idChecklist'];
                 $article .= '</td>';
-                $article .= '<td height="30px" >';
+                $article .= '<td height="30px" id="tableArt" >';
                 if ($checked == 0) {
                     $article .= '<input type="checkbox" class="checkbox" name="';
                     $article .= $emp_id;

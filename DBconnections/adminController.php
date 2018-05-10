@@ -99,6 +99,7 @@ if (isset($_POST['register'])){
 function pointlist()
 {
     global $db, $errors;
+    mysqli_autocommit($db, false);
     $newPointNo = e($_POST['newPointNo']);
     $newPointEn = e($_POST['newPointEn']);
     $userType = e($_POST['userType']);
@@ -124,6 +125,7 @@ function pointlist()
             } elseif ($db->affected_rows == 0) {
                 echo '<script type="text/javascript">alert("Something failed");</script>';
             } else {
+                mysqli_commit($db);
                 echo '<script type="text/javascript">alert("Point added");</script>';
             }
         }
@@ -178,6 +180,7 @@ function changePoint()
     if(isset($_POST["changingPoint"]))
     {
         global $db, $errors;
+        mysqli_autocommit($db, false);
         $checkpointId2 = e($_POST["checkPointId"]);
         $newPointNO = e($_POST["newPointNO"]);
         $newPointEN = e($_POST["newPointEN"]);
@@ -196,6 +199,7 @@ function changePoint()
 
                 if(mysqli_affected_rows($db) > 0){
 
+                    mysqli_commit($db);
                     echo '<script type="text/javascript">alert("The checkpoint is altered");</script>';
                 }
                 else{
@@ -253,6 +257,7 @@ function deletePoint()
     if(isset($_POST["Delete"])) {
 
         global $db, $errors;
+        mysqli_autocommit($db, false);
         $checkpointId = e($_POST["DeletePoint"]);
         $sql = "DELETE FROM Checklist WHERE idChecklist = '".$checkpointId."'";
         $sql2 = "DELETE FROM Newemployee_has_Checklist WHERE Checklist_idChecklist = '".$checkpointId."'";
@@ -278,6 +283,7 @@ function deletePoint()
                 echo '<script type="text/javascript">alert("Finner ikke slettepunktet");</script>';
             }
         }
+        mysqli_commit($db);
     }
 
 }
@@ -410,6 +416,7 @@ function deleteEmployee()
     if(isset($_POST["DeleteEmployee"])) {
 
         global $db, $errors;
+        mysqli_autocommit($db, false);
         $idNewemployee2 = e($_POST["DeleteEmployeeValue"]);
 
         $sql = "DELETE FROM Newemployee WHERE idNewemployee = '".$idNewemployee2."'";
@@ -447,6 +454,7 @@ function deleteEmployee()
                 echo '<script type="text/javascript">alert("Finner ikke Users_has_Newemployee");</script>';
             }
         }
+        mysqli_commit($db);
     }
 }
 
@@ -496,6 +504,7 @@ function deleteUser()
     if(isset($_POST["DeleteUser"])) {
 
         global $db, $errors;
+        mysqli_autocommit($db, false);
         $idUsers2 = e($_POST["DeleteUserValue"]);
 
         $sql = "DELETE FROM Users WHERE idUsers = '".$idUsers2."'";
@@ -524,5 +533,6 @@ function deleteUser()
                 echo '<script type="text/javascript">alert("Finner ikke Users_has_Newemployee");</script>';
             }
         }
+        mysqli_commit($db);
     }
 }

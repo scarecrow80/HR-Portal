@@ -153,7 +153,9 @@ function overviewAllENG()
 
 function createChecklist()
 {
+
     global $db, $errors;
+    mysqli_autocommit($db, false);
     $firstname = e($_POST['firstname']);
     $lastname = e($_POST['lastname']);
     $workposition = e($_POST['workposition']);
@@ -221,6 +223,7 @@ function createChecklist()
 
                     } else {
                         if ($i == ($num_rows - 1)) {
+                            mysqli_commit($db);
                             echo '<script type="text/javascript">alert("Sjekkliste laget for vanlig nyansatt");</script>';
                         }
                         $i++;
@@ -256,6 +259,7 @@ function createChecklist()
                         echo '<script type="text/javascript">alert("Scriptet ble utført, men kunne ikke gjøre oppgaven ");</script>';
                     } else {
                         if ( $i == ( $num_rows - 1 ) ) {
+                            mysqli_commit($db);
                             echo '<script type="text/javascript">alert("Sjekkliste laget for en internasjonal nyansatt");</script>';
                         }
 
@@ -283,13 +287,14 @@ function createChecklist()
                     $res4 = mysqli_query($db, $query4);
                     $res5 = mysqli_query($db, $query5);
 
-                    if (!$res2 ||  !$res3 || !$res4 || !$res5) {
+                    if (!$res2) {
                         echo $query2;
                         echo '<script type="text/javascript">alert("Scriptet er feil");</script>';
                     } elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("Sjekklisten fikk ikke til å sette inn leder");</script>';
                     } else {
                         if ( $i == ( $num_rows - 1 ) ) {
+                            mysqli_commit($db);
                             echo '<script type="text/javascript">alert("Sjekkliste laget for en ny leder");</script>';
                         }
                     }
@@ -320,12 +325,16 @@ function createChecklist()
                     if (!$res2) {
                         echo $query2;
                         echo '<script type="text/javascript">alert("Misslyket Script");</script>';
-                    } elseif ($db->affected_rows == 0) {
+                    }
+                    elseif ($db->affected_rows == 0) {
                         echo '<script type="text/javascript">alert("Scriptet ble kjørt, men fikk ikke lagt til");</script>';
-                    } else {
+                    }
+                    else {
                         if ($i == ($num_rows - 1)) {
+                            mysqli_commit($db);
                             echo '<script type="text/javascript">alert("Sjekkliste laget for en internasjonal nyleder");</script>';
                         }
+
                     }
 
                     $i++;    }
@@ -469,6 +478,7 @@ function hrSelect()
 
 function addMentor()
 {
+    mysqli_autocommit($db, false);
     global $db, $username, $errors;
     $employee = e($_POST['empname']);
     $mentor = e($_POST['mentorSelect']);
@@ -507,6 +517,7 @@ function addMentor()
                         } elseif ($db->affected_rows == 0) {
                             echo '<script type="text/javascript">alert("Something failed");</script>';
                         } else {
+                            mysqli_commit($db);
                             echo '<script type="text/javascript">alert("Mentor assigned");</script>';
                         }
                     }
@@ -519,6 +530,7 @@ function addMentor()
 function addLeader()
 {
     global $db, $username, $errors;
+    mysqli_autocommit($db, false);
     $employee = e($_POST['empname']);
     $leader = e($_POST['leaderSelect']);
     $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
@@ -556,6 +568,7 @@ function addLeader()
                         } elseif ($db->affected_rows == 0) {
                             echo '<script type="text/javascript">alert("Something failed");</script>';
                         } else {
+                            mysqli_commit($db);
                             echo '<script type="text/javascript">alert("Leader assigned");</script>';
                         }
                     }
@@ -568,6 +581,7 @@ function addLeader()
 function updateMentor()
 {
     global $db, $errors;
+    mysqli_autocommit($db, false);
     $employee = e($_POST['empname']);
     $mentor = e($_POST['mentorSelect']);
     $user_check = "SELECT firstname, lastname FROM Users WHERE idUsers = $mentor ";
@@ -611,6 +625,7 @@ function updateMentor()
 
                                     if ($result === TRUE) {
 
+                                        mysqli_commit($db);
                                         echo '<script type="text/javascript">alert("Mentor edit worked");</script>';
 
                                     } else {
@@ -634,6 +649,7 @@ function updateMentor()
 function updateLeader()
 {
     global $db, $errors;
+    mysqli_autocommit($db, false);
     $employee = e($_POST['empname']);
     $leader = e($_POST['leaderSelect']);
     $user_check = "SELECT firstname, lastname FROM Users WHERE idUsers = $leader ";
@@ -677,6 +693,7 @@ function updateLeader()
 
                                     if ($result === TRUE) {
 
+                                        mysqli_commit($db);
                                         echo '<script type="text/javascript">alert("Leader edit worked");</script>';
 
                                     } else {
@@ -700,6 +717,7 @@ function updateLeader()
 function addHr()
 {
     global $db, $username, $errors;
+    mysqli_autocommit($db, false);
     $employee = e($_POST['empname']);
     $hr = e($_POST['hrSelect']);
     $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
@@ -737,6 +755,7 @@ function addHr()
                         } elseif ($db->affected_rows == 0) {
                             echo '<script type="text/javascript">alert("Something failed");</script>';
                         } else {
+                            mysqli_commit($db);
                             echo '<script type="text/javascript">alert("HR-employee assigned");</script>';
                         }
                     }
@@ -749,6 +768,7 @@ function addHr()
 function updateHr()
 {
     global $db, $errors;
+    mysqli_autocommit($db, false);
     $employee = e($_POST['empname']);
     $leader = e($_POST['leaderSelect']);
     $user_check = "SELECT firstname, lastname FROM Users WHERE idUsers = $leader ";
@@ -792,6 +812,7 @@ function updateHr()
 
                                     if ($result === TRUE) {
 
+                                        mysqli_commit($db);
                                         echo '<script type="text/javascript">alert("Leader edit worked");</script>';
 
                                     } else {

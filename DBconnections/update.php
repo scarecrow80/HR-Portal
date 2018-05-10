@@ -37,7 +37,8 @@ if(!isset($_POST['formList'])){
 }
 
 function update(){
-    $db =  mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
+    global $db, $errors;
+    mysqli_autocommit($db, false);
     if(!$db){
         die("Feil i databasetilkobling:".$db->connect_error);
     }
@@ -63,9 +64,11 @@ function update(){
                 $query = "UPDATE Newemployee_has_Checklist SET checked = 1 WHERE Newemployee_idNewemployee = '$emp' AND Checklist_idChecklist ='$checkid'";
                 $result = mysqli_query($db, $query);
 
+
                 if (!$result) {
                     Echo "<script type=\"text/javascript\">alert('Den er tom!');</script>";
                 } else {
+                    mysqli_commit($db);
                     //echo "<script type=\"text/javascript\">alert('Den gikk igjennom!');</script>";
                 }
             } else {

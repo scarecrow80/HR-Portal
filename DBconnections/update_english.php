@@ -37,9 +37,9 @@ if(!isset($_POST['formList'])){
 }
 
 function update(){
-  global $db;
 
-
+    global $db;
+    mysqli_autocommit($db, false);
     $alist = $_POST['formList'];
     $count  = count($alist);
 
@@ -60,9 +60,11 @@ function update(){
             $query = "UPDATE Newemployee_has_Checklist SET checked = 1 WHERE Newemployee_idNewemployee = '$emp' AND Checklist_idChecklist ='$checkid'";
             $result = mysqli_query($db, $query);
 
+
             if (!$result) {
                 Echo "<script type=\"text/javascript\">alert('It is empty!');</script>";
             } else {
+                mysqli_commit($db);
                 //echo "<script type=\"text/javascript\">alert('Den gikk igjennom!');</script>";
             }
         } else {

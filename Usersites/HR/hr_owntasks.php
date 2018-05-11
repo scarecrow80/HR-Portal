@@ -86,6 +86,7 @@ include "hr_session.php";
                                 <div id="test">
                                     <div id="overview" class="page tilsatt">
                                         <section class="section section-events article-toggle" role="region">
+                                            <h2>Oversikt over eget ansvarsområde</h2>
                                             <?php
                                             OverviewHr();
 

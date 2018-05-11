@@ -404,7 +404,7 @@ function employeeSelect()
 {
     global  $db;
     $query = mysqli_query($db, "SELECT idNewemployee, firstname, lastname FROM Newemployee") or die(mysqli_error());
-    echo "<select name=\"empname\" class=\"field comment-alerts\">";
+    echo "<select name=\"empname\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()){
@@ -423,7 +423,7 @@ function mentorSelect()
 {
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor'") or die(mysqli_error());
-    echo "<select name=\"mentorSelect\" class=\"field comment-alerts\">";
+    echo "<select name=\"mentorSelect\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
@@ -442,7 +442,7 @@ function leaderSelect()
 {
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'leader'") or die(mysqli_error());
-    echo "<select name=\"leaderSelect\" class=\"field comment-alerts\">";
+    echo "<select name=\"leaderSelect\" class=\"field comment-alerts\" id='choose2' >";
     echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {
@@ -461,7 +461,7 @@ function hrSelect()
 {
     global $db;
     $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR'") or die(mysqli_error());
-    echo "<select name=\"hrSelect\" class=\"field comment-alerts\">";
+    echo "<select name=\"hrSelect\" class=\"field comment-alerts\" id='choose2' >";
     echo '<option value=""></option>';
 
     while ($row = $query->fetch_assoc()) {

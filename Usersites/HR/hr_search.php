@@ -97,10 +97,10 @@ include "hr_session.php";
 
                                             <div class="mr_fleksi_content">
 
-                                                <p>Søk etter ansatte:</p>
+
                                                 <form action="" method="post">
                                                     <tr class="input-group">
-                                                        <td><input type="text" name="searchFr" class="field comment-alerts" ></td>
+                                                        <td><input type="text" name="searchFr" class="field comment-alerts" id="search-box" placeholder="Søk" ></td>
                                                     </tr>
                                                     <button type="submit" class="btn btn-primary" name="searcF" >Søk</button>
                                                 </form>
@@ -122,14 +122,14 @@ include "hr_session.php";
 
                                         <div class="mr_fleksi_content">
 
-                                            <p>Søk opp om ansatte har tilknytning:</p>
+
                                             <form action="" method="post">
                                                 <tr class="input-group">
-                                                    <td><input type="text" name="searchForConnected" class="field comment-alerts" ></td>
+                                                    <td><input type="text" name="searchForConnected" class="field comment-alerts" id="search-box" placeholder="Søk" ></td>
                                                 </tr>
                                                 <tr class="input-group">
                                                     <td>
-                                                        <select type="text" name="searchConnectedUser" class="field comment-alerts" required >
+                                                        <select type="text" name="searchConnectedUser" class="field comment-alerts" id="choose3" required >
                                                             <option value=""></option>
                                                             <option value="leader">Leder</option>
                                                             <option value="mentor">Fadder</option>

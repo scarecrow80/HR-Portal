@@ -76,50 +76,50 @@ include "leader_session.php"; ?>
                                         <div id="createList" class="page tilsatt" >
                                             <h2>Opprett sjekkliste</h2>
                                             <form action="" method="post">
-                                                <table>
-                                                    <tr class="input-group">
-                                                        <td>Fornavn: </td>
-                                                        <td><input type="text" name='firstname' class="field comment-alerts" id="input-box" placeholder="Fornavn" required/> </td>
+                                                <table class="CreateChecklistTable">
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Fornavn: </td>
+                                                        <td id="CreateChecklistTable"><input type="text" name='firstname' class="field comment-alerts" id="input-box" placeholder="Fornavn" required/> </td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Etternavn: </td>
-                                                        <td><input type="text" name="lastname" class="field comment-alerts" id="input-box" placeholder="Etternavn" required/> </td>
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Etternavn: </td>
+                                                        <td id="CreateChecklistTable"><input type="text" name="lastname" class="field comment-alerts" id="input-box" placeholder="Etternavn" required/> </td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Stilling: </td>
-                                                        <td><select name="workposition" class="field comment-alerts" id="choose2" required />
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Stilling: </td>
+                                                        <td id="CreateChecklistTable"><select name="workposition" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>
                                                             <option value="Leder">Leder</option>
                                                             <option value="Ansatt">Ansatt</option>
                                                         </td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Internasjonal: </td>
-                                                        <td><select name="international" class="field comment-alerts" id="choose2" required>
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Internasjonal: </td>
+                                                        <td id="CreateChecklistTable"><select name="international" class="field comment-alerts" id="choose2" required>
                                                                 <option value=""></option>
                                                                 <option value="Ja">Ja</option>
                                                                 <option value="Nei">Nei</option>
                                                         </td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Ansatt dato: </td>
-                                                        <td><input type='date' name="startdate" class="field comment-alerts" id="datePicker" required /> </td>
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Ansatt dato: </td>
+                                                        <td id="CreateChecklistTable"><input type='date' name="startdate" class="field comment-alerts" id="datePicker" required /> </td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Velg ansvarlig leder: </td>
-                                                        <td>
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Velg ansvarlig leder: </td>
+                                                        <td id="CreateChecklistTable">
                                                             <?php selectLeader() ?>
                                                         </td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Velg ansvarlig HR-ansatt: </td>
-                                                        <td>
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Velg ansvarlig HR-ansatt: </td>
+                                                        <td id="CreateChecklistTable">
                                                             <?php selectHr() ?>
                                                         </td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Velg ansvarlig fadder: </td>
-                                                        <td>
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Velg ansvarlig fadder: </td>
+                                                        <td id="CreateChecklistTable">
                                                             <?php selectMentor() ?>
                                                         </td>
                                                     </tr>

@@ -86,6 +86,7 @@ include "admin_session.php";
                                 <div id="deleteUser" class="page tilsatt">
                                     <h2>Slett bruker</h2>
 
+                                    
                                     <form action="" method="post">
 
                                         <tr class="input-group">

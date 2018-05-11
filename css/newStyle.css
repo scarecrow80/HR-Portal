@@ -105,3 +105,55 @@
     border-bottom-width: 0;
     color: #000;
 }
+
+#searchForDeleteUser {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f1f1f2;
+    color: black;
+
+}
+
+#searchForDeleteUser tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#delete-checkpoint-header {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #C0C0C0;
+    color: black;
+
+}
+
+#delete-checkpoint-header tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#deletePoints {
+    padding: 1px;
+    border: 1px solid black;
+    color: #000;
+    background-color: #f5f5f5;
+}
+
+#DeletePoint {
+    font-size: 24px !important;
+    font-family: "Sentinel SSm A", "Sentinel SSm B", serif !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    color: black !important;
+}
+
+label.radio-custom-label, label.checkbox-custom-label {
+    font-size: 24px !important;
+    font-family: "Sentinel SSm A", "Sentinel SSm B", serif !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    color: black !important;
+}
+

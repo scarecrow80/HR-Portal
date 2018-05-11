@@ -220,7 +220,7 @@ function changePoint()
 
 function selectDeletePoint()
 {
-    echo "<tr><th>Valg</th>";
+    echo "<tr id='delete-checkpoint-header'><th>Valg</th>";
     echo "<th>Sjekkpunkt på norsk</th>";
     echo "<th>Sjekkpunkt på engelsk</th>";
     echo "<th>Ansvarlig</th>";
@@ -237,12 +237,12 @@ function selectDeletePoint()
             $check_id = $row["idChecklist"];
 
             echo "<tr>";
-            echo "<td><input type='radio' name='DeletePoint' value='$check_id'/></td>";
-            echo "<td>".$row["checkpointsNO"]."</td>";
-            echo "<td>".$row["checkpointsEN"]."</td>";
-            echo "<td>".$row["responsible"]."</td>";
-            echo "<td>".$row["nationality"]."</td>";
-            echo "<td>".$row["leader"]."</td>";
+            echo "<td id='deletePoints'><input type='radio' name='DeletePoint' value='$check_id'/></td>";
+            echo "<td id='deletePoints'>".$row["checkpointsNO"]."</td>";
+            echo "<td id='deletePoints'>".$row["checkpointsEN"]."</td>";
+            echo "<td id='deletePoints'>".$row["responsible"]."</td>";
+            echo "<td id='deletePoints'>".$row["nationality"]."</td>";
+            echo "<td id='deletePoints'>".$row["leader"]."</td>";
             echo "</tr>";
 
         }echo "</table>";
@@ -462,7 +462,7 @@ function searchForUser()
 {
     if(isset($_POST["searchForUser"]))
     {
-        echo "<form action='' method='post'><table>";
+        echo "<form action='' method='post'><div style='overflow-x:auto;'><table>";
 
         global $db, $errors;
         $searchForUser = e($_POST["userSearch"]);
@@ -472,11 +472,11 @@ function searchForUser()
 
         if ($result) {
 
-            echo "<tr><th>Valg</th>";
-            echo "<th>Fornavn</th>";
-            echo "<th>Etternavn</th>";
-            echo "<th>Brukernavn</th>";
-            echo "<th>Brukertype</th></tr>";
+            echo "<tr><th id=\"searchForDeleteUser\">Valg</th>";
+            echo "<th id=\"searchForDeleteUser\">Fornavn</th>";
+            echo "<th id=\"searchForDeleteUser\">Etternavn</th>";
+            echo "<th id=\"searchForDeleteUser\">Brukernavn</th>";
+            echo "<th id=\"searchForDeleteUser\">Brukertype</th></tr>";
 
             while($row = mysqli_fetch_assoc($result)){
 
@@ -490,7 +490,7 @@ function searchForUser()
                 echo "<td>".$row["usertype"]."</td>";
                 echo "</tr>";
 
-            }echo "</table><button type='submit' class='btn btn-primary' name='DeleteUser' >Slett bruker</button></form>";
+            }echo "</table><button type='submit' class='btn btn-primary' name='DeleteUser' >Slett bruker</button></div></form>";
 
         }
         else{

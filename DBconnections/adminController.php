@@ -166,12 +166,12 @@ function changePoint()
         $nationality = e($result2["nationality"]);
         $leader = e($result2["leader"]);
 
-        echo "<form action='' method='post' ><table>";
-        echo "<tr class='input-group'><td><label type='text' name='checkPointId' value='$checkpointId' readonly >".$checkpointId."</td></tr>";
-        echo "<tr class='input-group'><td><textarea type='text' id='text-area-input-checkpoints' name='orgPointNO' id='$checkpointId' readonly >".$checkpointNO."</textarea></td><br></tr>";
-        echo "<tr class='input-group'><td> <textarea type='text' id='text-area-input-checkpoints' name='newPointNO' id='$checkpointId' placeholder='Skriv inn nytt punkt på norsk her'></textarea></td></tr>";
-        echo "<tr class='input-group'><td><textarea type='text' id='text-area-input-checkpoints' name='orgPointEN' id='$checkpointId' readonly >".$checkpointEN."</textarea></td><br></tr>";
-        echo "<tr class ='input-group'><td><textarea type='text' id='text-area-input-checkpoints' name='newPointEN' id='$checkpointId' placeholder='Skriv inn nytt punkt på engelsk her'></textarea></td></tr>";
+        echo "<form action='' method='post' ><table id=\"CreateChecklistTable\">";
+        echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><label type='text' name='checkPointId' value='$checkpointId' readonly >".$checkpointId."</td></tr>";
+        echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><textarea type='text' id='text-area-input-checkpoints' name='orgPointNO' id='$checkpointId' readonly >".$checkpointNO."</textarea></td><br></tr>";
+        echo "<tr class='input-group'><td id=\"CreateChecklistTable\"> <textarea type='text' id='text-area-input-checkpoints' name='newPointNO' id='$checkpointId' placeholder='Skriv inn nytt punkt på norsk her'></textarea></td></tr>";
+        echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><textarea type='text' id='text-area-input-checkpoints' name='orgPointEN' id='$checkpointId' readonly >".$checkpointEN."</textarea></td><br></tr>";
+        echo "<tr class ='input-group'><td id=\"CreateChecklistTable\"><textarea type='text' id='text-area-input-checkpoints' name='newPointEN' id='$checkpointId' placeholder='Skriv inn nytt punkt på engelsk her'></textarea></td></tr>";
         echo "</table>";
         echo "<button type='submit' class='btn btn-primary' name='changingPoint'>Forandre</button>";
         echo "</form>";
@@ -220,7 +220,7 @@ function changePoint()
 
 function selectDeletePoint()
 {
-    echo "<table><tr id='delete-checkpoint-header'><th>Valg</th>";
+    echo "<table id='table-delete-points'><tr id='delete-checkpoint-header'><th>Valg</th>";
     echo "<th>Sjekkpunkt på norsk</th>";
     echo "<th>Sjekkpunkt på engelsk</th>";
     echo "<th>Ansvarlig</th>";

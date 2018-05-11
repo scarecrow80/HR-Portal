@@ -96,18 +96,18 @@ include "admin_session.php";
 
 
                                             <form action="" method="post">
-                                                <table>
-                                                    <tr class="input-group">
-                                                        <td>Innhold</td>
-                                                        <td><textarea input="text" id="text-area-input-checkpoints" name="newPointNo" placeholder="Skriv punkt her" rows="5"></textarea></td>
+                                                <table id="CreateChecklistTable">
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Innhold</td>
+                                                        <td id="CreateChecklistTable"><textarea input="text" id="text-area-input-checkpoints" name="newPointNo" placeholder="Skriv punkt her" rows="5"></textarea></td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Innhold Engelsk</td>
-                                                        <td><textarea input="text" id="text-area-input-checkpoints" name="newPointEn" placeholder="Skriv punkt her på engelsk" rows="5"></textarea></td>
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Innhold Engelsk</td>
+                                                        <td id="CreateChecklistTable"><textarea input="text" id="text-area-input-checkpoints" name="newPointEn" placeholder="Skriv punkt her på engelsk" rows="5"></textarea></td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Brukertype: </td>
-                                                        <td><select name="userType" class="field comment-alerts" id="choose2" required>
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Brukertype: </td>
+                                                        <td id="CreateChecklistTable"><select name="userType" class="field comment-alerts" id="choose2" required>
                                                                 <option value=""></option>
                                                                 <option value="leader">Leder</option>
                                                                 <option value="HR">HR</option>
@@ -115,9 +115,9 @@ include "admin_session.php";
                                                             </select>
                                                         </td>
                                                     </tr>
-                                                    <tr class="input-group">
-                                                        <td>Nasjonalitet: </td>
-                                                        <td><select name="nationality" class="field comment-alerts" id="choose2" required />
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Nasjonalitet: </td>
+                                                        <td id="CreateChecklistTable"><select name="nationality" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>
                                                             <option value="Norsk">Norsk</option>
                                                             <option value="Internasjonal">Internasjonal</option>
@@ -125,9 +125,9 @@ include "admin_session.php";
                                                         </td>
                                                     </tr>
 
-                                                    <tr class="input-group">
-                                                        <td>Leder: </td>
-                                                        <td><select name="leader" class="field comment-alerts" id="choose2" required />
+                                                    <tr class="input-group" id="CreateChecklistTable">
+                                                        <td id="CreateChecklistTable">Leder: </td>
+                                                        <td id="CreateChecklistTable"><select name="leader" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>
                                                             <option value="Ja">Ja</option>
                                                             <option value="Nei">Nei</option>

@@ -99,11 +99,11 @@ include "admin_session.php";
                                                 <table>
                                                     <tr class="input-group">
                                                         <td>Innhold</td>
-                                                        <td><textarea input="text" id="" name="newPointNo" placeholder="Skriv punkt her" rows="5"></textarea></td>
+                                                        <td><textarea input="text" id="text-area-input-checkpoints" name="newPointNo" placeholder="Skriv punkt her" rows="5"></textarea></td>
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Innhold Engelsk</td>
-                                                        <td><textarea input="text" id="" name="newPointEn" placeholder="Skriv punkt her på engelsk" rows="5"></textarea></td>
+                                                        <td><textarea input="text" id="text-area-input-checkpoints" name="newPointEn" placeholder="Skriv punkt her på engelsk" rows="5"></textarea></td>
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Brukertype: </td>
@@ -153,7 +153,7 @@ include "admin_session.php";
 
 
 
-                                            <p>Endre et sjekkliste punkt.</p>
+
                                             <form action="" method="post">
                                                 <select name="checkpoint" id="choose2">
                                                     <?php selectPoint() ?>
@@ -171,11 +171,11 @@ include "admin_session.php";
                                             Slett et sjekklist punkt
                                         </h2>
 
-                                        <div >
+                                        <div>
 
 
                                             <form action="" method="post">
-                                                <table>
+
 
                                                     <!--<tr class="input-group">
                                                         <td>Nummer</td>

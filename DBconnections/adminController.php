@@ -168,10 +168,10 @@ function changePoint()
 
         echo "<form action='' method='post' ><table>";
         echo "<tr class='input-group'><td><label type='text' name='checkPointId' value='$checkpointId' readonly >".$checkpointId."</td></tr>";
-        echo "<tr class='input-group'><td><textarea type='text' name='orgPointNO' id='$checkpointId' readonly >".$checkpointNO."</textarea></td><br></tr>";
-        echo "<tr class='input-group'><td> <textarea type='text' name='newPointNO' id='$checkpointId' placeholder='Skriv inn nytt punkt på norsk her'></textarea></td></tr>";
-        echo "<tr class='input-group'><td><textarea type='text' name='orgPointEN' id='$checkpointId' readonly >".$checkpointEN."</textarea></td><br></tr>";
-        echo "<tr class ='input-group'><td><textarea type='text' name='newPointEN' id='$checkpointId' placeholder='Skriv inn nytt punkt på engelsk her'></textarea></td></tr>";
+        echo "<tr class='input-group'><td><textarea type='text' id='text-area-input-checkpoints' name='orgPointNO' id='$checkpointId' readonly >".$checkpointNO."</textarea></td><br></tr>";
+        echo "<tr class='input-group'><td> <textarea type='text' id='text-area-input-checkpoints' name='newPointNO' id='$checkpointId' placeholder='Skriv inn nytt punkt på norsk her'></textarea></td></tr>";
+        echo "<tr class='input-group'><td><textarea type='text' id='text-area-input-checkpoints' name='orgPointEN' id='$checkpointId' readonly >".$checkpointEN."</textarea></td><br></tr>";
+        echo "<tr class ='input-group'><td><textarea type='text' id='text-area-input-checkpoints' name='newPointEN' id='$checkpointId' placeholder='Skriv inn nytt punkt på engelsk her'></textarea></td></tr>";
         echo "</table>";
         echo "<button type='submit' class='btn btn-primary' name='changingPoint'>Forandre</button>";
         echo "</form>";
@@ -220,7 +220,7 @@ function changePoint()
 
 function selectDeletePoint()
 {
-    echo "<tr id='delete-checkpoint-header'><th>Valg</th>";
+    echo "<table><tr id='delete-checkpoint-header'><th>Valg</th>";
     echo "<th>Sjekkpunkt på norsk</th>";
     echo "<th>Sjekkpunkt på engelsk</th>";
     echo "<th>Ansvarlig</th>";
@@ -237,7 +237,7 @@ function selectDeletePoint()
             $check_id = $row["idChecklist"];
 
             echo "<tr>";
-            echo "<td id='deletePoints'><input type='radio' name='DeletePoint' value='$check_id'/></td>";
+            echo "<td id='deletePoints'><input type='radio' id='radio-button-delete-user' name='DeletePoint' value='$check_id'/></td>";
             echo "<td id='deletePoints'>".$row["checkpointsNO"]."</td>";
             echo "<td id='deletePoints'>".$row["checkpointsEN"]."</td>";
             echo "<td id='deletePoints'>".$row["responsible"]."</td>";
@@ -472,22 +472,22 @@ function searchForUser()
 
         if ($result) {
 
-            echo "<tr><th id=\"searchForDeleteUser\">Valg</th>";
-            echo "<th id=\"searchForDeleteUser\">Fornavn</th>";
-            echo "<th id=\"searchForDeleteUser\">Etternavn</th>";
-            echo "<th id=\"searchForDeleteUser\">Brukernavn</th>";
-            echo "<th id=\"searchForDeleteUser\">Brukertype</th></tr>";
+            echo "<tr><th>Valg</th>";
+            echo "<th>Fornavn</th>";
+            echo "<th>Etternavn</th>";
+            echo "<th>Brukernavn</th>";
+            echo "<th>Brukertype</th></tr>";
 
             while($row = mysqli_fetch_assoc($result)){
 
                 $newUserId = $row["idUsers"];
 
                 echo "<tr>";
-                echo "<td><input type='radio' name='DeleteUserValue' value='$newUserId'/></td>";
-                echo "<td>".$row["firstname"]."</td>";
-                echo "<td>".$row["lastname"]."</td>";
-                echo "<td>".$row["username"]."</td>";
-                echo "<td>".$row["usertype"]."</td>";
+                echo "<td id='searchForDeleteUser'><input type='radio' class='radio-button-delete-user' name='DeleteUserValue' value='$newUserId'/></td>";
+                echo "<td id='searchForDeleteUser'>".$row["firstname"]."</td>";
+                echo "<td id='searchForDeleteUser'>".$row["lastname"]."</td>";
+                echo "<td id='searchForDeleteUser'>".$row["username"]."</td>";
+                echo "<td id='searchForDeleteUser'>".$row["usertype"]."</td>";
                 echo "</tr>";
 
             }echo "</table><button type='submit' class='btn btn-primary' name='DeleteUser' >Slett bruker</button></div></form>";

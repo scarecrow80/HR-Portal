@@ -164,16 +164,16 @@ include "admin_session.php";
                                         </div>
                                     </div>
 
-                                    <div class="mrflexibox block_result_list tjenestebox left width_full"
+                                    <div
                                          thetitle="Slett et sjekklist punkt">
 
                                         <h2>
                                             Slett et sjekklist punkt
                                         </h2>
 
-                                        <div class="mr_fleksi_content">
+                                        <div >
 
-                                            <p>Slett et sjekklist punkt</p>
+
                                             <form action="" method="post">
                                                 <table>
 

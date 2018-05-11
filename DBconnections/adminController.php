@@ -472,7 +472,7 @@ function searchForUser()
 
         if ($result) {
 
-            echo "<tr><th>Valg</th>";
+            echo "<tr id='delete-checkpoint-header'><th>Valg</th>";
             echo "<th>Fornavn</th>";
             echo "<th>Etternavn</th>";
             echo "<th>Brukernavn</th>";

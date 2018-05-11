@@ -34,6 +34,10 @@
     outline: none;
 }
 
+#datePicker:focus {
+    border: 3px solid #555;
+}
+
 #choose {
     width: 100%;
     max-width: 100%;
@@ -55,4 +59,23 @@
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
+}
+
+
+#choose3 {
+    width: 100%;
+    max-width: 100%;
+
+    border-width: 2px;
+    border-radius: 4px;
+    background-color: white;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+#createUserTable {
+
 }

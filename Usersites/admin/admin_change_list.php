@@ -94,7 +94,7 @@ include "admin_session.php";
 
                                         <div class="mr_fleksi_content">
 
-                                            <p>Opprett et nytt sjekkliste punkt.</p>
+
                                             <form action="" method="post">
                                                 <table>
                                                     <tr class="input-group">
@@ -115,7 +115,7 @@ include "admin_session.php";
                                                             </select>
                                                         </td>
                                                     </tr>
-                                                    <   class="input-group">
+                                                    <tr class="input-group">
                                                         <td>Nasjonalitet: </td>
                                                         <td><select name="nationality" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>

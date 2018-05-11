@@ -101,10 +101,10 @@ include "admin_session.php";
                                 </script>
 
                                 <div id="delete" class="page tilsatt">
-                                    <p>Søk opp ansatte og slett gamle sjekklister</p>
+                                    <h2>Søk opp ansatte og slett gamle sjekklister</h2>
                                     <form action="" method="post">
                                         <tr class="input-group">
-                                            <td><input type="text" name="searchForEmployee" class="field comment-alerts" ></td>
+                                            <td><input type="text" name="searchForEmployee" class="field comment-alerts" id="search-box" ></td>
                                         </tr>
                                         <button type="submit" class="btn btn-primary" name="searchFor" >Søk</button>
                                     </form>

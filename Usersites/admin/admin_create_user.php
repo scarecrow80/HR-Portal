@@ -84,25 +84,25 @@ include "admin_session.php";
                             <div style="flot:left;clear:both;">
 
                                 <div id="create" class="page tilsatt" >
-                                    <p>Create user</p>
+                                    <h2>Opprett bruker</h2>
 
                                     <form action="" method="post">
                                         <table>
                                             <tr class="input-group">
                                                 <td>Fornavn: </td>
-                                                <td><input type="text" name="firstname" value="" class="field comment-alerts" required/> </td>
+                                                <td><input type="text" name="firstname" value="" class="field comment-alerts" id="input-box" required/> </td>
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Etternavn: </td>
-                                                <td><input type="text" name="lastname"  class="field comment-alerts" required/> </td>
+                                                <td><input type="text" name="lastname"  class="field comment-alerts" id="input-box" required/> </td>
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Brukernavn: </td>
-                                                <td><input type="text" name="username"  class="field comment-alerts" required/> </td>
+                                                <td><input type="text" name="username"  class="field comment-alerts" id="input-box" required/> </td>
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Brukertype: </td>
-                                                <td><select name="usertype" class="field comment-alerts" required>
+                                                <td><select name="usertype" class="field comment-alerts" id="choose2" required>
                                                         <option value=""></option>
                                                         <option value="admin">Administrator</option>
                                                         <option value="leader">Leder</option>
@@ -113,11 +113,11 @@ include "admin_session.php";
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Passord: </td>
-                                                <td><input type="password" name="password" class="field comment-alerts" required /> </td>
+                                                <td><input type="password" name="password" class="field comment-alerts" id="input-box" required /> </td>
                                             </tr>
                                             <tr class="input-group">
                                                 <td>Gjenta passord: </td>
-                                                <td><input type="password" name="repeatPassword" class="field comment-alerts" required /> </td>
+                                                <td><input type="password" name="repeatPassword" class="field comment-alerts" id="input-box" required /> </td>
                                             </tr>
 
                                         </table>

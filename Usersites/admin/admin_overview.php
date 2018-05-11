@@ -103,6 +103,7 @@ include "admin_session.php";
                                         });
                                     </script>
                                     <section class="section section-events article-toggle" role="region">
+                                        <h2>Oversikt over alle ansatte med sjekklister</h2>
                                         <?php overviewAll() ?>
 
                                     </section>

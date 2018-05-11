@@ -74,16 +74,16 @@ include "leader_session.php"; ?>
                                 <div id="test">
                                     <div id="overview" class="page tilsatt">
                                         <div id="createList" class="page tilsatt" >
-                                            <p>Create list</p>
+                                            <h2>Opprett sjekkliste</h2>
                                             <form action="" method="post">
                                                 <table>
                                                     <tr class="input-group">
                                                         <td>Fornavn: </td>
-                                                        <td><input type="text" name='firstname' class="field comment-alerts" id="input-box" required/> </td>
+                                                        <td><input type="text" name='firstname' class="field comment-alerts" id="input-box" placeholder="Fornavn" required/> </td>
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Etternavn: </td>
-                                                        <td><input type="text" name="lastname" class="field comment-alerts" id="input-box" required/> </td>
+                                                        <td><input type="text" name="lastname" class="field comment-alerts" id="input-box" placeholder="Etternavn" required/> </td>
                                                     </tr>
                                                     <tr class="input-group">
                                                         <td>Stilling: </td>

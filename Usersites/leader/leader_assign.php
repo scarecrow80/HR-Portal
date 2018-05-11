@@ -81,7 +81,7 @@ include "leader_session.php"; ?>
                                             </h2>
 
                                             <div class="mr_fleksi_content">
-                                                <p>Tildel fadder</p>
+
                                                 <form action="" method="post">
                                                     <table>
                                                         <tr class="input-group">
@@ -125,7 +125,7 @@ include "leader_session.php"; ?>
                                             </h2>
 
                                             <div class="mr_fleksi_content">
-                                                <p>Tildel Leder</p>
+
                                                 <form action="" method="post">
                                                     <table>
                                                         <tr class="input-group">
@@ -167,7 +167,7 @@ include "leader_session.php"; ?>
                                             </h2>
 
                                             <div class="mr_fleksi_content">
-                                                <p>Tildel HR-ansatt</p>
+
                                                 <form action="" method="post">
                                                     <table>
                                                         <tr class="input-group">

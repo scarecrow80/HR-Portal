@@ -127,6 +127,7 @@ if (!isLoggedIN()){
                                         });
                                     </script>
                                     <section class="section section-events article-toggle" role="region">
+                                        <h2>Overview of my responsibilities</h2>
                                         <?php overviewMentoreng() ?>
 
                                     </section>

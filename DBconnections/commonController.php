@@ -478,8 +478,8 @@ function hrSelect()
 
 function addMentor()
 {
-    mysqli_autocommit($db, false);
     global $db, $username, $errors;
+    mysqli_autocommit($db, false);
     $employee = e($_POST['empname']);
     $mentor = e($_POST['mentorSelect']);
     $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";

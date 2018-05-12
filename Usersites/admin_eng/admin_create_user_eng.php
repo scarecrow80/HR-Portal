@@ -10,7 +10,7 @@ include "admin_session.php";
     <meta property="og:image" content="../../img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - Admin Slett Bruker</title>
+    <title>OsloMet - Admin Create a User</title>
 
     <?php
     include_once "../../Elements/Metaheads.php";
@@ -34,7 +34,7 @@ include "admin_session.php";
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="../admin_eng/admin_delete_usereng.php">English</a>
+        <a href="../admin/admin_create_user.php">Norsk</a>
         <?php
         include_once "nav_admin_mobile.php";
         ?>
@@ -83,23 +83,47 @@ include "admin_session.php";
                             <!-- </div> --> <!-- END: hoyrekolonne -->
                             <div style="flot:left;clear:both;">
 
-                                <div id="deleteUser" class="page tilsatt">
-                                    <h2>Slett bruker</h2>
+                                <div id="create" class="page tilsatt" >
+                                    <h2>Create User</h2>
 
-                                    
                                     <form action="" method="post">
+                                        <table>
+                                            <tr class="input-group">
+                                                <td>Firstname: </td>
+                                                <td><input type="text" name="firstname" value="" class="field comment-alerts" id="input-box" required/> </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Surename: </td>
+                                                <td><input type="text" name="lastname"  class="field comment-alerts" id="input-box" required/> </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Username: </td>
+                                                <td><input type="text" name="username"  class="field comment-alerts" id="input-box" required/> </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Usertype: </td>
+                                                <td><select name="usertype" class="field comment-alerts" id="choose2" required>
+                                                        <option value=""></option>
+                                                        <option value="admin">Admin</option>
+                                                        <option value="leader">Leader</option>
+                                                        <option value="HR">HR</option>
+                                                        <option value="mentor">Mentor</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Password: </td>
+                                                <td><input type="password" name="password" class="field comment-alerts" id="input-box" required /> </td>
+                                            </tr>
+                                            <tr class="input-group">
+                                                <td>Confirm password: </td>
+                                                <td><input type="password" name="repeatPassword" class="field comment-alerts" id="input-box" required /> </td>
+                                            </tr>
 
-                                        <tr class="input-group">
-                                            <td><input type="text" name="userSearch" id="search-box" class="field comment-alerts" placeholder="Søk etter bruker" ></td>
-                                        </tr>
-                                        <button type="submit" class="btn btn-primary" name="searchForUser" >Søk</button>
+                                        </table>
+                                        <button class="btn btn-cancel" type="button">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" name="register">Register</button>
                                     </form>
-                                    <?php
-                                    searchForUser();
-                                    deleteUser();
-                                    ?>
-
-
                                 </div>
                                 <!-- END: section -->
 
@@ -122,6 +146,7 @@ include "admin_session.php";
 <?php
 include_once "../../Elements/Footer.php";
 ?>
+
 
 
 </body>

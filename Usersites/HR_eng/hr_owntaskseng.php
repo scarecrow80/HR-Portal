@@ -6,7 +6,7 @@ include "hr_session.php";
 
 <html itemscope itemtype="http://schema.org/Article" xmlns="http://www.w3.org/1999/xhtml" xml:lang="nb" lang="nb">
 <head>
-    <title>OsloMet - HR Mine oppgaver</title>
+    <title>OsloMet - HR Own Tasks</title>
     <?php
     include_once "../../Elements/Metaheads.php";
     ?>
@@ -47,7 +47,7 @@ include "hr_session.php";
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="../HR_eng/hr_owntaskseng.php">English</a>
+        <a href="../HR/hr_owntasks.php">Norsk</a>
         <div id="mobile-menu">
             <?php
             include "nav_hr_mobile.php";
@@ -86,9 +86,9 @@ include "hr_session.php";
                                 <div id="test">
                                     <div id="overview" class="page tilsatt">
                                         <section class="section section-events article-toggle" role="region">
-                                            <h2>Oversikt over eget ansvarsområde</h2>
+                                            <h2>Overview of your own responsibilites</h2>
                                             <?php
-                                            OverviewHr();
+                                            OverviewHrEng();
 
                                             ?>
                                         </section>
@@ -102,12 +102,12 @@ include "hr_session.php";
         </div><!--end:frameWrapper-->
     </div>
 </div>
-    <div class="clearfloat"></div>
+<div class="clearfloat"></div>
 
 
-    <?php
-    include "../../Elements/Footer.php";
-    ?>
+<?php
+include "../../Elements/Footer.php";
+?>
 
 
 

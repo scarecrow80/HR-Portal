@@ -10,7 +10,7 @@ include "admin_session.php";
     <meta property="og:image" content="../../img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - Admin Endre Sjekklisten</title>
+    <title>OsloMet - Admin Edit Checklist</title>
 
     <?php
     include_once "../../Elements/Metaheads.php";
@@ -34,7 +34,7 @@ include "admin_session.php";
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="../admin_eng/admin_change_listeng.php">English</a>
+        <a href="../admin/admin_change_list.php">Norsk</a>
         <?php
         include_once "nav_admin_mobile.php";
         ?>
@@ -89,7 +89,7 @@ include "admin_session.php";
                                          thetitle="Opprette nytt sjekkliste punkt">
 
                                         <h2>
-                                            Opprette nytt sjekkliste punkt
+                                            Create A new checklist point
                                         </h2>
 
                                         <div class="mr_fleksi_content">
@@ -98,44 +98,44 @@ include "admin_session.php";
                                             <form action="" method="post">
                                                 <table id="CreateChecklistTable">
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Innhold</td>
-                                                        <td id="CreateChecklistTable"><textarea input="text" id="text-area-input-checkpoints" name="newPointNo" placeholder="Skriv punkt her" rows="5"></textarea></td>
+                                                        <td id="CreateChecklistTable">Content English</td>
+                                                        <td id="CreateChecklistTable"><textarea input="text" id="text-area-input-checkpoints" name="newPointEn" placeholder="Write new Point here" rows="5"></textarea></td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Innhold Engelsk</td>
-                                                        <td id="CreateChecklistTable"><textarea input="text" id="text-area-input-checkpoints" name="newPointEn" placeholder="Skriv punkt her på engelsk" rows="5"></textarea></td>
+                                                    <td id="CreateChecklistTable">Content Norwegian</td>
+                                                    <td id="CreateChecklistTable"><textarea input="text" id="text-area-input-checkpoints" name="newPointNo" placeholder="Write in Norwegian here if you know it" rows="5"></textarea></td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Brukertype: </td>
+                                                        <td id="CreateChecklistTable">Usertype: </td>
                                                         <td id="CreateChecklistTable"><select name="userType" class="field comment-alerts" id="choose2" required>
                                                                 <option value=""></option>
-                                                                <option value="leader">Leder</option>
+                                                                <option value="leader">Leader</option>
                                                                 <option value="HR">HR</option>
-                                                                <option value="mentor">Fadder</option>
+                                                                <option value="mentor">Mentor</option>
                                                             </select>
                                                         </td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Nasjonalitet: </td>
+                                                        <td id="CreateChecklistTable">Only a point for international new Employee: </td>
                                                         <td id="CreateChecklistTable"><select name="nationality" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>
-                                                            <option value="Norsk">Norsk</option>
-                                                            <option value="Internasjonal">Internasjonal</option>
+                                                            <option value="Norsk">Norwegian</option>
+                                                            <option value="Internasjonal">International</option>
                                                             </select>
                                                         </td>
                                                     </tr>
 
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Leder: </td>
+                                                        <td id="CreateChecklistTable">Only a Point for a new Leader : </td>
                                                         <td id="CreateChecklistTable"><select name="leader" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>
-                                                            <option value="Ja">Ja</option>
-                                                            <option value="Nei">Nei</option>
+                                                            <option value="Ja">Yes</option>
+                                                            <option value="Nei">No</option>
                                                             </select>
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <button type="submit" class="btn btn-primary" name="createNewPoint" id="Nypunkt">Nytt Punkt</button>
+                                                <button type="submit" class="btn btn-primary" name="createNewP" id="Nypunkt">New Point</button>
                                             </form>
 
 
@@ -143,10 +143,10 @@ include "admin_session.php";
                                     </div>
 
                                     <div class="mrflexibox block_result_list tjenestebox left width_full"
-                                         thetitle="Endre sjekkliste punkt">
+                                         thetitle="Change a Point in the Checklist">
 
                                         <h2>
-                                            Endre sjekkliste punkt
+                                           Change a point in the Checklist
                                         </h2>
 
                                         <div class="mr_fleksi_content">
@@ -156,19 +156,19 @@ include "admin_session.php";
 
                                             <form action="" method="post">
                                                 <select name="checkpoint" id="choose2">
-                                                    <?php selectPoint() ?>
+                                                    <?php selectPointEn() ?>
                                                 </select>
-                                                <input type="submit" class="btn btn-primary" name="selectPoint" value="Velg sjekkpunkt" />
+                                                <input type="submit" class="btn btn-primary" name="selectPointEn" value="Pick a point" />
                                             </form>
-                                            <?php changePoint() ?>
+                                            <?php changePointEn() ?>
                                         </div>
                                     </div>
 
                                     <div
-                                         thetitle="Slett et sjekklist punkt">
+                                        thetitle="Delete a point in the Checklist">
 
                                         <h2>
-                                            Slett et sjekklist punkt
+                                            Delete a point in the Checklist
                                         </h2>
 
                                         <div>
@@ -177,19 +177,19 @@ include "admin_session.php";
                                             <form action="" method="post">
 
 
-                                                    <!--<tr class="input-group">
-                                                        <td>Nummer</td>
-                                                        <td> <input type="number" name="numb"/></td><br>
-                                                    </tr>-->
-                                                    <?php selectDeletePoint() ?>
+                                                <!--<tr class="input-group">
+                                                    <td>Nummer</td>
+                                                    <td> <input type="number" name="numb"/></td><br>
+                                                </tr>-->
+                                                <?php selectDeletePointEn() ?>
 
-                                                    <!--<tr class="input-group">
+                                                <!--<tr class="input-group">
 
-                                                        <td>Innhold</td>
-                                                        <td> <textarea type="text" name="Innd" id="Innd" value=""></textarea></td>
-                                                    </tr>-->
-                                                    <button type="submit" class="btn btn-primary" name="Delete" id="Delete" >Slett Punkt</button>
-                                                    <?php deletePoint() ?>
+                                                    <td>Innhold</td>
+                                                    <td> <textarea type="text" name="Innd" id="Innd" value=""></textarea></td>
+                                                </tr>-->
+                                                <button type="submit" class="btn btn-primary" name="Delete" id="Delet" >Delete Point</button>
+                                                <?php deletePoint() ?>
                                             </form>
                                         </div>
                                     </div>

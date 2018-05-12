@@ -10,7 +10,7 @@ include "admin_session.php";
     <meta property="og:image" content="../../img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - Admin</title>
+    <title>OsloMet - Admin Lag en Bruker</title>
 
     <?php
     include_once "../../Elements/Metaheads.php";
@@ -34,7 +34,7 @@ include "admin_session.php";
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="/eng/">English</a>
+        <a href="../admin_eng/admin_create_user_eng.php">English</a>
         <?php
         include_once "nav_admin_mobile.php";
         ?>

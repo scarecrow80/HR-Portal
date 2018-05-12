@@ -342,6 +342,197 @@ function createChecklist()
         }
     }
 }
+function createChecklistEN()
+{
+
+    global $db, $errors;
+    mysqli_autocommit($db, false);
+    $firstname = e($_POST['firstname']);
+    $lastname = e($_POST['lastname']);
+    $workposition = e($_POST['workposition']);
+    $international = e($_POST['international']);
+    $startdate = e($_POST['startdate']);
+    $responsibleLeader = e($_POST['responsibleLeader']);
+    $responsibleHr = e($_POST['responsibleHr']);
+    $responsibleMentor = e($_POST['responsibleMentor']);
+
+    if (empty($firstname)) {
+        array_push($errors, "You need a firstname");
+    }
+    if (empty($lastname)) {
+        array_push($errors, "write your lastname");
+    }
+    if (empty($workposition)) {
+        array_push($errors, "write the workposition");
+    }
+
+    if (count($errors) == 0) {
+
+
+        $query = "INSERT INTO Newemployee (firstname, lastname, workposition , international, startdate) 
+              VALUES('$firstname', '$lastname', '$workposition', '$international', '$startdate')";
+
+        $result = $db->query($query);
+        $result2 = "SELECT * FROM Checklist";
+
+
+
+        if (!$result) {
+            echo '<script type="text/javascript">alert("Wrong"); </script>';
+        } elseif ($db->affected_rows == 0) {
+            echo '<script type="text/javascript">alert("Worked, but didnt execute properly"); </script>';
+        } elseif ($db->affected_rows > 0) {
+            $i = 0;
+            if ($workposition == "Ansatt" && $international == "Nei") {
+
+                $idNewemployee = $db->insert_id;
+                $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk' AND leader = 'Nei' ";
+                $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
+
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $checkId = $row['idChecklist'];
+                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query3 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleLeader', '$idNewemployee') ";
+                    $query4 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleHr', '$idNewemployee') ";
+                    $query5 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleMentor', '$idNewemployee') ";
+
+                    $res2 = mysqli_query($db, $query2);
+                    $res3 = mysqli_query($db, $query3);
+                    $res4 = mysqli_query($db, $query4);
+                    $res5 = mysqli_query($db, $query5);
+
+                    if (!$res2) {
+
+                        echo '<script type="text/javascript">alert("The script failed");</script>';
+
+                    } elseif ($db->affected_rows == 0) {
+                        echo '<script type="text/javascript">alert("The script worked, but couldnt perform its task");</script>';
+
+                    } else {
+                        if ($i == ($num_rows - 1)) {
+                            mysqli_commit($db);
+                            echo '<script type="text/javascript">alert("Checklist created for a regular employee");</script>';
+                        }
+                        $i++;
+                    }
+                }
+            }
+            elseif ($workposition == "Ansatt" && $international == "Ja") {
+
+                $idNewemployee = $db->insert_id;
+                $query = "SELECT idChecklist FROM Checklist WHERE leader = 'Nei' ";
+                $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
+
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $checkId = $row['idChecklist'];
+                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query3 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleLeader', '$idNewemployee') ";
+                    $query4 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleHr', '$idNewemployee') ";
+                    $query5 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleMentor', '$idNewemployee') ";
+
+                    $res2 = mysqli_query($db, $query2);
+                    $res3 = mysqli_query($db, $query3);
+                    $res4 = mysqli_query($db, $query4);
+                    $res5 = mysqli_query($db, $query5);
+
+                    if (!$res2) {
+                        echo $query2;
+                        echo '<script type="text/javascript">alert("The script failed");</script>';
+                    } elseif ($db->affected_rows == 0) {
+                        echo '<script type="text/javascript">alert("The script worked, but couldnt perform its task ");</script>';
+                    } else {
+                        if ( $i == ( $num_rows - 1 ) ) {
+                            mysqli_commit($db);
+                            echo '<script type="text/javascript">alert("Checklist created for a international employee");</script>';
+                        }
+
+                    }
+                    $i++; }
+            } elseif ($workposition == "Leder" && $international == "Nei") {
+
+                $idNewemployee = $db->insert_id;
+                $query = "SELECT idChecklist FROM Checklist WHERE nationality = 'Norsk'";
+                $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
+
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $checkId = $row['idChecklist'];
+                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query3 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleLeader', '$idNewemployee') ";
+                    $query4 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleHr', '$idNewemployee') ";
+                    $query5 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleMentor', '$idNewemployee') ";
+
+                    $res2 = mysqli_query($db, $query2);
+                    $res3 = mysqli_query($db, $query3);
+                    $res4 = mysqli_query($db, $query4);
+                    $res5 = mysqli_query($db, $query5);
+
+                    if (!$res2) {
+                        echo $query2;
+                        echo '<script type="text/javascript">alert("The script is wrong");</script>';
+                    } elseif ($db->affected_rows == 0) {
+                        echo '<script type="text/javascript">alert("The script worked, but couldnt perform its task);</script>';
+                    } else {
+                        if ( $i == ( $num_rows - 1 ) ) {
+                            mysqli_commit($db);
+                            echo '<script type="text/javascript">alert("Checklist created for a new leader");</script>';
+                        }
+                    }
+                    $i++; }
+            } elseif ($workposition == "Leder" && $international == "Ja") {
+
+                $idNewemployee = $db->insert_id;
+                $query = "SELECT idChecklist FROM Checklist ";
+                $res = mysqli_query($db, $query);
+                $num_rows = mysqli_num_rows($res);
+
+
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $checkId = $row['idChecklist'];
+                    $query2 = "INSERT INTO Newemployee_has_Checklist (Newemployee_idNewemployee, Checklist_idChecklist, checked) VALUES ($idNewemployee, $checkId, 0)";
+                    $query3 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleLeader', '$idNewemployee') ";
+                    $query4 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleHr', '$idNewemployee') ";
+                    $query5 = "INSERT INTO Users_has_Newemployee (Users_idUsers, Newemployee_idNewemployee)
+                                VALUES ('$responsibleMentor', '$idNewemployee') ";
+
+                    $res2 = mysqli_query($db, $query2);
+                    $res3 = mysqli_query($db, $query3);
+                    $res4 = mysqli_query($db, $query4);
+                    $res5 = mysqli_query($db, $query5);
+
+                    if (!$res2) {
+                        echo $query2;
+                        echo '<script type="text/javascript">alert("Failed script");</script>';
+                    }
+                    elseif ($db->affected_rows == 0) {
+                        echo '<script type="text/javascript">alert("The script was executed, but couldnt do its task");</script>';
+                    }
+                    else {
+                        if ($i == ($num_rows - 1)) {
+                            mysqli_commit($db);
+                            echo '<script type="text/javascript">alert("Checklist created for a new international leader");</script>';
+                        }
+
+                    }
+
+                    $i++;    }
+            }
+        }
+    }
+}
 
 function selectMentor()
 {
@@ -480,6 +671,7 @@ function addMentor()
 {
     global $db, $username, $errors;
     mysqli_autocommit($db, false);
+
     $employee = e($_POST['empname']);
     $mentor = e($_POST['mentorSelect']);
     $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
@@ -1053,7 +1245,307 @@ function searchEmployeeConnected()
     }
 
 }
+function searchEmployeeConnectedEng()
+{
+    if(isset($_POST["searchConnected"]) && $_POST['searchConnectedUS'] == 'leader') {
+        echo "<form action='' method='post'><table>";
 
+        global $db, $errors;
+        $searchForEmployee = e($_POST["searchForConnect"]);
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $result = $db->query($sql);
+
+        if ($result) {
+
+
+            echo "<tr><th>Firstname</th>";
+            echo "<th>Surname</th>";
+            echo "<th>Workposition</th>";
+            echo "<th>International</th>";
+            echo "<th>Startdate</th>";
+            echo "<th>Leader</th></tr>";
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                $id = e($row['idNewemployee']);
+                $f_name = e($row["firstname"]);
+                $l_name = e($row["lastname"]);
+                $workposition = e($row["workposition"]);
+                $international = e($row["international"]);
+                $startdate = e($row["startdate"]);
+
+                $sqa = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE  Newemployee_idNewemployee = $id";
+
+                $result2 = $db->query($sqa);
+                if($result2) {
+                    if ($db->affected_rows == 0) {
+                        echo "<tr>";
+                        echo "<td>" . $f_name . "</td>";
+                        echo "<td>" . $l_name . "</td>";
+                        echo "<td>" . $workposition . "</td>";
+                        echo "<td>" . $international . "</td>";
+                        echo "<td>" . $startdate . "</td>";
+                        echo "<td>" . "No  Leader responsible" . "</td>";
+                        echo "</tr>";
+
+                    } else {
+
+                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'leader' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $result3 = $db->query($sqb);
+                        if ($result3) {
+                            while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $f_name = e($row["firstname"]);
+                                $l_name = e($row["lastname"]);
+                                $workposition = e($row["workposition"]);
+                                $international = e($row["international"]);
+                                $startdate = e($row["startdate"]);
+                                $name = e($row2['firstname'] . " ". $row2['lastname']);
+                                echo "<tr>";
+                                echo "<td>" . $f_name . "</td>";
+                                echo "<td>" . $l_name . "</td>";
+                                echo "<td>" . $workposition . "</td>";
+                                echo "<td>" . $international . "</td>";
+                                echo "<td>" . $startdate . "</td>";
+                                echo "<td>" . $name . "</td>";
+                                echo "</tr>";
+                            }
+                        }
+
+
+                    }
+                }
+            }echo "</table>";
+
+        } else {
+            echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
+        }
+    }
+
+    if(isset($_POST["searchConnected"]) && $_POST['searchConnectedUS'] == 'mentor') {
+        echo "<form action='' method='post'><table>";
+
+        global $db, $errors;
+        $searchForEmployee = e($_POST["searchForConnect"]);
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $result = $db->query($sql);
+
+        if ($result) {
+
+
+            echo "<tr><th>Firstname</th>";
+            echo "<th>Surename</th>";
+            echo "<th>Workposition</th>";
+            echo "<th>International</th>";
+            echo "<th>Startdate</th>";
+            echo "<th>Mentor</th></tr>";
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                $id = e($row['idNewemployee']);
+                $f_name = e($row["firstname"]);
+                $l_name = e($row["lastname"]);
+                $workposition = e($row["workposition"]);
+                $international = e($row["international"]);
+                $startdate = e($row["startdate"]);
+
+                $sqa = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE  Newemployee_idNewemployee = $id";
+
+                $result2 = $db->query($sqa);
+                if($result2) {
+                    if ($db->affected_rows == 0) {
+                        echo "<tr>";
+                        echo "<td>" . $f_name . "</td>";
+                        echo "<td>" . $l_name . "</td>";
+                        echo "<td>" . $workposition . "</td>";
+                        echo "<td>" . $international . "</td>";
+                        echo "<td>" . $startdate . "</td>";
+                        echo "<td>" . "No  Mentor responsible" . "</td>";
+                        echo "</tr>";
+
+                    } else {
+
+                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'mentor' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $result3 = $db->query($sqb);
+                        if ($result3) {
+                            while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $f_name = e($row["firstname"]);
+                                $l_name = e($row["lastname"]);
+                                $workposition = e($row["workposition"]);
+                                $international = e($row["international"]);
+                                $name = e($row2['firstname'] . " ". $row2['lastname']);
+                                echo "<tr>";
+                                echo "<td>" . $f_name . "</td>";
+                                echo "<td>" . $l_name . "</td>";
+                                echo "<td>" . $workposition . "</td>";
+                                echo "<td>" . $international . "</td>";
+                                echo "<td>" . $startdate . "</td>";
+                                echo "<td>" . $name . "</td>";
+                                echo "</tr>";
+                            }
+                        }
+
+
+                    }
+                }
+            }echo "</table>";
+
+        } else {
+            echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
+        }
+    }
+
+    if(isset($_POST["searchConnected"]) && $_POST['searchConnectedUS'] == 'HR') {
+        echo "<form action='' method='post'><table>";
+
+        global $db, $errors;
+        $searchForEmployee = e($_POST["searchForConnect"]);
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $result = $db->query($sql);
+
+        if ($result) {
+
+
+            echo "<tr><th>Firstname</th>";
+            echo "<th>Surename</th>";
+            echo "<th>Workposition</th>";
+            echo "<th>International</th>";
+            echo "<th>Startdate</th>";
+            echo "<th>Mentor</th></tr>";
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                $id = e($row['idNewemployee']);
+                $f_name = e($row["firstname"]);
+                $l_name = e($row["lastname"]);
+                $workposition = e($row["workposition"]);
+                $international = e($row["international"]);
+                $startdate = e($row["startdate"]);
+
+                $sqa = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE  Newemployee_idNewemployee = $id";
+
+                $result2 = $db->query($sqa);
+                if($result2) {
+                    if ($db->affected_rows == 0) {
+                        echo "<tr>";
+                        echo "<td>" . $f_name . "</td>";
+                        echo "<td>" . $l_name . "</td>";
+                        echo "<td>" . $workposition . "</td>";
+                        echo "<td>" . $international . "</td>";
+                        echo "<td>" . $startdate . "</td>";
+                        echo "<td>" . "No HR-Employee Responsible" . "</td>";
+                        echo "</tr>";
+
+                    } else {
+
+                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'HR' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $result3 = $db->query($sqb);
+                        if ($result3) {
+                            while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $f_name = e($row["firstname"]);
+                                $l_name = e($row["lastname"]);
+                                $workposition = e($row["workposition"]);
+                                $international = e($row["international"]);
+                                $name = e($row2['firstname'] . " ". $row2['lastname']);
+                                echo "<tr>";
+                                echo "<td>" . $f_name . "</td>";
+                                echo "<td>" . $l_name . "</td>";
+                                echo "<td>" . $workposition . "</td>";
+                                echo "<td>" . $international . "</td>";
+                                echo "<td>" . $startdate . "</td>";
+                                echo "<td>" . $name . "</td>";
+                                echo "</tr>";
+                            }
+                        }
+
+
+                    }
+                }
+            }echo "</table>";
+
+        } else {
+            echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
+        }
+    }
+
+}
+
+function searchEmployeeEng()
+{
+    if (isset($_POST['searcFi'])) {
+
+        global $db;
+
+        if (!$db) {
+            die("Feil i databasetilkobling:" . $db->connect_error);
+        }
+
+        $searchForEmployee = e($_POST["searchFro"]);
+        $qry = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $res = mysqli_query($db, $qry);
+        if (!$res) {
+            echo '<script type="text/javascript">alert("Query failed");</script>';
+        }
+
+
+        while ($row = mysqli_fetch_assoc($res)) {
+            $id_new = $row['idNewemployee'];
+            $f_name = $row['firstname'];
+            $l_name = $row['lastname'];
+
+
+            $article = '<article class="h-card vcard person-card article-contact" role="article" id="colorWhite"><h3 title="Oversikt over sjekklister"  class="toggler-header article-contact-heading"> ';
+            $article .= $f_name . " " . $l_name . " ";
+            $article .= '</h3><div class="toggler-content"><form action="" method="post"><table><tr><th>Oppgave</th><th>Sjekkboks</th></tr>';
+            $qry2 = "SELECT Newemployee_idNewemployee, Checklist_idChecklist, checked FROM Newemployee_has_Checklist INNER JOIN Checklist ON idChecklist WHERE Checklist_idChecklist = idChecklist AND Newemployee_idNewemployee='$id_new'";
+            $res2 = mysqli_query($db, $qry2);
+
+            if (!$res2) {
+                echo '<script type="text/javascript">alert("Tom resultat");</script>';
+                die();
+            }
+            while ($row2 = mysqli_fetch_assoc($res2)) {
+                $check_id = $row2['Checklist_idChecklist'];
+                $checked = $row2['checked'];
+                $emp_id = $row2['Newemployee_idNewemployee'];
+
+                $qry3 = "SELECT checkpointsEN, idChecklist from Checklist WHERE idChecklist ='$check_id'";
+                $res3 = mysqli_query($db, $qry3);
+                $res4 = mysqli_fetch_assoc($res3);
+
+                $article .= '
+                                             <tr>
+                                             <td>';
+                $article .= " " . $res4['checkpointsEN'] . " ";
+                $id_check = $res4['idChecklist'];
+                $article .= '</td>';
+                $article .= '<td height="30px" >';
+                if ($checked == 0) {
+                    $article .= '<input type="checkbox" class="checkbox" name="';
+                    $article .= $emp_id;
+                    $article .= '" value="';
+                    $article .= $checked;
+                    $article .= '" id="';
+                    $article .= $check_id;
+                    $article .= '" onclick="return false;" onkeydown="e = e || window.event; if(e.keyCode !== 9) return false;"/>';
+
+                } else {
+                    $article .= '<input type="checkbox" class="checkbox" name="empty" checked   onclick="return false;" onkeydown="e = e || window.event; if(e.keyCode !== 9) return false;"';
+
+                    $article .= $checked;
+
+                    $article .= '">';
+
+                }
+
+                $article .= '</td></tr>';
+
+            }
+            //$article.='<button type="submit">Submit</button>';
+            $article .= '</table></form></div></article>';
+            echo $article;
+
+        }
+
+    }
+
+}
 function searchEmployee()
 {
     if (isset($_POST['searcF'])) {
@@ -1138,6 +1630,10 @@ function searchEmployee()
 if (isset($_POST['createCheckList'])) {
     createChecklist();
 }
+if (isset($_POST['createCheckListEn'])) {
+    createChecklistEN();
+}
+
 
 if (isset($_POST['assignMentor'])) {
     addMentor();

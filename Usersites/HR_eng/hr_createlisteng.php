@@ -10,7 +10,7 @@ include "hr_session.php"; ?>
 
 
 
-    <title>OsloMet - HR Opprett sjekkliste</title>
+    <title>OsloMet - HR Create Checklist</title>
     <?php
     include_once "../../Elements/Metaheads.php";
     ?>
@@ -40,7 +40,7 @@ include "hr_session.php"; ?>
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="../HR_eng/hr_createlisteng.php">English</a>
+        <a href="../HR/hr_createlist.php">Norsk</a>
         <div id="mobile-menu">
             <?php
             include "nav_hr_mobile.php";
@@ -79,59 +79,59 @@ include "hr_session.php"; ?>
                                 <div id="test">
                                     <div id="overview" class="page tilsatt">
                                         <div id="createList" class="page tilsatt" >
-                                            <h2>Opprett sjekkliste</h2>
+                                            <h2>Create checklist</h2>
                                             <form action="" method="post">
                                                 <table class="CreateChecklistTable">
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable" >Fornavn: </td>
+                                                        <td id="CreateChecklistTable" >Firstname: </td>
                                                         <td id="CreateChecklistTable" ><input type="text" name='firstname' class="field comment-alerts" id="input-box" placeholder="Fornavn" required/> </td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Etternavn: </td>
+                                                        <td id="CreateChecklistTable">Surname: </td>
                                                         <td id="CreateChecklistTable"><input type="text" name="lastname" class="field comment-alerts" id="input-box" placeholder="Etternavn" required/> </td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Stilling: </td>
+                                                        <td id="CreateChecklistTable">Workposition: </td>
                                                         <td id="CreateChecklistTable"><select name="workposition" class="field comment-alerts" id="choose2" required />
                                                             <option value=""></option>
-                                                            <option value="Leder">Leder</option>
-                                                            <option value="Ansatt">Ansatt</option>
+                                                            <option value="Leder">Leader</option>
+                                                            <option value="Ansatt">Employee</option>
                                                         </td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Internasjonal: </td>
+                                                        <td id="CreateChecklistTable">International: </td>
                                                         <td id="CreateChecklistTable"><select name="international" class="field comment-alerts" id="choose2" required>
                                                                 <option value=""></option>
-                                                                <option value="Ja">Ja</option>
-                                                                <option value="Nei">Nei</option>
+                                                                <option value="Ja">Yes</option>
+                                                                <option value="Nei">No</option>
                                                         </td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Ansatt dato: </td>
+                                                        <td id="CreateChecklistTable">Startdate: </td>
                                                         <td id="CreateChecklistTable"><input type='date' name="startdate" class="field comment-alerts" id="datePicker" required /> </td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Velg ansvarlig leder: </td>
+                                                        <td id="CreateChecklistTable">Pick Responsible Leader: </td>
                                                         <td id="CreateChecklistTable">
                                                             <?php selectLeader() ?>
                                                         </td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Velg ansvarlig HR-ansatt: </td>
+                                                        <td id="CreateChecklistTable">Pick Responsible HR person: </td>
                                                         <td id="CreateChecklistTable">
                                                             <?php selectHr() ?>
                                                         </td>
                                                     </tr>
                                                     <tr class="input-group" id="CreateChecklistTable">
-                                                        <td id="CreateChecklistTable">Velg ansvarlig fadder: </td>
+                                                        <td id="CreateChecklistTable">Pick Responsible Mentor: </td>
                                                         <td id="CreateChecklistTable">
                                                             <?php selectMentor() ?>
                                                         </td>
                                                     </tr>
 
                                                 </table>
-                                                <button class="btn btn-cancel" type="button">Avbryt</button>
-                                                <button type="submit" class="btn btn-primary" name="createCheckList">Register</button>
+                                                <button class="btn btn-cancel" type="button">Cancel</button>
+                                                <button type="submit" class="btn btn-primary" name="createCheckListEn">Register</button>
                                             </form>
 
 

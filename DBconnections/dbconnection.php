@@ -10,9 +10,13 @@ $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
 
 
 //login
-    if (isset($_POST["login"])) {
+    if (isset($_POST["logginn"])) {
         login();
     }
+//login
+if (isset($_POST["login"])) {
+    logineng();
+}
 
 //login function
     function login()
@@ -65,6 +69,57 @@ $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
         }
 
     }
+//login function
+function logineng()
+{
+    global $db, $username, $errors;
+    //get values
+    $username = e($_POST['username']);
+    $password = e($_POST['password']);
+
+    // make sure form is filled properly
+    if (empty($username)) {
+        array_push($errors, "Username is required");
+    }
+    if (empty($password)) {
+        array_push($errors, "Password is required");
+    }
+    //attempt login if no errors found. Password needs to be encrypted again
+    if (count($errors) == 0) {
+        $password = md5($password);
+        $query = "SELECT * FROM Users WHERE username='$username' AND password='$password' LIMIT 1";
+        $result = $db->query($query);
+
+        if ($db->affected_rows == 1) {
+
+            $logged_in_user = mysqli_fetch_assoc(($result));
+            if ($logged_in_user['usertype'] == 'admin') {
+                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['success'] = "Logged in";
+                header('location: ../HR-Portal/Usersites/admin_eng/admin_overvieweng.php');
+            } else if ($logged_in_user['usertype'] == 'leader') {
+                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['success'] = "Logged in";
+                header('location: ../HR-Portal/Usersites/leader_eng/leader_overvieweng.php');
+            } else if ($logged_in_user['usertype'] == 'mentor') {
+                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['success'] = "Logged in getting you to list";
+                header('location: ../HR-Portal/Usersites/mentor/mentor_overvieweng.php');
+            } else {
+                $_SESSION['user'] = $logged_in_user;
+                $_SESSION['success'] = "Logged in getting you to list";
+                header('location: ../HR-Portal/Usersites/HR_eng/hr_overvieweng.php');
+            }
+
+        } else {
+            array_push($errors, "Wrong credentials");
+            header('location: ../../HR-Portal/indexeng.php');
+        }
+
+
+    }
+
+}
 /*
     if (isset($_POST["del"])) {
         deletechecklist();

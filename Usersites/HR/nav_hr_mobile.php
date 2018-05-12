@@ -9,7 +9,7 @@
         <a class="list" id="" href="hr_search.php" role="menuitem" title="Søk"> <span class="nav-item-label"> Søk </span> </a>
     </li>
     <li class="main-menu">
-        <a class="list" id="" href="hr_createlist.php.php" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
+        <a class="list" id="" href="hr_createlist.php" role="menuitem" title="Opprett sjekkliste"> <span class="nav-item-label"> Opprett sjekkliste </span> </a>
     </li>
     <li class="main-menu">
         <a class="list" id="" href="hr_assign.php" role="menuitem" title="Tildel ansatt"> <span class="nav-item-label"> Tildel ansatt </span> </a>

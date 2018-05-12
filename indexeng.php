@@ -69,7 +69,7 @@ include('DBconnections/dbconnection.php');
             <img src="img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="indexeng.php">English</a>
+        <a href="index.php">Norsk</a>
 
         <div id="mobile-menu">
             <ul>
@@ -87,7 +87,7 @@ include('DBconnections/dbconnection.php');
 
                     <ul id="topMenu">
 
-                        <li><a href="indexeng.php">English</a></li>
+                        <li><a href="index.php">Norsk</a></li>
 
                     </ul>
 
@@ -127,7 +127,7 @@ include('DBconnections/dbconnection.php');
                             <div style="flot:left;clear:both;">
 
                                 <div class="mrflexibox block_result_list tjenestebox left width_full" thetitle="Logg inn">
-                                    <h2> Logg inn </h2>
+                                    <h2> Login </h2>
 
                                     <div class="mr_fleksi_content">
 
@@ -146,14 +146,14 @@ include('DBconnections/dbconnection.php');
                                                             <div class="">
 
                                                                 <div class="control-group">
-                                                                    <input class="field clearable" id="_58_login" name="username" type="text" value="" placeholder="Brukernavn"> </div>
+                                                                    <input class="field clearable" id="_58_login" name="username" type="text" value="" placeholder="Username"> </div>
 
                                                                 <div class="control-group">
-                                                                    <input class="field" id="_58_password" name="password" type="password" value="" placeholder="Passord"> </div> <span id="_58_passwordCapsLockSpan" style="display: none; color:red; margin-bottom: 10px;">Caps-lock er på.</span> </div>
+                                                                    <input class="field" id="_58_password" name="password" type="password" value="" placeholder="Password"> </div> <span id="_58_passwordCapsLockSpan" style="display: none; color:red; margin-bottom: 10px;">Caps-lock er på.</span> </div>
                                                         </fieldset>
 
                                                         <div class="loginButtonHolder">
-                                                            <button type="submit" value="Logg inn" class="loginButton" name="logginn" >Logg inn</button> </div>
+                                                            <button type="submit"  class="loginButton" name="login" >Login</button> </div>
                                                         <div class="clearfix"></div>
                                                     </form>
                                                 </div>

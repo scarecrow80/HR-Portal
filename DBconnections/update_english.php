@@ -6,10 +6,10 @@ $usertype = $_SESSION['user']['usertype'];
 if(!isset($_POST['formList'])){
     if($usertype == "leader"){
         echo "<script type=\"text/javascript\">alert('You have to pick a checkbox to checkout');</script>";
-        header('location: ../Usersites/leader/leader_owntasks.php');
+        header('location: ../Usersites/leader_eng/leader_owntaskseng.php');
     } elseif ($usertype == "HR"){
         echo "<script type=\"text/javascript\">alert('You have to pick a checkbox to checkout');</script>";
-        header('location: ../Usersites/HR/hr_owntasks.php');
+        header('location: ../Usersites/HR_eng/hr_owntaskseng.php');
 
     }elseif($usertype == "mentor"){
         echo "<script type=\"text/javascript\">alert('You have to pick a checkbox to checkout');</script>";
@@ -21,10 +21,10 @@ if(!isset($_POST['formList'])){
 } else {
     if($usertype == "leader"){
         update();
-        header('location: ../Usersites/leader/leader_owntasks.php');
+        header('location: ../Usersites/leader_eng/leader_owntaskseng.php');
     } elseif ($usertype == "HR"){
         update();
-        header('location: ../Usersites/HR/hr_owntasks.php');
+        header('location: ../Usersites/HR_eng/hr_owntaskseng.php');
 
     }elseif($usertype == "mentor" ){
         update();

@@ -48,7 +48,7 @@ include "hr_session.php";
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="/eng/">English</a>
+        <a href="../HR_eng/hr_overvieweng.php">English</a>
         <div id="mobile-menu">
             <?php
             include "nav_hr_mobile.php";

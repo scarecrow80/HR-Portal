@@ -10,7 +10,7 @@ include "admin_session.php";
     <meta property="og:image" content="../../img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - Admin Slett Bruker</title>
+    <title>OsloMet - Admin Overview</title>
 
     <?php
     include_once "../../Elements/Metaheads.php";
@@ -34,7 +34,7 @@ include "admin_session.php";
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="../admin_eng/admin_delete_usereng.php">English</a>
+        <a href="../admin/admin_overview.php">Norsk</a>
         <?php
         include_once "nav_admin_mobile.php";
         ?>
@@ -83,22 +83,30 @@ include "admin_session.php";
                             <!-- </div> --> <!-- END: hoyrekolonne -->
                             <div style="flot:left;clear:both;">
 
-                                <div id="deleteUser" class="page tilsatt">
-                                    <h2>Slett bruker</h2>
+                                <script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
+                                <div id="overview" class="page tilsatt">
 
-                                    
-                                    <form action="" method="post">
+                                    <script>
+                                        YUI().use("aui-toggler", function(a) {
+                                            new a.TogglerDelegate({
+                                                animated: true,
+                                                closeAllOnExpand: true,
+                                                container: ".article-toggle",
+                                                content: ".toggler-content",
+                                                expanded: false,
+                                                header: ".toggler-header",
+                                                transition: {
+                                                    duration: 0.2,
+                                                    easing: "cubic-bezier(0, 0.1, 0, 1)"
+                                                }
+                                            })
+                                        });
+                                    </script>
+                                    <section class="section section-events article-toggle" role="region">
+                                        <h2>Overview of every new employees with a checklist</h2>
+                                        <?php overviewAllENG() ?>
 
-                                        <tr class="input-group">
-                                            <td><input type="text" name="userSearch" id="search-box" class="field comment-alerts" placeholder="Søk etter bruker" ></td>
-                                        </tr>
-                                        <button type="submit" class="btn btn-primary" name="searchForUser" >Søk</button>
-                                    </form>
-                                    <?php
-                                    searchForUser();
-                                    deleteUser();
-                                    ?>
-
+                                    </section>
 
                                 </div>
                                 <!-- END: section -->

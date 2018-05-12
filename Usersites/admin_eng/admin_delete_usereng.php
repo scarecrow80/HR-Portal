@@ -10,7 +10,7 @@ include "admin_session.php";
     <meta property="og:image" content="../../img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - Admin Slett Bruker</title>
+    <title>OsloMet - Admin Delete User</title>
 
     <?php
     include_once "../../Elements/Metaheads.php";
@@ -34,7 +34,7 @@ include "admin_session.php";
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="../admin_eng/admin_delete_usereng.php">English</a>
+        <a href="../admin/admin_delete_user.php">Norsk</a>
         <?php
         include_once "nav_admin_mobile.php";
         ?>
@@ -84,15 +84,15 @@ include "admin_session.php";
                             <div style="flot:left;clear:both;">
 
                                 <div id="deleteUser" class="page tilsatt">
-                                    <h2>Slett bruker</h2>
+                                    <h2>Delete User</h2>
 
-                                    
+
                                     <form action="" method="post">
 
                                         <tr class="input-group">
-                                            <td><input type="text" name="userSearch" id="search-box" class="field comment-alerts" placeholder="Søk etter bruker" ></td>
+                                            <td><input type="text" name="userS" id="search-box" class="field comment-alerts" placeholder="Søk etter bruker" ></td>
                                         </tr>
-                                        <button type="submit" class="btn btn-primary" name="searchForUser" >Søk</button>
+                                        <button type="submit" class="btn btn-primary" name="searchForU" >Search</button>
                                     </form>
                                     <?php
                                     searchForUser();

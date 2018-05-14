@@ -1,10 +1,11 @@
 <div id="navcontainer" class="fullsizeBlock">
 
     <ul id="topMenu">
-        <li><a href="http://www.hioa.no/eng">EnglishTODO</a></li>
+        <li><a href="../leader_eng/leader_overvieweng.php">English</a></li>
         <li class=" " id="" role="presentation">
-            <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logg ut" style="cursor: pointer"> <span class="nav-item-label"> Logg ut</span> </a>
+            <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logg ut"> <span class="nav-item-label" style="cursor: pointer"> Logg ut</span> </a>
         </li>
+    </ul>
 
     </ul>
 

@@ -223,7 +223,7 @@ function changePointEn()
         $leader = e($result2["leader"]);
 
         echo "<form action='' method='post' ><table id=\"CreateChecklistTable\">";
-        echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><label type='text' name='checkPointID' value='$checkpointId' readonly >" . $checkpointId . "</td></tr>";
+        echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><input type='hidden' name='checkPointID' value='$checkpointId' id='$checkpointId'/><label type='text' value='$checkpointId' readonly >" . $checkpointId . "</td></tr>";
         echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><textarea type='text' id='text-area-input-checkpoints' name='orgPointEN' id='$checkpointId' readonly >" . $checkpointEN . "</textarea></td><br></tr>";
         echo "<tr class='input-group'><td id=\"CreateChecklistTable\"> <textarea type='text' id='text-area-input-checkpoints' name='newPointEN' id='$checkpointId' placeholder='Write in new point'></textarea></td></tr>";
         echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><textarea type='text' id='text-area-input-checkpoints' name='orgPointNO' id='$checkpointId' readonly >" . $checkpointNO . "</textarea></td><br></tr>";
@@ -271,9 +271,10 @@ function changePointEn()
 function changePoint()
     {
         if (isset($_POST["selectPoint"])) {
-            global $db, $errors;
+            //global $db, $errors;
+            $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
             $checkpointId = e($_POST["checkpoint"]);
-            $sql = "SELECT * FROM Checklist WHERE Checklist.idChecklist ='" . $checkpointId . "'";
+            $sql = "SELECT * FROM Checklist WHERE Checklist.idChecklist ='".$checkpointId."'";
             $result = $db->query($sql);
 
             $result2 = mysqli_fetch_assoc($result);
@@ -284,12 +285,12 @@ function changePoint()
             $nationality = e($result2["nationality"]);
             $leader = e($result2["leader"]);
 
-            echo "<form action='' method='post' ><table id=\"CreateChecklistTable\">";
-            echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><label type='text' name='checkPointId' value='$checkpointId' readonly >" . $checkpointId . "</td></tr>";
-            echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><textarea type='text' id='text-area-input-checkpoints' name='orgPointNO' id='$checkpointId' readonly >" . $checkpointNO . "</textarea></td><br></tr>";
-            echo "<tr class='input-group'><td id=\"CreateChecklistTable\"> <textarea type='text' id='text-area-input-checkpoints' name='newPointNO' id='$checkpointId' placeholder='Skriv in nytt punkt'></textarea></td></tr>";
-            echo "<tr class='input-group'><td id=\"CreateChecklistTable\"><textarea type='text' id='text-area-input-checkpoints' name='orgPointEN' id='$checkpointId' readonly >" . $checkpointEN . "</textarea></td><br></tr>";
-            echo "<tr class ='input-group'><td id=\"CreateChecklistTable\"><textarea type='text' id='text-area-input-checkpoints' name='newPointEN' id='$checkpointId' placeholder='Skriv inn nytt punkt på engelsk'></textarea></td></tr>";
+            echo "<form action='' method='post'><table>";
+            echo "<tr class='input-group'><td><input type='hidden' name='checkPointId' value='$checkpointId' id='$checkpointId'/><label type='text' value='$checkpointId' readonly />" . $checkpointId . "</td></tr>";
+            echo "<tr class='input-group'><td><textarea type='text' name='orgPointNO'  id='$checkpointId' readonly >" . $checkpointNO . "</textarea></td><br></tr>";
+            echo "<tr class='input-group'><td> <textarea type='text' name='newPointNO' id='$checkpointId' placeholder='Skriv in nytt punkt'></textarea></td></tr>";
+            echo "<tr class='input-group'><td><textarea type='text' name='orgPointEN' id='$checkpointId' readonly >" . $checkpointEN . "</textarea></td><br></tr>";
+            echo "<tr class ='input-group'><td><textarea type='text' name='newPointEN' id='$checkpointId' placeholder='Skriv inn nytt punkt på engelsk'></textarea></td></tr>";
             echo "</table>";
             echo "<button type='submit' class='btn btn-primary' name='changingPoint'>Change</button>";
             echo "</form>";
@@ -298,7 +299,7 @@ function changePoint()
         if (isset($_POST["changingPoint"])) {
             global $db, $errors;
             mysqli_autocommit($db, false);
-            $checkpointId2 = e($_POST["checkPointId"]);
+            $checkpointId2 = $_POST["checkPointId"];
             $newPointNO = e($_POST["newPointNO"]);
             $newPointEN = e($_POST["newPointEN"]);
             $orgPointNO = e($_POST["orgPointNO"]);
@@ -316,15 +317,18 @@ function changePoint()
 
                         mysqli_commit($db);
                         echo '<script type="text/javascript">alert("Punktet er endret");</script>';
-                    } else {
+                    }
+                    else {
 
                         echo '<script type="text/javascript">alert("Kunne ikke endre");</script>';
                     }
-                } else {
+                }
+                else {
                     echo '<script type="text/javascript">alert("Skripet fungerte ikke");</script>';
                 }
 
-            } else {
+            }
+            else {
                 echo '<script type="text/javascript">alert("Annen feil");</script>';
             }
         }

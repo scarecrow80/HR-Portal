@@ -552,7 +552,7 @@ function searchForEmployeeTesting()
 
 function searchForEmployee()
 {
-    if (isset($_POST["searchF"])) {
+    if (isset($_POST["searchFor"])) {
         echo "<form action='' method='post'><table>";
 
         global $db, $errors;

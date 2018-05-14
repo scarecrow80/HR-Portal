@@ -95,8 +95,8 @@ include "admin_session.php";
                                         <button type="submit" class="btn btn-primary" name="searchForU" >Search</button>
                                     </form>
                                     <?php
-                                    searchForUser();
-                                    deleteUser();
+                                    searchForUserEng();
+                                    deleteUserEng();
                                     ?>
 
 

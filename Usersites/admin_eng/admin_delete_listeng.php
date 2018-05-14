@@ -109,7 +109,7 @@ include "admin_session.php";
                                         <button type="submit" class="btn btn-primary" name="searchF" >Search</button>
                                     </form>
 
-                                    <?php searchForEmployee() ?>
+                                    <?php searchForEmployeeEng() ?>
 
                                     <?php deleteEmployee() ?>
 

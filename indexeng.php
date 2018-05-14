@@ -126,6 +126,8 @@ include('DBconnections/dbconnection.php');
                             <!-- </div> --> <!-- END: hoyrekolonne -->
                             <div style="flot:left;clear:both;">
 
+                                <div id="change" class="page tilsatt">
+
                                 <div class="mrflexibox block_result_list tjenestebox left width_full" thetitle="Logg inn">
                                     <h2> Login </h2>
 
@@ -160,6 +162,7 @@ include('DBconnections/dbconnection.php');
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
 
                                 <!-- END: section -->

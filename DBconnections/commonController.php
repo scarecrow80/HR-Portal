@@ -7,7 +7,7 @@ function overviewAll()
         die("Feil i databasetilkobling:" . $db->connect_error);
     }
     //$userId = $_SESSION;
-    $qry = "SELECT DISTINCT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee";
+    $qry = "SELECT DISTINCT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee ORDER BY Newemployee.lastname, Newemployee.firstname";
     $res = mysqli_query($db, $qry);
     if (!$res) {
         echo '<script type="text/javascript">alert("Query failed");</script>';
@@ -83,7 +83,7 @@ function overviewAllENG()
         die("Feil i databasetilkobling:" . $db->connect_error);
     }
     //$userId = $_SESSION;
-    $qry = "SELECT DISTINCT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee";
+    $qry = "SELECT DISTINCT Newemployee.firstname, Newemployee.lastname, Newemployee.idNewemployee FROM Newemployee INNER JOIN Users_has_Newemployee ON Newemployee.idNewemployee = Users_has_Newemployee.Newemployee_idNewemployee ORDER BY Newemployee.lastname, Newemployee.firstname";
     $res = mysqli_query($db, $qry);
     if (!$res) {
         echo '<script type="text/javascript">alert("Query failed");</script>';
@@ -342,6 +342,7 @@ function createChecklist()
         }
     }
 }
+
 function createChecklistEN()
 {
 
@@ -537,7 +538,7 @@ function createChecklistEN()
 function selectMentor()
 {
     global $db;
-    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor'") or die(mysqli_error());
+    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor' ORDER BY Users.lastname, Users.firstname") or die(mysqli_error());
     echo "<select name=\"responsibleMentor\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
@@ -556,7 +557,7 @@ function selectMentor()
 function selectLeader()
 {
     global $db;
-    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'leader'") or die(mysqli_error());
+    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'leader' ORDER BY Users.lastname, Users.firstname") or die(mysqli_error());
     echo "<select name=\"responsibleLeader\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
@@ -575,7 +576,7 @@ function selectLeader()
 function selectHr()
 {
     global $db;
-    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR'") or die(mysqli_error());
+    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR' ORDER BY Users.lastname, Users.firstname") or die(mysqli_error());
     echo "<select name=\"responsibleHr\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
@@ -594,7 +595,7 @@ function selectHr()
 function employeeSelect()
 {
     global  $db;
-    $query = mysqli_query($db, "SELECT idNewemployee, firstname, lastname FROM Newemployee") or die(mysqli_error());
+    $query = mysqli_query($db, "SELECT idNewemployee, firstname, lastname FROM Newemployee ORDER BY Newemployee.lastname, Newemployee.firstname") or die(mysqli_error());
     echo "<select name=\"empname\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
@@ -613,7 +614,7 @@ function employeeSelect()
 function mentorSelect()
 {
     global $db;
-    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor'") or die(mysqli_error());
+    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor' ORDER BY Users.lastname, Users.firstname") or die(mysqli_error());
     echo "<select name=\"mentorSelect\" class=\"field comment-alerts\" id='choose2'>";
     echo '<option value=""></option>';
 
@@ -632,7 +633,7 @@ function mentorSelect()
 function leaderSelect()
 {
     global $db;
-    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'leader'") or die(mysqli_error());
+    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'leader' ORDER BY Users.lastname, Users.firstname") or die(mysqli_error());
     echo "<select name=\"leaderSelect\" class=\"field comment-alerts\" id='choose2' >";
     echo '<option value=""></option>';
 
@@ -651,7 +652,7 @@ function leaderSelect()
 function hrSelect()
 {
     global $db;
-    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR'") or die(mysqli_error());
+    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'HR' ORDER BY Users.lastname, Users.firstname") or die(mysqli_error());
     echo "<select name=\"hrSelect\" class=\"field comment-alerts\" id='choose2' >";
     echo '<option value=""></option>';
 
@@ -1032,7 +1033,7 @@ function searchEmployeeConnected()
 
         global $db, $errors;
         $searchForEmployee = e($_POST["searchForConnected"]);
-        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%' ORDER BY Newemployee.lastname, Newemployee.firstname";
         $result = $db->query($sql);
 
         if ($result) {
@@ -1105,7 +1106,7 @@ function searchEmployeeConnected()
 
         global $db, $errors;
         $searchForEmployee = e($_POST["searchForConnected"]);
-        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%' ORDER BY Newemployee.lastname, Newemployee.firstname";
         $result = $db->query($sql);
 
         if ($result) {
@@ -1177,7 +1178,7 @@ function searchEmployeeConnected()
 
         global $db, $errors;
         $searchForEmployee = e($_POST["searchForConnected"]);
-        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%' ORDER BY Newemployee.lastname, Newemployee.firstname";
         $result = $db->query($sql);
 
         if ($result) {
@@ -1245,6 +1246,7 @@ function searchEmployeeConnected()
     }
 
 }
+
 function searchEmployeeConnectedEng()
 {
     if(isset($_POST["searchConnected"]) && $_POST['searchConnectedUS'] == 'leader') {
@@ -1252,7 +1254,7 @@ function searchEmployeeConnectedEng()
 
         global $db, $errors;
         $searchForEmployee = e($_POST["searchForConnect"]);
-        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%' ORDER BY Newemployee.lastname, Newemployee.firstname";
         $result = $db->query($sql);
 
         if ($result) {
@@ -1325,7 +1327,7 @@ function searchEmployeeConnectedEng()
 
         global $db, $errors;
         $searchForEmployee = e($_POST["searchForConnect"]);
-        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%' ORDER BY Newemployee.lastname, Newemployee.firstname";
         $result = $db->query($sql);
 
         if ($result) {
@@ -1397,7 +1399,7 @@ function searchEmployeeConnectedEng()
 
         global $db, $errors;
         $searchForEmployee = e($_POST["searchForConnect"]);
-        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $sql = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%' ORDER BY Newemployee.lastname, Newemployee.firstname";
         $result = $db->query($sql);
 
         if ($result) {
@@ -1408,7 +1410,7 @@ function searchEmployeeConnectedEng()
             echo "<th>Workposition</th>";
             echo "<th>International</th>";
             echo "<th>Startdate</th>";
-            echo "<th>Mentor</th></tr>";
+            echo "<th>HR-employee</th></tr>";
 
             while ($row = mysqli_fetch_assoc($result)) {
                 $id = e($row['idNewemployee']);
@@ -1477,7 +1479,7 @@ function searchEmployeeEng()
         }
 
         $searchForEmployee = e($_POST["searchFro"]);
-        $qry = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $qry = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%' ORDER BY Newemployee.lastname, Newemployee.firstname";
         $res = mysqli_query($db, $qry);
         if (!$res) {
             echo '<script type="text/javascript">alert("Query failed");</script>';
@@ -1546,6 +1548,7 @@ function searchEmployeeEng()
     }
 
 }
+
 function searchEmployee()
 {
     if (isset($_POST['searcF'])) {
@@ -1557,7 +1560,7 @@ function searchEmployee()
         }
 
         $searchForEmployee = e($_POST["searchFr"]);
-        $qry = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%'";
+        $qry = "SELECT * FROM Newemployee WHERE Newemployee.firstname LIKE '" . $searchForEmployee . "%'  OR Newemployee.lastname LIKE '" . $searchForEmployee . "%' ORDER BY Newemployee.lastname, Newemployee.firstname";
         $res = mysqli_query($db, $qry);
         if (!$res) {
             echo '<script type="text/javascript">alert("Query failed");</script>';

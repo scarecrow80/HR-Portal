@@ -31,7 +31,7 @@ include "leader_session.php";
             <img src="../../img/hioa-meny-knapp_off.png" alt="meny" />
         </div>
 
-        <a href="/eng/">English</a>
+        <a href="../leader_eng/leader_searcheng.php">English</a>
         <div id="mobile-menu">
             <?php
             include "nav_leader_mobile.php";

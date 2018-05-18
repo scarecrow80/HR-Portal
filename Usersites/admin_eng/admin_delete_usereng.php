@@ -90,7 +90,7 @@ include "admin_session.php";
                                     <form action="" method="post">
 
                                         <tr class="input-group">
-                                            <td><input type="text" name="userS" id="search-box" class="field comment-alerts" placeholder="Søk etter bruker" ></td>
+                                            <td><input type="text" name="userS" id="search-box" class="field comment-alerts" placeholder="Search for user" ></td>
                                         </tr>
                                         <button type="submit" class="btn btn-primary" name="searchForU" >Search</button>
                                     </form>

@@ -408,7 +408,7 @@ function deletePoint()
 
         global $db, $errors;
         mysqli_autocommit($db, false);
-        $checkpointId = e($_POST["Delete_Point"]);
+        $checkpointId = e($_POST["DeletePoint"]);
         $sql = "DELETE FROM Checklist WHERE idChecklist = '" . $checkpointId . "'";
         $sql2 = "DELETE FROM Newemployee_has_Checklist WHERE Checklist_idChecklist = '" . $checkpointId . "'";
 

@@ -1,4 +1,5 @@
 <?php
+//Funksjon som viser alle ansatte med sjekkliste
 function overviewAll()
 {
     global $db;
@@ -75,6 +76,7 @@ function overviewAll()
     }
 }
 
+//Funksjon som viser alle ansatte med sjekkliste i engelsk versjon
 function overviewAllENG()
 {
     global $db;
@@ -151,6 +153,7 @@ function overviewAllENG()
     }
 }
 
+//Funksjon som oppretter ny ansatt med sjekkliste
 function createChecklist()
 {
 
@@ -343,6 +346,7 @@ function createChecklist()
     }
 }
 
+//Funksjon som oppretter ny ansatt med sjekkliste i engelsk versjon
 function createChecklistEN()
 {
 
@@ -535,6 +539,7 @@ function createChecklistEN()
     }
 }
 
+//Funksjon som lar deg velge i en liste over alle brukertyper 'mentor'
 function selectMentor()
 {
     global $db;
@@ -554,6 +559,7 @@ function selectMentor()
     }
 }
 
+//Funksjon som lar deg velge i en liste over alle brukertyper 'leader'
 function selectLeader()
 {
     global $db;
@@ -573,6 +579,7 @@ function selectLeader()
     }
 }
 
+//Funksjon som lar deg velge i en liste over alle brukertyper 'HR'
 function selectHr()
 {
     global $db;
@@ -592,6 +599,7 @@ function selectHr()
     }
 }
 
+//Funksjon som lar deg velge i en liste over alle ansatte
 function employeeSelect()
 {
     global  $db;
@@ -611,6 +619,7 @@ function employeeSelect()
     echo  "</select>";
 }
 
+//Funksjon som lar deg velge i en liste over alle brukertyper 'mentor'
 function mentorSelect()
 {
     global $db;
@@ -630,6 +639,7 @@ function mentorSelect()
     }
 }
 
+//Funksjon som lar deg velge i en liste over alle brukertyper 'leader'
 function leaderSelect()
 {
     global $db;
@@ -649,6 +659,7 @@ function leaderSelect()
     }
 }
 
+//Funksjon som lar deg velge i en liste over alle brukertyper 'HR'
 function hrSelect()
 {
     global $db;
@@ -668,6 +679,7 @@ function hrSelect()
     }
 }
 
+//Funksjon som knytter en fadder til en ansatt
 function addMentor()
 {
     global $db, $username, $errors;
@@ -720,6 +732,7 @@ function addMentor()
     }
 }
 
+//Funksjon som knytter en leder til en ansatt
 function addLeader()
 {
     global $db, $username, $errors;
@@ -771,6 +784,7 @@ function addLeader()
     }
 }
 
+//Funksjon som ikke er i bruk, oppdaterer fra en fadder til en annen
 function updateMentor()
 {
     global $db, $errors;
@@ -839,6 +853,7 @@ function updateMentor()
     }
 }
 
+//Funksjon som ikke er i bruk, oppdaterer fra en leder til en annen
 function updateLeader()
 {
     global $db, $errors;
@@ -907,6 +922,7 @@ function updateLeader()
     }
 }
 
+//Funksjon som knytter en hr-ansatt til en ansatt
 function addHr()
 {
     global $db, $username, $errors;
@@ -958,6 +974,7 @@ function addHr()
     }
 }
 
+//Funksjon som ikke er i bruk, oppdaterer fra en hr-ansatt til en annen
 function updateHr()
 {
     global $db, $errors;
@@ -1026,6 +1043,7 @@ function updateHr()
     }
 }
 
+//Funksjon som søker etter om en ansatt er knyttet til noen eller ikke
 function searchEmployeeConnected()
 {
     if(isset($_POST["searchConnected"]) && $_POST['searchConnectedUser'] == 'leader') {
@@ -1247,6 +1265,7 @@ function searchEmployeeConnected()
 
 }
 
+//Funksjon som søker etter om en ansatt er knyttet til noen eller ikke
 function searchEmployeeConnectedEng()
 {
     if(isset($_POST["searchConnected"]) && $_POST['searchConnectedUS'] == 'leader') {
@@ -1468,6 +1487,7 @@ function searchEmployeeConnectedEng()
 
 }
 
+//Funksjon som søker etter en ansatt i engelsk versjon
 function searchEmployeeEng()
 {
     if (isset($_POST['searcFi'])) {
@@ -1549,6 +1569,7 @@ function searchEmployeeEng()
 
 }
 
+//Funksjon som søker etter en ansatt
 function searchEmployee()
 {
     if (isset($_POST['searcF'])) {
@@ -1630,34 +1651,42 @@ function searchEmployee()
 
 }
 
+//Sjekker om registrer sjekkliste blir trykket og starter funksjonen createChecklist()
 if (isset($_POST['createCheckList'])) {
     createChecklist();
 }
+
+//Sjekker om registrer sjekkliste blir trykket og starter funksjonen createChecklist() i engelsk versjon
 if (isset($_POST['createCheckListEn'])) {
     createChecklistEN();
 }
 
-
+//Sjekker om knappen tildel fadder blir trykket inn og starter funksjonen addMentor()
 if (isset($_POST['assignMentor'])) {
     addMentor();
 }
 
+//Sjekker om knappen tildel leder blir trykket inn og starter funksjonen addLeader()
 if (isset($_POST['assignLeader'])) {
     addLeader();
 }
 
+//Sjekker om knappen tildel HR-ansatt blir trykket inn og starter funksjonen addHr()
 if (isset($_POST['assignHr'])) {
     addHr();
 }
 
+//Ikke i bruk, tenkt og sjekke om kanppen endre fadder er trykket inn å starte funksjonen updateMentor()
 if (isset($_POST['updateMentor'])) {
     updateMentor();
 }
 
+//Ikke i bruk, tenkt og sjekke om kanppen endre leder er trykket inn å starte funksjonen updateLeader()
 if (isset($_POST['updateLeader'])) {
     updateLeader();
 }
 
+//Ikke i bruk, tenkt og sjekke om kanppen endre HR-ansatt er trykket inn å starte funksjonen updateHr()
 if (isset($_POST['updateHr'])) {
     updateHr();
 }

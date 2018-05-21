@@ -9,16 +9,16 @@ $db = mysqli_connect('student.cs.hioa.no', 's236619', '', 's236619');
 //$db = mysqli_connect( 'localhost', 'root',  '', 'db_hr_portal');
 
 
-//login
+//Tar inn logg inn data fra index.php og sender det til funksjonen login
     if (isset($_POST["logginn"])) {
         login();
     }
-//login
+//Tar inn logg inn data indexeng.php og sender det til funksjonen  logineng
 if (isset($_POST["login"])) {
     logineng();
 }
 
-//login function
+//Tester login dataen mot databasen. Om det matcher noe blir du logget inn til gitt brukerside. Om ikke forblir du på index
     function login()
     {
         global $db, $username, $errors;
@@ -69,7 +69,7 @@ if (isset($_POST["login"])) {
         }
 
     }
-//login function
+//Tester login dataen mot databasen. Om det matcher noe blir du logget inn til gitt brukerside. Om ikke forblir du på index. Fra den engelske siden
 function logineng()
 {
     global $db, $username, $errors;
@@ -120,65 +120,9 @@ function logineng()
     }
 
 }
-/*
-    if (isset($_POST["del"])) {
-        deletechecklist();
-    }
-//delete user
-    function deletechecklist()
-    {
-        global $db, $username, $errors;
-        //get values
-        $firstname = e($_POST['firstname']);
-
-        if (empty($firstname)) {
-            array_push($errors, "You need a firstname");
-        }
-        // make sure form is filled properly
 
 
-        $name_check = "SELECT firstname FROM Newemployee WHERE firstname= '$firstname'";
-        $result = $db->query($name_check);
-        $in = mysqli_fetch_assoc($result);
-        if (!$in) {
-            echo '<script type="text/javascript">alert("Not a name");</script>';
-            array_push($errors, "Not a user");
-        } else {
-            if (count($errors) == 0) {
-                $idquery = "SELECT idNewemployee FROM Newemployee WHERE firstname = '$firstname'";
-                $resultid = $db->query($idquery);
-                if (!$resultid) {
-                    echo '<script type="text/javascript">alert("Not correct Id");</script>';
-                } else {
-                    while ($row = mysqli_fetch_assoc($resultid)) {
-                        $id5 = $row['idNewemployee'];
-                        $query = "DELETE FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$id5' ";
-
-
-                        echo $query; echo "<br> <br />";
-
-                        if ($db->query($query) === TRUE ) {
-                            $dquery = "DELETE FROM Newemployee WHERE idNewemployee = '$id5'";
-                            if ($db->query($dquery) === TRUE) {
-                                echo '<script type="text/javascript">alert("Delete successfull");</script>';
-                            } else {
-                                echo '<script type="text/javascript">alert("Dquery is faulty");</script>';
-                            }
-
-                        }
-                        else {
-                                echo '<script type="text/javascript">alert("Delete failed");</script>';
-                        }
-
-                    }
-
-                    }
-                }
-            }
-
-    }*/
-
-//making sure you only enter if logged in
+//Tester at du er logget inn på visse sider
     function isLoggedIN()
     {
         if (isset($_SESSION['user'])) {
@@ -188,7 +132,7 @@ function logineng()
         }
     }
 
-//making sure only admin enter admin
+//Tester om du er logget inn som admin.
     function admin()
     {
         if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'admin') {
@@ -198,7 +142,7 @@ function logineng()
         }
     }
 
-//leader check on login
+//Tester om du er logget inn som leder. Admin har og tilgang til ledersidene så tester det og.
     function leader()
     {
         if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'admin') {
@@ -210,7 +154,7 @@ function logineng()
         }
     }
 
-//fadder cant login to some place
+//Tester om du er logget inn som fadder.
     function fadder()
     {
         if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'mentor') {
@@ -220,7 +164,7 @@ function logineng()
         }
     }
 
-//HR and admin can get to hr
+//Tester om du er logget inn som HR eller admin for tilgang til HR sidene.
     function HR()
     {
         if (isset($_SESSION['user']) && $_SESSION['user']['usertype'] == 'admin') {
@@ -232,7 +176,7 @@ function logineng()
         }
     }
 
-//logout function on logout.php
+//Tester om du er logget inn for å ha noe data til logout.php
     function logOut()
     {
         if (isset($_SESSION['user'])) {
@@ -241,21 +185,19 @@ function logineng()
         return true;
     }
 
-//if use the edit form go to editpass function
+//Tar inn data og sender det til funksjon editpass. Note ikke i bruk
     if (isset($_POST["edit"])) {
         editpass();
     }
 
 
-//if use typeedit form got to edittype function
+//Tar inn data og sender det til edittype funksjonen. Note ikke i bruk
     if (isset($_POST["type_edit"])) {
         edittype();
     }
-    if (isset($_GET['search'])) {
-        searchuser();
-    }
 
-//edit a usertype
+
+//Endre en brukertype. Ikke i bruk.
     function edittype()
     {
         global $db, $username, $errors;
@@ -283,41 +225,9 @@ function logineng()
         }
 
     }
+//
 
-    function oversikt()
-    {
-        global $db;
-        $querya = "SELECT international FROM Newemployee";
-        $finale = $db->query($querya);
-        if (!$finale) {
-            echo $querya;
-            echo '<script type="text/javascript">alert("Error");</script>';
-        } elseif ($finale->num_rows > 0) {
-            while ($row = $finale->fetch_object()) {
-                $query = "SELECT * FROM Checklist ";
-                $result = $db->query($query);
-                if ($row->international == "Ja") {
-                    while (($row = $result->fetch_object())) {
-
-                        echo "<li>" . $row->idChecklist . " " . $row->checkpointsEN . " responsible is " . $row->responsible . " is " . $row->nationality . " is a leader " . $row->leader . "</li>";
-                    }
-                } else if ($row->international == "Nei") {
-                    while ($row = $result->fetch_object()) {
-
-                        echo "<li>" . $row->idChecklist . " " . $row->checkpointsNO . " responsible is " . $row->responsible . " From " . $row->nationality . " is a leader " . $row->leader . "</li>";
-
-                    }
-                } else {
-
-                    echo '<script type="text/javascript">alert("Checklist cant be viewed");</script>';
-                }
-            }
-
-        }
-
-    }
-
-//edit the password of a user
+//Endre passord til en bruker. Ikke i  bruk
     function editpass()
     {
         global $db, $username, $errors;
@@ -359,27 +269,8 @@ function logineng()
 
     }
 
-//search for a user
-    function searchuser()
-    {
-        global $db,
-               $lastname;
-        $lastname = e($_GET['lastname']);
 
-
-        $query = "SELECT * FROM Newemployee WHERE lastname= '$lastname'";
-        $result = $db->query($query);
-        if (!$result) {
-            echo '<script type="text/javascript">alert("View failed");</script>';
-        } else {
-            while ($row = $result->fetch_object()) {
-                echo "<li>" . "ID number " . $row->firstname . "  " . $row->lastname . " gonna get the title of " . $row->workposition . "has an international background " . $row->international . " start working on " . $row->startdate . " " . $row->checked . "</li>";
-            }
-        }
-
-    }
-
-//get userid
+//Får bruker ved å gi bruker iden. Ikke i bruk.
     function getUserByID($id)
     {
         global $db;
@@ -389,13 +280,13 @@ function logineng()
         return $user;
     }
 
-// escape string
+// escape string som fjerner unnødvendige eller overflødig data.
     function e($val)
     {
         global $db;
         return mysqli_real_escape_string($db, trim($val));
     }
-
+//Viser feil som er gjort i andre funksjoner.
     function display_error()
     {
         global $errors;

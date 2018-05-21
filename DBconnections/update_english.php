@@ -2,7 +2,7 @@
 include "dbconnection.php";
 
 $usertype = $_SESSION['user']['usertype'];
-
+//Om du trykker oppdater i egne oppgaver uten å velge en sjekkboks. Fra de engelske sidene.
 if(!isset($_POST['formList'])){
     if($usertype == "leader"){
         echo "<script type=\"text/javascript\">alert('You have to pick a checkbox to checkout');</script>";
@@ -18,6 +18,7 @@ if(!isset($_POST['formList'])){
         echo "<script>alert('A critical error was detected. Returning to login site')</script>";
         header('location: ../DBconnections/logout.php');
     }
+    //Om du gjør update riktig og sender deg da til update funksjonen. Fra de engelske sidene.
 } else {
     if($usertype == "leader"){
         update();
@@ -35,7 +36,7 @@ if(!isset($_POST['formList'])){
     }
 
 }
-
+//Oppdaterer checklisten med å sette 1 i databasen for ønskede punkter. For brukerne betyr det gjort og avkrysset.  Fra de engelske sidene
 function update(){
 
     global $db;

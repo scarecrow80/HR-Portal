@@ -1,6 +1,6 @@
 <?php
 
-// Ikke i bruk enda
+//  Gir oversikt for HR ansatt over egne oppgaver og mulighet for å oppdatere det.
 function overviewHr(){
 
     global $db;
@@ -67,7 +67,7 @@ function overviewHr(){
 
     }
 }
-
+//Gir oversikt for en HR ansatt på engelsk over egne oppgaver og mulighet til å oppdatere det.
 function overviewHrEng(){
 
     global $db;
@@ -134,92 +134,4 @@ function overviewHrEng(){
 
     }
 }
-
-// Ikke i bruk enda
-function oversikt_mentor()
-{
-    global $db, $errors;
-    $username = $_SESSION['user'];
-
-    $first = "SELECT idUsers FROM Users WHERE username= '$username'";
-    $res = $db->query($first);
-    if (!$res) {
-        echo "view failed";
-    } else if ($res->num_rows > 0) {
-        while ($row = $res->fetch_object()) {
-
-            $query = "SELECT Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Users_idUsers = '$row->idUsers'";
-            $result = $db->query($query);
-
-            if (!$result) {
-                echo $query;
-                echo '<script type="text/javascript">alert("Viewing failed");</script>';
-            } else if ($result->num_rows > 0) {
-                while ($row = $result->fetch_object()) {
-                    $second = "SELECT Checklist_idChecklist, Newemployee_idNewemployee FROM Newemployee_has_Checklist WHERE Newemployee_idNewemployee = '$row->Newemployee_idNewemployee'";
-                    $resa = $db->query($second);
-
-                    if (!$resa) {
-                        echo $second;
-                        echo '<script type="text/javascript">alert("Failed");</script>';
-                    } else if ($resa->num_rows > 0) {
-                        while ($row = $resa->fetch_object()) {
-                            $querya = "SELECT international FROM Newemployee WHERE idNewemployee = '$row->Newemployee_idNewemployee'";
-                            $queryfin = "SELECT * FROM Checklist WHERE idChecklist = '$row->Checklist_idChecklist'";
-                            $final = $db->query($queryfin);
-                            $finale = $db->query($querya);
-                            if (!$finale) {
-                                echo $querya;
-                                echo '<script type="text/javascript">alert("Error");</script>';
-                            } elseif ($finale->num_rows > 0) {
-                                while ($row = $finale->fetch_object()) {
-                                    if ($row->international == "Ja") {
-                                        if (!$final) {
-                                            echo $queryfin;
-                                            echo '<script type="text/javascript">alert("game over");</script>';
-                                        } elseif ($final->num_rows > 0) {
-
-                                            while ($row = $final->fetch_object()) {
-
-                                                echo "<li>" . $row->idChecklist . " " . $row->checkpointsEN . " responsible is " . $row->responsible . " is " . $row->nationality . " is a leader " . $row->leader . "</li>";
-                                            }
-                                        } else {
-                                            echo '<script type="text/javascript">alert("Troubled checklist");</script>';
-                                        }
-                                    } else {
-                                        if (!$final) {
-                                            echo $queryfin;
-                                            echo '<script type="text/javascript">alert("Failure");</script>';
-                                        } elseif ($final->num_rows > 0) {
-
-                                            while ($row = $final->fetch_object()) {
-
-                                                echo "<li>" . $row->idChecklist . " " . $row->checkpointsNO . " responsible is " . $row->responsible . " From " . $row->nationality . " is a leader " . $row->leader . "</li>";
-
-                                            }
-                                        } else {
-                                            echo '<script type="text/javascript">alert("Troubled list");</script>';
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                    } else {
-                        echo '<script type="text/javascript">alert("Newemployee dont have a checklist");</script>';
-
-
-                    }
-                }
-            } else {
-                echo '<script type="text/javascript">alert("Isnt mentoring anyone at the moment");</script>';
-
-            }
-        }
-    } else {
-        echo '<script type="text/javascript">alert("Troubled registartion");</script>';
-    }
-
-}
-
 

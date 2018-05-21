@@ -1,5 +1,5 @@
 <?php
-
+//Gir oversikt for en leder over sine ansvarsområder og oppdatere dem.
 function overviewLeader(){
 
     global $db;
@@ -65,7 +65,7 @@ function overviewLeader(){
 
     }
 }
-
+//Gir mulighet for en leder til oversikt over sine ansvarsområder og oppdatere dem på engelsk
 function overviewLeaderEng(){
 
     global $db;

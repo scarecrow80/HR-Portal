@@ -1,5 +1,5 @@
 <?php
-
+//Validerer fornavn ved opprettelse av bruker
 function valider_firstname($firstname)
 {
     if(!preg_match("/^[a-zA-ZøæåØÆÅ.\- ]{2,20}$/", $firstname))
@@ -11,6 +11,7 @@ function valider_firstname($firstname)
     return $firstname;
 }
 
+//Validerer etternavn ved opprettelse av bruker
 function valider_lastname($lastname)
 {
     if(!preg_match("/^[a-zA-ZøæåØÆÅ.\- ]{2,20}$/", $lastname))
@@ -22,6 +23,7 @@ function valider_lastname($lastname)
     return $lastname;
 }
 
+//Validerer brukernavn ved opprettelse av bruker
 function valider_username($username)
 {
     if(!preg_match("/^[a-zA-ZøæåØÆÅ0-9.\- ]{2,20}$/", $username))
@@ -33,6 +35,7 @@ function valider_username($username)
     return $username;
 }
 
+//Validerer passord ved opprettelse av bruker
 function valider_password($password)
 {
     if(!preg_match("/^[a-zA-ZøæåØÆÅ0-9\-_]{2,20}$/", $password))
@@ -43,15 +46,17 @@ function valider_password($password)
     return $password;
 }
 
+//Registrerer at man oppretter nytt punkt i sjekklisten
 if (isset($_POST['createNewPoint'])) {
     pointlist();
 }
 
+//Registrerer at man oppretter nytt punkt i sjekklisten i engelsk versjon
 if (isset($_POST['createNewP'])) {
     pointlistEN();
 }
 
-//check if inputs are correct!
+//Oppretter ny sjekkliste med ny ansatt
 if (isset($_POST['register'])){
     $firstname = valider_firstname($_POST["firstname"]);
     $lastname = valider_lastname($_POST["lastname"]);
@@ -100,6 +105,7 @@ if (isset($_POST['register'])){
     }
 }
 
+//Funksjonen som oppretter nytt punkt i sjekklisten
 function pointlist()
 {
     global $db, $errors;
@@ -136,6 +142,7 @@ function pointlist()
     }
 }
 
+//Funksjonen som oppretter nytt punkt i sjekklisten i engelsk versjon
 function pointlistEn()
 {
     global $db, $errors;
@@ -172,6 +179,7 @@ function pointlistEn()
     }
 }
 
+//Funksjonen som viser hvilke punkter man kan velge mellom i endre punkt engelsk versjon
 function selectPointEn()
 {
     global $db, $errors;
@@ -189,6 +197,7 @@ function selectPointEn()
     }
 }
 
+//Funksjonen som viser hvilke punkter man kan velge mellom i endre punkt
 function selectPoint()
 {
     global $db, $errors;
@@ -206,6 +215,7 @@ function selectPoint()
     }
 }
 
+//Funksjonen som endrer et eksisterende punkt i sjekklisten i engelsk versjon
 function changePointEn()
 {
     if (isset($_POST["selectPointEn"])) {
@@ -268,6 +278,7 @@ function changePointEn()
     }
 }
 
+//Funksjonen som endrer et eksisterende punkt i sjekklisten
 function changePoint()
     {
         if (isset($_POST["selectPoint"])) {
@@ -334,6 +345,7 @@ function changePoint()
         }
     }
 
+//Funksjonen som oppretter tabellen hvor man kan velge hvilket punkt man vil slette
 function selectDeletePoint()
     {
         echo "<table id='table-delete-points'><tr id='delete-checkpoint-header'><th>Valg</th>";
@@ -368,6 +380,7 @@ function selectDeletePoint()
         }
     }
 
+//Funksjonen som oppretter tabellen hvor man kan velge hvilket punkt man vil slette i engelsk versjon
 function selectDeletePointEn()
     {
         echo "<table id='table-delete-points'><tr id='delete-checkpoint-header'><th>Valg</th>";
@@ -402,6 +415,7 @@ function selectDeletePointEn()
         }
     }
 
+//Funksjonen som sletter valgt punkt i sjekklisten
 function deletePoint()
 {
     if (isset($_POST["Delete"])) {
@@ -436,6 +450,7 @@ function deletePoint()
 
 }
 
+//Funksjonen som sletter valgt punkt i sjekklisten i engelsk versjon
 function deletePointEn()
 {
     if (isset($_POST["Delet"])) {
@@ -470,6 +485,7 @@ function deletePointEn()
 
 }
 
+//Funksjon som ikke er i bruk, tenkt brukt i å få en mer utfyllende liste over ansatte med sjekklister for sletting
 function searchForEmployeeTesting()
 {
     if (isset($_POST["searchFor"])) {
@@ -550,6 +566,7 @@ function searchForEmployeeTesting()
     }
 }
 
+//Funksjon som søker etter ansatte med sjekkliste
 function searchForEmployee()
 {
     if (isset($_POST["searchFor"])) {
@@ -591,6 +608,7 @@ function searchForEmployee()
     }
 }
 
+//Funksjon som sletter ansatte med sjekkliste i engelsk versjon
 function deleteEmployeeEng()
 {
     if (isset($_POST["DeleteEmp"])) {
@@ -635,6 +653,7 @@ function deleteEmployeeEng()
     }
 }
 
+//Funksjon som søker etter ansatte med sjekkliste
 function searchForEmployeeEng()
 {
     if (isset($_POST["searchF"])) {
@@ -676,6 +695,7 @@ function searchForEmployeeEng()
     }
 }
 
+//Funksjon som sletter ansatte med sjekkliste
 function deleteEmployee()
 {
     if (isset($_POST["DeleteEmployee"])) {
@@ -720,6 +740,7 @@ function deleteEmployee()
     }
 }
 
+//Funksjon som søker etter bruker
 function searchForUser()
 {
     if (isset($_POST["searchForUser"])) {
@@ -760,6 +781,7 @@ function searchForUser()
     }
 }
 
+//Funksjon som søker etter bruker i engelsk versjon
 function searchForUserEng()
 {
     if (isset($_POST["searchForU"])) {
@@ -800,6 +822,7 @@ function searchForUserEng()
     }
 }
 
+//Funksjon som sletter bruker
 function deleteUser()
 {
     if (isset($_POST["DeleteUser"])) {
@@ -836,6 +859,7 @@ function deleteUser()
     }
 }
 
+//Funksjon som sletter bruker i engelsk versjon
 function deleteUserEng()
 {
     if (isset($_POST["DeleteU"])) {

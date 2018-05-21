@@ -1,5 +1,5 @@
 <?php
-
+//Funksjon som viser alle ansatte knyttet til gitt fadder
 function overviewMentor(){
 
     global $db;
@@ -68,6 +68,7 @@ function overviewMentor(){
 
 }
 
+//Funksjon som viser alle ansatte knyttet til gitt fadder brukt i engelsk utgave
 function overviewMentoreng(){
     global $db;
 

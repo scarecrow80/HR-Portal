@@ -1,0 +1,72 @@
+.btn-wrapper {
+    position: relative;
+}
+
+.cta-btn-wrapper-bord {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid lightgrey !important;
+    border-bottom: 1px solid lightgrey !important;
+    margin: 0 30px;
+    padding-top: 20px !important;
+    overflow: auto;
+}
+
+.cta-btn-wrapper-bord a {
+    line-height: 1.3 !important;
+    padding: 15px 15px !important;
+    width: auto !important;
+    margin: 10px auto !important;
+    clear: both !important;
+    float: none !important;
+    display: inline-block !important;
+}
+
+.cta-btn-wrapper-bord a[href*="//"]:not([href*="hioa.no"]):after {
+    display: inline !important;
+    line-height: 0 !important;
+}
+
+@media screen and (max-width: 1199px){
+    .btn-wrapper {
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .btn-wrapper:after, .article-btn2:after, .article-btn2:before {
+        background: none !important;
+        width: 0;
+        height: 0;
+    }
+}
+
+.tilsatt .btn .btn-primary {
+    background-color: #b6d279 !important;
+    border: 1px solid #b6d279 !important;
+}
+
+.tilsatt a.btn {
+    color: #000000 !important;
+}
+
+.btn {
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: "LLAkkuratWeb-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.article-btn2 {
+    z-index: 999;
+    position: relative;
+    font-size: 1.6em !important;
+    border-radius: 0 !important;
+    background: #0096c0 !important;
+    box-shadow: none !important;
+}
+
+
+
+

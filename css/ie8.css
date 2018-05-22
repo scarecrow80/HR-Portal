@@ -1,0 +1,13 @@
+
+
+
+#hioa-toolbar {
+	display: none !important;
+}
+body.frontpage .mobile {
+	display: none !important;
+}
+
+body.frontpage.width-large .black-box {
+	width: 282px;
+}

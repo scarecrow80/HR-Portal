@@ -10,7 +10,7 @@ include('DBconnections/dbconnection.php');
     <meta property="og:image" content="img/HiOA-logo-stor-versjon.png"/>
 
 
-    <title>OsloMet - Logg inn</title>
+    <title>OsloMet - Login</title>
 
     <meta property="og:image" content="img/HiOA-logo-stor-versjon.png"/>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">

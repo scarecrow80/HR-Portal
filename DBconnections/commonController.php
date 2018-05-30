@@ -558,6 +558,24 @@ function selectMentor()
 
     }
 }
+function MentorDel()
+{
+    global $db;
+    $query = mysqli_query($db, "SELECT idUsers, firstname, lastname FROM Users where usertype= 'mentor' ORDER BY Users.lastname, Users.firstname") or die(mysqli_error());
+    echo "<select name=\"responsibleMentor\" class=\"field comment-alerts\" id='choose2'>";
+    echo '<option value=""></option>';
+
+    while ($row = $query->fetch_assoc()) {
+
+        unset($f_name, $l_name);
+        $user_id = $row['idUsers'];
+        $f_name = $row['firstname'];
+        $l_name = $row['lastname'];
+
+        echo '<option value="'.$user_id.'">'.$f_name.' '.$l_name.'</option>';
+
+    }
+}
 
 //Funksjon som lar deg velge i en liste over alle brukertyper 'leader'
 function selectLeader()
@@ -731,7 +749,57 @@ function addMentor()
         }
     }
 }
+function deleteMentor(){
+    global $db, $username, $errors;
+    mysqli_autocommit($db, false);
 
+    $employee = e($_POST['empname']);
+    $mentor = e($_POST['mentorSelect']);
+    $sql = "SELECT idNewemployee, firstname, lastname FROM Newemployee WHERE idNewemployee = '$employee'";
+    $result = $db->query($sql);
+    $user = mysqli_fetch_assoc($result);
+    if (!$user) {
+        echo '<script type="text/javascript">alert("Not a user");</script>';
+        echo $sql;
+        array_push($errors, "Not a user");
+    } else {
+        $sql2 = "SELECT idNewemployee FROM Newemployee WHERE idNewemployee = '$employee'";
+        $sql3 = "SELECT idUsers FROM Users WHERE idUsers = '$mentor'";
+        $resultId = $db->query($sql2);
+
+        if (!$resultId) {
+            echo '<script type="text/javascript">alert("Wrong id");</script>';
+
+        } else {
+            while ($row = mysqli_fetch_assoc($resultId)) {
+                $resultId2 = $db->query($sql3);
+                $idNewemployee = $row['idNewemployee'];
+                $sql4 = "Select Newemployee_idNewemployee FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$idNewemployee' ";
+                $testresult = $db->query($sql4);
+                if (!$resultId2) {
+                    echo '<script type="text/javascript">alert("User and id dont match");</script>';
+                } else {
+                    while ($row2 = mysqli_fetch_assoc($resultId2)) {
+                        $idUsers = $row2['idUsers'];
+
+                        $query = "DELETE FROM Users_has_Newemployee WHERE Users_idUsers = '" . $idUsers . "'  AND Newemployee_idNewemployee = '" . $idNewemployee ."'";
+                        $result = mysqli_query($db, $query);
+                       
+                        if (!$result) {
+
+                                echo '<script type="text/javascript">alert("Cant delete");</script>';
+                            }
+
+                        }
+                    if (mysqli_affected_rows($db) > 0) {
+                        echo '<script type="text/javascript">alert("Mentor assiginging deleted");</script>';
+                        mysqli_commit($db);
+                    }
+                }
+            }
+        }
+    }
+}
 //Funksjon som knytter en leder til en ansatt
 function addLeader()
 {
@@ -1665,7 +1733,9 @@ if (isset($_POST['createCheckListEn'])) {
 if (isset($_POST['assignMentor'])) {
     addMentor();
 }
-
+if (isset($_POST['deleteassignedMentor'])){
+    deleteMentor();
+}
 //Sjekker om knappen tildel leder blir trykket inn og starter funksjonen addLeader()
 if (isset($_POST['assignLeader'])) {
     addLeader();

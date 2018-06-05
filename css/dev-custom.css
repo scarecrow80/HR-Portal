@@ -1111,7 +1111,7 @@ END */
     font-weight: normal;
     speak: none;
     text-decoration: none;
-    content: "\e800";
+    /*content: "\e800";*/
     display: block;
     position: absolute;
     right: 13px;

@@ -109,9 +109,9 @@ include "admin_session.php";
                                                         <td id="CreateChecklistTable">Usertype: </td>
                                                         <td id="CreateChecklistTable"><select name="userType" class="field comment-alerts" id="choose2" required>
                                                                 <option value=""></option>
-                                                                <option value="leader">Leader</option>
+                                                                <option value="Leder">Leader</option>
                                                                 <option value="HR">HR</option>
-                                                                <option value="mentor">Mentor</option>
+                                                                <option value="Fadder">Mentor</option>
                                                             </select>
                                                         </td>
                                                     </tr>

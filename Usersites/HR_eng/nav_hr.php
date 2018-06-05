@@ -1,9 +1,9 @@
 <div id="navcontainer" class="fullsizeBlock">
 
     <ul id="topMenu">
-        <li><a href="../HR/hr_overview.php">Norsk</a></li>
+        <li><a href="../HR/hr_owntasks.php">Norsk</a></li>
         <li class=" " id="" role="presentation">
-            <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logut"> <span class="nav-item-label" style="cursor: pointer"> Logout</span> </a>
+            <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logout"> <span class="nav-item-label" style="cursor: pointer"> Logout</span> </a>
         </li>
     </ul>
 

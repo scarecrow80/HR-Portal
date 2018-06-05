@@ -49,7 +49,7 @@ if (isset($_POST["login"])) {
                 } else if ($logged_in_user['usertype'] == 'leader') {
                     $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success'] = "Logged in";
-                    header('location: ../HR-Portal/Usersites/leader/leader_overview.php');
+                    header('location: ../HR-Portal/Usersites/leader/leader_owntasks.php');
                 } else if ($logged_in_user['usertype'] == 'mentor') {
                     $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success'] = "Logged in getting you to list";
@@ -57,7 +57,7 @@ if (isset($_POST["login"])) {
                 } else {
                     $_SESSION['user'] = $logged_in_user;
                     $_SESSION['success'] = "Logged in getting you to list";
-                    header('location: ../HR-Portal/Usersites/HR/hr_overview.php');
+                    header('location: ../HR-Portal/Usersites/HR/hr_owntasks.php');
                 }
 
             } else {
@@ -100,7 +100,7 @@ function logineng()
             } else if ($logged_in_user['usertype'] == 'leader') {
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "Logged in";
-                header('location: ../HR-Portal/Usersites/leader_eng/leader_overvieweng.php');
+                header('location: ../HR-Portal/Usersites/leader_eng/leader_owntaskseng.php');
             } else if ($logged_in_user['usertype'] == 'mentor') {
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "Logged in getting you to list";
@@ -108,7 +108,7 @@ function logineng()
             } else {
                 $_SESSION['user'] = $logged_in_user;
                 $_SESSION['success'] = "Logged in getting you to list";
-                header('location: ../HR-Portal/Usersites/HR_eng/hr_overvieweng.php');
+                header('location: ../HR-Portal/Usersites/HR_eng/hr_owntaskseng.php');
             }
 
         } else {

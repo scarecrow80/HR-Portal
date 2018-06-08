@@ -15,6 +15,9 @@
         <a class="list" id="" href="hr_assigneng.php" role="menuitem" title="Assign Employee"> <span class="nav-item-label"> Assign Employee </span> </a>
     </li>
     <li class="main-menu">
+        <a target="_blank" class="list" id="" href="../../pdf/veiledning-hr.pdf" role="menuitem" title="Help"> <span class="nav-item-label"> Help </span> </a>
+    </li>
+    <li class="main-menu">
         <a class="list" id="" href="../../DBconnections/logout.php" role="menuitem" title="Logout"> <span class="nav-item-label"> Logout </span> </a>
     </li>
 </ul>

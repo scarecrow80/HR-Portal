@@ -46,6 +46,9 @@ if (!isLoggedIN()){
         <div id="mobile-menu">
             <ul>
                 <li class="main-menu">
+                    <a target="_blank" class="list" id="" href="../../pdf/veiledning-fadder.pdf" role="menuitem" title="Help"> <span class="nav-item-label"> Help </span> </a>
+                </li>
+                <li class="main-menu">
                     <a class="list" id="" href="../../DBconnections/logout.php" role="menuitem" title="Log out"> <span class="nav-item-label"> Logg ut </span> </a>
                 </li>
             </ul>
@@ -60,6 +63,7 @@ if (!isLoggedIN()){
                 <div id="navcontainer" class="fullsizeBlock">
 
                     <ul id="topMenu">
+                        <li><a target="_blank" href="../../pdf/veiledning-fadder.pdf">Help</a></li>
                         <li><a href="mentor_overview.php"/>Norsk</a></li>
                         <li class=" " id="fyzs_" role="presentation">
                             <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logg ut"> <span class="nav-item-label" style="cursor: pointer"> Logg ut</span> </a>

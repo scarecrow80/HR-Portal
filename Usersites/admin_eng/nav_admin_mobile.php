@@ -16,6 +16,9 @@
             <a class="list" id="" href="admin_delete_usereng.php" role="menuitem" title="Delete User"> <span class="nav-item-label">Delete User </span> </a>
         </li>
         <li class="main-menu">
+            <a target="_blank" class="list" id="" href="../../pdf/veiledning-administrator.pdf" role="menuitem" title="Hjelp"> <span class="nav-item-label"> Help </span> </a>
+        </li>
+        <li class="main-menu">
             <a class="list" id="" href="../../DBconnections/logout.php" role="menuitem" title="Logout"> <span class="nav-item-label"> Logout</span> </a>
 
         </li>

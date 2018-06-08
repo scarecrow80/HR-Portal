@@ -15,6 +15,9 @@
         <a class="list" id="" href="leader_searcheng.php" role="menuitem" title="Search"> <span class="nav-item-label"> Search </span> </a>
     </li>
     <li class="main-menu">
+        <a target="_blank" class="list" id="" href="../../pdf/veiledning-leder.pdf" role="menuitem" title="Help"> <span class="nav-item-label"> Help </span> </a>
+    </li>
+    <li class="main-menu">
         <a class="list" id="" href="../../DBconnections/logout.php" role="menuitem" title="Logg ut"> <span class="nav-item-label"> Logout </span> </a>
     </li>
 </ul>

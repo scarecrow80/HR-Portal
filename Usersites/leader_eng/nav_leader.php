@@ -1,6 +1,7 @@
 <div id="navcontainer" class="fullsizeBlock">
 
     <ul id="topMenu">
+        <li><a target="_blank" href="../../pdf/veiledning-leder.pdf">Help</a></li>
         <li><a href="../leader/leader_owntasks.php">Norsk</a></li>
         <li class=" " id="" role="presentation">
             <a class="list" onclick="window.location='../../DBconnections/logout.php'" id="" role="menuitem" title="Logout"> <span class="nav-item-label" style="cursor: pointer"> Logout</span> </a>

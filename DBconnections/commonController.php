@@ -558,6 +558,7 @@ function selectMentor()
 
     }
 }
+
 function MentorDel()
 {
     global $db;
@@ -749,6 +750,7 @@ function addMentor()
         }
     }
 }
+
 function deleteMentor(){
     global $db, $username, $errors;
     mysqli_autocommit($db, false);
@@ -1733,9 +1735,11 @@ if (isset($_POST['createCheckListEn'])) {
 if (isset($_POST['assignMentor'])) {
     addMentor();
 }
+
 if (isset($_POST['deleteassignedMentor'])){
     deleteMentor();
 }
+
 //Sjekker om knappen tildel leder blir trykket inn og starter funksjonen addLeader()
 if (isset($_POST['assignLeader'])) {
     addLeader();

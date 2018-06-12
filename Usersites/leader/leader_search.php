@@ -139,7 +139,10 @@ include "leader_session.php";
                                                 </tr>
                                                 <button type="submit" class="btn btn-primary" name="searchConnected" >Søk</button>
                                             </form>
-                                            <?php searchEmployeeConnected() ?>
+                                            <?php
+                                            searchEmployeeConnected();
+                                            deleteConnection();
+                                            ?>
                                         </div>
                                     </div>
 

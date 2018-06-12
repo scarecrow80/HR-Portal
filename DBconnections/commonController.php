@@ -1127,7 +1127,8 @@ function searchEmployeeConnected()
         if ($result) {
 
 
-            echo "<tr><th>Fornavn</th>";
+            echo "<tr><th>Valg</th>";
+            echo "<th>Fornavn</th>";
             echo "<th>Etternavn</th>";
             echo "<th>Arbeidstilling</th>";
             echo "<th>Internasjonal</th>";
@@ -1148,6 +1149,7 @@ function searchEmployeeConnected()
                 if($result2) {
                     if ($db->affected_rows == 0) {
                         echo "<tr>";
+                        echo "<td></td>";
                         echo "<td>" . $f_name . "</td>";
                         echo "<td>" . $l_name . "</td>";
                         echo "<td>" . $workposition . "</td>";
@@ -1158,31 +1160,37 @@ function searchEmployeeConnected()
 
                     } else {
 
-                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'leader' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $sqb = "SELECT idUsers, firstname , lastname FROM Users WHERE usertype = 'leader' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
                         $result3 = $db->query($sqb);
                         if ($result3) {
                             while ($row2 = mysqli_fetch_assoc($result3)) {
+
+                                $id = e($row['idNewemployee']);
                                 $f_name = e($row["firstname"]);
                                 $l_name = e($row["lastname"]);
                                 $workposition = e($row["workposition"]);
                                 $international = e($row["international"]);
                                 $startdate = e($row["startdate"]);
+                                $newUserId = e($row2["idUsers"]);
                                 $name = e($row2['firstname'] . " ". $row2['lastname']);
+
                                 echo "<tr>";
-                                echo "<td>" . $f_name . "</td>";
-                                echo "<td>" . $l_name . "</td>";
-                                echo "<td>" . $workposition . "</td>";
-                                echo "<td>" . $international . "</td>";
-                                echo "<td>" . $startdate . "</td>";
-                                echo "<td>" . $name . "</td>";
+                                echo "<td id='searchForDeleteUser'><input type='radio' class='radio-button-delete-user' name='DeleteConnectionValue' value='$newUserId'/></td>";
+                                echo "<td id='searchForDeleteUser'><input type='hidden' name='DeleteValue' value='" . $id . "' />" . $f_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $l_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $workposition . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $international . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $startdate . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $name . "</td>";
                                 echo "</tr>";
                             }
+
                         }
 
 
                     }
                 }
-            }echo "</table>";
+            }echo "</table><button type='submit' class='btn btn-primary' name='DeleteConnection' >Slett tilknytning</button></div></form>";
 
         } else {
             echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
@@ -1200,7 +1208,8 @@ function searchEmployeeConnected()
         if ($result) {
 
 
-            echo "<tr><th>Fornavn</th>";
+            echo "<tr><th>Valg</th>";
+            echo "<th>Fornavn</th>";
             echo "<th>Etternavn</th>";
             echo "<th>Arbeidstilling</th>";
             echo "<th>Internasjonal</th>";
@@ -1221,6 +1230,7 @@ function searchEmployeeConnected()
                 if($result2) {
                     if ($db->affected_rows == 0) {
                         echo "<tr>";
+                        echo "<td></td>";
                         echo "<td>" . $f_name . "</td>";
                         echo "<td>" . $l_name . "</td>";
                         echo "<td>" . $workposition . "</td>";
@@ -1231,22 +1241,26 @@ function searchEmployeeConnected()
 
                     } else {
 
-                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'mentor' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $sqb = "SELECT idUsers, firstname , lastname FROM Users WHERE usertype = 'mentor' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
                         $result3 = $db->query($sqb);
                         if ($result3) {
                             while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $id = e($row['idNewemployee']);
                                 $f_name = e($row["firstname"]);
                                 $l_name = e($row["lastname"]);
                                 $workposition = e($row["workposition"]);
                                 $international = e($row["international"]);
+                                $newUserId = $row2["idUsers"];
                                 $name = e($row2['firstname'] . " ". $row2['lastname']);
+
                                 echo "<tr>";
-                                echo "<td>" . $f_name . "</td>";
-                                echo "<td>" . $l_name . "</td>";
-                                echo "<td>" . $workposition . "</td>";
-                                echo "<td>" . $international . "</td>";
-                                echo "<td>" . $startdate . "</td>";
-                                echo "<td>" . $name . "</td>";
+                                echo "<td id='searchForDeleteUser'><input type='radio' class='radio-button-delete-user' name='DeleteConnectionValue' value='$newUserId'/></td>";
+                                echo "<td id='searchForDeleteUser'><input type='hidden' name='DeleteValue' value='" . $id . "' />" . $f_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $l_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $workposition . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $international . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $startdate . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $name . "</td>";
                                 echo "</tr>";
                             }
                         }
@@ -1254,7 +1268,7 @@ function searchEmployeeConnected()
 
                     }
                 }
-            }echo "</table>";
+            }echo "</table><button type='submit' class='btn btn-primary' name='DeleteConnection' >Slett tilknytning</button></div></form>";
 
         } else {
             echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
@@ -1272,7 +1286,8 @@ function searchEmployeeConnected()
         if ($result) {
 
 
-            echo "<tr><th>Fornavn</th>";
+            echo "<tr><th>Valg</th>";
+            echo "<th>Fornavn</th>";
             echo "<th>Etternavn</th>";
             echo "<th>Arbeidstilling</th>";
             echo "<th>Internasjonal</th>";
@@ -1293,6 +1308,7 @@ function searchEmployeeConnected()
                 if($result2) {
                     if ($db->affected_rows == 0) {
                         echo "<tr>";
+                        echo "<td></td>";
                         echo "<td>" . $f_name . "</td>";
                         echo "<td>" . $l_name . "</td>";
                         echo "<td>" . $workposition . "</td>";
@@ -1303,22 +1319,25 @@ function searchEmployeeConnected()
 
                     } else {
 
-                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'HR' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $sqb = "SELECT idUsers, firstname , lastname FROM Users WHERE usertype = 'HR' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
                         $result3 = $db->query($sqb);
                         if ($result3) {
                             while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $id = e($row['idNewemployee']);
                                 $f_name = e($row["firstname"]);
                                 $l_name = e($row["lastname"]);
                                 $workposition = e($row["workposition"]);
                                 $international = e($row["international"]);
+                                $newUserId = $row2["idUsers"];
                                 $name = e($row2['firstname'] . " ". $row2['lastname']);
                                 echo "<tr>";
-                                echo "<td>" . $f_name . "</td>";
-                                echo "<td>" . $l_name . "</td>";
-                                echo "<td>" . $workposition . "</td>";
-                                echo "<td>" . $international . "</td>";
-                                echo "<td>" . $startdate . "</td>";
-                                echo "<td>" . $name . "</td>";
+                                echo "<td id='searchForDeleteUser'><input type='radio' class='radio-button-delete-user' name='DeleteConnectionValue' value='$newUserId'/></td>";
+                                echo "<td id='searchForDeleteUser'><input type='hidden' name='DeleteValue' value='" . $id . "' />" . $f_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $l_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $workposition . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $international . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $startdate . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $name . "</td>";
                                 echo "</tr>";
                             }
                         }
@@ -1326,13 +1345,38 @@ function searchEmployeeConnected()
 
                     }
                 }
-            }echo "</table>";
+            }echo "</table><button type='submit' class='btn btn-primary' name='DeleteConnection' >Slett tilknytning</button></div></form>";
 
         } else {
             echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
         }
     }
+}
 
+function deleteConnection()
+{
+    if (isset($_POST["DeleteConnection"])) {
+
+        global $db, $errors;
+        mysqli_autocommit($db, false);
+        $idUsers2 = e($_POST["DeleteConnectionValue"]);
+        $idEmployee = e($_POST['DeleteValue']);
+
+
+        $sql2 = "DELETE FROM Users_has_Newemployee WHERE Users_idUsers = '" . $idUsers2 . "' AND Newemployee_idNewemployee = '" . $idEmployee . "'";
+
+        $result3 = mysqli_query($db, $sql2);
+
+        if (!$result3) {
+
+            if (mysqli_affected_rows($db) > 0) {
+                echo '<script type="text/javascript">alert("Users_has_Newemployee er slettet");</script>';
+            } else {
+                echo '<script type="text/javascript">alert("Finner ikke Users_has_Newemployee");</script>';
+            }
+        }
+        mysqli_commit($db);
+    }
 }
 
 //Funksjon som søker etter om en ansatt er knyttet til noen eller ikke
@@ -1349,7 +1393,8 @@ function searchEmployeeConnectedEng()
         if ($result) {
 
 
-            echo "<tr><th>Firstname</th>";
+            echo "<tr><th>Choose</th>";
+            echo "<th>Firstname</th>";
             echo "<th>Surname</th>";
             echo "<th>Workposition</th>";
             echo "<th>International</th>";
@@ -1370,6 +1415,7 @@ function searchEmployeeConnectedEng()
                 if($result2) {
                     if ($db->affected_rows == 0) {
                         echo "<tr>";
+                        echo "<td></td>";
                         echo "<td>" . $f_name . "</td>";
                         echo "<td>" . $l_name . "</td>";
                         echo "<td>" . $workposition . "</td>";
@@ -1380,23 +1426,26 @@ function searchEmployeeConnectedEng()
 
                     } else {
 
-                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'leader' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $sqb = "SELECT idUsers, firstname , lastname FROM Users WHERE usertype = 'leader' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
                         $result3 = $db->query($sqb);
                         if ($result3) {
                             while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $id = e($row['idNewemployee']);
                                 $f_name = e($row["firstname"]);
                                 $l_name = e($row["lastname"]);
                                 $workposition = e($row["workposition"]);
                                 $international = e($row["international"]);
                                 $startdate = e($row["startdate"]);
+                                $newUserId = e($row2["idUsers"]);
                                 $name = e($row2['firstname'] . " ". $row2['lastname']);
                                 echo "<tr>";
-                                echo "<td>" . $f_name . "</td>";
-                                echo "<td>" . $l_name . "</td>";
-                                echo "<td>" . $workposition . "</td>";
-                                echo "<td>" . $international . "</td>";
-                                echo "<td>" . $startdate . "</td>";
-                                echo "<td>" . $name . "</td>";
+                                echo "<td id='searchForDeleteUser'><input type='radio' class='radio-button-delete-user' name='DeleteConnectionValue' value='$newUserId'/></td>";
+                                echo "<td id='searchForDeleteUser'><input type='hidden' name='DeleteValue' value='" . $id . "' />" . $f_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $l_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $workposition . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $international . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $startdate . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $name . "</td>";
                                 echo "</tr>";
                             }
                         }
@@ -1404,7 +1453,7 @@ function searchEmployeeConnectedEng()
 
                     }
                 }
-            }echo "</table>";
+            }echo "</table><button type='submit' class='btn btn-primary' name='DeleteConnection' >Delete connection</button></div></form>";
 
         } else {
             echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
@@ -1422,7 +1471,8 @@ function searchEmployeeConnectedEng()
         if ($result) {
 
 
-            echo "<tr><th>Firstname</th>";
+            echo "<tr><th>Choose</th>";
+            echo "<th>Firstname</th>";
             echo "<th>Surename</th>";
             echo "<th>Workposition</th>";
             echo "<th>International</th>";
@@ -1443,6 +1493,7 @@ function searchEmployeeConnectedEng()
                 if($result2) {
                     if ($db->affected_rows == 0) {
                         echo "<tr>";
+                        echo "<td></td>";
                         echo "<td>" . $f_name . "</td>";
                         echo "<td>" . $l_name . "</td>";
                         echo "<td>" . $workposition . "</td>";
@@ -1453,22 +1504,25 @@ function searchEmployeeConnectedEng()
 
                     } else {
 
-                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'mentor' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $sqb = "SELECT idUsers, firstname , lastname FROM Users WHERE usertype = 'mentor' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
                         $result3 = $db->query($sqb);
                         if ($result3) {
                             while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $id = e($row['idNewemployee']);
                                 $f_name = e($row["firstname"]);
                                 $l_name = e($row["lastname"]);
                                 $workposition = e($row["workposition"]);
                                 $international = e($row["international"]);
+                                $newUserId = e($row2["idUsers"]);
                                 $name = e($row2['firstname'] . " ". $row2['lastname']);
                                 echo "<tr>";
-                                echo "<td>" . $f_name . "</td>";
-                                echo "<td>" . $l_name . "</td>";
-                                echo "<td>" . $workposition . "</td>";
-                                echo "<td>" . $international . "</td>";
-                                echo "<td>" . $startdate . "</td>";
-                                echo "<td>" . $name . "</td>";
+                                echo "<td id='searchForDeleteUser'><input type='radio' class='radio-button-delete-user' name='DeleteConnectionValue' value='$newUserId'/></td>";
+                                echo "<td id='searchForDeleteUser'><input type='hidden' name='DeleteValue' value='" . $id . "' />" . $f_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $l_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $workposition . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $international . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $startdate . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $name . "</td>";
                                 echo "</tr>";
                             }
                         }
@@ -1476,7 +1530,7 @@ function searchEmployeeConnectedEng()
 
                     }
                 }
-            }echo "</table>";
+            }echo "</table><button type='submit' class='btn btn-primary' name='DeleteConnection' >Delete connection</button></div></form>";
 
         } else {
             echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';
@@ -1494,7 +1548,8 @@ function searchEmployeeConnectedEng()
         if ($result) {
 
 
-            echo "<tr><th>Firstname</th>";
+            echo "<tr><th>Choose</th>";
+            echo "<th>Firstname</th>";
             echo "<th>Surename</th>";
             echo "<th>Workposition</th>";
             echo "<th>International</th>";
@@ -1515,6 +1570,7 @@ function searchEmployeeConnectedEng()
                 if($result2) {
                     if ($db->affected_rows == 0) {
                         echo "<tr>";
+                        echo "<td></td>";
                         echo "<td>" . $f_name . "</td>";
                         echo "<td>" . $l_name . "</td>";
                         echo "<td>" . $workposition . "</td>";
@@ -1525,22 +1581,25 @@ function searchEmployeeConnectedEng()
 
                     } else {
 
-                        $sqb = "SELECT firstname , lastname FROM Users WHERE usertype = 'HR' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
+                        $sqb = "SELECT idUsers, firstname , lastname FROM Users WHERE usertype = 'HR' AND idUsers IN (SELECT Users_idUsers FROM Users_has_Newemployee WHERE Newemployee_idNewemployee = '$id')";
                         $result3 = $db->query($sqb);
                         if ($result3) {
                             while ($row2 = mysqli_fetch_assoc($result3)) {
+                                $id = e($row['idNewemployee']);
                                 $f_name = e($row["firstname"]);
                                 $l_name = e($row["lastname"]);
                                 $workposition = e($row["workposition"]);
                                 $international = e($row["international"]);
+                                $newUserId = e($row2["idUsers"]);
                                 $name = e($row2['firstname'] . " ". $row2['lastname']);
                                 echo "<tr>";
-                                echo "<td>" . $f_name . "</td>";
-                                echo "<td>" . $l_name . "</td>";
-                                echo "<td>" . $workposition . "</td>";
-                                echo "<td>" . $international . "</td>";
-                                echo "<td>" . $startdate . "</td>";
-                                echo "<td>" . $name . "</td>";
+                                echo "<td id='searchForDeleteUser'><input type='radio' class='radio-button-delete-user' name='DeleteConnectionValue' value='$newUserId'/></td>";
+                                echo "<td id='searchForDeleteUser'><input type='hidden' name='DeleteValue' value='" . $id . "' />" . $f_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $l_name . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $workposition . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $international . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $startdate . "</td>";
+                                echo "<td id='searchForDeleteUser'>" . $name . "</td>";
                                 echo "</tr>";
                             }
                         }
@@ -1548,7 +1607,7 @@ function searchEmployeeConnectedEng()
 
                     }
                 }
-            }echo "</table>";
+            }echo "</table><button type='submit' class='btn btn-primary' name='DeleteConnection' >Delete connection</button></div></form>";
 
         } else {
             echo '<script type="text/javascript">alert("Connection error or checklist lacking");</script>';

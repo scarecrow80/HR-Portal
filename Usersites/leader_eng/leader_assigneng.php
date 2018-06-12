@@ -124,7 +124,7 @@ include "leader_session.php"; ?>
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                    <button type="submit" class="btn btn-primary" name="assignLeader">Tildel Leder</button>
+                                                    <button type="submit" class="btn btn-primary" name="assignLeader">Assign Leader</button>
                                                 </form>
 
 
@@ -152,7 +152,7 @@ include "leader_session.php"; ?>
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                    <button type="submit" class="btn btn-primary" name="assignHr">Tildel HR-ansatt</button>
+                                                    <button type="submit" class="btn btn-primary" name="assignHr">Assign HR-employee</button>
                                                 </form>
 
                                             </div>

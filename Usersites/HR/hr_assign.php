@@ -117,50 +117,7 @@ include "hr_session.php"; ?>
                                                 </form> -->
                                             </div>
                                         </div>
-                                        <div class="mrflexibox block_result_list tjenestebox left width_full"
-                                             thetitle="Slett fadder">
 
-                                            <h2>
-                                                Slett fadder
-                                            </h2>
-
-                                            <div class="mr_fleksi_content">
-
-                                                <form action="" method="post">
-                                                    <table>
-                                                        <tr class="input-group">
-                                                            <td>Ny ansatt: </td>
-                                                            <td>
-                                                                <?php employeeSelect(); ?>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr class="input-group">
-                                                            <td>Fadder: </td>
-                                                            <td><?php mentorSelect(); ?>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <button type="submit" class="btn btn-primary" name="deleteassignedMentor">Slett Fadder</button>
-                                                </form>
-                                                <!--
-                                                <form action="" method="post">
-                                                    <table>
-                                                        <tr class="input-group">
-                                                            <td>Ny ansatt: </td>
-                                                            <td><?php //employeeSelect(); ?></td>
-                                                        </tr>
-                                                        <tr class="input-group">
-
-                                                            <td>Ny Fadder: </td>
-                                                            <td><?php //mentorSelect(); ?>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <button type="submit" class="btn btn-primary" name="updateMentor">Tildel ny Fadder</button>
-                                                </form> -->
-                                            </div>
-                                        </div>
                                         <div class="mrflexibox block_result_list tjenestebox left width_full"
                                              thetitle="Tildel Leder">
 
